@@ -29,11 +29,13 @@ class Linear(Module):
         self.bias = Param(B.xp.zeros(n_out, dtype=B.dtype), decay=False) if bias else None
 
     def forward(self, x):
+        # Flatten (B,T,C) -> (B·T,C) so NumPy issues ONE big BLAS GEMM. A stacked
+        # (B,T,C) @ (C,N) matmul is executed as B small GEMMs and measured 4.4x slower.
         self.x = x
-        y = x @ self.weight.data
+        y = x.reshape(-1, self.n_in) @ self.weight.data
         if self.bias is not None:
-            y = y + self.bias.data
-        return y
+            y += self.bias.data
+        return y.reshape(*x.shape[:-1], self.n_out)
 
     def backward(self, dy):
         x2 = self.x.reshape(-1, self.n_in)
@@ -41,7 +43,7 @@ class Linear(Module):
         self.weight.grad += x2.T @ dy2
         if self.bias is not None:
             self.bias.grad += dy2.sum(axis=0)
-        return dy @ self.weight.data.T
+        return (dy2 @ self.weight.data.T).reshape(*dy.shape[:-1], self.n_in)
 
 
 # --------------------------------------------------------------------------------------
@@ -160,7 +162,7 @@ class GELU(Module):
 
     def forward(self, x):
         self.x = x
-        self.t = B.xp.tanh(_GELU_C * (x + 0.044715 * x ** 3))
+        self.t = B.xp.tanh(_GELU_C * (x + 0.044715 * x * x * x))   # x*x*x: pow() is slow
         return 0.5 * x * (1.0 + self.t)
 
     def backward(self, dy):
