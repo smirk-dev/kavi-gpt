@@ -59,7 +59,24 @@ sh(sys.executable, "scripts/prepare_data.py")
 sh(sys.executable, "scripts/tokenize_data.py", "char")
 sh(sys.executable, "scripts/tokenize_data.py", "bpe", "--vocab", "4096")
 sh(sys.executable, "scripts/backend_parity.py")
-res = sh(sys.executable, "scripts/sweep.py", SWEEP, "--backend", "cupy", "--out", OUT, check=False)
+# one sweep shard per GPU, in parallel (Kaggle may hand out 1x P100 or 2x T4)
+n_gpu = cupy.cuda.runtime.getDeviceCount()
+os.makedirs(OUT, exist_ok=True)
+procs = []
+for g in range(n_gpu):
+    env = dict(os.environ, CUDA_VISIBLE_DEVICES=str(g), PYTHONUNBUFFERED="1")
+    log = open(f"{{OUT}}/sweep_gpu{{g}}.log", "w")
+    cmd = [sys.executable, "scripts/sweep.py", SWEEP, "--backend", "cupy", "--out", OUT,
+           "--shard", f"{{g}}/{{n_gpu}}"]
+    print("$", " ".join(cmd), f"(GPU {{g}})", flush=True)
+    procs.append((subprocess.Popen(cmd, cwd=WORK, env=env, stdout=log, stderr=subprocess.STDOUT), log))
+codes = [p.wait() for p, _ in procs]
+for g, (_, log) in enumerate(procs):
+    log.close()
+    print(f"======== GPU {{g}} log ========")
+    print(open(f"{{OUT}}/sweep_gpu{{g}}.log").read()[-20000:])
+class _R: returncode = max(codes)
+res = _R()
 sh(sys.executable, "scripts/summarize.py", OUT, "--plot", OUT + "/curves.png", check=False)
 # keep downloads small: best.npz is enough to sample/resume-from-best; drop last.npz
 for d in os.listdir(OUT):

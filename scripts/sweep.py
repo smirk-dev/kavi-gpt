@@ -24,9 +24,12 @@ def main():
     ap.add_argument("--backend", default="numpy")
     ap.add_argument("--out", default="runs")
     ap.add_argument("--only", nargs="*")
+    ap.add_argument("--shard", default="0/1", help="k/n: run every n-th run starting at k "
+                    "(one shard per GPU)")
     args = ap.parse_args()
     sweep = json.loads(Path(args.sweep).read_text(encoding="utf-8"))
-    for run in sweep["runs"]:
+    k, n = map(int, args.shard.split("/"))
+    for run in sweep["runs"][k::n]:
         name = run["name"]
         if args.only and name not in args.only:
             continue
