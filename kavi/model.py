@@ -30,6 +30,7 @@ class GPTConfig:
     norm: str = "rmsnorm"       # "layernorm" | "rmsnorm"
     mlp: str = "swiglu"         # "gelu" | "relu" | "swiglu"
     rope_base: float = 10000.0
+    attn: str = "naive"         # "naive" | "flash" (tiled online-softmax, docs/12)
 
     @classmethod
     def preset(cls, name, **overrides):
@@ -61,7 +62,8 @@ class Block(Module):
         self.norm1 = make_norm(cfg.norm, C, bias=cfg.bias)
         self.attn = CausalSelfAttention(C, cfg.n_head, cfg.block_size, rng, bias=cfg.bias,
                                         dropout=cfg.dropout, rope=(cfg.pos == "rope"),
-                                        rope_base=cfg.rope_base, proj_std=proj_std)
+                                        rope_base=cfg.rope_base, proj_std=proj_std,
+                                        flash=(cfg.attn == "flash"))
         self.norm2 = make_norm(cfg.norm, C, bias=cfg.bias)
         if cfg.mlp == "swiglu":
             self.mlp = SwiGLU(C, rng, bias=cfg.bias, dropout=cfg.dropout, proj_std=proj_std)

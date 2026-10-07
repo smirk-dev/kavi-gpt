@@ -1,0 +1,20 @@
+{
+  "base": "configs/bpe_base.json",
+  "set": [],
+  "runs": [
+    {"name": "anton-s1",   "set": ["model.preset=\"gpt2\"", "model.mlp=\"relu\"", "model.bias=true", "train.seed=1"]},
+    {"name": "gpt2-s1",    "set": ["model.preset=\"gpt2\"", "train.seed=1"]},
+    {"name": "gpt2+rope-s1",    "set": ["model.preset=\"gpt2\"", "model.pos=\"rope\"", "train.seed=1"]},
+    {"name": "gpt2+rmsnorm-s1", "set": ["model.preset=\"gpt2\"", "model.norm=\"rmsnorm\"", "train.seed=1"]},
+    {"name": "gpt2+swiglu-s1",  "set": ["model.preset=\"gpt2\"", "model.mlp=\"swiglu\"", "train.seed=1"]},
+    {"name": "kavi-s1",    "set": ["model.preset=\"kavi\"", "train.seed=1"]},
+    {"name": "kavi-char-s1", "set": ["model.preset=\"kavi\"", "data=\"data/char\"", "train.seed=1"]},
+    {"name": "kavi-sgd-s1",  "set": ["model.preset=\"kavi\"", "train.optimizer=\"sgd\"", "train.lr=0.1", "train.min_lr=0.01", "train.seed=1"]},
+    {"name": "anton-s2",   "set": ["model.preset=\"gpt2\"", "model.mlp=\"relu\"", "model.bias=true", "train.seed=2"]},
+    {"name": "gpt2-s2",    "set": ["model.preset=\"gpt2\"", "train.seed=2"]},
+    {"name": "gpt2+rope-s2",    "set": ["model.preset=\"gpt2\"", "model.pos=\"rope\"", "train.seed=2"]},
+    {"name": "gpt2+rmsnorm-s2", "set": ["model.preset=\"gpt2\"", "model.norm=\"rmsnorm\"", "train.seed=2"]},
+    {"name": "gpt2+swiglu-s2",  "set": ["model.preset=\"gpt2\"", "model.mlp=\"swiglu\"", "train.seed=2"]},
+    {"name": "kavi-s2",    "set": ["model.preset=\"kavi\"", "train.seed=2"]}
+  ]
+}

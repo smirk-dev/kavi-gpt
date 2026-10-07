@@ -108,7 +108,8 @@ def clip_grad_norm(params, max_norm):
     logging: spikes in it are the first sign of instability).
     """
     xp = B.xp
-    total = float(xp.sqrt(sum(float((p.grad * p.grad).sum()) for p in params)))
+    # sum on-device and convert once: on a GPU every float() is a host<->device sync
+    total = float(xp.sqrt(sum((p.grad * p.grad).sum() for p in params)))
     if max_norm and total > max_norm:
         scale = max_norm / (total + 1e-6)
         for p in params:

@@ -63,8 +63,11 @@ def scatter_add(target, idx, values) -> None:
     gradient for every token that appears twice in a batch. ``np.add.at`` does it right.
     """
     if name == "cupy":
-        import cupyx
-        cupyx.scatter_add(target, idx, values)
+        if hasattr(xp.add, "at"):          # CuPy >= 13
+            xp.add.at(target, idx, values)
+        else:
+            import cupyx
+            cupyx.scatter_add(target, idx, values)
     else:
         np.add.at(target, idx, values)
 
@@ -84,5 +87,5 @@ def rand(shape):
     if _rng is None:
         seed(0)
     if name == "cupy":
-        return _rng.random_sample(shape).astype(dtype)
+        return _rng.random_sample(shape, dtype=dtype)
     return _rng.random(shape, dtype=np.float32).astype(dtype, copy=False)

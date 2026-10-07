@@ -1,0 +1,8 @@
+{
+  "base": "configs/bpe_base.json",
+  "set": ["train.max_steps=300", "train.eval_interval=150", "train.eval_iters=10", "train.log_interval=50"],
+  "runs": [
+    {"name": "probe-gpt2", "set": ["model.preset=\"gpt2\""]},
+    {"name": "probe-kavi", "set": ["model.preset=\"kavi\""]}
+  ]
+}

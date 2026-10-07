@@ -8,6 +8,7 @@ import math
 import numpy as np
 
 from . import backend as B
+from .flash import flash_backward, flash_forward
 from .layers import Dropout, Linear
 from .module import Module
 
@@ -66,8 +67,12 @@ class CausalSelfAttention(Module):
     """
 
     def __init__(self, dim, n_head, max_len, rng, bias=True, dropout=0.0, rope=False,
-                 rope_base=10000.0, proj_std=0.02):
+                 rope_base=10000.0, proj_std=0.02, flash=False):
         assert dim % n_head == 0
+        # flash=True: tiled online-softmax attention (kavi/flash.py) — same maths, O(T)
+        # memory. It never materialises the probability matrix, so there is nothing to
+        # apply attention-dropout to; residual dropout still applies.
+        self.flash = flash
         self.dim, self.n_head, self.head_dim = dim, n_head, dim // n_head
         self.qkv = Linear(dim, 3 * dim, rng, bias=bias)
         self.proj = Linear(dim, dim, rng, bias=bias, std=proj_std)
@@ -94,6 +99,10 @@ class CausalSelfAttention(Module):
         q, k, v = self._split_heads(q), self._split_heads(k), self._split_heads(v)
         if self.rope is not None:
             q, k = self.rope.forward(q), self.rope.forward(k)
+        if self.flash:
+            out, lse = flash_forward(q, k, v)
+            self.q, self.k, self.v, self.out, self.lse = q, k, v, out, lse
+            return self.resid_drop(self.proj(self._merge_heads(out)))
         scale = 1.0 / math.sqrt(self.head_dim)
         scores = (q @ k.transpose(0, 1, 3, 2)) * scale                  # (B,H,T,T)
         causal = xp.tril(xp.ones((T, T), dtype=bool))
@@ -105,8 +114,11 @@ class CausalSelfAttention(Module):
         return self.resid_drop(self.proj(out))
 
     def backward(self, dy):
-        q, k, v, P, Pd, scale = self.q, self.k, self.v, self.probs, self.probs_d, self.scale
         dout = self._split_heads(self.proj.backward(self.resid_drop.backward(dy)))
+        if self.flash:
+            dq, dk, dv = flash_backward(self.q, self.k, self.v, self.out, self.lse, dout)
+            return self._qkv_backward(dq, dk, dv)
+        q, k, v, P, Pd, scale = self.q, self.k, self.v, self.probs, self.probs_d, self.scale
         # out = Pd @ v
         dPd = dout @ v.transpose(0, 1, 3, 2)
         dv = Pd.transpose(0, 1, 3, 2) @ dout
@@ -116,6 +128,9 @@ class CausalSelfAttention(Module):
         dS = P * (dP - (dP * P).sum(axis=-1, keepdims=True)) * scale
         dq = dS @ k
         dk = dS.transpose(0, 1, 3, 2) @ q
+        return self._qkv_backward(dq, dk, dv)
+
+    def _qkv_backward(self, dq, dk, dv):
         if self.rope is not None:
             dq, dk = self.rope.backward(dq), self.rope.backward(dk)
         dqkv = B.xp.concatenate(
