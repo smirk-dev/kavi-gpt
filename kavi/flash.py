@@ -18,9 +18,9 @@ Backward — recompute each tile's probabilities from L instead of storing them:
 (Δ = rowsum(dO ⊙ O) equals Σ_j dP_ij P_ij — the softmax-backward term — but costs O(T·D)
 to compute instead of needing the full P.)
 
-Recomputing is cheaper than remembering: that trade is the whole idea. In NumPy it is
-slower than the naive version (Python loops over tiles); the point here is to understand
-and verify the algorithm. Tests prove forward and backward match naive attention.
+Recomputing is cheaper than remembering: that trade is the whole idea. In NumPy, speed is
+not the point (Python loops over tiles: roughly on par with naive at T=128, ~2x slower at
+T=256 on a CPU); the point is to understand and verify the algorithm. Tests prove forward and backward match naive attention.
 """
 import math
 

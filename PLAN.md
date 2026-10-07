@@ -81,7 +81,8 @@ val text unseen while still covering comedies, tragedies, histories and sonnets.
 
 ```
 kavi/            the library (backend, modules, model, optim, tokenizers, sampling)
-scripts/         prepare_data, train_bpe, train, generate, plot
+scripts/         prepare_data, tokenize_data, train, sweep, summarize, generate,
+                 attention_viz, induction, backend_parity
 configs/         JSON run configs (one knob changed per ablation)
 tests/           pytest suite (gradchecks, parity, equivalence)
 kaggle/          kernel bundler + metadata

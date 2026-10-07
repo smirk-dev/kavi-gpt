@@ -12,7 +12,8 @@ tokenises Shakespeare, (3) proves CPU/GPU parity, (4) runs the sweep with --back
 Results land in /kaggle/working/runs (the kernel's downloadable output).
 
 Notes from earlier Kaggle work on this machine (Brain: transformer-repro, unet-breath-*):
-API-pushed GPU kernels get a P100 (sm_60); the kaggle API only works from the Windows
+API-pushed GPU kernels get whatever accelerator Kaggle assigns (a P100 in 2026-07,
+2x T4 in 2026-10 — the kernel uses every visible GPU); the kaggle API only works from the Windows
 Store Python; kernels_output can choke writing the .log on cp1252 -> set PYTHONUTF8=1.
 """
 import argparse

@@ -5,3 +5,4 @@ __pycache__/
 .pytest_cache/
 kaggle/build/
 kaggle/output/
+ckpt/

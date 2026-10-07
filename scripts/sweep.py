@@ -39,6 +39,8 @@ def main():
         cmd = [sys.executable, str(ROOT / "scripts" / "train.py"), sweep["base"],
                "--backend", args.backend, "--out", args.out,
                "--set", f'name="{name}"', *sweep.get("set", []), *run.get("set", [])]
+        if (Path(args.out) / name / "last.npz").exists():
+            cmd.append("--resume")             # interrupted mid-run: continue from last.npz
         print(f"\n== {name}: {' '.join(run.get('set', [])) or '(base)'}", flush=True)
         t0 = time.time()
         subprocess.run(cmd, check=True)

@@ -111,7 +111,15 @@ def main():
 
     rng = np.random.default_rng(tc["seed"] + start)
     T, bs = mcfg.block_size, tc["batch_size"]
-    log = open(run / "log.jsonl", "a", encoding="utf-8")
+    # fresh run: start a new log. Resume: keep only records before `start` (the resumed
+    # step is evaluated again, and a crashed run may have logged past its last checkpoint)
+    log_path = run / "log.jsonl"
+    kept = []
+    if start and log_path.exists():
+        kept = [l for l in log_path.read_text(encoding="utf-8").splitlines()
+                if l and json.loads(l)["step"] < start]
+    log_path.write_text("".join(l + "\n" for l in kept), encoding="utf-8")
+    log = open(log_path, "a", encoding="utf-8")
     t_last, tokens_since, lr = time.time(), 0, None
     for step in range(start, tc["max_steps"] + 1):
         if step % tc["eval_interval"] == 0 or step == tc["max_steps"]:

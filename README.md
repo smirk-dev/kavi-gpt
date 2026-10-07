@@ -1,0 +1,104 @@
+# Kavi — a GPT from absolute scratch, in NumPy
+
+*Kavi* (कवि) is Sanskrit/Hindi for "poet". It is a GPT language model written from scratch
+in **pure NumPy**: every layer's forward pass **and backward pass** is derived by hand
+and written out, with no autograd, PyTorch or TensorFlow inside the model. It learns to write like
+Shakespeare, and the same hand-written code trains on a free Kaggle GPU through CuPy.
+
+Inspired by Green Code's *Anton* series (a GPT in NumPy, trained on Shakespeare). Kavi
+follows the same path and sets out to be **better and more rigorous**:
+
+| | Anton | Kavi |
+|---|---|---|
+| Gradients | "I double-checked my gradient code" | Every brick and the whole model are **proven** two ways: finite-difference gradcheck (float64) **and** parity with PyTorch autograd (to 1e-7) |
+| Architecture | GPT-2 style (learned positions, LayerNorm, ReLU) | Switchable: GPT-2 baseline **vs** a Llama-style block with **RoPE + RMSNorm + SwiGLU**, all backward passes hand-derived |
+| Evaluation | eyeballing samples; no validation set | held-out split, **bits per byte** (comparable across tokenizers), multi-seed **ablation table** |
+| Hardware | 11 h on a CPU; rewrites in PyTorch for GPUs | the **same NumPy code** runs on a free Kaggle GPU (CuPy); CPU/GPU gradients agree to 1e-15 |
+| Generation | recomputes the whole context for every token | **KV cache** (7.2× faster), temperature / top-k / top-p |
+| Attention | (FlashAttention planned for a later PyTorch episode) | **FlashAttention forward + backward in NumPy**, proven equal to naive attention |
+| Data | 1 corpus, ~6M params on ~0.3M tokens | all of Shakespeare (5.4 MB, ~5× "Tiny Shakespeare"), byte-level BPE trained from scratch |
+| Docs | videos | a 14-chapter [book](docs/00-overview.md) deriving every formula, plus a [lab journal](docs/journal.md) |
+
+## Results
+
+14 runs, two seeds per config, ~5.8M params each (Anton v1's size), 4000 steps on all of
+Shakespeare, trained in 160 min on Kaggle's free 2× T4. Lower is better:
+
+| config | val bits/byte | |
+|---|---|---|
+| **kavi** (RoPE + RMSNorm + SwiGLU) | **1.627** | −0.080 vs gpt2 |
+| gpt2 + RoPE only | 1.632 | RoPE alone is ~94% of the gain |
+| anton (GPT-2 + ReLU + biases) | 1.697 | |
+| gpt2 + SwiGLU only | 1.699 | |
+| gpt2 + RMSNorm only | 1.707 | ties LayerNorm |
+| gpt2 (baseline) | 1.707 | |
+| kavi on characters | 1.803 | |
+| kavi with plain SGD | 2.238 | Anton's SGD failure, measured |
+
+Seed-to-seed spread is ≤ 0.0012 bpb, so every gap above except RMSNorm's is real.
+
+```
+HORATIO.
+[_Aside._] Though I call thee this, boy, I had rather have beat thee.
+
+HAMLET.
+I am going to my lord.
+```
+
+Curves, samples, attention maps and a (negative) search for induction heads are in
+[docs/journal.md](docs/journal.md).
+
+## Quickstart
+
+```bash
+pip install numpy matplotlib pytest          # torch optional: only for the parity tests
+python -m pytest tests -q                    # 43 tests: gradchecks, parity, equivalences
+
+python scripts/prepare_data.py               # download Shakespeare, 90/10 split
+python scripts/tokenize_data.py char         # -> data/char
+python scripts/tokenize_data.py bpe --vocab 4096   # -> data/bpe4096 (trains BPE, ~10 s)
+
+python scripts/train.py configs/char_kavi.json     # small CPU run
+python scripts/generate.py runs/char_kavi/best.npz --prompt "ROMEO:" --tokens 300
+python scripts/attention_viz.py runs/char_kavi/best.npz --out docs/img/attention.png
+```
+
+GPU (free Kaggle), see [docs/11-gpu.md](docs/11-gpu.md):
+```bash
+python kaggle/build_kernel.py build --sweep configs/sweep_ablation.json
+python kaggle/build_kernel.py push      # then: status / output
+```
+
+## Layout
+
+```
+kavi/            the library
+  backend.py       numpy <-> cupy switch
+  module.py        Module/Param: forward caches, backward accumulates
+  layers.py        Linear, Embedding, LayerNorm, RMSNorm, ReLU, GELU, Dropout, MLP, SwiGLU
+  attention.py     causal multi-head attention, RoPE, KV cache
+  flash.py         FlashAttention forward/backward (online softmax + recomputation)
+  loss.py          fused softmax cross-entropy
+  model.py         GPT (gpt2 / kavi presets), generation, sampling
+  optim.py         SGD, AdamW, warmup+cosine, gradient clipping
+  gradcheck.py     finite-difference gradient checker
+  tokenizers/      char-level and byte-level BPE
+  data.py          token datasets, batching, bits-per-byte
+scripts/         prepare_data, tokenize_data, train, sweep, summarize, generate, attention_viz,
+                 induction, backend_parity
+configs/         run configs and sweeps (each ablation is a single-knob diff)
+tests/           gradcheck, torch parity, flash, KV cache, BPE, overfit-one-batch
+kaggle/          repo -> single-file Kaggle kernel bundler, push/status/output
+docs/            the book + journal
+```
+
+## The book
+
+0. [Overview](docs/00-overview.md) · 1. [Tokenization](docs/01-tokenization.md) ·
+2. [Embeddings](docs/02-embeddings.md) · 3. [Linear layers & backprop](docs/03-linear-and-backprop.md) ·
+4. [Normalization](docs/04-normalization.md) · 5. [Attention & RoPE](docs/05-attention.md) ·
+6. [MLP: GELU & SwiGLU](docs/06-mlp.md) · 7. [Loss](docs/07-loss.md) ·
+8. [Optimizers](docs/08-optimizers.md) · 9. [Training](docs/09-training.md) ·
+10. [Sampling & KV cache](docs/10-sampling.md) · 11. [GPU & Kaggle](docs/11-gpu.md) ·
+12. [FlashAttention](docs/12-flash-attention.md) · 13. [Interpretability](docs/13-interpretability.md) ·
+[Journal](docs/journal.md)

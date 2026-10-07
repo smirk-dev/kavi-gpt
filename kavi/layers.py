@@ -167,8 +167,8 @@ class GELU(Module):
 
     def backward(self, dy):
         x, t = self.x, self.t
-        dt = _GELU_C * (1.0 + 3 * 0.044715 * x * x)
-        return dy * (0.5 * (1.0 + t) + 0.5 * x * (1.0 - t * t) * dt)
+        du = _GELU_C * (1.0 + 3 * 0.044715 * x * x)     # du/dx, u = the tanh argument
+        return dy * (0.5 * (1.0 + t) + 0.5 * x * (1.0 - t * t) * du)
 
 
 def sigmoid(a):

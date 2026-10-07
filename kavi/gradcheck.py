@@ -4,7 +4,9 @@ For a scalar objective L(θ), the centred difference
     (L(θ + h·e_i) - L(θ - h·e_i)) / 2h
 approximates ∂L/∂θ_i with error O(h²). We compare it to the analytic gradient our
 backward() produced, using the relative error
-    |a - n| / max(|a| + |n|, tiny)
+    |a - n| / (|a| + |n|)          (in [0, 1]; 1 means opposite signs or one side zero)
+except when both are tiny (|a| + |n| < 1e-7): then the gradient is zero up to rounding
+(e.g. by symmetry) and we compare absolute error instead.
 In float64 with h ≈ 1e-4 a correct gradient typically agrees to ~1e-7..1e-10; a bug shows
 up as errors of 1e-2 or worse. Always run in float64 (``B.set_precision("float64")``):
 float32 has only ~7 significant digits, so the difference quotient drowns in rounding.

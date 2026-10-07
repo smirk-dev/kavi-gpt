@@ -26,7 +26,7 @@ class GPTConfig:
     n_embd: int = 128           # model width C
     dropout: float = 0.0
     bias: bool = False          # biases in Linear/LayerNorm (GPT-2 had them; modern models drop them)
-    pos: str = "rope"           # "learned" | "rope"
+    pos: str = "rope"           # "learned" | "rope" | "none" (no position info: an ablation)
     norm: str = "rmsnorm"       # "layernorm" | "rmsnorm"
     mlp: str = "swiglu"         # "gelu" | "relu" | "swiglu"
     rope_base: float = 10000.0
@@ -88,6 +88,10 @@ class Block(Module):
 class GPT(Module):
     def __init__(self, cfg: GPTConfig, seed: int = 0):
         self.cfg = cfg
+        for knob, ok in (("pos", ("learned", "rope", "none")), ("norm", ("layernorm", "rmsnorm")),
+                         ("mlp", ("gelu", "relu", "swiglu")), ("attn", ("naive", "flash"))):
+            if getattr(cfg, knob) not in ok:   # a typo like pos="rotary" must not silently
+                raise ValueError(f"{knob}={getattr(cfg, knob)!r}; expected one of {ok}")  # drop RoPE
         rng = np.random.default_rng(seed)
         self.wte = Embedding(cfg.vocab_size, cfg.n_embd, rng)
         self.wpe = Embedding(cfg.block_size, cfg.n_embd, rng) if cfg.pos == "learned" else None
