@@ -83,8 +83,8 @@ barely visible because the seeds agree so closely.*
    every earlier step, so this is a coincidence.) RMSNorm's selling point in big models is
    speed and simplicity, not quality, and that's consistent with this result.
 4. **SwiGLU and RMSNorm mostly buy faster early progress.** At step 2000, kavi leads
-   gpt2+rope by 0.018 bpb; by step 4000 the lead is 0.005. gpt2+swiglu's lead over gpt2
-   shrinks from 0.025 to 0.008 over the same stretch. RoPE's lead doesn't shrink.
+   gpt2+rope by 0.019 bpb; by step 4000 the lead is 0.005. gpt2+swiglu's lead over gpt2
+   shrinks from 0.023 to 0.008 over the same stretch. RoPE's lead doesn't shrink.
 5. **A surprise: Anton's block beats the GPT-2 block.** `anton` (ReLU + biases) is 0.009
    better than `gpt2` (GELU, no biases). Two knobs changed together, so we can't say which
    one did it. A follow-up should run `gpt2+bias` and `gpt2+relu` separately. One hypothesis is that with
