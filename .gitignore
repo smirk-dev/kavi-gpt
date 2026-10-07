@@ -1,0 +1,7 @@
+data/
+runs/
+__pycache__/
+*.pyc
+.pytest_cache/
+kaggle/build/
+kaggle/output/
