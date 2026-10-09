@@ -89,11 +89,15 @@ def main():
     cfg["model"] = mcfg.to_dict()
     model = GPT(mcfg, seed=tc["seed"])
     params = model.params()
+    if tc["optimizer"] not in ("adamw", "sgd", "momentum"):
+        raise ValueError(f"train.optimizer={tc['optimizer']!r}; expected adamw | sgd | momentum")
     if tc["optimizer"] == "adamw":
         opt = AdamW(params, lr=tc["lr"], betas=(tc["beta1"], tc["beta2"]),
                     weight_decay=tc["weight_decay"])
     else:
-        opt = SGD(params, lr=tc["lr"], momentum=tc["momentum"] if tc["optimizer"] == "momentum" else 0.0)
+        if tc["optimizer"] == "sgd":
+            tc["momentum"] = 0.0     # plain SGD: record what actually runs (config.json is written below)
+        opt = SGD(params, lr=tc["lr"], momentum=tc["momentum"])
 
     run = Path(args.out) / cfg["name"]
     run.mkdir(parents=True, exist_ok=True)

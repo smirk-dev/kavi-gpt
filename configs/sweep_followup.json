@@ -1,0 +1,12 @@
+{
+  "base": "configs/bpe_base.json",
+  "set": [],
+  "runs": [
+    {"name": "gpt2+bias-s1", "set": ["model.preset=\"gpt2\"", "model.bias=true", "train.seed=1"]},
+    {"name": "gpt2+relu-s1", "set": ["model.preset=\"gpt2\"", "model.mlp=\"relu\"", "train.seed=1"]},
+    {"name": "kavi-momentum-lr0.03-s1", "set": ["model.preset=\"kavi\"", "train.optimizer=\"momentum\"", "train.momentum=0.9", "train.lr=0.03", "train.min_lr=0.003", "train.seed=1"]},
+    {"name": "gpt2+bias-s2", "set": ["model.preset=\"gpt2\"", "model.bias=true", "train.seed=2"]},
+    {"name": "gpt2+relu-s2", "set": ["model.preset=\"gpt2\"", "model.mlp=\"relu\"", "train.seed=2"]},
+    {"name": "kavi-momentum-lr0.1-s1", "set": ["model.preset=\"kavi\"", "train.optimizer=\"momentum\"", "train.momentum=0.9", "train.lr=0.1", "train.min_lr=0.01", "train.seed=1"]}
+  ]
+}
