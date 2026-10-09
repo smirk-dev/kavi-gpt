@@ -12,11 +12,11 @@ State of each phase in [PLAN.md](PLAN.md). Updated 2026-10-08.
 | 5 GPU | ✅ | Kaggle probe v1: 2× T4, CPU/GPU grad parity 7.6e-16, ~32k tok/s per T4 |
 | 6 Ablations | ✅ | Kaggle v2, 14 runs in 160 min on 2× T4; `results/ablation/`, table in `docs/journal.md` (kavi 1.627 vs gpt2 1.707 bpb) |
 | 7 Inference & insight | ✅ | KV cache (7.2×), flash == naive, `docs/img/attention.png`, `scripts/induction.py` (no induction heads yet) |
-| Docs | ✅ | 14 chapters + journal (~4.7k lines), links checked |
-| 8 Stretch (bigger data/PyTorch) | ⏳ | — |
+| Docs | ✅ | 15 chapters + journal, links checked |
+| 8 Scale-up | ⏳ | corpus built: 137 texts, 11.9× Shakespeare, 18.7M BPE-8192 train tokens, leakage-guarded (`scripts/build_corpus.py`, `docs/14-scaling.md`); scale probe + long run pending |
 
 ## How to resume
-- Tests: `python -m pytest tests -q` (43 pass, ~35 s; torch optional).
+- Tests: `python -m pytest tests -q` (47 pass; torch optional).
 - Kaggle loop: `python kaggle/build_kernel.py build --sweep <file>` → `push` → `status` → `output`
   (downloads to `kaggle/output/`, cleared first). Run from the Windows Store `python` (it has
   the kaggle API auth). Copy results you keep into `results/<name>/` (git-tracked, no .npz).
@@ -26,8 +26,9 @@ State of each phase in [PLAN.md](PLAN.md). Updated 2026-10-08.
 `ckpt/` (gitignored, weights only, ~23 MB each): kavi-s2, gpt2-s2, anton-s2, kavi-char-s1.
 Load with `kavi.checkpoint.load_model`. Optimizer state was stripped, so they can't be resumed.
 
-## Next (journal "What's next")
-gpt2+bias / gpt2+relu runs; SGD+momentum with an lr sweep; a 20k-step run looking for induction heads; a bigger corpus.
+## Next
+- Kaggle v3 (pushed 2026-10-09 ~10:00 IST): `configs/sweep_followup.json`, gpt2+bias / gpt2+relu ×2 seeds, SGD+momentum lr 0.03/0.1. → `results/followup/`, journal entry.
+- Then `configs/sweep_scale_probe.json` (300 steps × S/M/L, measures T4 throughput), then the long run + `scripts/induction.py`.
 
 ## Known facts / gotchas found while building
 - NumPy stacked matmul `(B,T,C)@(C,N)` is 4.4× slower than flattening to 2-D → `Linear` flattens.

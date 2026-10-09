@@ -239,6 +239,7 @@ kavi-gpt/
 ├── scripts/
 │   ├── prepare_data.py        download Gutenberg #100, strip licence, 100-shard train/val split
 │   ├── tokenize_data.py       train a tokenizer on train, write data/<name>/*.bin + meta.json
+│   ├── build_corpus.py        phase 8: 137 early-modern Gutenberg texts, leakage guard (14-scaling)
 │   ├── train.py               the training loop (09-training)
 │   ├── sweep.py               run many single-knob variants of one base config
 │   ├── summarize.py           runs/*/log.jsonl → markdown table + val-bpb plot
@@ -248,6 +249,7 @@ kavi-gpt/
 ├── configs/
 │   ├── char_kavi.json         small char-level model for the CPU
 │   ├── bpe_base.json          ~5.8M-param BPE model (the Anton-sized one)
+│   ├── scale_base.json        phase 8: kavi on Shakespeare + 12× extra text, BPE 8192
 │   ├── sweep_probe.json       2 short runs, a smoke test for the GPU pipeline
 │   └── sweep_ablation.json    the full ablation: anton, gpt2, +rope, +rmsnorm, +swiglu, kavi, char, sgd
 ├── tests/
@@ -289,7 +291,8 @@ uses its pattern.
 12. [11-gpu](11-gpu.md): the same NumPy code on CuPy, and the Kaggle pipeline
 13. [12-flash-attention](12-flash-attention.md): online softmax, tiled, in NumPy
 14. [13-interpretability](13-interpretability.md): what the heads look at
-15. [journal](journal.md): every run, with numbers
+15. [14-scaling](14-scaling.md): a 12× bigger corpus without leaking val, three sizes, a compute budget
+16. [journal](journal.md): every run, with numbers
 
 ---
 

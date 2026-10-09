@@ -101,4 +101,5 @@ docs/            the book + journal
 8. [Optimizers](docs/08-optimizers.md) · 9. [Training](docs/09-training.md) ·
 10. [Sampling & KV cache](docs/10-sampling.md) · 11. [GPU & Kaggle](docs/11-gpu.md) ·
 12. [FlashAttention](docs/12-flash-attention.md) · 13. [Interpretability](docs/13-interpretability.md) ·
+14. [Scaling up](docs/14-scaling.md) ·
 [Journal](docs/journal.md)
