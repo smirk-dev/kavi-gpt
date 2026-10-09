@@ -36,3 +36,14 @@ def test_strip_gutenberg_both_marker_styles():
         raw = f"licence blah\r\n{start}\r\n\r\nBody line one.\r\nBody line two.\r\n{end}\r\nmore licence"
         assert bc.strip_gutenberg(raw) == "Body line one.\nBody line two.\n"
     assert bc.strip_gutenberg("no markers here") is None
+
+
+def test_leak_mask_fills_short_speeches_between_hits_but_not_isolated_ones():
+    banned = banned_from(HAMLET)
+    hit = " ".join(bc.words(HAMLET))
+    keys = ["fair cousin i am glad", hit, "away", "my lord", hit,       # 0..4: a leaked scene
+            *["an innocent line of other verse"] * 12, hit, "go on"]     # 5..16 gap, 17 lone quote
+    mask = bc.leak_mask(keys, banned, gap=10)
+    assert mask[:5] == [False, True, True, True, True]   # speeches between two close hits dropped
+    assert not any(mask[5:17])                          # a 13-paragraph gap is not filled
+    assert mask[17] and not mask[18]                     # an isolated quotation flags only itself

@@ -15,7 +15,7 @@ plus a short list of extras (EXTRA_IDS, each with a reason). Every Shakespeare t
 
 Leakage guard: Shakespeare *is* the validation set, so a quotation or a collaboration in the
 extra corpus would leak it. `build` drops every paragraph that shares any word 8-gram with
-the complete works (train AND val), then drops exact-duplicate paragraphs across texts, and
+the complete works (train AND val), then drops exact-duplicate paragraphs of 8+ words, and
 skips a whole text when most of it has already been seen (another edition of the same play).
 """
 import argparse
@@ -40,6 +40,7 @@ EXTRA_IDS = {
 START = re.compile(r"\*\*\* ?START OF (?:THE|THIS) PROJECT GUTENBERG E(?:-?BOOK|TEXT)[^\n]*\n", re.I)
 END = re.compile(r"\*\*\* ?END OF (?:THE|THIS) PROJECT GUTENBERG E(?:-?BOOK|TEXT)", re.I)
 NGRAM = 8
+SPAN_GAP = 10          # leak_mask: drop everything between two Shakespeare hits this close
 
 
 def select():
@@ -104,6 +105,20 @@ def ngrams(ws):
     return {hash(tuple(ws[i:i + NGRAM])) for i in range(len(ws) - NGRAM + 1)}
 
 
+def leak_mask(keys, banned, gap=SPAN_GAP):
+    """Which paragraphs to drop as Shakespeare. A paragraph is flagged if it shares an 8-gram
+    with the canon, and so is everything *between* two flagged paragraphs at most `gap` apart.
+    Why: a leaked play (The Two Noble Kinsmen sits in Beaumont & Fletcher vol. 9) is mostly
+    caught by 8-grams, but its short speeches ("Fair cousin, I am glad.") have no 8-gram at all
+    and would slip through between the flagged ones. An isolated quotation flags only itself."""
+    hit = [bool(ngrams(k.split()) & banned) for k in keys]
+    idx = [i for i, h in enumerate(hit) if h]
+    for a, b in zip(idx, idx[1:]):
+        if b - a <= gap:
+            hit[a:b] = [True] * (b - a)
+    return hit
+
+
 def build():
     shakes = (ROOT / "data" / "shakespeare.txt").read_text(encoding="utf-8")
     banned = ngrams(words(shakes))                                 # train AND val
@@ -122,19 +137,25 @@ def build():
             continue
         paras = [q for q in re.split(r"\n\s*\n", body) if q.strip()]
         keys = [" ".join(words(q)) for q in paras]
-        if sum(k in seen for k in keys if k) > 0.5 * max(1, sum(1 for k in keys if k)):
+        # dedup only passages long enough to be a real duplicate: "Exeunt.", "Madam." and speaker
+        # names repeat legitimately (deduping them dropped 31k of 36k paragraphs in the first run)
+        long_keys = [k for k in keys if len(k.split()) >= NGRAM]
+        if sum(k in seen for k in long_keys) > 0.5 * max(1, len(long_keys)):
             stats["skipped_dupe_text"] += 1                        # another edition of something we have
             continue
+        leak = leak_mask(keys, banned)
         out = []
-        for q, k in zip(paras, keys):
+        for q, k, leaked in zip(paras, keys, leak):
             stats["paras"] += 1
-            if k and k in seen:
+            is_long = len(k.split()) >= NGRAM
+            if is_long and k in seen:
                 stats["drop_dupe"] += 1
                 continue
-            if ngrams(k.split()) & banned:
+            if leaked:
                 stats["drop_shakespeare"] += 1
                 continue
-            seen.add(k)
+            if is_long:
+                seen.add(k)
             out.append(q.strip("\n"))
         if out:
             kept_texts.append("\n\n".join(out) + "\n")
