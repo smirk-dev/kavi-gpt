@@ -108,7 +108,7 @@ induction circuit.
 
 ```bash
 pip install numpy matplotlib pytest          # torch optional: only for the parity tests
-python -m pytest tests -q                    # 43 tests: gradchecks, parity, equivalences
+python -m pytest tests -q                    # 57 tests: gradchecks, parity, equivalences, evaluation
 
 python scripts/prepare_data.py               # download Shakespeare, 90/10 split
 python scripts/tokenize_data.py char         # -> data/char
