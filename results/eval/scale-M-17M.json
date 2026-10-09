@@ -1,0 +1,151 @@
+{
+ "checkpoint": "ckpt/scale-M-17M.npz",
+ "params": 17308032,
+ "data": "data/bpe8192x",
+ "logged_best_val_bpb": 1.4692,
+ "val": {
+  "tokens": 171710,
+  "bytes": 542794,
+  "bpb_nonoverlap": 1.467,
+  "bpb_sliding": 1.4326,
+  "top1": 0.402,
+  "top5": 0.6091,
+  "mean_p_top1": 0.4297,
+  "ece": 0.0277
+ },
+ "loss_by_position": {
+  "0-0": 5.1333,
+  "1-3": 4.1837,
+  "4-15": 3.6313,
+  "16-63": 3.2325,
+  "64-127": 3.1726,
+  "128-255": 3.1515
+ },
+ "bpb_by_kind": {
+  "dialogue": {
+   "bpb": 1.5165,
+   "bytes": 447813
+  },
+  "newline": {
+   "bpb": 0.5676,
+   "bytes": 18482
+  },
+  "speaker": {
+   "bpb": 0.7588,
+   "bytes": 22072
+  },
+  "stage": {
+   "bpb": 1.3094,
+   "bytes": 54427
+  }
+ },
+ "heldout": {
+  "dryden": {
+   "label": "Dryden, All for Love (1677): a verse tragedy, the same story as Antony and Cleopatra",
+   "tokens": 44486,
+   "bytes_per_token": 3.372,
+   "bpb": 1.4492
+  },
+  "austen": {
+   "label": "Austen, Pride and Prejudice (1813): prose novel",
+   "tokens": 41873,
+   "bytes_per_token": 3.645,
+   "bpb": 1.4957
+  },
+  "wells": {
+   "label": "Wells, The Time Machine (1895): prose novel",
+   "tokens": 43122,
+   "bytes_per_token": 3.503,
+   "bpb": 1.7126
+  },
+  "docs": {
+   "label": "This repo's docs (2026): modern technical English, Markdown, maths",
+   "tokens": 24685,
+   "bytes_per_token": 2.31,
+   "bpb": 4.1048
+  }
+ },
+ "memorisation": {
+  "train": {
+   "mean_chars": 1.3,
+   "median_chars": 0.0,
+   "frac_ge_50": 0.0,
+   "frac_ge_100": 0.0
+  },
+  "val": {
+   "mean_chars": 1.4,
+   "median_chars": 0.0,
+   "frac_ge_50": 0.0,
+   "frac_ge_100": 0.0
+  }
+ },
+ "samples": {
+  "n": 8,
+  "tokens_each": 400,
+  "train_text": "mixed",
+  "ngram8_in_train": 0.006,
+  "longest_copy_words": 9,
+  "real_val_ngram8_in_train": 0.0023,
+  "real_val_longest_copy_words": 10,
+  "speaker_lines": 15,
+  "real_speaker_frac": 1.0,
+  "brackets_open": 4,
+  "brackets_close": 0,
+  "first_sample": "\nof him, and the men of Israel, and the servants of the king of Israel,\nand the Levites, and the people of the house of the LORD, and the\nking of the children of Israel, and the king of Israel, and the king of\nIsrael, and the king of Israel; and all the people of the land was\nbuilt.\n\n3:30 And the king of Israel did according to the word of the LORD,\nsaying, The LORD hath spoken it.\n\n3:31 When the king of Israel came to Egypt, he fell by the sword, to\nbe anointed with the king, to lay the blood of Korah in the presence\nof the king of Israel, to give him drink offerings, and the king of\nIsrael t"
+ },
+ "kv_cache_equal": true,
+ "induction": {
+  "copy_gain": 1.087,
+  "loss_first": 10.046,
+  "loss_second": 8.959,
+  "top_induction": [
+   {
+    "head": "L6H1",
+    "score": 0.22
+   },
+   {
+    "head": "L6H0",
+    "score": 0.213
+   },
+   {
+    "head": "L7H0",
+    "score": 0.082
+   }
+  ],
+  "top_prev_token": [
+   {
+    "head": "L5H4",
+    "score": 0.612
+   },
+   {
+    "head": "L4H0",
+    "score": 0.563
+   },
+   {
+    "head": "L6H4",
+    "score": 0.43
+   }
+  ],
+  "ind_by_layer": [
+   0.013,
+   0.011,
+   0.009,
+   0.005,
+   0.014,
+   0.031,
+   0.22,
+   0.082
+  ],
+  "prev_by_layer": [
+   0.023,
+   0.113,
+   0.336,
+   0.371,
+   0.563,
+   0.612,
+   0.43,
+   0.147
+  ]
+ },
+ "seconds": 1099
+}

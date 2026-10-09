@@ -1,0 +1,151 @@
+{
+ "checkpoint": "ckpt/scale-L-29M.npz",
+ "params": 29401600,
+ "data": "data/bpe8192x",
+ "logged_best_val_bpb": 1.4548,
+ "val": {
+  "tokens": 171710,
+  "bytes": 542794,
+  "bpb_nonoverlap": 1.4537,
+  "bpb_sliding": 1.4201,
+  "top1": 0.4077,
+  "top5": 0.615,
+  "mean_p_top1": 0.4459,
+  "ece": 0.0382
+ },
+ "loss_by_position": {
+  "0-0": 5.0499,
+  "1-3": 4.1512,
+  "4-15": 3.607,
+  "16-63": 3.2063,
+  "64-127": 3.1418,
+  "128-255": 3.1223
+ },
+ "bpb_by_kind": {
+  "dialogue": {
+   "bpb": 1.505,
+   "bytes": 447813
+  },
+  "newline": {
+   "bpb": 0.5503,
+   "bytes": 18482
+  },
+  "speaker": {
+   "bpb": 0.7387,
+   "bytes": 22072
+  },
+  "stage": {
+   "bpb": 1.2931,
+   "bytes": 54427
+  }
+ },
+ "heldout": {
+  "dryden": {
+   "label": "Dryden, All for Love (1677): a verse tragedy, the same story as Antony and Cleopatra",
+   "tokens": 44486,
+   "bytes_per_token": 3.372,
+   "bpb": 1.4594
+  },
+  "austen": {
+   "label": "Austen, Pride and Prejudice (1813): prose novel",
+   "tokens": 41873,
+   "bytes_per_token": 3.645,
+   "bpb": 1.5033
+  },
+  "wells": {
+   "label": "Wells, The Time Machine (1895): prose novel",
+   "tokens": 43122,
+   "bytes_per_token": 3.503,
+   "bpb": 1.7161
+  },
+  "docs": {
+   "label": "This repo's docs (2026): modern technical English, Markdown, maths",
+   "tokens": 24685,
+   "bytes_per_token": 2.31,
+   "bpb": 4.2441
+  }
+ },
+ "memorisation": {
+  "train": {
+   "mean_chars": 1.6,
+   "median_chars": 0.0,
+   "frac_ge_50": 0.0,
+   "frac_ge_100": 0.0
+  },
+  "val": {
+   "mean_chars": 1.4,
+   "median_chars": 0.0,
+   "frac_ge_50": 0.0,
+   "frac_ge_100": 0.0
+  }
+ },
+ "samples": {
+  "n": 8,
+  "tokens_each": 400,
+  "train_text": "mixed",
+  "ngram8_in_train": 0.0,
+  "longest_copy_words": 0,
+  "real_val_ngram8_in_train": 0.003,
+  "real_val_longest_copy_words": 10,
+  "speaker_lines": 69,
+  "real_speaker_frac": 1.0,
+  "brackets_open": 1,
+  "brackets_close": 1,
+  "first_sample": "\nTo see the poniard in a casque of the bars:\nAnd to the gallows in the house\nThe which the Duke of Milan hath\nWrapp’d up upon the banks. It shall be done,\nAnd everyone shall have his day\nTo wait upon his pleasure.\n\nLAERTES.\nI do beseech you,\nAnd do not take it. I am as it is,\nTo make my father of a thing so near\nThat, like the wind, it is a little better\nTo keep his course.\n\nKING.\nO, my good lord,\nI cannot speak to you. Your son’s a gentleman\nWill call his daughter to me.\n\nBERTRAM.\nI have seen her then,\nAnd shall be kept with her.\n\nLAERTES.\nI have seen her.\n\nLAERTES.\nMy lord, she\nWas fair and "
+ },
+ "kv_cache_equal": true,
+ "induction": {
+  "copy_gain": 0.891,
+  "loss_first": 10.136,
+  "loss_second": 9.245,
+  "top_induction": [
+   {
+    "head": "L6H0",
+    "score": 0.246
+   },
+   {
+    "head": "L7H6",
+    "score": 0.122
+   },
+   {
+    "head": "L7H7",
+    "score": 0.056
+   }
+  ],
+  "top_prev_token": [
+   {
+    "head": "L2H6",
+    "score": 0.62
+   },
+   {
+    "head": "L5H3",
+    "score": 0.505
+   },
+   {
+    "head": "L6H1",
+    "score": 0.484
+   }
+  ],
+  "ind_by_layer": [
+   0.014,
+   0.011,
+   0.005,
+   0.026,
+   0.014,
+   0.031,
+   0.246,
+   0.122
+  ],
+  "prev_by_layer": [
+   0.033,
+   0.201,
+   0.62,
+   0.458,
+   0.444,
+   0.505,
+   0.484,
+   0.269
+  ]
+ },
+ "seconds": 1153
+}

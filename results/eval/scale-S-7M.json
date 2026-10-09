@@ -1,0 +1,147 @@
+{
+ "checkpoint": "ckpt/scale-S-7M.npz",
+ "params": 6806784,
+ "data": "data/bpe8192x",
+ "logged_best_val_bpb": 1.5311,
+ "val": {
+  "tokens": 171710,
+  "bytes": 542794,
+  "bpb_nonoverlap": 1.5293,
+  "bpb_sliding": 1.4981,
+  "top1": 0.3805,
+  "top5": 0.5884,
+  "mean_p_top1": 0.3925,
+  "ece": 0.012
+ },
+ "loss_by_position": {
+  "0-0": 5.1453,
+  "1-3": 4.2506,
+  "4-15": 3.7461,
+  "16-63": 3.3639,
+  "64-127": 3.3122,
+  "128-255": 3.2931
+ },
+ "bpb_by_kind": {
+  "dialogue": {
+   "bpb": 1.58,
+   "bytes": 447813
+  },
+  "newline": {
+   "bpb": 0.6075,
+   "bytes": 18482
+  },
+  "speaker": {
+   "bpb": 0.8525,
+   "bytes": 22072
+  },
+  "stage": {
+   "bpb": 1.3891,
+   "bytes": 54427
+  }
+ },
+ "heldout": {
+  "dryden": {
+   "label": "Dryden, All for Love (1677): a verse tragedy, the same story as Antony and Cleopatra",
+   "tokens": 44486,
+   "bytes_per_token": 3.372,
+   "bpb": 1.5051
+  },
+  "austen": {
+   "label": "Austen, Pride and Prejudice (1813): prose novel",
+   "tokens": 41873,
+   "bytes_per_token": 3.645,
+   "bpb": 1.5472
+  },
+  "wells": {
+   "label": "Wells, The Time Machine (1895): prose novel",
+   "tokens": 43122,
+   "bytes_per_token": 3.503,
+   "bpb": 1.7476
+  },
+  "docs": {
+   "label": "This repo's docs (2026): modern technical English, Markdown, maths",
+   "tokens": 24685,
+   "bytes_per_token": 2.31,
+   "bpb": 4.2533
+  }
+ },
+ "memorisation": {
+  "train": {
+   "mean_chars": 1.5,
+   "median_chars": 0.0,
+   "frac_ge_50": 0.0,
+   "frac_ge_100": 0.0
+  },
+  "val": {
+   "mean_chars": 1.0,
+   "median_chars": 0.0,
+   "frac_ge_50": 0.0,
+   "frac_ge_100": 0.0
+  }
+ },
+ "samples": {
+  "n": 8,
+  "tokens_each": 400,
+  "train_text": "mixed",
+  "ngram8_in_train": 0.0071,
+  "longest_copy_words": 11,
+  "real_val_ngram8_in_train": 0.0021,
+  "real_val_longest_copy_words": 10,
+  "speaker_lines": 61,
+  "real_speaker_frac": 1.0,
+  "brackets_open": 5,
+  "brackets_close": 3,
+  "first_sample": "\nTo make the pedant of his pan.\n\nBOYET.\nO, sir, you are in a pan, sir, your brother,\nAnd you are a servant to your brother.\n\nMARIA.\nWhat is he this?\n\nBOYET.\nNo, sir, I could speak as a pander, and so.\n\nMARIA.\nHe is my master, I had rather be\nThen you are of a house.\n\nBOYET.\nSir, I do not.\n\nMARIA.\nBy no means yet.\n\nBOYET.\nIf he be, sir, or he is now a master.\n\nMARIA.\nHe hath it, sir, and I think it well.\n\nBOYET.\nSir, I beseech you tell me if I have been in your company.\n\nMARIA.\nIt is a pretty, sir.\n\nBOYET.\nI am too well, sir.\n\nMARIA.\nBut I’ll be sworn and meet me in a letter.\n\nBOYET.\nI shall ha"
+ },
+ "kv_cache_equal": true,
+ "induction": {
+  "copy_gain": 0.465,
+  "loss_first": 9.887,
+  "loss_second": 9.422,
+  "top_induction": [
+   {
+    "head": "L5H5",
+    "score": 0.115
+   },
+   {
+    "head": "L5H2",
+    "score": 0.056
+   },
+   {
+    "head": "L5H7",
+    "score": 0.053
+   }
+  ],
+  "top_prev_token": [
+   {
+    "head": "L3H4",
+    "score": 0.542
+   },
+   {
+    "head": "L4H7",
+    "score": 0.476
+   },
+   {
+    "head": "L4H2",
+    "score": 0.472
+   }
+  ],
+  "ind_by_layer": [
+   0.014,
+   0.013,
+   0.005,
+   0.011,
+   0.024,
+   0.115
+  ],
+  "prev_by_layer": [
+   0.088,
+   0.095,
+   0.46,
+   0.542,
+   0.476,
+   0.399
+  ]
+ },
+ "seconds": 572
+}

@@ -14,9 +14,10 @@ State of each phase in [PLAN.md](PLAN.md). Updated 2026-10-09.
 | 7 Inference & insight | ✅ | KV cache (7.2×), flash == naive, `docs/img/attention.png`, `scripts/induction.py` (no induction heads yet) |
 | Docs | ✅ | 15 chapters + journal, links checked |
 | 8 Scale-up | ✅ | corpus: 137 texts, 11.9× Shakespeare, 18.7M BPE-8192 train tokens, leakage-guarded (`scripts/build_corpus.py`). Kaggle v5, 5.9 h: L 29M 1.455, M 1.469, S 1.531, S Shakespeare-only 1.679; induction heads on the mix only (`results/scale/`, `docs/14-scaling.md` §7) |
+| 9 Evaluation | ✅ | `scripts/evaluate.py` on 5 checkpoints (`results/eval/`, journal "Testing the models properly"): held-out Dryden/Austen/Wells/docs, no recitation, both halves of the induction circuit; M beats L off-distribution |
 
 ## How to resume
-- Tests: `python -m pytest tests -q` (48 pass; torch optional).
+- Tests: `python -m pytest tests -q` (57 pass; torch optional).
 - Kaggle loop: `python kaggle/build_kernel.py build --sweep <file>` → `push` → `status` → `output`
   (downloads to `kaggle/output/`, cleared first). Run from the Windows Store `python` (it has
   the kaggle API auth). Copy results you keep into `results/<name>/` (git-tracked, no .npz).
@@ -30,7 +31,8 @@ Load with `kavi.checkpoint.load_model`. Optimizer state was stripped, so they ca
 ## Next
 - Done 2026-10-09: Kaggle v3 follow-up (`results/followup/`, 59 min). Anton's edge is ReLU (−0.008; biases −0.002), and ReLU ties SwiGLU. SGD+momentum at lr 0.1 gives 1.722 vs plain 2.238 vs AdamW 1.627. Written up in the journal.
 - Done 2026-10-09: scale probe (Kaggle v4) and long run (v5). Data, not steps, grew the induction heads.
-- Next: L is data-bound again (val−train gap +0.35), so try dropout 0.2 or more text before more width. Locate the scale models' previous-token heads with `scripts/induction.py`. Bracket the momentum lr (0.3).
+- Done 2026-10-09: full evaluation (`python scripts/evaluate.py <ckpt>…`, ~10 to 19 min per checkpoint on the laptop CPU).
+- Next: L is data-bound again (val−train gap +0.35, and M beats it on every held-out text), so try dropout 0.2 or more text before more width. Bracket the momentum lr (0.3).
 
 ## Known facts / gotchas found while building
 - NumPy stacked matmul `(B,T,C)@(C,N)` is 4.4× slower than flattening to 2-D → `Linear` flattens.

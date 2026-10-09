@@ -307,6 +307,48 @@ so bpb compares directly with the ablation. One seed each.
 
 ![induction probe](img/scale_induction.png)
 
+## 2026-10-09 · Testing the models properly
+
+`scripts/evaluate.py` runs one battery on any checkpoint and writes `results/eval/<name>.json`
+(tests: `tests/test_evaluate.py`). Five checkpoints, laptop CPU, 10 to 19 minutes each. Every
+checkpoint is the run's best-val one, so the Shakespeare-only control is its step-2000 weights.
+
+| | L 29M | M 17M | S 7M | S, Shakespeare only | ablation kavi 5.8M |
+|---|---|---|---|---|---|
+| val bpb, 256-token chunks | 1.454 | 1.467 | 1.529 | 1.680 | 1.628 |
+| val bpb, sliding window (≥128 context) | **1.420** | 1.433 | 1.498 | 1.664 | 1.611 |
+| top-1 / top-5 next-token accuracy | 0.408 / 0.615 | 0.402 / 0.609 | 0.381 / 0.588 | 0.321 / 0.525 | 0.355 / 0.568 |
+| calibration error (ECE) | 0.038 | 0.028 | 0.012 | 0.066 | 0.054 |
+| Dryden, *All for Love* (1677) | 1.459 | **1.449** | 1.505 | 2.414 | 2.242 |
+| Austen, *Pride and Prejudice* (1813) | 1.503 | **1.496** | 1.547 | 2.220 | 2.135 |
+| Wells, *The Time Machine* (1895) | 1.716 | **1.713** | 1.748 | 2.240 | 2.157 |
+| this repo's docs (2026) | 4.244 | **4.105** | 4.253 | 6.151 | 6.579 |
+| best induction head / copy gain (nats) | L6H0 0.25 / 0.89 | L6H1 0.22 / 1.09 | L5H5 0.12 / 0.47 | 0.016 / 0.00 | 0.018 / 0.02 |
+| best previous-token head | L2H6 0.62 | L5H4 0.61 | L3H4 0.54 | L4H0 0.65 | L3H2 0.54 |
+
+1. **Out-of-distribution text falls off with distance, and data is what moved it.** Dryden's
+   verse play is nearly as easy as Shakespeare for the mixed-data models; Victorian prose is
+   harder; modern Markdown is foreign to all of them. The same 7M model scores 2.41 on Dryden
+   trained on Shakespeare alone and 1.51 with the extra text.
+2. **M beats L on every held-out text, while L wins on Shakespeare.** L's val−train gap (+0.35)
+   already said it was fitting its training distribution; this is the same thing seen from
+   outside. More text, not more width, remains the next lever.
+3. **No model recites.** Greedy continuation of 100 training passages matches the real text for
+   1.2 to 1.6 characters on average, the same as for unseen passages (1.0 to 1.4), and never
+   reaches 50 characters. Of the 8-word runs in 8 samples of 400 tokens, at most 0.7% occur in
+   the training text (L: none); real unseen Shakespeare shares 0.2 to 0.3% with it. The control
+   memorised later in its run (train loss 1.09 nats at step 20k), but those weights were not
+   kept. Every speaker name the mixed models write is a real character.
+4. **The induction circuit has both halves where it should.** In every model that has induction
+   heads, the strongest previous-token head sits in an earlier layer than the induction head (L:
+   L2H6 then L6H0). The two Shakespeare-only models have strong previous-token heads (0.54 to
+   0.65) and no induction head at all, so data grew the second half, not the first.
+5. **Housekeeping.** The KV cache reproduces the uncached logits on all five checkpoints.
+   Loss by position falls from 5.0 nats at position 0 to 3.1 by 128 to 255, and still drops past
+   64, so the 256-token context is used. Sliding-window scoring is 0.016 to 0.034 bpb better than
+   the training run's chunked number for the same reason. Calibration is good everywhere (ECE
+   ≤ 0.066) and gets slightly worse as the models grow.
+
 ## Known limitations of these results
 
 - **One budget.** Every run is 4000 steps. A ranking at 4000 steps can change at 40,000
@@ -330,4 +372,4 @@ so bpb compares directly with the ablation. One seed each.
 - [x] A longer run (20k steps) to look for the induction-head phase change: heads at every size on the mixed corpus, none on Shakespeare alone (2026-10-09)
 - [x] More data: a bigger public-domain corpus (11.9×, [chapter 14](14-scaling.md)). S gains 0.148 bpb; L reaches 1.455 (2026-10-09)
 - [ ] L is data-bound again (gap +0.35): try dropout 0.2, or more text, before more width
-- [ ] Where are the previous-token heads in the scale-up models? Run `scripts/induction.py` on `ckpt/scale-L-29M.npz` and check the circuit's lower half
+- [x] Where are the previous-token heads in the scale-up models? Always a layer or more below the induction head (L: L2H6 → L6H0); the Shakespeare-only models have them but no induction heads (2026-10-09, `scripts/evaluate.py`)

@@ -85,6 +85,25 @@ I am going to my lord.
 Curves, samples, attention maps and the induction-head hunt (none at 5.8M on Shakespeare alone,
 clear ones at scale) are in [docs/journal.md](docs/journal.md).
 
+### Testing it properly
+
+`scripts/evaluate.py` runs one battery on any checkpoint (results in `results/eval/`, write-up in
+the [journal](docs/journal.md#2026-10-09--testing-the-models-properly)): held-out text from
+outside the corpus, memorisation and copy checks, calibration, loss by position, and the
+induction circuit.
+
+![Bits per byte on text no model saw: the mixed-data 29M model stays close to its Shakespeare score on a 1677 verse play, while the Shakespeare-only control falls apart](docs/img/readme/heldout.png)
+
+- **Generalisation follows the data.** The same 7M model scores 2.41 bpb on Dryden's *All for
+  Love* (1677) trained on Shakespeare alone, and 1.51 with the extra text. The 17M model beats
+  the 29M on every held-out text, while the 29M wins on Shakespeare.
+- **It doesn't recite.** Greedy continuation of training passages matches the real text for
+  1.6 characters on average (unseen passages: 1.4), and none of the 29M model's sampled 8-word
+  runs occurs in the training text.
+- **Both halves of the induction circuit.** The previous-token head always sits below the
+  induction head (29M: L2H6 → L6H0). The Shakespeare-only models have the first half and not
+  the second.
+
 ## Quickstart
 
 ```bash

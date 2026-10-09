@@ -1,0 +1,147 @@
+{
+ "checkpoint": "ckpt/scale-S-7M-shakes-only.npz",
+ "params": 6806784,
+ "data": "data/bpe8192",
+ "logged_best_val_bpb": 1.6789,
+ "val": {
+  "tokens": 163291,
+  "bytes": 542794,
+  "bpb_nonoverlap": 1.68,
+  "bpb_sliding": 1.6642,
+  "top1": 0.3206,
+  "top5": 0.5252,
+  "mean_p_top1": 0.3861,
+  "ece": 0.0655
+ },
+ "loss_by_position": {
+  "0-0": 5.1243,
+  "1-3": 4.5973,
+  "4-15": 4.1221,
+  "16-63": 3.8201,
+  "64-127": 3.8264,
+  "128-255": 3.8615
+ },
+ "bpb_by_kind": {
+  "dialogue": {
+   "bpb": 1.7592,
+   "bytes": 447801
+  },
+  "newline": {
+   "bpb": 0.634,
+   "bytes": 18500
+  },
+  "speaker": {
+   "bpb": 1.005,
+   "bytes": 22072
+  },
+  "stage": {
+   "bpb": 1.4999,
+   "bytes": 54421
+  }
+ },
+ "heldout": {
+  "dryden": {
+   "label": "Dryden, All for Love (1677): a verse tragedy, the same story as Antony and Cleopatra",
+   "tokens": 46229,
+   "bytes_per_token": 3.245,
+   "bpb": 2.4137
+  },
+  "austen": {
+   "label": "Austen, Pride and Prejudice (1813): prose novel",
+   "tokens": 44756,
+   "bytes_per_token": 3.41,
+   "bpb": 2.2201
+  },
+  "wells": {
+   "label": "Wells, The Time Machine (1895): prose novel",
+   "tokens": 44423,
+   "bytes_per_token": 3.401,
+   "bpb": 2.2396
+  },
+  "docs": {
+   "label": "This repo's docs (2026): modern technical English, Markdown, maths",
+   "tokens": 27075,
+   "bytes_per_token": 2.107,
+   "bpb": 6.1512
+  }
+ },
+ "memorisation": {
+  "train": {
+   "mean_chars": 1.5,
+   "median_chars": 0.0,
+   "frac_ge_50": 0.0,
+   "frac_ge_100": 0.0
+  },
+  "val": {
+   "mean_chars": 1.3,
+   "median_chars": 0.0,
+   "frac_ge_50": 0.0,
+   "frac_ge_100": 0.0
+  }
+ },
+ "samples": {
+  "n": 8,
+  "tokens_each": 400,
+  "train_text": "shakes",
+  "ngram8_in_train": 0.0,
+  "longest_copy_words": 0,
+  "real_val_ngram8_in_train": 0.0026,
+  "real_val_longest_copy_words": 10,
+  "speaker_lines": 128,
+  "real_speaker_frac": 0.992,
+  "brackets_open": 7,
+  "brackets_close": 6,
+  "first_sample": "\nHow now, my lord?\n\nEnter the Lord Chamberlain.\n\nCHIEF JUSTICE.\nWhat, were your Grace come to the King?\n\nCHIEF JUSTICE.\nI know not.\n\nCHIEF JUSTICE.\nIt is an honest man.\n\nCHIEF JUSTICE.\nI would I have him forward, with my life.\n\nCHIEF JUSTICE.\nHis soul and husband, I would not have it.\n\nCHIEF JUSTICE.\n’Tis a day to death, and you have sent it.\n\nCHIEF JUSTICE.\nThere’s a good man, an old man, a villain.\nIf he say so, he’s a rogue.\n\nFALSTAFF.\nWell, I must be sworn to be hanged for my mind.\n\nCHIEF JUSTICE.\nI do think this very day of death\nIs gone to seek the sun that you depart.\n\nCHIEF JUSTICE.\nHe"
+ },
+ "kv_cache_equal": true,
+ "induction": {
+  "copy_gain": -0.002,
+  "loss_first": 10.16,
+  "loss_second": 10.162,
+  "top_induction": [
+   {
+    "head": "L0H4",
+    "score": 0.016
+   },
+   {
+    "head": "L1H7",
+    "score": 0.015
+   },
+   {
+    "head": "L0H2",
+    "score": 0.014
+   }
+  ],
+  "top_prev_token": [
+   {
+    "head": "L4H0",
+    "score": 0.645
+   },
+   {
+    "head": "L2H2",
+    "score": 0.514
+   },
+   {
+    "head": "L4H6",
+    "score": 0.497
+   }
+  ],
+  "ind_by_layer": [
+   0.016,
+   0.015,
+   0.008,
+   0.006,
+   0.006,
+   0.012
+  ],
+  "prev_by_layer": [
+   0.114,
+   0.057,
+   0.514,
+   0.38,
+   0.645,
+   0.346
+  ]
+ },
+ "seconds": 782
+}
