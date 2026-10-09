@@ -230,7 +230,7 @@ passes. Same model, same tokenizer size, same steps, 13× less data. Any differe
 and S is the data's doing.
 
 **What it actually took (v5).** L 4.1 h, M 3.1 h, S 1.8 h, the control 1.6 h; the whole kernel
-5.9 h. Against the probe's training-only numbers, that is +6% for L and the control, +17% for S
+5.9 h. Against the probe's training-only numbers, that is +6% for L, +7% for the control, +17% for S
 and +21% for M. The extra is evaluation (40 batches × 2 splits every 500 steps), the induction
 probe and checkpoint writes. Why the two GPU-1 runs paid more is not clear; one guess is that the
 two processes share the CPU, which matters most for small, overhead-bound models. Budget about
