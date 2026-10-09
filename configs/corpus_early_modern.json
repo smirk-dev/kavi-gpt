@@ -1,0 +1,691 @@
+{
+ "rule": "en, LoCC PR*, first author born 1530-1625, no Shakespeare; plus extras",
+ "texts": [
+  {
+   "id": 10,
+   "title": "The King James Version of the Bible",
+   "author": "",
+   "why": "King James Bible (1611): the same decade's English, ~4 MB"
+  },
+  {
+   "id": 20,
+   "title": "Paradise Lost",
+   "author": "Milton, John, 1608-1674"
+  },
+  {
+   "id": 26,
+   "title": "Paradise Lost",
+   "author": "Milton, John, 1608-1674"
+  },
+  {
+   "id": 58,
+   "title": "Paradise Regained",
+   "author": "Milton, John, 1608-1674"
+  },
+  {
+   "id": 397,
+   "title": "L'Allegro, Il Penseroso, Comus, and Lycidas",
+   "author": "Milton, John, 1608-1674"
+  },
+  {
+   "id": 575,
+   "title": "The Essays or Counsels, Civil and Moral",
+   "author": "Bacon, Francis, 1561-1626"
+  },
+  {
+   "id": 586,
+   "title": "Religio Medici, Hydriotaphia, and the Letter to a Friend",
+   "author": "Browne, Thomas, Sir, 1605-1682"
+  },
+  {
+   "id": 703,
+   "title": "Lucasta",
+   "author": "Lovelace, Richard, 1618-1658"
+  },
+  {
+   "id": 779,
+   "title": "The Tragical History of Doctor Faustus\nFrom the Quarto of 1604",
+   "author": "Marlowe, Christopher, 1564-1593"
+  },
+  {
+   "id": 811,
+   "title": "The Tragical History of Doctor Faustus\nFrom the Quarto of 1616",
+   "author": "Marlowe, Christopher, 1564-1593"
+  },
+  {
+   "id": 901,
+   "title": "The Jew of Malta",
+   "author": "Marlowe, Christopher, 1564-1593"
+  },
+  {
+   "id": 1094,
+   "title": "Tamburlaine the Great — Part 1",
+   "author": "Marlowe, Christopher, 1564-1593"
+  },
+  {
+   "id": 1211,
+   "title": "A Selection from the Lyrical Poems of Robert Herrick",
+   "author": "Herrick, Robert, 1591-1674"
+  },
+  {
+   "id": 1496,
+   "title": "Massacre at Paris",
+   "author": "Marlowe, Christopher, 1564-1593"
+  },
+  {
+   "id": 1589,
+   "title": "Tamburlaine the Great — Part 2",
+   "author": "Marlowe, Christopher, 1564-1593"
+  },
+  {
+   "id": 1745,
+   "title": "The Poetical Works of John Milton",
+   "author": "Milton, John, 1608-1674"
+  },
+  {
+   "id": 2232,
+   "title": "The Duchess of Malfi",
+   "author": "Webster, John, 1580?-1625?"
+  },
+  {
+   "id": 2543,
+   "title": "Polyeucte",
+   "author": "Corneille, Pierre, 1606-1684"
+  },
+  {
+   "id": 3549,
+   "title": "Cowley's Essays",
+   "author": "Cowley, Abraham, 1618-1667"
+  },
+  {
+   "id": 3694,
+   "title": "Every Man in His Humour",
+   "author": "Jonson, Ben, 1573?-1637"
+  },
+  {
+   "id": 3695,
+   "title": "Every Man out of His Humour",
+   "author": "Jonson, Ben, 1573?-1637"
+  },
+  {
+   "id": 3771,
+   "title": "Cynthia's Revels; Or, The Fountain of Self-Love",
+   "author": "Jonson, Ben, 1573?-1637"
+  },
+  {
+   "id": 4011,
+   "title": "Epicoene; Or, The Silent Woman",
+   "author": "Jonson, Ben, 1573?-1637"
+  },
+  {
+   "id": 4039,
+   "title": "Volpone; Or, The Fox",
+   "author": "Jonson, Ben, 1573?-1637"
+  },
+  {
+   "id": 4081,
+   "title": "The Alchemist",
+   "author": "Jonson, Ben, 1573?-1637"
+  },
+  {
+   "id": 4937,
+   "title": "Hudibras, in Three Parts, Written in the Time of the Late Wars",
+   "author": "Butler, Samuel, 1612-1680"
+  },
+  {
+   "id": 5134,
+   "title": "Discoveries Made Upon Men and Matter and Some Poems",
+   "author": "Jonson, Ben, 1573?-1637"
+  },
+  {
+   "id": 5166,
+   "title": "The Poetaster",
+   "author": "Jonson, Ben, 1573?-1637"
+  },
+  {
+   "id": 5232,
+   "title": "Sejanus: His Fall",
+   "author": "Jonson, Ben, 1573?-1637"
+  },
+  {
+   "id": 5333,
+   "title": "Every Man in His Humor",
+   "author": "Jonson, Ben, 1573?-1637"
+  },
+  {
+   "id": 6043,
+   "title": "The Spanish Tragedie",
+   "author": "Kyd, Thomas, 1558-1594"
+  },
+  {
+   "id": 6929,
+   "title": "Poemata : Latin, Greek and Italian Poems by John Milton",
+   "author": "Milton, John, 1608-1674"
+  },
+  {
+   "id": 6930,
+   "title": "The Faerie Queene — Volume 01",
+   "author": "Spenser, Edmund, 1552?-1599"
+  },
+  {
+   "id": 8189,
+   "title": "The Bride",
+   "author": "Rowlands, Samuel, 1570?-1630?"
+  },
+  {
+   "id": 9631,
+   "title": "Waltoniana: Inedited Remains in Verse and Prose of Izaak Walton",
+   "author": "Walton, Izaak, 1593-1683"
+  },
+  {
+   "id": 10602,
+   "title": "The Poetical Works of Edmund Spenser, Volume 5",
+   "author": "Spenser, Edmund, 1552?-1599"
+  },
+  {
+   "id": 10620,
+   "title": "The Works of Francis Beaumont and John Fletcher in Ten Volumes: Volume 01.",
+   "author": "Beaumont, Francis, 1584-1616"
+  },
+  {
+   "id": 10800,
+   "title": "The Anatomy of Melancholy",
+   "author": "Burton, Robert, 1577-1640"
+  },
+  {
+   "id": 10847,
+   "title": "The Maids Tragedy",
+   "author": "Beaumont, Francis, 1584-1616"
+  },
+  {
+   "id": 10850,
+   "title": "Philaster; Or, Love Lies a Bleeding",
+   "author": "Beaumont, Francis, 1584-1616"
+  },
+  {
+   "id": 12039,
+   "title": "Beaumont and Fletcher's Works, Vol. 01 of 10: the Custom of the Country",
+   "author": "Fletcher, John, 1579-1625"
+  },
+  {
+   "id": 12040,
+   "title": "Beaumont and Fletcher's Works, Vol. 02 of 10: the Humourous Lieutenant",
+   "author": "Fletcher, John, 1579-1625"
+  },
+  {
+   "id": 12098,
+   "title": "The Elder Brother\nThe Works of Francis Beaumont and John Fletcher (Volume 2 of 10)",
+   "author": "Fletcher, John, 1579-1625"
+  },
+  {
+   "id": 12110,
+   "title": "The Scornful Lady",
+   "author": "Beaumont, Francis, 1584-1616"
+  },
+  {
+   "id": 12141,
+   "title": "The Spanish Curate: A Comedy",
+   "author": "Fletcher, John, 1579-1625"
+  },
+  {
+   "id": 12221,
+   "title": "Beggars Bush: A Comedy\nFrom the Works of Francis Beaumont and John Fletcher (Volume 2 of 10)",
+   "author": "Fletcher, John, 1579-1625"
+  },
+  {
+   "id": 12222,
+   "title": "The Faithful Shepherdess\nThe Works of Francis Beaumont and John Fletcher (Volume 2 of 10).",
+   "author": "Fletcher, John, 1579-1625"
+  },
+  {
+   "id": 12312,
+   "title": "A King, and No King",
+   "author": "Beaumont, Francis, 1584-1616"
+  },
+  {
+   "id": 12322,
+   "title": "Poetical Works of Edmund Waller and Sir John Denham",
+   "author": "Waller, Edmund, 1606-1687"
+  },
+  {
+   "id": 12915,
+   "title": "The White Devil",
+   "author": "Webster, John, 1580?-1625?"
+  },
+  {
+   "id": 13425,
+   "title": "Wit Without Money; A Comedy\nThe Works of Francis Beaumont and John Fletcher",
+   "author": "Fletcher, John, 1579-1625"
+  },
+  {
+   "id": 14462,
+   "title": "The Third and Last Part of Conny-Catching. (1592)\nWith the new deuised knauish arte of Foole-taking",
+   "author": "Greene, Robert, 1558?-1592"
+  },
+  {
+   "id": 14548,
+   "title": "The Laws of Candy\nBeaumont & Fletcher's Works (3 of 10)",
+   "author": "Beaumont, Francis, 1584-1616"
+  },
+  {
+   "id": 14549,
+   "title": "Rule a Wife, and Have a Wife\nBeaumont & Fletcher's Works (3 of 10)",
+   "author": "Fletcher, John, 1579-1625"
+  },
+  {
+   "id": 14771,
+   "title": "The False One: A Tragedy",
+   "author": "Beaumont, Francis, 1584-1616"
+  },
+  {
+   "id": 15272,
+   "title": "Spenser's The Faerie Queene, Book I",
+   "author": "Spenser, Edmund, 1552?-1599"
+  },
+  {
+   "id": 16169,
+   "title": "The Tragedy of Dido Queene of Carthage",
+   "author": "Marlowe, Christopher, 1564-1593"
+  },
+  {
+   "id": 16753,
+   "title": "The Noble Spanish Soldier",
+   "author": "Dekker, Thomas, 1572?-1632"
+  },
+  {
+   "id": 17181,
+   "title": "Rosalynde; or, Euphues' Golden Legacy",
+   "author": "Lodge, Thomas, 1558?-1625"
+  },
+  {
+   "id": 17779,
+   "title": "The Choise of Valentines; Or the Merie Ballad of Nash His Dildo",
+   "author": "Nash, Thomas, 1567-1601"
+  },
+  {
+   "id": 17873,
+   "title": "Minor Poems of Michael Drayton",
+   "author": "Drayton, Michael, 1563-1631"
+  },
+  {
+   "id": 18781,
+   "title": "Hero and Leander",
+   "author": "Marlowe, Christopher, 1564-1593"
+  },
+  {
+   "id": 19819,
+   "title": "Milton's Comus",
+   "author": "Milton, John, 1608-1674"
+  },
+  {
+   "id": 19902,
+   "title": "The Affectionate Shepherd",
+   "author": "Barnfield, Richard, 1574-1627"
+  },
+  {
+   "id": 20241,
+   "title": "The Palace of Pleasure, Volume 1",
+   "author": "Painter, William, 1540?-1594 [Translator]"
+  },
+  {
+   "id": 20288,
+   "title": "Edward the Second",
+   "author": "Marlowe, Christopher, 1564-1593"
+  },
+  {
+   "id": 20890,
+   "title": "Bussy D'Ambois and The Revenge of Bussy D'Ambois",
+   "author": "Chapman, George, 1559?-1634"
+  },
+  {
+   "id": 21262,
+   "title": "The Works of Christopher Marlowe, Vol. 3 (of 3)",
+   "author": "Marlowe, Christopher, 1564-1593"
+  },
+  {
+   "id": 21338,
+   "title": "The Vnfortunate Traveller, or The Life of Jack Wilton\nWith an Essay on the Life and Writings of Thomas Nash by Edmund Gosse",
+   "author": "Nash, Thomas, 1567-1601"
+  },
+  {
+   "id": 22001,
+   "title": "Pastoral Poems by Nicholas Breton, Selected Poetry by George Wither, and Pastoral Poetry by William Browne (of Tavistock)",
+   "author": "Breton, Nicholas, 1544-1626?"
+  },
+  {
+   "id": 22421,
+   "title": "The Hesperides & Noble Numbers: Vol. 1 and 2",
+   "author": "Herrick, Robert, 1591-1674"
+  },
+  {
+   "id": 25398,
+   "title": "The Little French Lawyer: A Comedy",
+   "author": "Beaumont, Francis, 1584-1616"
+  },
+  {
+   "id": 26425,
+   "title": "Microcosmography\nor, a Piece of the World Discovered; in Essays and Characters",
+   "author": "Earle, John, 1601?-1665"
+  },
+  {
+   "id": 27770,
+   "title": "The Battaile of Agincourt",
+   "author": "Drayton, Michael, 1563-1631"
+  },
+  {
+   "id": 28108,
+   "title": "The Pennyles Pilgrimage\nOr The Money-lesse Perambulation of John Taylor",
+   "author": "Taylor, John, 1580-1653"
+  },
+  {
+   "id": 28375,
+   "title": "Poems of Henry Vaughan, Silurist, Volume II",
+   "author": "Vaughan, Henry, 1621-1695"
+  },
+  {
+   "id": 29261,
+   "title": "Animaduersions uppon the annotacions and corrections of some imperfections of impressiones of Chaucer's workes\n1865 edition",
+   "author": "Thynne, Francis, 1545?-1608"
+  },
+  {
+   "id": 30327,
+   "title": "Democritus Platonissans",
+   "author": "More, Henry, 1614-1687"
+  },
+  {
+   "id": 31706,
+   "title": "Milton: Minor Poems",
+   "author": "Milton, John, 1608-1674"
+  },
+  {
+   "id": 32986,
+   "title": "Thomas Stanley:  His Original Lyrics, Complete, In Their Collated Readings of 1647, 1651, 1657.\nWith an Introduction, Textual Notes, a List of Editions, an Appendix of Translations, and a Portrait.",
+   "author": "Stanley, Thomas, 1625-1678"
+  },
+  {
+   "id": 34053,
+   "title": "The Palace of Pleasure, Volume 2",
+   "author": "Painter, William, 1540?-1594 [Translator]"
+  },
+  {
+   "id": 34840,
+   "title": "The Palace of Pleasure, Volume 3",
+   "author": "Painter, William, 1540?-1594 [Translator]"
+  },
+  {
+   "id": 35000,
+   "title": "The Mad Lover, a Tragi-Comedy\nThe Works of Francis Beaumont and John Fletcher (3 of 10)",
+   "author": "Beaumont, Francis, 1584-1616"
+  },
+  {
+   "id": 35303,
+   "title": "Beaumont and Fletcher's Works, Vol. 08 of 10",
+   "author": "Beaumont, Francis, 1584-1616"
+  },
+  {
+   "id": 35330,
+   "title": "The Spanish Tragedy",
+   "author": "Kyd, Thomas, 1558-1594"
+  },
+  {
+   "id": 36841,
+   "title": "Mundus Foppensis: The Fop Display'd",
+   "author": "Evelyn, John, 1620-1706 [Dubious author]"
+  },
+  {
+   "id": 37387,
+   "title": "Letters to Severall Persons of Honour",
+   "author": "Donne, John, 1572-1631"
+  },
+  {
+   "id": 37503,
+   "title": "Gammer Gurton's Needle",
+   "author": "Still, John, 1543?-1608 [Dubious author]"
+  },
+  {
+   "id": 38342,
+   "title": "Citt and Bumpkin (1680)",
+   "author": "L'Estrange, Roger, Sir, 1616-1704"
+  },
+  {
+   "id": 38549,
+   "title": "The Complete Works of Richard Crashaw, Volume I",
+   "author": "Crashaw, Richard, 1613?-1649"
+  },
+  {
+   "id": 38550,
+   "title": "The Complete Works of Richard Crashaw, Volume II",
+   "author": "Crashaw, Richard, 1613?-1649"
+  },
+  {
+   "id": 39249,
+   "title": "Beaumont and Fletcher's Works, Vol. 03 of 10: The Loyal Subject",
+   "author": "Beaumont, Francis, 1584-1616"
+  },
+  {
+   "id": 39960,
+   "title": "The Works of Sir Thomas Browne, Volume 1",
+   "author": "Browne, Thomas, Sir, 1605-1682"
+  },
+  {
+   "id": 39961,
+   "title": "The Works of Sir Thomas Browne, Volume 2",
+   "author": "Browne, Thomas, Sir, 1605-1682"
+  },
+  {
+   "id": 39962,
+   "title": "The Works of Sir Thomas Browne, Volume 3",
+   "author": "Browne, Thomas, Sir, 1605-1682"
+  },
+  {
+   "id": 42607,
+   "title": "The Shepheard's Calender: Twelve Aeglogues Proportionable to the Twelve Monethes",
+   "author": "Spenser, Edmund, 1552?-1599"
+  },
+  {
+   "id": 42620,
+   "title": "Prefaces to Four Seventeenth-Century Romances\nRoger Boyle, Lord Broghill, preface to Parthenissa (1655) Sir George Mackenzie, \"Apologie for romances,\" prefixed to Aretina, the serious romance (1660) Nathaniel Ingelo, preface to Bentivolio and Urania (1660) Robert Boyle, preface to Theodora and Didymus (1687)",
+   "author": "Boyle, Roger, Earl of Orrery, 1621-1679"
+  },
+  {
+   "id": 42724,
+   "title": "The Works of Christopher Marlowe, Vol. 2 (of 3)",
+   "author": "Marlowe, Christopher, 1564-1593"
+  },
+  {
+   "id": 43668,
+   "title": "The Scottish History of James the Fourth\n1598",
+   "author": "Greene, Robert, 1558?-1592"
+  },
+  {
+   "id": 44015,
+   "title": "The Fatal Dowry",
+   "author": "Massinger, Philip, 1583-1640"
+  },
+  {
+   "id": 44733,
+   "title": "An Introduction to the Prose and Poetical Works of John Milton\nComprising All the Autobiographic Passages in His Works, the More Explicit Presentations of His Ideas of True Liberty.",
+   "author": "Milton, John, 1608-1674"
+  },
+  {
+   "id": 44977,
+   "title": "The Complete Poems of Sir John Davies. Volume 1 of 2.",
+   "author": "Davies, John, Sir, 1569-1626"
+  },
+  {
+   "id": 44978,
+   "title": "The Complete Poems of Sir John Davies. Volume 2 of 2.",
+   "author": "Davies, John, Sir, 1569-1626"
+  },
+  {
+   "id": 45050,
+   "title": "The Lady of Pleasure\nA Comedie, as It Was Acted by Her Majesties Servants, at the Private House in Drury Lane",
+   "author": "Shirley, James, 1596-1666"
+  },
+  {
+   "id": 45209,
+   "title": "The Works of John Marston. Volume 1",
+   "author": "Marston, John, 1575?-1634"
+  },
+  {
+   "id": 45357,
+   "title": "Thomas Dekker\nEdited, with an introduction and notes by Ernest Rhys. Unexpurgated Edition",
+   "author": "Dekker, Thomas, 1572?-1632"
+  },
+  {
+   "id": 45780,
+   "title": "Beaumont and Fletcher's Works, Vol. 05 of 10",
+   "author": "Beaumont, Francis, 1584-1616"
+  },
+  {
+   "id": 45781,
+   "title": "Beaumont and Fletcher's Works, Vol. 06 of 10",
+   "author": "Beaumont, Francis, 1584-1616"
+  },
+  {
+   "id": 46311,
+   "title": "The Works of John Marston. Volume 2",
+   "author": "Marston, John, 1575?-1634"
+  },
+  {
+   "id": 46312,
+   "title": "The Works of John Marston. Volume 3",
+   "author": "Marston, John, 1575?-1634"
+  },
+  {
+   "id": 46591,
+   "title": "The Strange Voyage and Adventures of Domingo Gonsales, to the World in the Moon",
+   "author": "Godwin, Francis, 1562-1633"
+  },
+  {
+   "id": 47156,
+   "title": "Beaumont and Fletcher's Works, Vol. 07 of 10",
+   "author": "Beaumont, Francis, 1584-1616"
+  },
+  {
+   "id": 47240,
+   "title": "Beaumont and Fletcher's Works, Vol. 09 of 10",
+   "author": "Beaumont, Francis, 1584-1616"
+  },
+  {
+   "id": 47462,
+   "title": "Castara\nThe Third Edition of 1640; Edited and Collated with the Earlier Ones of 1634, 1635",
+   "author": "Habington, William, 1605-1654"
+  },
+  {
+   "id": 48440,
+   "title": "The Plays of Philip Massinger, Vol. I",
+   "author": "Massinger, Philip, 1583-1640"
+  },
+  {
+   "id": 48688,
+   "title": "The Poems of John Donne, Volume 1 (of 2)\nEdited from the Old Editions and Numerous Manuscripts",
+   "author": "Donne, John, 1572-1631"
+  },
+  {
+   "id": 48772,
+   "title": "The Poems of John Donne, Volume 2 (of 2)\nEdited from the Old Editions and Numerous Manuscripts",
+   "author": "Donne, John, 1572-1631"
+  },
+  {
+   "id": 49461,
+   "title": "Bartholomew Fair: A Comedy",
+   "author": "Jonson, Ben, 1573?-1637"
+  },
+  {
+   "id": 49636,
+   "title": "Satiro-Mastix; or, the Vntrussing of the Humorous Poet",
+   "author": "Dekker, Thomas, 1572?-1632"
+  },
+  {
+   "id": 50031,
+   "title": "Beaumont and Fletcher's Works, Vol. 04 of 10",
+   "author": "Beaumont, Francis, 1584-1616"
+  },
+  {
+   "id": 50096,
+   "title": "Beaumont and Fletcher's Works, Vol. 10 of 10",
+   "author": "Beaumont, Francis, 1584-1616"
+  },
+  {
+   "id": 50143,
+   "title": "A Collection of Emblemes, Ancient and Moderne\nQuickened With Metrical Illustrations, Both Morall and Divine, Etc.",
+   "author": "Wither, George, 1588-1667"
+  },
+  {
+   "id": 50150,
+   "title": "The Devil is an Ass",
+   "author": "Jonson, Ben, 1573?-1637"
+  },
+  {
+   "id": 51783,
+   "title": "The Description of a New World, Called the Blazing-World",
+   "author": "Newcastle, Margaret Cavendish, Duchess of, 1624?-1674"
+  },
+  {
+   "id": 53679,
+   "title": "Philosophical Letters: or, modest Reflections upon some Opinions in Natural Philosophy",
+   "author": "Newcastle, Margaret Cavendish, Duchess of, 1624?-1674"
+  },
+  {
+   "id": 55621,
+   "title": "Humors Looking Glasse",
+   "author": "Rowlands, Samuel, 1570?-1630?"
+  },
+  {
+   "id": 55625,
+   "title": "Webster & Tourneur",
+   "author": "Webster, John, 1580?-1625?"
+  },
+  {
+   "id": 55769,
+   "title": "Robert Greene: [Six Plays]",
+   "author": "Greene, Robert, 1558?-1592"
+  },
+  {
+   "id": 56375,
+   "title": "Sir P.S.: His Astrophel and Stella\nWherein the excellence of sweete poesie is concluded",
+   "author": "Sidney, Philip, 1554-1586"
+  },
+  {
+   "id": 56463,
+   "title": "Bacon's Essays, and Wisdom of the Ancients",
+   "author": "Bacon, Francis, 1561-1626"
+  },
+  {
+   "id": 61783,
+   "title": "Paradoxes and Problemes\nWith two characters and an essay of valour. Now for the first time reprinted from the editions of 1633 and 1652 with one additional probleme.",
+   "author": "Donne, John, 1572-1631"
+  },
+  {
+   "id": 65375,
+   "title": "The Poems of Richard Corbet, late bishop of Oxford and of Norwich\n4th edition",
+   "author": "Corbet, Richard, 1582-1635"
+  },
+  {
+   "id": 67267,
+   "title": "Thomas Heywood",
+   "author": "Heywood, Thomas, 1574?-1641"
+  },
+  {
+   "id": 70717,
+   "title": "Spenser's Faerie Queene, Vol. 1 (of 2)",
+   "author": "Spenser, Edmund, 1552?-1599"
+  },
+  {
+   "id": 70854,
+   "title": "The Countess of Pembroke's Arcadia",
+   "author": "Sidney, Philip, 1554-1586"
+  },
+  {
+   "id": 72698,
+   "title": "Spenser's Faerie Queene, Vol. 2 (of 2)",
+   "author": "Spenser, Edmund, 1552?-1599"
+  },
+  {
+   "id": 78259,
+   "title": "On the morning of Christ's nativity",
+   "author": "Milton, John, 1608-1674"
+  }
+ ]
+}

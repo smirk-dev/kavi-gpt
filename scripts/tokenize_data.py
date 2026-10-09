@@ -2,9 +2,12 @@
 
     python scripts/tokenize_data.py char
     python scripts/tokenize_data.py bpe --vocab 4096
+    python scripts/tokenize_data.py bpe --vocab 8192 --extra data/extra.txt   # phase 8
 
 Writes data/<name>/{train.bin,val.bin,meta.json,tokenizer.json}. The tokenizer is trained
 on the *training* split only — fitting it on val would leak validation text into the vocab.
+--extra appends more text (scripts/build_corpus.py) to TRAINING only; val stays Shakespeare's
+val split, so bits-per-byte remains comparable with runs that trained on Shakespeare alone.
 """
 import argparse
 import sys
@@ -22,10 +25,15 @@ def main():
     ap.add_argument("kind", choices=["char", "bpe"])
     ap.add_argument("--vocab", type=int, default=4096, help="BPE vocabulary size")
     ap.add_argument("--out", default=None)
+    ap.add_argument("--extra", default=None, help="extra training text, e.g. data/extra.txt")
     args = ap.parse_args()
 
     train = (ROOT / "data" / "train.txt").read_text(encoding="utf-8")
     val = (ROOT / "data" / "val.txt").read_text(encoding="utf-8")
+    if args.extra:
+        extra = (ROOT / args.extra).read_text(encoding="utf-8")
+        print(f"training text: Shakespeare train {len(train):,} chars + extra {len(extra):,} chars")
+        train = train + "\n\n\n" + extra
     t0 = time.time()
     if args.kind == "char":
         from kavi.tokenizers.char import CharTokenizer
@@ -36,7 +44,7 @@ def main():
     else:
         from kavi.tokenizers.bpe import BPETokenizer
         tok = BPETokenizer.train(train, args.vocab, verbose=True)
-        out = args.out or f"data/bpe{args.vocab}"
+        out = args.out or f"data/bpe{args.vocab}" + ("x" if args.extra else "")
     print(f"trained {args.kind} tokenizer: vocab {tok.vocab_size} in {time.time() - t0:.1f}s")
     meta = write_token_data(ROOT / out, tok, train, val)
     print(f"train {meta['train_tokens']:,} tokens, val {meta['val_tokens']:,} tokens, "

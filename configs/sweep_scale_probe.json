@@ -1,0 +1,14 @@
+{
+  "base": "configs/scale_base.json",
+  "prep": [["scripts/prepare_data.py"],
+           ["scripts/build_corpus.py", "download"],
+           ["scripts/build_corpus.py", "build"],
+           ["scripts/tokenize_data.py", "bpe", "--vocab", "8192", "--extra", "data/extra.txt"]],
+  "set": ["train.max_steps=300", "train.warmup=50", "train.eval_interval=150", "train.eval_iters=10",
+          "train.log_interval=50"],
+  "runs": [
+    {"name": "scale-L-29M", "set": ["model.n_embd=512", "model.n_layer=8", "model.n_head=8", "train.lr=6e-4"]},
+    {"name": "scale-M-17M", "set": ["model.n_embd=384", "model.n_layer=8", "model.n_head=6", "train.lr=8e-4"]},
+    {"name": "scale-S-7M",  "set": ["model.n_embd=256", "model.n_layer=6", "model.n_head=8", "train.lr=1e-3"]}
+  ]
+}
