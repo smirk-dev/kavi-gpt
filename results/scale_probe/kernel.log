@@ -1,0 +1,431 @@
+Fri Oct  9 05:39:54 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.178.04             Driver Version: 580.178.04     CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  Tesla T4                       Off |   00000000:00:04.0 Off |                    0 |
+| N/A   48C    P8             10W /   70W |       0MiB /  15360MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+|   1  Tesla T4                       Off |   00000000:00:05.0 Off |                    0 |
+| N/A   54C    P8             12W /   70W |       0MiB /  15360MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+cupy 14.0.1 | device: b'Tesla T4'
+$ /usr/bin/python3 scripts/prepare_data.py
+downloading https://www.gutenberg.org/cache/epub/100/pg100.txt
+complete works: 5,359,343 chars, 196,015 lines, 100 distinct chars
+train: 4,823,350 chars   val: 535,993 chars
+$ /usr/bin/python3 scripts/build_corpus.py download
+[1/137] 10: 4456 KB  The King James Version of the Bible
+[2/137] 20: 494 KB  Paradise Lost
+[3/137] 26: 491 KB  Paradise Lost
+[4/137] 58: 113 KB  Paradise Regained
+[5/137] 397: 90 KB  L'Allegro, Il Penseroso, Comus, and Lycidas
+[6/137] 575: 324 KB  The Essays or Counsels, Civil and Moral
+[7/137] 586: 371 KB  Religio Medici, Hydriotaphia, and the Letter to a Friend
+[8/137] 703: 424 KB  Lucasta
+[9/137] 779: 147 KB  The Tragical History of Doctor Faustus
+From the Quarto of 16
+[10/137] 811: 167 KB  The Tragical History of Doctor Faustus
+From the Quarto of 16
+[11/137] 901: 188 KB  The Jew of Malta
+[12/137] 1094: 184 KB  Tamburlaine the Great — Part 1
+[13/137] 1211: 232 KB  A Selection from the Lyrical Poems of Robert Herrick
+[14/137] 1496: 91 KB  Massacre at Paris
+[15/137] 1589: 189 KB  Tamburlaine the Great — Part 2
+[16/137] 1745: 953 KB  The Poetical Works of John Milton
+[17/137] 2232: 194 KB  The Duchess of Malfi
+[18/137] 2543: 121 KB  Polyeucte
+[19/137] 3549: 212 KB  Cowley's Essays
+[20/137] 3694: 313 KB  Every Man in His Humour
+[21/137] 3695: 388 KB  Every Man out of His Humour
+[22/137] 3771: 373 KB  Cynthia's Revels; Or, The Fountain of Self-Love
+[23/137] 4011: 337 KB  Epicoene; Or, The Silent Woman
+[24/137] 4039: 342 KB  Volpone; Or, The Fox
+[25/137] 4081: 325 KB  The Alchemist
+[26/137] 4937: 594 KB  Hudibras, in Three Parts, Written in the Time of the Late Wa
+[27/137] 5134: 222 KB  Discoveries Made Upon Men and Matter and Some Poems
+[28/137] 5166: 342 KB  The Poetaster
+[29/137] 5232: 323 KB  Sejanus: His Fall
+[30/137] 5333: 317 KB  Every Man in His Humor
+[31/137] 6043: 170 KB  The Spanish Tragedie
+[32/137] 6929: 151 KB  Poemata : Latin, Greek and Italian Poems by John Milton
+[33/137] 6930: 2878 KB  The Faerie Queene — Volume 01
+[34/137] 8189: 61 KB  The Bride
+[35/137] 9631: 92 KB  Waltoniana: Inedited Remains in Verse and Prose of Izaak Wal
+[36/137] 10602: 527 KB  The Poetical Works of Edmund Spenser, Volume 5
+[37/137] 10620: 140 KB  The Works of Francis Beaumont and John Fletcher in Ten Volum
+[38/137] 10800: 3379 KB  The Anatomy of Melancholy
+[39/137] 10847: 219 KB  The Maids Tragedy
+[40/137] 10850: 263 KB  Philaster; Or, Love Lies a Bleeding
+[41/137] 12039: 163 KB  Beaumont and Fletcher's Works, Vol. 01 of 10: the Custom of 
+[42/137] 12040: 196 KB  Beaumont and Fletcher's Works, Vol. 02 of 10: the Humourous 
+[43/137] 12098: 277 KB  The Elder Brother
+The Works of Francis Beaumont and John Fle
+[44/137] 12110: 176 KB  The Scornful Lady
+[45/137] 12141: 188 KB  The Spanish Curate: A Comedy
+[46/137] 12221: 148 KB  Beggars Bush: A Comedy
+From the Works of Francis Beaumont an
+[47/137] 12222: 161 KB  The Faithful Shepherdess
+The Works of Francis Beaumont and J
+[48/137] 12312: 250 KB  A King, and No King
+[49/137] 12322: 539 KB  Poetical Works of Edmund Waller and Sir John Denham
+[50/137] 12915: 188 KB  The White Devil
+[51/137] 13425: 144 KB  Wit Without Money; A Comedy
+The Works of Francis Beaumont an
+[52/137] 14462: 90 KB  The Third and Last Part of Conny-Catching. (1592)
+With the n
+[53/137] 14548: 141 KB  The Laws of Candy
+Beaumont & Fletcher's Works (3 of 10)
+[54/137] 14549: 158 KB  Rule a Wife, and Have a Wife
+Beaumont & Fletcher's Works (3 
+[55/137] 14771: 147 KB  The False One: A Tragedy
+[56/137] 15272: 506 KB  Spenser's The Faerie Queene, Book I
+[57/137] 16169: 106 KB  The Tragedy of Dido Queene of Carthage
+[58/137] 16753: 134 KB  The Noble Spanish Soldier
+[59/137] 17181: 306 KB  Rosalynde; or, Euphues' Golden Legacy
+[60/137] 17779: 72 KB  The Choise of Valentines; Or the Merie Ballad of Nash His Di
+[61/137] 17873: 491 KB  Minor Poems of Michael Drayton
+[62/137] 18781: 56 KB  Hero and Leander
+[63/137] 19819: 307 KB  Milton's Comus
+[64/137] 19902: 83 KB  The Affectionate Shepherd
+[65/137] 20241: 1028 KB  The Palace of Pleasure, Volume 1
+[66/137] 20288: 160 KB  Edward the Second
+[67/137] 20890: 541 KB  Bussy D'Ambois and The Revenge of Bussy D'Ambois
+[68/137] 21262: 489 KB  The Works of Christopher Marlowe, Vol. 3 (of 3)
+[69/137] 21338: 296 KB  The Vnfortunate Traveller, or The Life of Jack Wilton
+With a
+[70/137] 22001: 102 KB  Pastoral Poems by Nicholas Breton, Selected Poetry by George
+[71/137] 22421: 876 KB  The Hesperides & Noble Numbers: Vol. 1 and 2
+[72/137] 25398: 155 KB  The Little French Lawyer: A Comedy
+[73/137] 26425: 495 KB  Microcosmography
+or, a Piece of the World Discovered; in Ess
+[74/137] 27770: 230 KB  The Battaile of Agincourt
+[75/137] 28108: 121 KB  The Pennyles Pilgrimage
+Or The Money-lesse Perambulation of 
+[76/137] 28375: 481 KB  Poems of Henry Vaughan, Silurist, Volume II
+[77/137] 29261: 186 KB  Animaduersions uppon the annotacions and corrections of some
+[78/137] 30327: 161 KB  Democritus Platonissans
+[79/137] 31706: 283 KB  Milton: Minor Poems
+[80/137] 32986: 179 KB  Thomas Stanley:  His Original Lyrics, Complete, In Their Col
+[81/137] 34053: 978 KB  The Palace of Pleasure, Volume 2
+[82/137] 34840: 1025 KB  The Palace of Pleasure, Volume 3
+[83/137] 35000: 153 KB  The Mad Lover, a Tragi-Comedy
+The Works of Francis Beaumont 
+[84/137] 35303: 685 KB  Beaumont and Fletcher's Works, Vol. 08 of 10
+[85/137] 35330: 165 KB  The Spanish Tragedy
+[86/137] 36841: 46 KB  Mundus Foppensis: The Fop Display'd
+[87/137] 37387: 393 KB  Letters to Severall Persons of Honour
+[88/137] 37503: 146 KB  Gammer Gurton's Needle
+[89/137] 38342: 152 KB  Citt and Bumpkin (1680)
+[90/137] 38549: 471 KB  The Complete Works of Richard Crashaw, Volume I
+[91/137] 38550: 639 KB  The Complete Works of Richard Crashaw, Volume II
+[92/137] 39249: 192 KB  Beaumont and Fletcher's Works, Vol. 03 of 10: The Loyal Subj
+[93/137] 39960: 783 KB  The Works of Sir Thomas Browne, Volume 1
+[94/137] 39961: 743 KB  The Works of Sir Thomas Browne, Volume 2
+[95/137] 39962: 1091 KB  The Works of Sir Thomas Browne, Volume 3
+[96/137] 42607: 167 KB  The Shepheard's Calender: Twelve Aeglogues Proportionable to
+[97/137] 42620: 102 KB  Prefaces to Four Seventeenth-Century Romances
+Roger Boyle, L
+[98/137] 42724: 543 KB  The Works of Christopher Marlowe, Vol. 2 (of 3)
+[99/137] 43668: 163 KB  The Scottish History of James the Fourth
+1598
+[100/137] 44015: 375 KB  The Fatal Dowry
+[101/137] 44733: 647 KB  An Introduction to the Prose and Poetical Works of John Milt
+[102/137] 44977: 402 KB  The Complete Poems of Sir John Davies. Volume 1 of 2.
+[103/137] 44978: 303 KB  The Complete Poems of Sir John Davies. Volume 2 of 2.
+[104/137] 45050: 145 KB  The Lady of Pleasure
+A Comedie, as It Was Acted by Her Majes
+[105/137] 45209: 564 KB  The Works of John Marston. Volume 1
+[106/137] 45357: 831 KB  Thomas Dekker
+Edited, with an introduction and notes by Erne
+[107/137] 45780: 747 KB  Beaumont and Fletcher's Works, Vol. 05 of 10
+[108/137] 45781: 780 KB  Beaumont and Fletcher's Works, Vol. 06 of 10
+[109/137] 46311: 599 KB  The Works of John Marston. Volume 2
+[110/137] 46312: 659 KB  The Works of John Marston. Volume 3
+[111/137] 46591: 118 KB  The Strange Voyage and Adventures of Domingo Gonsales, to th
+[112/137] 47156: 739 KB  Beaumont and Fletcher's Works, Vol. 07 of 10
+[113/137] 47240: 742 KB  Beaumont and Fletcher's Works, Vol. 09 of 10
+[114/137] 47462: 260 KB  Castara
+The Third Edition of 1640; Edited and Collated with 
+[115/137] 48440: 560 KB  The Plays of Philip Massinger, Vol. I
+[116/137] 48688: 1026 KB  The Poems of John Donne, Volume 1 (of 2)
+Edited from the Old
+[117/137] 48772: 1075 KB  The Poems of John Donne, Volume 2 (of 2)
+Edited from the Old
+[118/137] 49461: 245 KB  Bartholomew Fair: A Comedy
+[119/137] 49636: 325 KB  Satiro-Mastix; or, the Vntrussing of the Humorous Poet
+[120/137] 50031: 772 KB  Beaumont and Fletcher's Works, Vol. 04 of 10
+[121/137] 50096: 767 KB  Beaumont and Fletcher's Works, Vol. 10 of 10
+[122/137] 50143: 550 KB  A Collection of Emblemes, Ancient and Moderne
+Quickened With
+[123/137] 50150: 752 KB  The Devil is an Ass
+[124/137] 51783: 253 KB  The Description of a New World, Called the Blazing-World
+[125/137] 53679: 890 KB  Philosophical Letters: or, modest Reflections upon some Opin
+[126/137] 55621: 49 KB  Humors Looking Glasse
+[127/137] 55625: 667 KB  Webster & Tourneur
+[128/137] 55769: 780 KB  Robert Greene: [Six Plays]
+[129/137] 56375: 117 KB  Sir P.S.: His Astrophel and Stella
+Wherein the excellence of
+[130/137] 56463: 701 KB  Bacon's Essays, and Wisdom of the Ancients
+[131/137] 61783: 107 KB  Paradoxes and Problemes
+With two characters and an essay of 
+[132/137] 65375: 284 KB  The Poems of Richard Corbet, late bishop of Oxford and of No
+[133/137] 67267: 723 KB  Thomas Heywood
+[134/137] 70717: 1087 KB  Spenser's Faerie Queene, Vol. 1 (of 2)
+[135/137] 70854: 1995 KB  The Countess of Pembroke's Arcadia
+[136/137] 72698: 1054 KB  Spenser's Faerie Queene, Vol. 2 (of 2)
+[137/137] 78259: 34 KB  On the morning of Christ's nativity
+$ /usr/bin/python3 scripts/build_corpus.py build
+{
+ "texts": 137,
+ "skipped_dupe_text": 0,
+ "no_markers": 0,
+ "missing": 0,
+ "paras": 298791,
+ "drop_shakespeare": 1458,
+ "drop_dupe": 4942,
+ "chars": 57751442,
+ "bytes": 57867407,
+ "x_shakespeare_train": 11.86
+}
+$ /usr/bin/python3 scripts/tokenize_data.py bpe --vocab 8192 --extra data/extra.txt
+training text: Shakespeare train 4,823,350 chars + extra 57,751,442 chars
+  merge   500: b' sc' (count 9640)
+  merge  1000: b' brought' (count 3998)
+  merge  1500: b'IA' (count 2362)
+  merge  2000: b'bled' (count 1684)
+  merge  2500: b' mid' (count 1254)
+  merge  3000: b' fac' (count 975)
+  merge  3500: b' disd' (count 784)
+  merge  4000: b' stop' (count 656)
+  merge  4500: b' z' (count 563)
+  merge  5000: b' forty' (count 490)
+  merge  5500: b' camp' (count 433)
+  merge  6000: b'_--' (count 385)
+  merge  6500: b' hunger' (count 342)
+  merge  7000: b' RI' (count 309)
+  merge  7500: b'Cas' (count 282)
+trained bpe tokenizer: vocab 8192 in 38.4s
+train 18,687,383 tokens, val 171,711 tokens, 3.16 bytes/token  -> data/bpe8192x
+$ /usr/bin/python3 scripts/backend_parity.py
+gpt2: loss cpu 3.919125383659 gpu 3.919125383659 | worst grad rel diff 5.96e-16
+kavi: loss cpu 3.899363421992 gpu 3.899363421992 | worst grad rel diff 7.58e-16
+backend parity OK
+$ /usr/bin/python3 scripts/sweep.py configs/sweep_scale_probe.json --backend cupy --out /kaggle/working/runs --shard 0/2 (GPU 0)
+$ /usr/bin/python3 scripts/sweep.py configs/sweep_scale_probe.json --backend cupy --out /kaggle/working/runs --shard 1/2 (GPU 1)
+======== GPU 0 log ========
+
+== scale-L-29M: model.n_embd=512 model.n_layer=8 model.n_head=8 train.lr=6e-4
+[scale-L-29M] 29.40M params | backend cupy | data data/bpe8192x (vocab 8192, 18,687,383 train tokens, 0.64 tokens/param)
+model: GPTConfig(vocab_size=8192, block_size=256, n_layer=8, n_head=8, n_embd=512, dropout=0.1, bias=False, pos='rope', norm='rmsnorm', mlp='swiglu', rope_base=10000.0, attn='naive')
+  eval step     0 | train 9.1285 | val 9.1182 | val bpb 4.1615 | induction 0.015 L4H5 copy gain 0.03
+step     0 | loss 9.1228 | lr 1.20e-05 | gnorm 5.72 | 860 tok/s
+step    50 | loss 6.5753 | lr 6.00e-04 | gnorm 0.84 | 13,438 tok/s
+step   100 | loss 5.9172 | lr 5.48e-04 | gnorm 0.84 | 12,869 tok/s
+  eval step   150 | train 5.5144 | val 5.2863 | val bpb 2.4126 | induction 0.031 L5H7 copy gain 0.03
+step   150 | loss 5.5864 | lr 4.13e-04 | gnorm 0.77 | 10,445 tok/s
+step   200 | loss 5.1736 | lr 2.47e-04 | gnorm 0.65 | 11,657 tok/s
+step   250 | loss 5.2615 | lr 1.12e-04 | gnorm 0.65 | 11,311 tok/s
+  eval step   300 | train 5.1618 | val 4.9443 | val bpb 2.2565 | induction 0.020 L5H7 copy gain 0.05
+
+best val loss 4.9443 (bpb 2.2565). sample:
+
+Ror,
+Tuded in the ground of a little, he was one of the
+Boral. The other year were not be no more, as he was the world for
+the other and of the children of the Sryal, which the other
+inle, the other.
+
+BALEIL.
+
+[_Enter Dunar._ Nay, I know not be more a very great two
+to know thee, but let us the Duke of her.
+
+REK.
+How, thou shalt a house
+In the gods, or a more of any day
+The woman; and of the same which is the world-heaking
+to be much, and what a little man may, and the place, and will
+was.
+
+[32] The other day’s] “I have been been some thing’s time,
+and so a good house of his own part, of those all
+the Duke of the hand of the same. This is the rest
+And, thou are to make his selfe to take,
+I take my lord, that I would not but no,
+The last of mine, then we will see his mind;
+What is the city we shall be true,
+For which I should be not be my hand,
+But she is as thou dost know I hope so:
+Which that are my heart’s my lord,
+And be not a woman that will say,
+But for no more unknowed, and do not for a friend,
+So with me from the house of the best-hars,
+Dit’s for the same, for this love,
+And as I saw thee, I would be in your selfe,
+With all that I have, that I hope
+To have the house of this, and that I not,
+The King's the world which my power’s sin?
+I’ll have
+== scale-L-29M: done in 3.9 min
+
+== scale-S-7M: model.n_embd=256 model.n_layer=6 model.n_head=8 train.lr=1e-3
+[scale-S-7M] 6.81M params | backend cupy | data data/bpe8192x (vocab 8192, 18,687,383 train tokens, 2.75 tokens/param)
+model: GPTConfig(vocab_size=8192, block_size=256, n_layer=6, n_head=8, n_embd=256, dropout=0.1, bias=False, pos='rope', norm='rmsnorm', mlp='swiglu', rope_base=10000.0, attn='naive')
+  eval step     0 | train 9.0334 | val 8.9977 | val bpb 4.1064 | induction 0.014 L3H3 copy gain 0.00
+step     0 | loss 9.0323 | lr 2.00e-05 | gnorm 3.23 | 3,011 tok/s
+step    50 | loss 6.6498 | lr 1.00e-03 | gnorm 0.50 | 30,100 tok/s
+step   100 | loss 6.0195 | lr 9.10e-04 | gnorm 0.53 | 28,532 tok/s
+  eval step   150 | train 5.6268 | val 5.4018 | val bpb 2.4653 | induction 0.024 L5H2 copy gain 0.02
+step   150 | loss 5.6883 | lr 6.75e-04 | gnorm 0.64 | 24,760 tok/s
+step   200 | loss 5.2938 | lr 3.85e-04 | gnorm 0.47 | 29,828 tok/s
+step   250 | loss 5.3761 | lr 1.50e-04 | gnorm 0.48 | 30,310 tok/s
+  eval step   300 | train 5.3092 | val 5.0763 | val bpb 2.3168 | induction 0.020 L5H2 copy gain 0.04
+
+best val loss 5.0763 (bpb 2.3168). sample:
+
+9  I, but thy eyes have not see this
+and, that I could not a heart
+
+8    That he gave us in him; and to do not.
+
+14:8 And that he will see, and the earth that I must
+
+2    What he in his way, and I did be been,
+
+15    By my lord, therefore shall not your name,
+
+8    Now, my selfe did, but ye could he could see the
+
+[Footnote  But he said, it have, that, we shall give, and
+3    Yet not to be more, and I am not so;
+
+9  Why, that is your life, they I say,
+
+4    That I would never the earth, and be his sake.
+
+ > > [628:3 And they had been unto him;
+
+8    And he might not his life, and the gods to,
+and > was
+
+2    That then, to do the world, he he will shall be him.
+
+1  Then we shall be so: and he shall know,
+
+9  All the children of his power, and if the earth,
+30    The Lord shall be an long in the King,
+
+6    And, as they not so now now have I doe thy world.
+
+16:4 But you be to the same, and that the land of your place,
+7    With his body could be a hand of his son,
+
+2    To not thy hand of his life, and he could he
+     I have out to my ownly, and thou see you,
+4    Not if I am not, and her know,
+6    The most t'w, then, and he was so his house,
+2    And to any he must make not the cause;
+
+8    It is my hand, and
+== scale-S-7M: done in 1.6 min
+
+======== GPU 1 log ========
+
+== scale-M-17M: model.n_embd=384 model.n_layer=8 model.n_head=6 train.lr=8e-4
+[scale-M-17M] 17.31M params | backend cupy | data data/bpe8192x (vocab 8192, 18,687,383 train tokens, 1.08 tokens/param)
+model: GPTConfig(vocab_size=8192, block_size=256, n_layer=8, n_head=6, n_embd=384, dropout=0.1, bias=False, pos='rope', norm='rmsnorm', mlp='swiglu', rope_base=10000.0, attn='naive')
+  eval step     0 | train 9.0652 | val 9.0371 | val bpb 4.1245 | induction 0.014 L4H3 copy gain -0.00
+step     0 | loss 9.0635 | lr 1.60e-05 | gnorm 4.71 | 849 tok/s
+step    50 | loss 6.5743 | lr 8.00e-04 | gnorm 0.72 | 19,322 tok/s
+step   100 | loss 5.9834 | lr 7.29e-04 | gnorm 0.80 | 18,882 tok/s
+  eval step   150 | train 5.5639 | val 5.3262 | val bpb 2.4308 | induction 0.050 L3H0 copy gain -0.00
+step   150 | loss 5.6266 | lr 5.44e-04 | gnorm 0.64 | 15,551 tok/s
+step   200 | loss 5.2283 | lr 3.16e-04 | gnorm 0.56 | 17,823 tok/s
+step   250 | loss 5.3047 | lr 1.31e-04 | gnorm 0.51 | 17,411 tok/s
+  eval step   300 | train 5.2262 | val 4.9986 | val bpb 2.2813 | induction 0.019 L6H1 copy gain 0.02
+
+best val loss 4.9986 (bpb 2.2813). sample:
+
+Tut.
+
+In._ It is there to
+To a fair.
+
+_O'L._ To have the devil will not him.
+
+_Ser._ Thou shalt you do the name.
+
+_W. _The_ R.
+
+_Enter_ and _Da._ I am a woman.
+
+_O_. Seren._]
+
+    _The._ O me, thou shalt give the rest
+    They, 'Tis much.
+
+    _Enter_ Tarely, _Maba_, _A._
+
+_Ant._ Let the _Map._ I have been a _Grile_,
+    And he would it take you.
+
+    _Cet._ I could not know!
+    I may be so much, she in me.
+
+    _Enter_ Sol._
+
+    _La._ I'll come for us you; I are a name of the _Amer._ I am not, nor that, my master?
+
+    _Tu._ What art, _Vyen_ on.
+
+    _O’ll._ I not, yet he will I know;
+    And for your man.
+
+    _Pav._ Nay, _The_ Fop, but I will die;
+    And now, my self?
+
+    _Fot._ He be in, that are a name to hear on
+    All most to your friends, or so to our heart,
+    I am not to my good eyes.
+
+    _S.
+
+    _Enter_ Dangg't you, _Coree._ My lord, here, _I'er_ in one,
+    I have been made you, I'le’s with a _Pirio_.
+
+    _To._ If thou know to know you,
+    I, that I hope, I shall be no your self,
+    But I’d out a true hand,
+    If that will have no better and the name,
+    And
+== scale-M-17M: done in 2.7 min
+
+$ /usr/bin/python3 scripts/summarize.py /kaggle/working/runs --plot /kaggle/working/runs/curves.png
+| run | data | best val loss | best val bpb | at step | final val-train gap | min |
+|---|---|---|---|---|---|---|
+| scale-L-29M | bpe8192x | 4.9443 | **2.2565** | 300 | -0.218 | 4 |
+| scale-M-17M | bpe8192x | 4.9986 | **2.2813** | 300 | -0.228 | 2 |
+| scale-S-7M | bpe8192x | 5.0763 | **2.3168** | 300 | -0.233 | 1 |
+
+plot -> /kaggle/working/runs/curves.png
+total 10.9 min, sweep exit code 0
+/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\|'
+  cells[i][c] = re.sub('\\\\\|', '|', cell)
+/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\_'
+  text = re.sub(r'_', '\_', text) # Escape underscores in display text
+[NbConvertApp] Converting notebook __script__.ipynb to html
+[NbConvertApp] Writing 355282 bytes to __results__.html

@@ -1,0 +1,69 @@
+
+== scale-M-17M: model.n_embd=384 model.n_layer=8 model.n_head=6 train.lr=8e-4
+[scale-M-17M] 17.31M params | backend cupy | data data/bpe8192x (vocab 8192, 18,687,383 train tokens, 1.08 tokens/param)
+model: GPTConfig(vocab_size=8192, block_size=256, n_layer=8, n_head=6, n_embd=384, dropout=0.1, bias=False, pos='rope', norm='rmsnorm', mlp='swiglu', rope_base=10000.0, attn='naive')
+  eval step     0 | train 9.0652 | val 9.0371 | val bpb 4.1245 | induction 0.014 L4H3 copy gain -0.00
+step     0 | loss 9.0635 | lr 1.60e-05 | gnorm 4.71 | 849 tok/s
+step    50 | loss 6.5743 | lr 8.00e-04 | gnorm 0.72 | 19,322 tok/s
+step   100 | loss 5.9834 | lr 7.29e-04 | gnorm 0.80 | 18,882 tok/s
+  eval step   150 | train 5.5639 | val 5.3262 | val bpb 2.4308 | induction 0.050 L3H0 copy gain -0.00
+step   150 | loss 5.6266 | lr 5.44e-04 | gnorm 0.64 | 15,551 tok/s
+step   200 | loss 5.2283 | lr 3.16e-04 | gnorm 0.56 | 17,823 tok/s
+step   250 | loss 5.3047 | lr 1.31e-04 | gnorm 0.51 | 17,411 tok/s
+  eval step   300 | train 5.2262 | val 4.9986 | val bpb 2.2813 | induction 0.019 L6H1 copy gain 0.02
+
+best val loss 4.9986 (bpb 2.2813). sample:
+
+Tut.
+
+In._ It is there to
+To a fair.
+
+_O'L._ To have the devil will not him.
+
+_Ser._ Thou shalt you do the name.
+
+_W. _The_ R.
+
+_Enter_ and _Da._ I am a woman.
+
+_O_. Seren._]
+
+    _The._ O me, thou shalt give the rest
+    They, 'Tis much.
+
+    _Enter_ Tarely, _Maba_, _A._
+
+_Ant._ Let the _Map._ I have been a _Grile_,
+    And he would it take you.
+
+    _Cet._ I could not know!
+    I may be so much, she in me.
+
+    _Enter_ Sol._
+
+    _La._ I'll come for us you; I are a name of the _Amer._ I am not, nor that, my master?
+
+    _Tu._ What art, _Vyen_ on.
+
+    _O’ll._ I not, yet he will I know;
+    And for your man.
+
+    _Pav._ Nay, _The_ Fop, but I will die;
+    And now, my self?
+
+    _Fot._ He be in, that are a name to hear on
+    All most to your friends, or so to our heart,
+    I am not to my good eyes.
+
+    _S.
+
+    _Enter_ Dangg't you, _Coree._ My lord, here, _I'er_ in one,
+    I have been made you, I'le’s with a _Pirio_.
+
+    _To._ If thou know to know you,
+    I, that I hope, I shall be no your self,
+    But I’d out a true hand,
+    If that will have no better and the name,
+    And
+== scale-M-17M: done in 2.7 min

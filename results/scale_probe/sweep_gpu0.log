@@ -1,0 +1,115 @@
+
+== scale-L-29M: model.n_embd=512 model.n_layer=8 model.n_head=8 train.lr=6e-4
+[scale-L-29M] 29.40M params | backend cupy | data data/bpe8192x (vocab 8192, 18,687,383 train tokens, 0.64 tokens/param)
+model: GPTConfig(vocab_size=8192, block_size=256, n_layer=8, n_head=8, n_embd=512, dropout=0.1, bias=False, pos='rope', norm='rmsnorm', mlp='swiglu', rope_base=10000.0, attn='naive')
+  eval step     0 | train 9.1285 | val 9.1182 | val bpb 4.1615 | induction 0.015 L4H5 copy gain 0.03
+step     0 | loss 9.1228 | lr 1.20e-05 | gnorm 5.72 | 860 tok/s
+step    50 | loss 6.5753 | lr 6.00e-04 | gnorm 0.84 | 13,438 tok/s
+step   100 | loss 5.9172 | lr 5.48e-04 | gnorm 0.84 | 12,869 tok/s
+  eval step   150 | train 5.5144 | val 5.2863 | val bpb 2.4126 | induction 0.031 L5H7 copy gain 0.03
+step   150 | loss 5.5864 | lr 4.13e-04 | gnorm 0.77 | 10,445 tok/s
+step   200 | loss 5.1736 | lr 2.47e-04 | gnorm 0.65 | 11,657 tok/s
+step   250 | loss 5.2615 | lr 1.12e-04 | gnorm 0.65 | 11,311 tok/s
+  eval step   300 | train 5.1618 | val 4.9443 | val bpb 2.2565 | induction 0.020 L5H7 copy gain 0.05
+
+best val loss 4.9443 (bpb 2.2565). sample:
+
+Ror,
+Tuded in the ground of a little, he was one of the
+Boral. The other year were not be no more, as he was the world for
+the other and of the children of the Sryal, which the other
+inle, the other.
+
+BALEIL.
+
+[_Enter Dunar._ Nay, I know not be more a very great two
+to know thee, but let us the Duke of her.
+
+REK.
+How, thou shalt a house
+In the gods, or a more of any day
+The woman; and of the same which is the world-heaking
+to be much, and what a little man may, and the place, and will
+was.
+
+[32] The other day’s] “I have been been some thing’s time,
+and so a good house of his own part, of those all
+the Duke of the hand of the same. This is the rest
+And, thou are to make his selfe to take,
+I take my lord, that I would not but no,
+The last of mine, then we will see his mind;
+What is the city we shall be true,
+For which I should be not be my hand,
+But she is as thou dost know I hope so:
+Which that are my heart’s my lord,
+And be not a woman that will say,
+But for no more unknowed, and do not for a friend,
+So with me from the house of the best-hars,
+Dit’s for the same, for this love,
+And as I saw thee, I would be in your selfe,
+With all that I have, that I hope
+To have the house of this, and that I not,
+The King's the world which my power’s sin?
+I’ll have
+== scale-L-29M: done in 3.9 min
+
+== scale-S-7M: model.n_embd=256 model.n_layer=6 model.n_head=8 train.lr=1e-3
+[scale-S-7M] 6.81M params | backend cupy | data data/bpe8192x (vocab 8192, 18,687,383 train tokens, 2.75 tokens/param)
+model: GPTConfig(vocab_size=8192, block_size=256, n_layer=6, n_head=8, n_embd=256, dropout=0.1, bias=False, pos='rope', norm='rmsnorm', mlp='swiglu', rope_base=10000.0, attn='naive')
+  eval step     0 | train 9.0334 | val 8.9977 | val bpb 4.1064 | induction 0.014 L3H3 copy gain 0.00
+step     0 | loss 9.0323 | lr 2.00e-05 | gnorm 3.23 | 3,011 tok/s
+step    50 | loss 6.6498 | lr 1.00e-03 | gnorm 0.50 | 30,100 tok/s
+step   100 | loss 6.0195 | lr 9.10e-04 | gnorm 0.53 | 28,532 tok/s
+  eval step   150 | train 5.6268 | val 5.4018 | val bpb 2.4653 | induction 0.024 L5H2 copy gain 0.02
+step   150 | loss 5.6883 | lr 6.75e-04 | gnorm 0.64 | 24,760 tok/s
+step   200 | loss 5.2938 | lr 3.85e-04 | gnorm 0.47 | 29,828 tok/s
+step   250 | loss 5.3761 | lr 1.50e-04 | gnorm 0.48 | 30,310 tok/s
+  eval step   300 | train 5.3092 | val 5.0763 | val bpb 2.3168 | induction 0.020 L5H2 copy gain 0.04
+
+best val loss 5.0763 (bpb 2.3168). sample:
+
+9  I, but thy eyes have not see this
+and, that I could not a heart
+
+8    That he gave us in him; and to do not.
+
+14:8 And that he will see, and the earth that I must
+
+2    What he in his way, and I did be been,
+
+15    By my lord, therefore shall not your name,
+
+8    Now, my selfe did, but ye could he could see the
+
+[Footnote  But he said, it have, that, we shall give, and
+3    Yet not to be more, and I am not so;
+
+9  Why, that is your life, they I say,
+
+4    That I would never the earth, and be his sake.
+
+ > > [628:3 And they had been unto him;
+
+8    And he might not his life, and the gods to,
+and > was
+
+2    That then, to do the world, he he will shall be him.
+
+1  Then we shall be so: and he shall know,
+
+9  All the children of his power, and if the earth,
+30    The Lord shall be an long in the King,
+
+6    And, as they not so now now have I doe thy world.
+
+16:4 But you be to the same, and that the land of your place,
+7    With his body could be a hand of his son,
+
+2    To not thy hand of his life, and he could he
+     I have out to my ownly, and thou see you,
+4    Not if I am not, and her know,
+6    The most t'w, then, and he was so his house,
+2    And to any he must make not the cause;
+
+8    It is my hand, and
+== scale-S-7M: done in 1.6 min

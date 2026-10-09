@@ -1,0 +1,38 @@
+{
+  "data": "data/bpe8192x",
+  "model": {
+    "vocab_size": 8192,
+    "block_size": 256,
+    "n_layer": 6,
+    "n_head": 8,
+    "n_embd": 256,
+    "dropout": 0.1,
+    "bias": false,
+    "pos": "rope",
+    "norm": "rmsnorm",
+    "mlp": "swiglu",
+    "rope_base": 10000.0,
+    "attn": "naive"
+  },
+  "train": {
+    "optimizer": "adamw",
+    "batch_size": 32,
+    "max_steps": 300,
+    "lr": 0.001,
+    "min_lr": 6e-05,
+    "warmup": 50,
+    "weight_decay": 0.1,
+    "beta1": 0.9,
+    "beta2": 0.95,
+    "momentum": 0.9,
+    "grad_clip": 1.0,
+    "eval_interval": 150,
+    "eval_iters": 10,
+    "seed": 1337,
+    "sample_tokens": 400,
+    "sample_prompt": "\n",
+    "log_interval": 50,
+    "induction_probe": true
+  },
+  "name": "scale-S-7M"
+}
