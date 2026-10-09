@@ -134,6 +134,11 @@ the induction target**, and the 5.8M-parameter model trained on 33M tokens still
 head. The numbers, plus the gpt2 and anton baselines (7–9%), are in
 [the journal](journal.md#searching-for-induction-heads-a-negative-result).
 
+> **Update (2026-10-09).** The scale-up runs found them. Trained on 11.9× more text, the same
+> 6.8M-parameter shape reaches a 0.13 induction score, and the 29M model 0.26 with a 1 nat copy
+> gain. The same small model trained on Shakespeare alone never gets past 0.02. What was missing
+> was diverse data, not training length. See [chapter 14, section 7](14-scaling.md#7-results).
+
 ## 6. How to test a hypothesis
 
 A heatmap suggests; a test decides. The pattern:

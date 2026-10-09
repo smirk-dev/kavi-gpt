@@ -212,6 +212,9 @@ literature, induction heads form through a fairly sudden phase change during tra
 models (5.8M params, 33M tokens) haven't reached it. This is a good experiment to rerun on
 longer or bigger training.
 
+*Update, same day:* rerun, and resolved. More diverse data grew induction heads in every model;
+Shakespeare alone grew none (see the scale-up section below).
+
 ## 2026-10-09 · Follow-up sweep: explaining Anton, and SGD done fairly
 
 Kaggle kernel v3, 2× T4, 59 minutes, 6 runs of the same 4000-step budget as the ablation
@@ -271,6 +274,39 @@ All on the kavi model, 4000 steps; lr is the peak of the same warmup + cosine sc
    clipping. Both were still improving at step 4000, by 0.006 nats over the last 200 steps at
    lr 0.1. This is a fair comparison at *one* budget, not a tuned SGD.
 
+## 2026-10-09 · Scale-up: more data, bigger models, and the induction heads
+
+Kaggle kernel v5, 2× T4, 5.9 hours (`configs/sweep_scale.json`; logs in `results/scale/`; the
+full write-up is [chapter 14, section 7](14-scaling.md#7-results)). Three kavi sizes trained
+for 20,000 steps on Shakespeare plus an 11.9× early-modern English corpus (BPE 8192). A
+control used the small size on Shakespeare alone. Validation is still Shakespeare's val split,
+so bpb compares directly with the ablation. One seed each.
+
+| run | params | best val bpb | final val−train gap |
+|---|---|---|---|
+| **L** | 29.4M | **1.4548** | +0.347 |
+| M | 17.3M | 1.4692 | +0.193 |
+| S | 6.8M | 1.5311 | +0.013 |
+| S, Shakespeare only | 6.8M | 1.6789 (step 2000, then 2.049 by 20k) | +3.634 |
+
+![scale-up curves](img/scale_curves.png)
+
+1. **Data was the bottleneck.** The same S model gains 0.148 bpb from the extra text alone. On
+   Shakespeare only, it peaks at step 2000 and then memorises (train loss 1.09 nats, val 4.72).
+   On the mix it improves at every eval.
+2. **Size helps, then stops helping.** S → M is −0.062 and M → L only −0.014. L's growing gap
+   says it has started memorising its 8.8 passes, so more text, not more width, is the next
+   lever. L ends 0.172 bpb ahead of the ablation's best model.
+3. **Induction heads appeared, and data is what grew them.** With the in-training probe
+   (`train.induction_probe`), L's best head (L6H0) reaches 0.26–0.28 attention on the copy
+   target, and the repeated half of a random sequence becomes 1.0 nat easier. The same S model
+   reaches 0.13 on the mix and stays at 0.018, the uniform level, on Shakespeare only. At step
+   4000, the ablation's length, S on the mix is already at 0.077 against the ablation kavi's
+   0.033. So the negative result of 2026-10-08 was about memorisable data, not too few steps.
+   The rise is a steady ramp from step 1000 to about 7000, not a single jump between two evals.
+
+![induction probe](img/scale_induction.png)
+
 ## Known limitations of these results
 
 - **One budget.** Every run is 4000 steps. A ranking at 4000 steps can change at 40,000
@@ -291,5 +327,7 @@ All on the kavi model, 4000 steps; lr is the peak of the same warmup + cosine sc
 - [x] `gpt2+bias` and `gpt2+relu` single-knob runs, to explain finding 5. ReLU did it (2026-10-09)
 - [x] `kavi-momentum` (SGD + momentum 0.9, lr 0.03 / 0.1), the fair version of finding 6: 1.722 (2026-10-09)
 - [ ] Bracket the momentum lr (0.3, maybe 1.0); test whether ReLU's smaller val−train gap is regularisation
-- [ ] A longer run of the best config (e.g. 20k steps) to look for the induction-head phase change
-- [ ] More data: a bigger public-domain corpus, to fight the 21-epoch overfitting (PLAN phase 8). Corpus built (11.9×, [chapter 14](14-scaling.md)); runs pending
+- [x] A longer run (20k steps) to look for the induction-head phase change: heads at every size on the mixed corpus, none on Shakespeare alone (2026-10-09)
+- [x] More data: a bigger public-domain corpus (11.9×, [chapter 14](14-scaling.md)). S gains 0.148 bpb; L reaches 1.455 (2026-10-09)
+- [ ] L is data-bound again (gap +0.35): try dropout 0.2, or more text, before more width
+- [ ] Where are the previous-token heads in the scale-up models? Run `scripts/induction.py` on `ckpt/scale-L-29M.npz` and check the circuit's lower half

@@ -41,6 +41,23 @@ Shakespeare, trained in 160 min on Kaggle's free 2× T4. Lower is better:
 Seed-to-seed spread is ≤ 0.0012 bpb, so every gap above except RMSNorm's is real. The
 follow-up rows come from a second 6-run sweep (59 min); see the [journal](docs/journal.md).
 
+### Scaling up: more data, bigger models
+
+Then three sizes trained for 20,000 steps on Shakespeare **plus an 11.9× corpus** of
+early-modern English (Marlowe, Jonson, Milton, the KJV…), with a leakage guard so none of the
+validation text sneaks in. Validation is still Shakespeare, so the numbers compare directly:
+
+| model | val bits/byte | induction heads? |
+|---|---|---|
+| **kavi 29M** | **1.455** | yes: best head 0.26 on the copy target, copying saves 1.0 nat |
+| kavi 17M | 1.469 | yes (0.22) |
+| kavi 7M | 1.531 | yes (0.13) |
+| kavi 7M, Shakespeare only (control) | 1.679, then memorises | **no** (0.02, the uniform level) |
+
+Same model, same steps: the extra text alone is worth 0.148 bpb **and** grows induction heads
+that Shakespeare alone never does. 5.9 h on Kaggle's free 2× T4; see
+[chapter 14](docs/14-scaling.md#7-results).
+
 ```
 HORATIO.
 [_Aside._] Though I call thee this, boy, I had rather have beat thee.

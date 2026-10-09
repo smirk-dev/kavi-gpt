@@ -1,0 +1,999 @@
+[{"stream_name":"stdout","time":0.636081765,"data":"Fri Oct  9 05:56:31 2026       \n"}
+,{"stream_name":"stdout","time":0.63613179,"data":"+-----------------------------------------------------------------------------------------+\n"}
+,{"stream_name":"stdout","time":0.63613602,"data":"| NVIDIA-SMI 580.178.04             Driver Version: 580.178.04     CUDA Version: 13.0     |\n"}
+,{"stream_name":"stdout","time":0.636138677,"data":"+-----------------------------------------+------------------------+----------------------+\n"}
+,{"stream_name":"stdout","time":0.63614106,"data":"| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n"}
+,{"stream_name":"stdout","time":0.636143444,"data":"| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n"}
+,{"stream_name":"stdout","time":0.636145984,"data":"|                                         |                        |               MIG M. |\n"}
+,{"stream_name":"stdout","time":0.636148457,"data":"|=========================================+========================+======================|\n"}
+,{"stream_name":"stdout","time":0.677362163,"data":"|   0  Tesla T4                       Off |   00000000:00:04.0 Off |                    0 |\n"}
+,{"stream_name":"stdout","time":0.677396381,"data":"| N/A   53C    P8             10W /   70W |       0MiB /  15360MiB |      0%      Default |\n"}
+,{"stream_name":"stdout","time":0.677401531,"data":"|                                         |                        |                  N/A |\n"}
+,{"stream_name":"stdout","time":0.677407009,"data":"+-----------------------------------------+------------------------+----------------------+\n"}
+,{"stream_name":"stdout","time":0.677412501,"data":"|   1  Tesla T4                       Off |   00000000:00:05.0 Off |                    0 |\n"}
+,{"stream_name":"stdout","time":0.677418134,"data":"| N/A   56C    P8             10W /   70W |       0MiB /  15360MiB |      0%      Default |\n"}
+,{"stream_name":"stdout","time":0.677423631,"data":"|                                         |                        |                  N/A |\n"}
+,{"stream_name":"stdout","time":0.677429282,"data":"+-----------------------------------------+------------------------+----------------------+\n"}
+,{"stream_name":"stdout","time":0.678119449,"data":"\n"}
+,{"stream_name":"stdout","time":0.678141318,"data":"+-----------------------------------------------------------------------------------------+\n"}
+,{"stream_name":"stdout","time":0.678146172,"data":"| Processes:                                                                              |\n"}
+,{"stream_name":"stdout","time":0.678151656,"data":"|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\n"}
+,{"stream_name":"stdout","time":0.678157124,"data":"|        ID   ID                                                               Usage      |\n"}
+,{"stream_name":"stdout","time":0.678162642,"data":"|=========================================================================================|\n"}
+,{"stream_name":"stdout","time":0.679742542,"data":"|  No running processes found                                                             |\n"}
+,{"stream_name":"stdout","time":0.679759237,"data":"+-----------------------------------------------------------------------------------------+\n"}
+,{"stream_name":"stdout","time":3.455410834,"data":"cupy 14.0.1 | device: b'Tesla T4'\n"}
+,{"stream_name":"stdout","time":3.455448171,"data":"$ /usr/bin/python3 scripts/prepare_data.py\n"}
+,{"stream_name":"stdout","time":5.972028625,"data":"downloading https://www.gutenberg.org/cache/epub/100/pg100.txt\n"}
+,{"stream_name":"stdout","time":5.972090882,"data":"complete works: 5,359,343 chars, 196,015 lines, 100 distinct chars\n"}
+,{"stream_name":"stdout","time":5.972109215,"data":"train: 4,823,350 chars   val: 535,993 chars\n"}
+,{"stream_name":"stdout","time":5.989396082,"data":"$ /usr/bin/python3 scripts/build_corpus.py download\n"}
+,{"stream_name":"stdout","time":8.891398373,"data":"[1/137] 10: 4456 KB  The King James Version of the Bible\n"}
+,{"stream_name":"stdout","time":12.157156065,"data":"[2/137] 20: 494 KB  Paradise Lost\n"}
+,{"stream_name":"stdout","time":15.411455363,"data":"[3/137] 26: 491 KB  Paradise Lost\n"}
+,{"stream_name":"stdout","time":18.471521108,"data":"[4/137] 58: 113 KB  Paradise Regained\n"}
+,{"stream_name":"stdout","time":20.963452884,"data":"[5/137] 397: 90 KB  L'Allegro, Il Penseroso, Comus, and Lycidas\n"}
+,{"stream_name":"stdout","time":24.031354722,"data":"[6/137] 575: 324 KB  The Essays or Counsels, Civil and Moral\n"}
+,{"stream_name":"stdout","time":27.282616893,"data":"[7/137] 586: 371 KB  Religio Medici, Hydriotaphia, and the Letter to a Friend\n"}
+,{"stream_name":"stdout","time":30.723522265,"data":"[8/137] 703: 424 KB  Lucasta\n"}
+,{"stream_name":"stdout","time":33.586864162,"data":"[9/137] 779: 147 KB  The Tragical History of Doctor Faustus\n"}
+,{"stream_name":"stdout","time":33.586894474,"data":"From the Quarto of 16\n"}
+,{"stream_name":"stdout","time":36.479111758,"data":"[10/137] 811: 167 KB  The Tragical History of Doctor Faustus\n"}
+,{"stream_name":"stdout","time":36.479144021,"data":"From the Quarto of 16\n"}
+,{"stream_name":"stdout","time":39.578676232,"data":"[11/137] 901: 188 KB  The Jew of Malta\n"}
+,{"stream_name":"stdout","time":42.258874205,"data":"[12/137] 1094: 184 KB  Tamburlaine the Great — Part 1\n"}
+,{"stream_name":"stdout","time":45.147370812,"data":"[13/137] 1211: 232 KB  A Selection from the Lyrical Poems of Robert Herrick\n"}
+,{"stream_name":"stdout","time":47.637539523,"data":"[14/137] 1496: 91 KB  Massacre at Paris\n"}
+,{"stream_name":"stdout","time":50.319944152,"data":"[15/137] 1589: 189 KB  Tamburlaine the Great — Part 2\n"}
+,{"stream_name":"stdout","time":53.593057037,"data":"[16/137] 1745: 953 KB  The Poetical Works of John Milton\n"}
+,{"stream_name":"stdout","time":56.458589547,"data":"[17/137] 2232: 194 KB  The Duchess of Malfi\n"}
+,{"stream_name":"stdout","time":59.14902155,"data":"[18/137] 2543: 121 KB  Polyeucte\n"}
+,{"stream_name":"stdout","time":62.017133594,"data":"[19/137] 3549: 212 KB  Cowley's Essays\n"}
+,{"stream_name":"stdout","time":64.891986645,"data":"[20/137] 3694: 313 KB  Every Man in His Humour\n"}
+,{"stream_name":"stdout","time":67.970278895,"data":"[21/137] 3695: 388 KB  Every Man out of His Humour\n"}
+,{"stream_name":"stdout","time":70.855923401,"data":"[22/137] 3771: 373 KB  Cynthia's Revels; Or, The Fountain of Self-Love\n"}
+,{"stream_name":"stdout","time":73.912499215,"data":"[23/137] 4011: 337 KB  Epicoene; Or, The Silent Woman\n"}
+,{"stream_name":"stdout","time":76.981480871,"data":"[24/137] 4039: 342 KB  Volpone; Or, The Fox\n"}
+,{"stream_name":"stdout","time":80.067776995,"data":"[25/137] 4081: 325 KB  The Alchemist\n"}
+,{"stream_name":"stdout","time":83.160419905,"data":"[26/137] 4937: 594 KB  Hudibras, in Three Parts, Written in the Time of the Late Wa\n"}
+,{"stream_name":"stdout","time":86.027302841,"data":"[27/137] 5134: 222 KB  Discoveries Made Upon Men and Matter and Some Poems\n"}
+,{"stream_name":"stdout","time":88.89656117,"data":"[28/137] 5166: 342 KB  The Poetaster\n"}
+,{"stream_name":"stdout","time":91.951379165,"data":"[29/137] 5232: 323 KB  Sejanus: His Fall\n"}
+,{"stream_name":"stdout","time":95.029822024,"data":"[30/137] 5333: 317 KB  Every Man in His Humor\n"}
+,{"stream_name":"stdout","time":97.911070446,"data":"[31/137] 6043: 170 KB  The Spanish Tragedie\n"}
+,{"stream_name":"stdout","time":100.602343782,"data":"[32/137] 6929: 151 KB  Poemata : Latin, Greek and Italian Poems by John Milton\n"}
+,{"stream_name":"stdout","time":104.048584347,"data":"[33/137] 6930: 2878 KB  The Faerie Queene — Volume 01\n"}
+,{"stream_name":"stdout","time":106.537127826,"data":"[34/137] 8189: 61 KB  The Bride\n"}
+,{"stream_name":"stdout","time":109.220112863,"data":"[35/137] 9631: 92 KB  Waltoniana: Inedited Remains in Verse and Prose of Izaak Wal\n"}
+,{"stream_name":"stdout","time":112.28909701,"data":"[36/137] 10602: 527 KB  The Poetical Works of Edmund Spenser, Volume 5\n"}
+,{"stream_name":"stdout","time":115.16757658,"data":"[37/137] 10620: 140 KB  The Works of Francis Beaumont and John Fletcher in Ten Volum\n"}
+,{"stream_name":"stdout","time":118.824545994,"data":"[38/137] 10800: 3379 KB  The Anatomy of Melancholy\n"}
+,{"stream_name":"stdout","time":121.713229659,"data":"[39/137] 10847: 219 KB  The Maids Tragedy\n"}
+,{"stream_name":"stdout","time":124.772829125,"data":"[40/137] 10850: 263 KB  Philaster; Or, Love Lies a Bleeding\n"}
+,{"stream_name":"stdout","time":127.442347835,"data":"[41/137] 12039: 163 KB  Beaumont and Fletcher's Works, Vol. 01 of 10: the Custom of \n"}
+,{"stream_name":"stdout","time":130.502045403,"data":"[42/137] 12040: 196 KB  Beaumont and Fletcher's Works, Vol. 02 of 10: the Humourous \n"}
+,{"stream_name":"stdout","time":133.574042989,"data":"[43/137] 12098: 277 KB  The Elder Brother\n"}
+,{"stream_name":"stdout","time":133.574085071,"data":"The Works of Francis Beaumont and John Fle\n"}
+,{"stream_name":"stdout","time":136.259791475,"data":"[44/137] 12110: 176 KB  The Scornful Lady\n"}
+,{"stream_name":"stdout","time":139.126059091,"data":"[45/137] 12141: 188 KB  The Spanish Curate: A Comedy\n"}
+,{"stream_name":"stdout","time":141.996166031,"data":"[46/137] 12221: 148 KB  Beggars Bush: A Comedy\n"}
+,{"stream_name":"stdout","time":141.996193697,"data":"From the Works of Francis Beaumont an\n"}
+,{"stream_name":"stdout","time":144.882708544,"data":"[47/137] 12222: 161 KB  The Faithful Shepherdess\n"}
+,{"stream_name":"stdout","time":144.882764438,"data":"The Works of Francis Beaumont and J\n"}
+,{"stream_name":"stdout","time":147.745685775,"data":"[48/137] 12312: 250 KB  A King, and No King\n"}
+,{"stream_name":"stdout","time":150.98816252,"data":"[49/137] 12322: 539 KB  Poetical Works of Edmund Waller and Sir John Denham\n"}
+,{"stream_name":"stdout","time":153.674566665,"data":"[50/137] 12915: 188 KB  The White Devil\n"}
+,{"stream_name":"stdout","time":156.356533839,"data":"[51/137] 13425: 144 KB  Wit Without Money; A Comedy\n"}
+,{"stream_name":"stdout","time":156.356561356,"data":"The Works of Francis Beaumont an\n"}
+,{"stream_name":"stdout","time":158.84932718,"data":"[52/137] 14462: 90 KB  The Third and Last Part of Conny-Catching. (1592)\n"}
+,{"stream_name":"stdout","time":158.849352458,"data":"With the n\n"}
+,{"stream_name":"stdout","time":161.532374609,"data":"[53/137] 14548: 141 KB  The Laws of Candy\n"}
+,{"stream_name":"stdout","time":161.532405907,"data":"Beaumont \u0026 Fletcher's Works (3 of 10)\n"}
+,{"stream_name":"stdout","time":164.402304798,"data":"[54/137] 14549: 158 KB  Rule a Wife, and Have a Wife\n"}
+,{"stream_name":"stdout","time":164.402331762,"data":"Beaumont \u0026 Fletcher's Works (3 \n"}
+,{"stream_name":"stdout","time":167.072682469,"data":"[55/137] 14771: 147 KB  The False One: A Tragedy\n"}
+,{"stream_name":"stdout","time":170.333053774,"data":"[56/137] 15272: 506 KB  Spenser's The Faerie Queene, Book I\n"}
+,{"stream_name":"stdout","time":173.011007246,"data":"[57/137] 16169: 106 KB  The Tragedy of Dido Queene of Carthage\n"}
+,{"stream_name":"stdout","time":175.692575612,"data":"[58/137] 16753: 134 KB  The Noble Spanish Soldier\n"}
+,{"stream_name":"stdout","time":178.746144744,"data":"[59/137] 17181: 306 KB  Rosalynde; or, Euphues' Golden Legacy\n"}
+,{"stream_name":"stdout","time":181.234478426,"data":"[60/137] 17779: 72 KB  The Choise of Valentines; Or the Merie Ballad of Nash His Di\n"}
+,{"stream_name":"stdout","time":184.298622384,"data":"[61/137] 17873: 491 KB  Minor Poems of Michael Drayton\n"}
+,{"stream_name":"stdout","time":186.791227571,"data":"[62/137] 18781: 56 KB  Hero and Leander\n"}
+,{"stream_name":"stdout","time":189.851679045,"data":"[63/137] 19819: 307 KB  Milton's Comus\n"}
+,{"stream_name":"stdout","time":192.336078758,"data":"[64/137] 19902: 83 KB  The Affectionate Shepherd\n"}
+,{"stream_name":"stdout","time":195.593352421,"data":"[65/137] 20241: 1028 KB  The Palace of Pleasure, Volume 1\n"}
+,{"stream_name":"stdout","time":198.278470975,"data":"[66/137] 20288: 160 KB  Edward the Second\n"}
+,{"stream_name":"stdout","time":201.365557176,"data":"[67/137] 20890: 541 KB  Bussy D'Ambois and The Revenge of Bussy D'Ambois\n"}
+,{"stream_name":"stdout","time":204.619152914,"data":"[68/137] 21262: 489 KB  The Works of Christopher Marlowe, Vol. 3 (of 3)\n"}
+,{"stream_name":"stdout","time":207.69238108,"data":"[69/137] 21338: 296 KB  The Vnfortunate Traveller, or The Life of Jack Wilton\n"}
+,{"stream_name":"stdout","time":207.69241952,"data":"With a\n"}
+,{"stream_name":"stdout","time":210.368749332,"data":"[70/137] 22001: 102 KB  Pastoral Poems by Nicholas Breton, Selected Poetry by George\n"}
+,{"stream_name":"stdout","time":213.629571608,"data":"[71/137] 22421: 876 KB  The Hesperides \u0026 Noble Numbers: Vol. 1 and 2\n"}
+,{"stream_name":"stdout","time":216.338537145,"data":"[72/137] 25398: 155 KB  The Little French Lawyer: A Comedy\n"}
+,{"stream_name":"stdout","time":219.404231483,"data":"[73/137] 26425: 495 KB  Microcosmography\n"}
+,{"stream_name":"stdout","time":219.404271611,"data":"or, a Piece of the World Discovered; in Ess\n"}
+,{"stream_name":"stdout","time":222.26413696,"data":"[74/137] 27770: 230 KB  The Battaile of Agincourt\n"}
+,{"stream_name":"stdout","time":224.933114226,"data":"[75/137] 28108: 121 KB  The Pennyles Pilgrimage\n"}
+,{"stream_name":"stdout","time":224.933140698,"data":"Or The Money-lesse Perambulation of \n"}
+,{"stream_name":"stdout","time":227.99685661,"data":"[76/137] 28375: 481 KB  Poems of Henry Vaughan, Silurist, Volume II\n"}
+,{"stream_name":"stdout","time":230.879943211,"data":"[77/137] 29261: 186 KB  Animaduersions uppon the annotacions and corrections of some\n"}
+,{"stream_name":"stdout","time":233.555176909,"data":"[78/137] 30327: 161 KB  Democritus Platonissans\n"}
+,{"stream_name":"stdout","time":236.432052601,"data":"[79/137] 31706: 283 KB  Milton: Minor Poems\n"}
+,{"stream_name":"stdout","time":239.112094108,"data":"[80/137] 32986: 179 KB  Thomas Stanley:  His Original Lyrics, Complete, In Their Col\n"}
+,{"stream_name":"stdout","time":242.394636901,"data":"[81/137] 34053: 978 KB  The Palace of Pleasure, Volume 2\n"}
+,{"stream_name":"stdout","time":245.644292863,"data":"[82/137] 34840: 1025 KB  The Palace of Pleasure, Volume 3\n"}
+,{"stream_name":"stdout","time":248.33038606,"data":"[83/137] 35000: 153 KB  The Mad Lover, a Tragi-Comedy\n"}
+,{"stream_name":"stdout","time":248.330439602,"data":"The Works of Francis Beaumont \n"}
+,{"stream_name":"stdout","time":251.394411217,"data":"[84/137] 35303: 685 KB  Beaumont and Fletcher's Works, Vol. 08 of 10\n"}
+,{"stream_name":"stdout","time":254.085003384,"data":"[85/137] 35330: 165 KB  The Spanish Tragedy\n"}
+,{"stream_name":"stdout","time":256.560942356,"data":"[86/137] 36841: 46 KB  Mundus Foppensis: The Fop Display'd\n"}
+,{"stream_name":"stdout","time":259.440905323,"data":"[87/137] 37387: 393 KB  Letters to Severall Persons of Honour\n"}
+,{"stream_name":"stdout","time":262.126718245,"data":"[88/137] 37503: 146 KB  Gammer Gurton's Needle\n"}
+,{"stream_name":"stdout","time":264.807842616,"data":"[89/137] 38342: 152 KB  Citt and Bumpkin (1680)\n"}
+,{"stream_name":"stdout","time":267.875112556,"data":"[90/137] 38549: 471 KB  The Complete Works of Richard Crashaw, Volume I\n"}
+,{"stream_name":"stdout","time":270.956439945,"data":"[91/137] 38550: 639 KB  The Complete Works of Richard Crashaw, Volume II\n"}
+,{"stream_name":"stdout","time":273.824474678,"data":"[92/137] 39249: 192 KB  Beaumont and Fletcher's Works, Vol. 03 of 10: The Loyal Subj\n"}
+,{"stream_name":"stdout","time":277.098965605,"data":"[93/137] 39960: 783 KB  The Works of Sir Thomas Browne, Volume 1\n"}
+,{"stream_name":"stdout","time":280.172857951,"data":"[94/137] 39961: 743 KB  The Works of Sir Thomas Browne, Volume 2\n"}
+,{"stream_name":"stdout","time":283.432743246,"data":"[95/137] 39962: 1091 KB  The Works of Sir Thomas Browne, Volume 3\n"}
+,{"stream_name":"stdout","time":286.12882551,"data":"[96/137] 42607: 167 KB  The Shepheard's Calender: Twelve Aeglogues Proportionable to\n"}
+,{"stream_name":"stdout","time":288.792853615,"data":"[97/137] 42620: 102 KB  Prefaces to Four Seventeenth-Century Romances\n"}
+,{"stream_name":"stdout","time":288.79345428,"data":"Roger Boyle, L\n"}
+,{"stream_name":"stdout","time":291.867596358,"data":"[98/137] 42724: 543 KB  The Works of Christopher Marlowe, Vol. 2 (of 3)\n"}
+,{"stream_name":"stdout","time":294.542324914,"data":"[99/137] 43668: 163 KB  The Scottish History of James the Fourth\n"}
+,{"stream_name":"stdout","time":294.542366997,"data":"1598\n"}
+,{"stream_name":"stdout","time":297.43052233,"data":"[100/137] 44015: 375 KB  The Fatal Dowry\n"}
+,{"stream_name":"stdout","time":300.679397658,"data":"[101/137] 44733: 647 KB  An Introduction to the Prose and Poetical Works of John Milt\n"}
+,{"stream_name":"stdout","time":303.552905145,"data":"[102/137] 44977: 402 KB  The Complete Poems of Sir John Davies. Volume 1 of 2.\n"}
+,{"stream_name":"stdout","time":306.622889152,"data":"[103/137] 44978: 303 KB  The Complete Poems of Sir John Davies. Volume 2 of 2.\n"}
+,{"stream_name":"stdout","time":309.297891814,"data":"[104/137] 45050: 145 KB  The Lady of Pleasure\n"}
+,{"stream_name":"stdout","time":309.297928578,"data":"A Comedie, as It Was Acted by Her Majes\n"}
+,{"stream_name":"stdout","time":312.37827531,"data":"[105/137] 45209: 564 KB  The Works of John Marston. Volume 1\n"}
+,{"stream_name":"stdout","time":315.449669683,"data":"[106/137] 45357: 831 KB  Thomas Dekker\n"}
+,{"stream_name":"stdout","time":315.449693973,"data":"Edited, with an introduction and notes by Erne\n"}
+,{"stream_name":"stdout","time":318.734234272,"data":"[107/137] 45780: 747 KB  Beaumont and Fletcher's Works, Vol. 05 of 10\n"}
+,{"stream_name":"stdout","time":321.819281424,"data":"[108/137] 45781: 780 KB  Beaumont and Fletcher's Works, Vol. 06 of 10\n"}
+,{"stream_name":"stdout","time":324.89417679,"data":"[109/137] 46311: 599 KB  The Works of John Marston. Volume 2\n"}
+,{"stream_name":"stdout","time":328.16349721,"data":"[110/137] 46312: 659 KB  The Works of John Marston. Volume 3\n"}
+,{"stream_name":"stdout","time":330.840530939,"data":"[111/137] 46591: 118 KB  The Strange Voyage and Adventures of Domingo Gonsales, to th\n"}
+,{"stream_name":"stdout","time":333.915803082,"data":"[112/137] 47156: 739 KB  Beaumont and Fletcher's Works, Vol. 07 of 10\n"}
+,{"stream_name":"stdout","time":337.163603008,"data":"[113/137] 47240: 742 KB  Beaumont and Fletcher's Works, Vol. 09 of 10\n"}
+,{"stream_name":"stdout","time":340.039349411,"data":"[114/137] 47462: 260 KB  Castara\n"}
+,{"stream_name":"stdout","time":340.039391814,"data":"The Third Edition of 1640; Edited and Collated with \n"}
+,{"stream_name":"stdout","time":343.11443078,"data":"[115/137] 48440: 560 KB  The Plays of Philip Massinger, Vol. I\n"}
+,{"stream_name":"stdout","time":346.553081046,"data":"[116/137] 48688: 1026 KB  The Poems of John Donne, Volume 1 (of 2)\n"}
+,{"stream_name":"stdout","time":346.553115466,"data":"Edited from the Old\n"}
+,{"stream_name":"stdout","time":349.832313427,"data":"[117/137] 48772: 1075 KB  The Poems of John Donne, Volume 2 (of 2)\n"}
+,{"stream_name":"stdout","time":349.832342575,"data":"Edited from the Old\n"}
+,{"stream_name":"stdout","time":352.69791802,"data":"[118/137] 49461: 245 KB  Bartholomew Fair: A Comedy\n"}
+,{"stream_name":"stdout","time":355.96261462,"data":"[119/137] 49636: 325 KB  Satiro-Mastix; or, the Vntrussing of the Humorous Poet\n"}
+,{"stream_name":"stdout","time":359.241032873,"data":"[120/137] 50031: 772 KB  Beaumont and Fletcher's Works, Vol. 04 of 10\n"}
+,{"stream_name":"stdout","time":362.516397251,"data":"[121/137] 50096: 767 KB  Beaumont and Fletcher's Works, Vol. 10 of 10\n"}
+,{"stream_name":"stdout","time":365.582818456,"data":"[122/137] 50143: 550 KB  A Collection of Emblemes, Ancient and Moderne\n"}
+,{"stream_name":"stdout","time":365.582845865,"data":"Quickened With\n"}
+,{"stream_name":"stdout","time":368.856025087,"data":"[123/137] 50150: 752 KB  The Devil is an Ass\n"}
+,{"stream_name":"stdout","time":371.732166438,"data":"[124/137] 51783: 253 KB  The Description of a New World, Called the Blazing-World\n"}
+,{"stream_name":"stdout","time":375.001819527,"data":"[125/137] 53679: 890 KB  Philosophical Letters: or, modest Reflections upon some Opin\n"}
+,{"stream_name":"stdout","time":377.476651684,"data":"[126/137] 55621: 49 KB  Humors Looking Glasse\n"}
+,{"stream_name":"stdout","time":380.532071411,"data":"[127/137] 55625: 667 KB  Webster \u0026 Tourneur\n"}
+,{"stream_name":"stdout","time":383.795185259,"data":"[128/137] 55769: 780 KB  Robert Greene: [Six Plays]\n"}
+,{"stream_name":"stdout","time":386.476494622,"data":"[129/137] 56375: 117 KB  Sir P.S.: His Astrophel and Stella\n"}
+,{"stream_name":"stdout","time":386.476531493,"data":"Wherein the excellence of\n"}
+,{"stream_name":"stdout","time":389.74660721,"data":"[130/137] 56463: 701 KB  Bacon's Essays, and Wisdom of the Ancients\n"}
+,{"stream_name":"stdout","time":392.423816123,"data":"[131/137] 61783: 107 KB  Paradoxes and Problemes\n"}
+,{"stream_name":"stdout","time":392.423848013,"data":"With two characters and an essay of \n"}
+,{"stream_name":"stdout","time":395.294268066,"data":"[132/137] 65375: 284 KB  The Poems of Richard Corbet, late bishop of Oxford and of No\n"}
+,{"stream_name":"stdout","time":398.552850087,"data":"[133/137] 67267: 723 KB  Thomas Heywood\n"}
+,{"stream_name":"stdout","time":402.007700727,"data":"[134/137] 70717: 1087 KB  Spenser's Faerie Queene, Vol. 1 (of 2)\n"}
+,{"stream_name":"stdout","time":405.48371916,"data":"[135/137] 70854: 1995 KB  The Countess of Pembroke's Arcadia\n"}
+,{"stream_name":"stdout","time":408.960273707,"data":"[136/137] 72698: 1054 KB  Spenser's Faerie Queene, Vol. 2 (of 2)\n"}
+,{"stream_name":"stdout","time":411.262475447,"data":"[137/137] 78259: 34 KB  On the morning of Christ's nativity\n"}
+,{"stream_name":"stdout","time":412.786754829,"data":"$ /usr/bin/python3 scripts/build_corpus.py build\n"}
+,{"stream_name":"stdout","time":423.149712225,"data":"{\n"}
+,{"stream_name":"stdout","time":423.149778134,"data":" \"texts\": 137,\n"}
+,{"stream_name":"stdout","time":423.149800372,"data":" \"skipped_dupe_text\": 0,\n"}
+,{"stream_name":"stdout","time":423.149805286,"data":" \"no_markers\": 0,\n"}
+,{"stream_name":"stdout","time":423.149809465,"data":" \"missing\": 0,\n"}
+,{"stream_name":"stdout","time":423.149813199,"data":" \"paras\": 298791,\n"}
+,{"stream_name":"stdout","time":423.149817601,"data":" \"drop_shakespeare\": 1458,\n"}
+,{"stream_name":"stdout","time":423.149821769,"data":" \"drop_dupe\": 4942,\n"}
+,{"stream_name":"stdout","time":423.149825217,"data":" \"chars\": 57751442,\n"}
+,{"stream_name":"stdout","time":423.149828779,"data":" \"bytes\": 57867407,\n"}
+,{"stream_name":"stdout","time":423.149832263,"data":" \"x_shakespeare_train\": 11.86\n"}
+,{"stream_name":"stdout","time":423.149835717,"data":"}\n"}
+,{"stream_name":"stdout","time":423.178274683,"data":"$ /usr/bin/python3 scripts/tokenize_data.py bpe --vocab 8192 --extra data/extra.txt\n"}
+,{"stream_name":"stdout","time":481.659688116,"data":"training text: Shakespeare train 4,823,350 chars + extra 57,751,442 chars\n"}
+,{"stream_name":"stdout","time":481.659730669,"data":"  merge   500: b' sc' (count 9640)\n"}
+,{"stream_name":"stdout","time":481.659737026,"data":"  merge  1000: b' brought' (count 3998)\n"}
+,{"stream_name":"stdout","time":481.659747648,"data":"  merge  1500: b'IA' (count 2362)\n"}
+,{"stream_name":"stdout","time":481.659755336,"data":"  merge  2000: b'bled' (count 1684)\n"}
+,{"stream_name":"stdout","time":481.659758305,"data":"  merge  2500: b' mid' (count 1254)\n"}
+,{"stream_name":"stdout","time":481.659761431,"data":"  merge  3000: b' fac' (count 975)\n"}
+,{"stream_name":"stdout","time":481.659764424,"data":"  merge  3500: b' disd' (count 784)\n"}
+,{"stream_name":"stdout","time":481.659767325,"data":"  merge  4000: b' stop' (count 656)\n"}
+,{"stream_name":"stdout","time":481.659770447,"data":"  merge  4500: b' z' (count 563)\n"}
+,{"stream_name":"stdout","time":481.659773313,"data":"  merge  5000: b' forty' (count 490)\n"}
+,{"stream_name":"stdout","time":481.65977626,"data":"  merge  5500: b' camp' (count 433)\n"}
+,{"stream_name":"stdout","time":481.659779082,"data":"  merge  6000: b'_--' (count 385)\n"}
+,{"stream_name":"stdout","time":481.659782008,"data":"  merge  6500: b' hunger' (count 342)\n"}
+,{"stream_name":"stdout","time":481.659784933,"data":"  merge  7000: b' RI' (count 309)\n"}
+,{"stream_name":"stdout","time":481.659787786,"data":"  merge  7500: b'Cas' (count 282)\n"}
+,{"stream_name":"stdout","time":481.659790653,"data":"trained bpe tokenizer: vocab 8192 in 40.5s\n"}
+,{"stream_name":"stdout","time":481.659793562,"data":"train 18,687,383 tokens, val 171,711 tokens, 3.16 bytes/token  -\u003e data/bpe8192x\n"}
+,{"stream_name":"stdout","time":481.741110325,"data":"$ /usr/bin/python3 scripts/tokenize_data.py bpe --vocab 8192\n"}
+,{"stream_name":"stdout","time":487.627817283,"data":"  merge   500: b'li' (count 863)\n"}
+,{"stream_name":"stdout","time":487.627848567,"data":"  merge  1000: b' husband' (count 351)\n"}
+,{"stream_name":"stdout","time":487.627853978,"data":"  merge  1500: b'ery' (count 209)\n"}
+,{"stream_name":"stdout","time":487.627859842,"data":"  merge  2000: b'rows' (count 144)\n"}
+,{"stream_name":"stdout","time":487.627868001,"data":"  merge  2500: b'OLDIER' (count 108)\n"}
+,{"stream_name":"stdout","time":487.627871232,"data":"  merge  3000: b'amb' (count 84)\n"}
+,{"stream_name":"stdout","time":487.627874049,"data":"  merge  3500: b' persu' (count 69)\n"}
+,{"stream_name":"stdout","time":487.627893819,"data":"  merge  4000: b' weight' (count 57)\n"}
+,{"stream_name":"stdout","time":487.627908527,"data":"  merge  4500: b' turned' (count 49)\n"}
+,{"stream_name":"stdout","time":487.627910963,"data":"  merge  5000: b' tread' (count 42)\n"}
+,{"stream_name":"stdout","time":487.627913243,"data":"  merge  5500: b'antag' (count 36)\n"}
+,{"stream_name":"stdout","time":487.627915503,"data":"  merge  6000: b'CUR' (count 31)\n"}
+,{"stream_name":"stdout","time":487.627917809,"data":"  merge  6500: b' Berowne' (count 28)\n"}
+,{"stream_name":"stdout","time":487.627920098,"data":"  merge  7000: b'yard' (count 24)\n"}
+,{"stream_name":"stdout","time":487.627922374,"data":"  merge  7500: b' allegiance' (count 22)\n"}
+,{"stream_name":"stdout","time":487.627924638,"data":"trained bpe tokenizer: vocab 8192 in 4.0s\n"}
+,{"stream_name":"stdout","time":487.627927494,"data":"train 1,436,032 tokens, val 163,292 tokens, 3.32 bytes/token  -\u003e data/bpe8192\n"}
+,{"stream_name":"stdout","time":487.659753927,"data":"$ /usr/bin/python3 scripts/backend_parity.py\n"}
+,{"stream_name":"stdout","time":495.328463446,"data":"gpt2: loss cpu 3.919125383659 gpu 3.919125383659 | worst grad rel diff 5.96e-16\n"}
+,{"stream_name":"stdout","time":495.328498628,"data":"kavi: loss cpu 3.899363421992 gpu 3.899363421992 | worst grad rel diff 7.58e-16\n"}
+,{"stream_name":"stdout","time":495.328505416,"data":"backend parity OK\n"}
+,{"stream_name":"stdout","time":496.443881275,"data":"$ /usr/bin/python3 scripts/sweep.py configs/sweep_scale.json --backend cupy --out /kaggle/working/runs --shard 0/2 (GPU 0)\n"}
+,{"stream_name":"stdout","time":496.444731155,"data":"$ /usr/bin/python3 scripts/sweep.py configs/sweep_scale.json --backend cupy --out /kaggle/working/runs --shard 1/2 (GPU 1)\n"}
+,{"stream_name":"stdout","time":21267.321102714,"data":"======== GPU 0 log ========\n"}
+,{"stream_name":"stdout","time":21267.321647205,"data":"Tis one, sir.\n"}
+,{"stream_name":"stdout","time":21267.321663084,"data":"\n"}
+,{"stream_name":"stdout","time":21267.321668615,"data":"SECOND GENTLEMAN.\n"}
+,{"stream_name":"stdout","time":21267.321672971,"data":"What’s the matter?\n"}
+,{"stream_name":"stdout","time":21267.32167766,"data":"\n"}
+,{"stream_name":"stdout","time":21267.321681561,"data":"THIRD GENTLEMAN.\n"}
+,{"stream_name":"stdout","time":21267.321685597,"data":"My name is Wingfield.\n"}
+,{"stream_name":"stdout","time":21267.321689594,"data":"\n"}
+,{"stream_name":"stdout","time":21267.321693489,"data":"FIRST GENTLEMAN.\n"}
+,{"stream_name":"stdout","time":21267.321697506,"data":"I can tell you, sir, how many knaves are here?\n"}
+,{"stream_name":"stdout","time":21267.32170157,"data":"\n"}
+,{"stream_name":"stdout","time":21267.32170551,"data":"FIRST GENTLEMAN.\n"}
+,{"stream_name":"stdout","time":21267.321709505,"data":"Ay, sir.\n"}
+,{"stream_name":"stdout","time":21267.321713642,"data":"\n"}
+,{"stream_name":"stdout","time":21267.321717759,"data":"FIRST GENTLEMAN.\n"}
+,{"stream_name":"stdout","time":21267.321721884,"data":"That, sir.\n"}
+,{"stream_name":"stdout","time":21267.321726474,"data":"\n"}
+,{"stream_name":"stdout","time":21267.32173071,"data":"FIRST GENTLEMAN.\n"}
+,{"stream_name":"stdout","time":21267.321734962,"data":"He was never so far gone.\n"}
+,{"stream_name":"stdout","time":21267.321740322,"data":"\n"}
+,{"stream_name":"stdout","time":21267.321744835,"data":"THIRD GENTLEMAN.\n"}
+,{"stream_name":"stdout","time":21267.321749194,"data":"’Twas well done.\n"}
+,{"stream_name":"stdout","time":21267.32175391,"data":"\n"}
+,{"stream_name":"stdout","time":21267.321758814,"data":"FIRST GENTLEMAN.\n"}
+,{"stream_name":"stdout","time":21267.321763705,"data":"And that’s now come.\n"}
+,{"stream_name":"stdout","time":21267.321778922,"data":"\n"}
+,{"stream_name":"stdout","time":21267.32178269,"data":"THIRD GENTLEMAN.\n"}
+,{"stream_name":"stdout","time":21267.321787222,"data":"’Tis very well.\n"}
+,{"stream_name":"stdout","time":21267.321792124,"data":"\n"}
+,{"stream_name":"stdout","time":21267.32179548,"data":"FIRST GENTLEMAN.\n"}
+,{"stream_name":"stdout","time":21267.32179909,"data":"I would a thousand times had never yet a look. But here he comes.\n"}
+,{"stream_name":"stdout","time":21267.321803006,"data":"\n"}
+,{"stream_name":"stdout","time":21267.32180667,"data":"Enter Servant.\n"}
+,{"stream_name":"stdout","time":21267.32181004,"data":"\n"}
+,{"stream_name":"stdout","time":21267.321813164,"data":"SERVANT.\n"}
+,{"stream_name":"stdout","time":21267.321816339,"data":"Captain Macbeth, to whom is that?\n"}
+,{"stream_name":"stdout","time":21267.321819524,"data":"\n"}
+,{"stream_name":"stdout","time":21267.321822681,"data":"FIRST GENTLEMAN.\n"}
+,{"stream_name":"stdout","time":21267.321825822,"data":"Sir, that’s all one.\n"}
+,{"stream_name":"stdout","time":21267.321829086,"data":"\n"}
+,{"stream_name":"stdout","time":21267.321832085,"data":"SERVANT.\n"}
+,{"stream_name":"stdout","time":21267.321835225,"data":"I\n"}
+,{"stream_name":"stdout","time":21267.321838304,"data":"== scale-L-29M: done in 248.4 min\n"}
+,{"stream_name":"stdout","time":21267.321841497,"data":"\n"}
+,{"stream_name":"stdout","time":21267.321844694,"data":"== scale-S-7M-shakes-only: data=\"data/bpe8192\" model.n_embd=256 model.n_layer=6 model.n_head=8 train.lr=1e-3 train.min_lr=1e-4\n"}
+,{"stream_name":"stdout","time":21267.32184841,"data":"[scale-S-7M-shakes-only] 6.81M params | backend cupy | data data/bpe8192 (vocab 8192, 1,436,032 train tokens, 0.21 tokens/param)\n"}
+,{"stream_name":"stdout","time":21267.321851942,"data":"model: GPTConfig(vocab_size=8192, block_size=256, n_layer=6, n_head=8, n_embd=256, dropout=0.1, bias=False, pos='rope', norm='rmsnorm', mlp='swiglu', rope_base=10000.0, attn='naive')\n"}
+,{"stream_name":"stdout","time":21267.321855592,"data":"  eval step     0 | train 8.9920 | val 8.9994 | val bpb 3.9059 | induction 0.014 L4H2 copy gain 0.03\n"}
+,{"stream_name":"stdout","time":21267.321858998,"data":"step     0 | loss 8.9849 | lr 2.00e-06 | gnorm 7.52 | 995 tok/s\n"}
+,{"stream_name":"stdout","time":21267.321862954,"data":"step   100 | loss 6.2355 | lr 2.02e-04 | gnorm 1.40 | 30,013 tok/s\n"}
+,{"stream_name":"stdout","time":21267.32186689,"data":"step   200 | loss 5.1827 | lr 4.02e-04 | gnorm 0.75 | 30,026 tok/s\n"}
+,{"stream_name":"stdout","time":21267.321870369,"data":"step   300 | loss 4.7590 | lr 6.02e-04 | gnorm 0.73 | 29,992 tok/s\n"}
+,{"stream_name":"stdout","time":21267.321874336,"data":"step   400 | loss 4.5728 | lr 8.02e-04 | gnorm 0.86 | 29,994 tok/s\n"}
+,{"stream_name":"stdout","time":21267.321877739,"data":"  eval step   500 | train 4.2487 | val 4.4491 | val bpb 1.9310 | induction 0.015 L0H4 copy gain -0.12\n"}
+,{"stream_name":"stdout","time":21267.321881115,"data":"step   500 | loss 4.2898 | lr 1.00e-03 | gnorm 0.76 | 23,384 tok/s\n"}
+,{"stream_name":"stdout","time":21267.321884362,"data":"step   600 | loss 4.2162 | lr 1.00e-03 | gnorm 0.65 | 29,874 tok/s\n"}
+,{"stream_name":"stdout","time":21267.321887584,"data":"step   700 | loss 4.0272 | lr 1.00e-03 | gnorm 0.63 | 29,769 tok/s\n"}
+,{"stream_name":"stdout","time":21267.321890755,"data":"step   800 | loss 3.9933 | lr 9.99e-04 | gnorm 0.66 | 29,792 tok/s\n"}
+,{"stream_name":"stdout","time":21267.321894028,"data":"step   900 | loss 3.8218 | lr 9.99e-04 | gnorm 0.60 | 29,860 tok/s\n"}
+,{"stream_name":"stdout","time":21267.321897232,"data":"  eval step  1000 | train 3.6266 | val 4.0038 | val bpb 1.7377 | induction 0.016 L0H2 copy gain -0.07\n"}
+,{"stream_name":"stdout","time":21267.321906434,"data":"step  1000 | loss 3.7300 | lr 9.99e-04 | gnorm 0.62 | 23,158 tok/s\n"}
+,{"stream_name":"stdout","time":21267.321909919,"data":"step  1100 | loss 3.6699 | lr 9.98e-04 | gnorm 0.60 | 29,810 tok/s\n"}
+,{"stream_name":"stdout","time":21267.321913263,"data":"step  1200 | loss 3.6063 | lr 9.97e-04 | gnorm 0.60 | 29,868 tok/s\n"}
+,{"stream_name":"stdout","time":21267.32191682,"data":"step  1300 | loss 3.4495 | lr 9.96e-04 | gnorm 0.61 | 29,918 tok/s\n"}
+,{"stream_name":"stdout","time":21267.321920042,"data":"step  1400 | loss 3.4870 | lr 9.95e-04 | gnorm 0.64 | 29,966 tok/s\n"}
+,{"stream_name":"stdout","time":21267.32192336,"data":"  eval step  1500 | train 3.3124 | val 3.8793 | val bpb 1.6837 | induction 0.017 L0H4 copy gain -0.09\n"}
+,{"stream_name":"stdout","time":21267.321926792,"data":"step  1500 | loss 3.5362 | lr 9.94e-04 | gnorm 0.63 | 23,278 tok/s\n"}
+,{"stream_name":"stdout","time":21267.32193011,"data":"step  1600 | loss 3.2872 | lr 9.93e-04 | gnorm 0.66 | 29,785 tok/s\n"}
+,{"stream_name":"stdout","time":21267.321938002,"data":"step  1700 | loss 3.2116 | lr 9.92e-04 | gnorm 0.67 | 29,835 tok/s\n"}
+,{"stream_name":"stdout","time":21267.321940748,"data":"step  1800 | loss 3.4273 | lr 9.90e-04 | gnorm 0.69 | 29,792 tok/s\n"}
+,{"stream_name":"stdout","time":21267.321943054,"data":"step  1900 | loss 3.1851 | lr 9.89e-04 | gnorm 0.66 | 29,731 tok/s\n"}
+,{"stream_name":"stdout","time":21267.3219453,"data":"  eval step  2000 | train 3.0934 | val 3.8682 | val bpb 1.6789 | induction 0.018 L0H4 copy gain -0.06\n"}
+,{"stream_name":"stdout","time":21267.32194754,"data":"step  2000 | loss 3.3240 | lr 9.87e-04 | gnorm 0.66 | 23,130 tok/s\n"}
+,{"stream_name":"stdout","time":21267.32194967,"data":"step  2100 | loss 3.1372 | lr 9.85e-04 | gnorm 0.66 | 29,646 tok/s\n"}
+,{"stream_name":"stdout","time":21267.321951817,"data":"step  2200 | loss 3.1470 | lr 9.83e-04 | gnorm 0.67 | 29,712 tok/s\n"}
+,{"stream_name":"stdout","time":21267.321954045,"data":"step  2300 | loss 3.1810 | lr 9.81e-04 | gnorm 0.66 | 29,751 tok/s\n"}
+,{"stream_name":"stdout","time":21267.321956271,"data":"step  2400 | loss 3.1294 | lr 9.79e-04 | gnorm 0.66 | 29,754 tok/s\n"}
+,{"stream_name":"stdout","time":21267.321958424,"data":"  eval step  2500 | train 2.9026 | val 3.8901 | val bpb 1.6883 | induction 0.018 L0H4 copy gain -0.06\n"}
+,{"stream_name":"stdout","time":21267.32199878,"data":"step  2500 | loss 3.0182 | lr 9.77e-04 | gnorm 0.69 | 23,241 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322002454,"data":"step  2600 | loss 3.1278 | lr 9.74e-04 | gnorm 0.69 | 29,701 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322005789,"data":"step  2700 | loss 3.0290 | lr 9.72e-04 | gnorm 0.71 | 29,634 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322009078,"data":"step  2800 | loss 3.0522 | lr 9.69e-04 | gnorm 0.72 | 29,645 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322012404,"data":"step  2900 | loss 2.8780 | lr 9.67e-04 | gnorm 0.71 | 29,630 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322015631,"data":"  eval step  3000 | train 2.7536 | val 3.9304 | val bpb 1.7058 | induction 0.018 L0H4 copy gain -0.06\n"}
+,{"stream_name":"stdout","time":21267.322019049,"data":"step  3000 | loss 2.9624 | lr 9.64e-04 | gnorm 0.73 | 23,173 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322022307,"data":"step  3100 | loss 2.8204 | lr 9.61e-04 | gnorm 0.72 | 29,645 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322025607,"data":"step  3200 | loss 2.9968 | lr 9.58e-04 | gnorm 0.74 | 29,723 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322028947,"data":"step  3300 | loss 2.7831 | lr 9.55e-04 | gnorm 0.74 | 29,757 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322032729,"data":"step  3400 | loss 2.8336 | lr 9.52e-04 | gnorm 0.74 | 29,747 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322040112,"data":"  eval step  3500 | train 2.6293 | val 3.9772 | val bpb 1.7261 | induction 0.017 L0H4 copy gain 0.05\n"}
+,{"stream_name":"stdout","time":21267.322043591,"data":"step  3500 | loss 2.8164 | lr 9.48e-04 | gnorm 0.78 | 23,159 tok/s\n"}
+,{"stream_name":"stdout","time":21267.32204699,"data":"step  3600 | loss 2.7527 | lr 9.45e-04 | gnorm 0.77 | 29,618 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322053457,"data":"step  3700 | loss 2.7717 | lr 9.42e-04 | gnorm 0.75 | 29,632 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322055632,"data":"step  3800 | loss 2.8843 | lr 9.38e-04 | gnorm 0.77 | 29,668 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322057767,"data":"step  3900 | loss 2.8020 | lr 9.34e-04 | gnorm 0.80 | 29,730 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322059947,"data":"  eval step  4000 | train 2.5161 | val 4.0325 | val bpb 1.7502 | induction 0.018 L0H4 copy gain -0.06\n"}
+,{"stream_name":"stdout","time":21267.322062201,"data":"step  4000 | loss 2.6573 | lr 9.30e-04 | gnorm 0.78 | 23,241 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322064342,"data":"step  4100 | loss 2.7917 | lr 9.26e-04 | gnorm 0.79 | 29,645 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322066466,"data":"step  4200 | loss 2.7044 | lr 9.22e-04 | gnorm 0.79 | 29,646 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322068696,"data":"step  4300 | loss 2.6557 | lr 9.18e-04 | gnorm 0.79 | 29,635 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322070901,"data":"step  4400 | loss 2.6780 | lr 9.14e-04 | gnorm 0.80 | 29,652 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322073066,"data":"  eval step  4500 | train 2.4129 | val 4.0691 | val bpb 1.7660 | induction 0.016 L0H4 copy gain -0.01\n"}
+,{"stream_name":"stdout","time":21267.322075287,"data":"step  4500 | loss 2.7589 | lr 9.10e-04 | gnorm 0.84 | 23,165 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322077513,"data":"step  4600 | loss 2.6534 | lr 9.05e-04 | gnorm 0.84 | 29,655 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322079634,"data":"step  4700 | loss 2.6779 | lr 9.01e-04 | gnorm 0.82 | 29,623 tok/s\n"}
+,{"stream_name":"stdout","time":21267.32208177,"data":"step  4800 | loss 2.6597 | lr 8.96e-04 | gnorm 0.82 | 29,696 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322083894,"data":"step  4900 | loss 2.5961 | lr 8.92e-04 | gnorm 0.86 | 29,731 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322086143,"data":"  eval step  5000 | train 2.3241 | val 4.1133 | val bpb 1.7852 | induction 0.017 L0H4 copy gain 0.06\n"}
+,{"stream_name":"stdout","time":21267.322088328,"data":"step  5000 | loss 2.5671 | lr 8.87e-04 | gnorm 0.82 | 23,240 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322090472,"data":"step  5100 | loss 2.6987 | lr 8.82e-04 | gnorm 0.84 | 29,673 tok/s\n"}
+,{"stream_name":"stdout","time":21267.32209259,"data":"step  5200 | loss 2.4911 | lr 8.77e-04 | gnorm 0.85 | 29,624 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322094737,"data":"step  5300 | loss 2.6486 | lr 8.72e-04 | gnorm 0.85 | 29,666 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322096857,"data":"step  5400 | loss 2.5253 | lr 8.67e-04 | gnorm 0.85 | 29,636 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322099021,"data":"  eval step  5500 | train 2.2402 | val 4.1693 | val bpb 1.8095 | induction 0.018 L0H4 copy gain 0.02\n"}
+,{"stream_name":"stdout","time":21267.322101226,"data":"step  5500 | loss 2.7531 | lr 8.62e-04 | gnorm 0.91 | 23,190 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322103379,"data":"step  5600 | loss 2.4612 | lr 8.56e-04 | gnorm 0.85 | 29,624 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322105984,"data":"step  5700 | loss 2.4599 | lr 8.51e-04 | gnorm 0.85 | 29,637 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322110427,"data":"step  5800 | loss 2.5097 | lr 8.46e-04 | gnorm 0.86 | 29,729 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322112675,"data":"step  5900 | loss 2.4132 | lr 8.40e-04 | gnorm 0.88 | 29,697 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322114837,"data":"  eval step  6000 | train 2.1498 | val 4.1876 | val bpb 1.8175 | induction 0.018 L0H4 copy gain 0.01\n"}
+,{"stream_name":"stdout","time":21267.322117025,"data":"step  6000 | loss 2.6111 | lr 8.35e-04 | gnorm 0.91 | 23,199 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322119161,"data":"step  6100 | loss 2.5784 | lr 8.29e-04 | gnorm 0.92 | 29,630 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322121293,"data":"step  6200 | loss 2.4915 | lr 8.23e-04 | gnorm 0.90 | 29,622 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322123431,"data":"step  6300 | loss 2.4819 | lr 8.17e-04 | gnorm 0.88 | 29,658 tok/s\n"}
+,{"stream_name":"stdout","time":21267.32212555,"data":"step  6400 | loss 2.5118 | lr 8.12e-04 | gnorm 0.90 | 29,654 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322127701,"data":"  eval step  6500 | train 2.0774 | val 4.2350 | val bpb 1.8381 | induction 0.018 L0H4 copy gain 0.01\n"}
+,{"stream_name":"stdout","time":21267.322132154,"data":"step  6500 | loss 2.4303 | lr 8.06e-04 | gnorm 0.91 | 23,161 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322134431,"data":"step  6600 | loss 2.3397 | lr 8.00e-04 | gnorm 0.89 | 29,625 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322136564,"data":"step  6700 | loss 2.4859 | lr 7.94e-04 | gnorm 0.92 | 29,611 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322138712,"data":"step  6800 | loss 2.3993 | lr 7.87e-04 | gnorm 0.94 | 29,643 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322140842,"data":"step  6900 | loss 2.3907 | lr 7.81e-04 | gnorm 0.92 | 29,654 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322143011,"data":"  eval step  7000 | train 2.0182 | val 4.2693 | val bpb 1.8530 | induction 0.017 L0H4 copy gain 0.04\n"}
+,{"stream_name":"stdout","time":21267.322145937,"data":"step  7000 | loss 2.4293 | lr 7.75e-04 | gnorm 0.95 | 23,164 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322148193,"data":"step  7100 | loss 2.4394 | lr 7.69e-04 | gnorm 0.94 | 29,658 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322150314,"data":"step  7200 | loss 2.4578 | lr 7.62e-04 | gnorm 0.94 | 29,716 tok/s\n"}
+,{"stream_name":"stdout","time":21267.3221531,"data":"step  7300 | loss 2.3157 | lr 7.56e-04 | gnorm 0.96 | 29,650 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322155424,"data":"step  7400 | loss 2.3196 | lr 7.49e-04 | gnorm 0.93 | 29,628 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322157642,"data":"  eval step  7500 | train 1.9751 | val 4.3021 | val bpb 1.8672 | induction 0.016 L0H4 copy gain 0.07\n"}
+,{"stream_name":"stdout","time":21267.322159956,"data":"step  7500 | loss 2.3698 | lr 7.43e-04 | gnorm 0.93 | 23,226 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322162158,"data":"step  7600 | loss 2.3388 | lr 7.36e-04 | gnorm 0.96 | 29,676 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322164739,"data":"step  7700 | loss 2.3021 | lr 7.30e-04 | gnorm 0.92 | 29,668 tok/s\n"}
+,{"stream_name":"stdout","time":21267.32216689,"data":"step  7800 | loss 2.2649 | lr 7.23e-04 | gnorm 0.95 | 29,689 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322169117,"data":"step  7900 | loss 2.1893 | lr 7.16e-04 | gnorm 0.97 | 29,629 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322171614,"data":"  eval step  8000 | train 1.9094 | val 4.3342 | val bpb 1.8811 | induction 0.017 L0H4 copy gain -0.00\n"}
+,{"stream_name":"stdout","time":21267.322174058,"data":"step  8000 | loss 2.4815 | lr 7.10e-04 | gnorm 1.00 | 23,209 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322176234,"data":"step  8100 | loss 2.1384 | lr 7.03e-04 | gnorm 0.94 | 29,655 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322180441,"data":"step  8200 | loss 2.2830 | lr 6.96e-04 | gnorm 0.97 | 29,613 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322183449,"data":"step  8300 | loss 2.3683 | lr 6.89e-04 | gnorm 1.00 | 29,619 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322185845,"data":"step  8400 | loss 2.1941 | lr 6.82e-04 | gnorm 0.97 | 29,606 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322188062,"data":"  eval step  8500 | train 1.8393 | val 4.3601 | val bpb 1.8924 | induction 0.017 L0H4 copy gain -0.01\n"}
+,{"stream_name":"stdout","time":21267.322190392,"data":"step  8500 | loss 2.2916 | lr 6.75e-04 | gnorm 1.02 | 23,142 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322192603,"data":"step  8600 | loss 2.1502 | lr 6.68e-04 | gnorm 0.98 | 29,613 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322194824,"data":"step  8700 | loss 2.2571 | lr 6.61e-04 | gnorm 1.01 | 29,590 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322196955,"data":"step  8800 | loss 2.2209 | lr 6.54e-04 | gnorm 1.01 | 29,593 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322199179,"data":"step  8900 | loss 2.3299 | lr 6.47e-04 | gnorm 1.03 | 29,649 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322206001,"data":"  eval step  9000 | train 1.7775 | val 4.3794 | val bpb 1.9007 | induction 0.017 L0H4 copy gain -0.09\n"}
+,{"stream_name":"stdout","time":21267.322208483,"data":"step  9000 | loss 2.2547 | lr 6.40e-04 | gnorm 1.02 | 23,223 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322210675,"data":"step  9100 | loss 2.2275 | lr 6.33e-04 | gnorm 1.02 | 29,654 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322213715,"data":"step  9200 | loss 2.2025 | lr 6.26e-04 | gnorm 1.02 | 29,620 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322215875,"data":"step  9300 | loss 2.1416 | lr 6.19e-04 | gnorm 1.01 | 29,428 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322218087,"data":"step  9400 | loss 2.0861 | lr 6.11e-04 | gnorm 1.02 | 29,323 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322220268,"data":"  eval step  9500 | train 1.7395 | val 4.4136 | val bpb 1.9156 | induction 0.018 L0H4 copy gain -0.01\n"}
+,{"stream_name":"stdout","time":21267.322222484,"data":"step  9500 | loss 2.1163 | lr 6.04e-04 | gnorm 1.03 | 23,035 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322224705,"data":"step  9600 | loss 2.2577 | lr 5.97e-04 | gnorm 1.08 | 29,536 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322226832,"data":"step  9700 | loss 2.2928 | lr 5.90e-04 | gnorm 1.07 | 29,444 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322229065,"data":"step  9800 | loss 2.1889 | lr 5.83e-04 | gnorm 1.05 | 29,353 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322231201,"data":"step  9900 | loss 2.0735 | lr 5.75e-04 | gnorm 1.02 | 29,358 tok/s\n"}
+,{"stream_name":"stdout","time":21267.32223344,"data":"  eval step 10000 | train 1.6940 | val 4.4391 | val bpb 1.9266 | induction 0.018 L0H4 copy gain -0.09\n"}
+,{"stream_name":"stdout","time":21267.322235632,"data":"step 10000 | loss 2.1951 | lr 5.68e-04 | gnorm 1.07 | 22,972 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322237784,"data":"step 10100 | loss 2.3043 | lr 5.61e-04 | gnorm 1.11 | 29,423 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322239905,"data":"step 10200 | loss 2.2136 | lr 5.54e-04 | gnorm 1.08 | 29,372 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322242054,"data":"step 10300 | loss 2.1014 | lr 5.46e-04 | gnorm 1.06 | 29,420 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322244183,"data":"step 10400 | loss 2.1219 | lr 5.39e-04 | gnorm 1.10 | 29,400 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322246494,"data":"  eval step 10500 | train 1.6431 | val 4.4503 | val bpb 1.9315 | induction 0.017 L0H4 copy gain -0.06\n"}
+,{"stream_name":"stdout","time":21267.322248728,"data":"step 10500 | loss 2.1863 | lr 5.32e-04 | gnorm 1.08 | 22,973 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322252887,"data":"step 10600 | loss 2.1408 | lr 5.25e-04 | gnorm 1.10 | 29,463 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322255148,"data":"step 10700 | loss 2.1024 | lr 5.17e-04 | gnorm 1.10 | 29,490 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322257304,"data":"step 10800 | loss 2.2071 | lr 5.10e-04 | gnorm 1.13 | 29,485 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322259434,"data":"step 10900 | loss 2.0988 | lr 5.03e-04 | gnorm 1.10 | 29,455 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322261605,"data":"  eval step 11000 | train 1.5915 | val 4.4824 | val bpb 1.9454 | induction 0.017 L0H4 copy gain -0.09\n"}
+,{"stream_name":"stdout","time":21267.3222638,"data":"step 11000 | loss 1.9545 | lr 4.96e-04 | gnorm 1.06 | 22,997 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322265963,"data":"step 11100 | loss 2.1173 | lr 4.89e-04 | gnorm 1.11 | 29,399 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322268245,"data":"step 11200 | loss 2.0423 | lr 4.81e-04 | gnorm 1.11 | 29,405 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322270389,"data":"step 11300 | loss 2.1375 | lr 4.74e-04 | gnorm 1.14 | 29,418 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322272529,"data":"step 11400 | loss 2.0052 | lr 4.67e-04 | gnorm 1.11 | 29,408 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322274719,"data":"  eval step 11500 | train 1.5516 | val 4.5141 | val bpb 1.9592 | induction 0.017 L0H4 copy gain -0.10\n"}
+,{"stream_name":"stdout","time":21267.322287412,"data":"step 11500 | loss 2.0544 | lr 4.60e-04 | gnorm 1.12 | 22,994 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322291309,"data":"step 11600 | loss 2.0777 | lr 4.53e-04 | gnorm 1.15 | 29,421 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322295069,"data":"step 11700 | loss 2.0280 | lr 4.46e-04 | gnorm 1.11 | 29,420 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322298465,"data":"step 11800 | loss 2.0754 | lr 4.39e-04 | gnorm 1.13 | 29,411 tok/s\n"}
+,{"stream_name":"stdout","time":21267.32230242,"data":"step 11900 | loss 2.0075 | lr 4.32e-04 | gnorm 1.13 | 29,440 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322306365,"data":"  eval step 12000 | train 1.5057 | val 4.5144 | val bpb 1.9593 | induction 0.017 L0H4 copy gain -0.10\n"}
+,{"stream_name":"stdout","time":21267.322310255,"data":"step 12000 | loss 1.9388 | lr 4.25e-04 | gnorm 1.14 | 23,022 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322314056,"data":"step 12100 | loss 1.9418 | lr 4.18e-04 | gnorm 1.15 | 29,439 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322317693,"data":"step 12200 | loss 1.9451 | lr 4.11e-04 | gnorm 1.15 | 29,443 tok/s\n"}
+,{"stream_name":"stdout","time":21267.32232107,"data":"step 12300 | loss 1.9972 | lr 4.04e-04 | gnorm 1.13 | 29,395 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322324812,"data":"step 12400 | loss 1.8603 | lr 3.97e-04 | gnorm 1.14 | 29,374 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322328485,"data":"  eval step 12500 | train 1.4572 | val 4.5385 | val bpb 1.9698 | induction 0.018 L0H4 copy gain -0.09\n"}
+,{"stream_name":"stdout","time":21267.322332471,"data":"step 12500 | loss 2.0081 | lr 3.90e-04 | gnorm 1.18 | 22,992 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322336286,"data":"step 12600 | loss 1.9800 | lr 3.84e-04 | gnorm 1.19 | 29,427 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322339996,"data":"step 12700 | loss 1.9846 | lr 3.77e-04 | gnorm 1.16 | 29,412 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322343748,"data":"step 12800 | loss 1.9146 | lr 3.70e-04 | gnorm 1.15 | 29,415 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322347098,"data":"step 12900 | loss 1.9830 | lr 3.64e-04 | gnorm 1.17 | 29,408 tok/s\n"}
+,{"stream_name":"stdout","time":21267.32235063,"data":"  eval step 13000 | train 1.4160 | val 4.5666 | val bpb 1.9820 | induction 0.017 L0H4 copy gain -0.18\n"}
+,{"stream_name":"stdout","time":21267.322357472,"data":"step 13000 | loss 1.9873 | lr 3.57e-04 | gnorm 1.19 | 22,984 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322360937,"data":"step 13100 | loss 2.0000 | lr 3.51e-04 | gnorm 1.19 | 29,363 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322364245,"data":"step 13200 | loss 1.9998 | lr 3.44e-04 | gnorm 1.22 | 29,373 tok/s\n"}
+,{"stream_name":"stdout","time":21267.32236766,"data":"step 13300 | loss 1.9082 | lr 3.38e-04 | gnorm 1.20 | 29,373 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322371053,"data":"step 13400 | loss 1.8883 | lr 3.31e-04 | gnorm 1.22 | 29,438 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322374962,"data":"  eval step 13500 | train 1.3919 | val 4.5770 | val bpb 1.9865 | induction 0.017 L0H4 copy gain -0.11\n"}
+,{"stream_name":"stdout","time":21267.3223792,"data":"step 13500 | loss 1.9836 | lr 3.25e-04 | gnorm 1.23 | 22,996 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322383285,"data":"step 13600 | loss 2.0306 | lr 3.19e-04 | gnorm 1.23 | 29,435 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322387232,"data":"step 13700 | loss 1.9556 | lr 3.13e-04 | gnorm 1.24 | 29,454 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322390729,"data":"step 13800 | loss 1.9530 | lr 3.06e-04 | gnorm 1.23 | 29,424 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322394052,"data":"step 13900 | loss 1.9093 | lr 3.00e-04 | gnorm 1.21 | 29,469 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322397387,"data":"  eval step 14000 | train 1.3416 | val 4.5926 | val bpb 1.9933 | induction 0.017 L0H4 copy gain -0.17\n"}
+,{"stream_name":"stdout","time":21267.322400832,"data":"step 14000 | loss 1.9706 | lr 2.94e-04 | gnorm 1.23 | 23,022 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322404177,"data":"step 14100 | loss 1.9150 | lr 2.88e-04 | gnorm 1.20 | 29,428 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322407419,"data":"step 14200 | loss 1.9544 | lr 2.83e-04 | gnorm 1.24 | 29,399 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322410719,"data":"step 14300 | loss 1.8750 | lr 2.77e-04 | gnorm 1.23 | 29,402 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322414065,"data":"step 14400 | loss 1.9717 | lr 2.71e-04 | gnorm 1.25 | 29,411 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322417359,"data":"  eval step 14500 | train 1.3126 | val 4.6100 | val bpb 2.0008 | induction 0.018 L0H4 copy gain -0.18\n"}
+,{"stream_name":"stdout","time":21267.322420732,"data":"step 14500 | loss 1.8202 | lr 2.65e-04 | gnorm 1.21 | 22,973 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322423987,"data":"step 14600 | loss 1.9746 | lr 2.60e-04 | gnorm 1.28 | 29,452 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322427207,"data":"step 14700 | loss 1.9136 | lr 2.54e-04 | gnorm 1.24 | 29,486 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322430465,"data":"step 14800 | loss 1.8577 | lr 2.49e-04 | gnorm 1.25 | 29,485 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322433655,"data":"step 14900 | loss 1.8097 | lr 2.44e-04 | gnorm 1.25 | 29,518 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322436936,"data":"  eval step 15000 | train 1.2866 | val 4.6262 | val bpb 2.0079 | induction 0.018 L0H4 copy gain -0.17\n"}
+,{"stream_name":"stdout","time":21267.322440354,"data":"step 15000 | loss 1.8569 | lr 2.38e-04 | gnorm 1.23 | 23,064 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322444359,"data":"step 15100 | loss 1.9006 | lr 2.33e-04 | gnorm 1.28 | 29,384 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322451221,"data":"step 15200 | loss 1.8445 | lr 2.28e-04 | gnorm 1.26 | 29,397 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322453375,"data":"step 15300 | loss 1.8782 | lr 2.23e-04 | gnorm 1.28 | 29,405 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322458176,"data":"step 15400 | loss 1.8939 | lr 2.18e-04 | gnorm 1.30 | 29,415 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322460409,"data":"  eval step 15500 | train 1.2617 | val 4.6341 | val bpb 2.0113 | induction 0.018 L0H0 copy gain -0.17\n"}
+,{"stream_name":"stdout","time":21267.322462725,"data":"step 15500 | loss 1.9269 | lr 2.13e-04 | gnorm 1.28 | 23,045 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322464849,"data":"step 15600 | loss 1.8182 | lr 2.08e-04 | gnorm 1.27 | 29,488 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322467102,"data":"step 15700 | loss 1.8282 | lr 2.04e-04 | gnorm 1.28 | 29,435 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322469293,"data":"step 15800 | loss 1.7607 | lr 1.99e-04 | gnorm 1.25 | 29,425 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322471437,"data":"step 15900 | loss 1.7659 | lr 1.95e-04 | gnorm 1.27 | 29,391 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322473752,"data":"  eval step 16000 | train 1.2296 | val 4.6541 | val bpb 2.0199 | induction 0.018 L0H0 copy gain -0.22\n"}
+,{"stream_name":"stdout","time":21267.322476032,"data":"step 16000 | loss 1.8517 | lr 1.90e-04 | gnorm 1.29 | 22,985 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322478155,"data":"step 16100 | loss 1.9030 | lr 1.86e-04 | gnorm 1.32 | 29,510 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322480367,"data":"step 16200 | loss 1.8143 | lr 1.82e-04 | gnorm 1.25 | 29,503 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322482489,"data":"step 16300 | loss 1.7501 | lr 1.78e-04 | gnorm 1.26 | 29,410 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322484642,"data":"step 16400 | loss 1.8563 | lr 1.74e-04 | gnorm 1.27 | 29,403 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322486778,"data":"  eval step 16500 | train 1.2053 | val 4.6612 | val bpb 2.0230 | induction 0.018 L0H0 copy gain -0.19\n"}
+,{"stream_name":"stdout","time":21267.322488982,"data":"step 16500 | loss 1.7978 | lr 1.70e-04 | gnorm 1.29 | 23,022 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322491103,"data":"step 16600 | loss 1.7589 | lr 1.66e-04 | gnorm 1.29 | 29,440 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322494078,"data":"step 16700 | loss 1.8512 | lr 1.62e-04 | gnorm 1.33 | 29,450 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322496274,"data":"step 16800 | loss 1.7875 | lr 1.58e-04 | gnorm 1.29 | 29,396 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322498459,"data":"step 16900 | loss 1.8368 | lr 1.55e-04 | gnorm 1.32 | 29,435 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322500642,"data":"  eval step 17000 | train 1.1815 | val 4.6738 | val bpb 2.0285 | induction 0.018 L0H0 copy gain -0.19\n"}
+,{"stream_name":"stdout","time":21267.322502945,"data":"step 17000 | loss 1.6778 | lr 1.52e-04 | gnorm 1.28 | 23,013 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322505074,"data":"step 17100 | loss 1.7157 | lr 1.48e-04 | gnorm 1.30 | 29,455 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322507222,"data":"step 17200 | loss 1.7149 | lr 1.45e-04 | gnorm 1.30 | 29,437 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322509433,"data":"step 17300 | loss 1.8137 | lr 1.42e-04 | gnorm 1.32 | 29,402 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322511579,"data":"step 17400 | loss 1.7708 | lr 1.39e-04 | gnorm 1.35 | 29,431 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322513944,"data":"  eval step 17500 | train 1.1597 | val 4.6883 | val bpb 2.0348 | induction 0.018 L0H0 copy gain -0.25\n"}
+,{"stream_name":"stdout","time":21267.32251617,"data":"step 17500 | loss 1.7737 | lr 1.36e-04 | gnorm 1.33 | 22,993 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322518371,"data":"step 17600 | loss 1.8727 | lr 1.33e-04 | gnorm 1.35 | 29,434 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322520524,"data":"step 17700 | loss 1.8174 | lr 1.31e-04 | gnorm 1.34 | 29,498 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322524588,"data":"step 17800 | loss 1.7519 | lr 1.28e-04 | gnorm 1.30 | 29,517 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322526924,"data":"step 17900 | loss 1.7910 | lr 1.26e-04 | gnorm 1.34 | 29,480 tok/s\n"}
+,{"stream_name":"stdout","time":21267.32252909,"data":"  eval step 18000 | train 1.1445 | val 4.6892 | val bpb 2.0352 | induction 0.018 L0H0 copy gain -0.21\n"}
+,{"stream_name":"stdout","time":21267.322531313,"data":"step 18000 | loss 1.7083 | lr 1.23e-04 | gnorm 1.32 | 23,013 tok/s\n"}
+,{"stream_name":"stdout","time":21267.32253344,"data":"step 18100 | loss 1.7576 | lr 1.21e-04 | gnorm 1.32 | 29,432 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322535583,"data":"step 18200 | loss 1.7250 | lr 1.19e-04 | gnorm 1.32 | 29,442 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322537723,"data":"step 18300 | loss 1.8122 | lr 1.17e-04 | gnorm 1.35 | 29,478 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322539874,"data":"step 18400 | loss 1.6678 | lr 1.15e-04 | gnorm 1.32 | 29,455 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322542016,"data":"  eval step 18500 | train 1.1293 | val 4.6954 | val bpb 2.0379 | induction 0.018 L0H0 copy gain -0.24\n"}
+,{"stream_name":"stdout","time":21267.322544234,"data":"step 18500 | loss 1.7102 | lr 1.13e-04 | gnorm 1.33 | 23,049 tok/s\n"}
+,{"stream_name":"stdout","time":21267.32254635,"data":"step 18600 | loss 1.7142 | lr 1.11e-04 | gnorm 1.33 | 29,485 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322548567,"data":"step 18700 | loss 1.7424 | lr 1.10e-04 | gnorm 1.34 | 29,507 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322550693,"data":"step 18800 | loss 1.7561 | lr 1.08e-04 | gnorm 1.35 | 29,483 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322553246,"data":"step 18900 | loss 1.7906 | lr 1.07e-04 | gnorm 1.36 | 29,465 tok/s\n"}
+,{"stream_name":"stdout","time":21267.32256742,"data":"  eval step 19000 | train 1.1094 | val 4.7098 | val bpb 2.0441 | induction 0.018 L0H0 copy gain -0.28\n"}
+,{"stream_name":"stdout","time":21267.322571565,"data":"step 19000 | loss 1.6426 | lr 1.06e-04 | gnorm 1.29 | 23,026 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322575068,"data":"step 19100 | loss 1.7376 | lr 1.05e-04 | gnorm 1.36 | 29,453 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322578869,"data":"step 19200 | loss 1.8067 | lr 1.04e-04 | gnorm 1.38 | 29,450 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322582673,"data":"step 19300 | loss 1.8111 | lr 1.03e-04 | gnorm 1.37 | 29,415 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322585914,"data":"step 19400 | loss 1.6782 | lr 1.02e-04 | gnorm 1.37 | 29,554 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322589152,"data":"  eval step 19500 | train 1.1021 | val 4.7178 | val bpb 2.0476 | induction 0.018 L0H0 copy gain -0.27\n"}
+,{"stream_name":"stdout","time":21267.322592557,"data":"step 19500 | loss 1.7551 | lr 1.01e-04 | gnorm 1.38 | 23,145 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322595812,"data":"step 19600 | loss 1.6999 | lr 1.01e-04 | gnorm 1.33 | 29,554 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322599012,"data":"step 19700 | loss 1.7399 | lr 1.01e-04 | gnorm 1.37 | 29,532 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322602622,"data":"step 19800 | loss 1.7235 | lr 1.00e-04 | gnorm 1.36 | 29,527 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322605884,"data":"step 19900 | loss 1.6908 | lr 1.00e-04 | gnorm 1.37 | 29,533 tok/s\n"}
+,{"stream_name":"stdout","time":21267.322609202,"data":"  eval step 20000 | train 1.0872 | val 4.7216 | val bpb 2.0492 | induction 0.018 L0H0 copy gain -0.26\n"}
+,{"stream_name":"stdout","time":21267.322612647,"data":"\n"}
+,{"stream_name":"stdout","time":21267.322615714,"data":"best val loss 3.8682 (bpb 1.6789). sample:\n"}
+,{"stream_name":"stdout","time":21267.32262843,"data":"\n"}
+,{"stream_name":"stdout","time":21267.322631721,"data":"And that the which we did think it is an hour\n"}
+,{"stream_name":"stdout","time":21267.322634979,"data":"In a full time we did.\n"}
+,{"stream_name":"stdout","time":21267.322641187,"data":"\n"}
+,{"stream_name":"stdout","time":21267.32264389,"data":"SECOND GENTLEMAN.\n"}
+,{"stream_name":"stdout","time":21267.322646479,"data":"But since they were all this,\n"}
+,{"stream_name":"stdout","time":21267.322659383,"data":"If it were there again by th’ other’s name.\n"}
+,{"stream_name":"stdout","time":21267.322663899,"data":"\n"}
+,{"stream_name":"stdout","time":21267.322667597,"data":"FIRST GENTLEMAN.\n"}
+,{"stream_name":"stdout","time":21267.322671012,"data":"Come, sir, be witness.\n"}
+,{"stream_name":"stdout","time":21267.3226748,"data":"\n"}
+,{"stream_name":"stdout","time":21267.322678212,"data":"FIRST GENTLEMAN.\n"}
+,{"stream_name":"stdout","time":21267.322681349,"data":"Why, well, my lord.\n"}
+,{"stream_name":"stdout","time":21267.322684536,"data":"\n"}
+,{"stream_name":"stdout","time":21267.322687579,"data":"THIRD GENTLEMAN.\n"}
+,{"stream_name":"stdout","time":21267.322690697,"data":"Do you hear it?\n"}
+,{"stream_name":"stdout","time":21267.322693917,"data":"\n"}
+,{"stream_name":"stdout","time":21267.322696904,"data":"THIRD GENTLEMAN.\n"}
+,{"stream_name":"stdout","time":21267.322700102,"data":"Ay, madam, if they please, if they were not,\n"}
+,{"stream_name":"stdout","time":21267.322703305,"data":"Not to be gone before, or have a cause\n"}
+,{"stream_name":"stdout","time":21267.322706438,"data":"For all our noble ones.\n"}
+,{"stream_name":"stdout","time":21267.322709651,"data":"\n"}
+,{"stream_name":"stdout","time":21267.322712651,"data":"CERIMON.\n"}
+,{"stream_name":"stdout","time":21267.322715786,"data":"’Tis but a fair one,\n"}
+,{"stream_name":"stdout","time":21267.322718982,"data":"To be a parish woman.\n"}
+,{"stream_name":"stdout","time":21267.322722143,"data":"\n"}
+,{"stream_name":"stdout","time":21267.322725151,"data":"CERIMON.\n"}
+,{"stream_name":"stdout","time":21267.322728292,"data":"Well, well, sir,\n"}
+,{"stream_name":"stdout","time":21267.322731573,"data":"I will be sworn upon a month, and now\n"}
+,{"stream_name":"stdout","time":21267.322737883,"data":"Descend the time with haste.\n"}
+,{"stream_name":"stdout","time":21267.322740035,"data":"\n"}
+,{"stream_name":"stdout","time":21267.322742429,"data":"CERIMON.\n"}
+,{"stream_name":"stdout","time":21267.322753997,"data":"Well, come you hence?\n"}
+,{"stream_name":"stdout","time":21267.322758018,"data":"\n"}
+,{"stream_name":"stdout","time":21267.322761512,"data":"CERIMON.\n"}
+,{"stream_name":"stdout","time":21267.322764889,"data":"And mine, my lord.\n"}
+,{"stream_name":"stdout","time":21267.32276902,"data":"\n"}
+,{"stream_name":"stdout","time":21267.322772145,"data":"CERIMON.\n"}
+,{"stream_name":"stdout","time":21267.322775237,"data":"Let us alone,\n"}
+,{"stream_name":"stdout","time":21267.322778352,"data":"And to the state we have not seen a son\n"}
+,{"stream_name":"stdout","time":21267.322781495,"data":"So well as well as life. To th’ other hence,\n"}
+,{"stream_name":"stdout","time":21267.322784699,"data":"And then to part in one consent, and not to know:\n"}
+,{"stream_name":"stdout","time":21267.32278791,"data":"All which is false, but none to live in time;\n"}
+,{"stream_name":"stdout","time":21267.322791139,"data":"But for our love I did begin to hope\n"}
+,{"stream_name":"stdout","time":21267.322794411,"data":"That we shall be as, if our King have known us:\n"}
+,{"stream_name":"stdout","time":21267.322797636,"data":"Therefore some comfort are they all be married,\n"}
+,{"stream_name":"stdout","time":21267.322808312,"data":"And in this hand of us we are in debt.\n"}
+,{"stream_name":"stdout","time":21267.322811605,"data":"We are a happy man; we would depart\n"}
+,{"stream_name":"stdout","time":21267.322814812,"data":"To make our cousines, as we shall meet,\n"}
+,{"stream_name":"stdout","time":21267.322818093,"data":"Ourself and our most noble father.\n"}
+,{"stream_name":"stdout","time":21267.322821377,"data":"\n"}
+,{"stream_name":"stdout","time":21267.322824565,"data":" [_Exit a Lord._]\n"}
+,{"stream_name":"stdout","time":21267.322830322,"data":"\n"}
+,{"stream_name":"stdout","time":21267.322832354,"data":"PERICLES.\n"}
+,{"stream_name":"stdout","time":21267.322834586,"data":"Who is that?\n"}
+,{"stream_name":"stdout","time":21267.322846297,"data":"\n"}
+,{"stream_name":"stdout","time":21267.322849989,"data":"CERIMON.\n"}
+,{"stream_name":"stdout","time":21267.322853618,"data":"His son?\n"}
+,{"stream_name":"stdout","time":21267.322857355,"data":"\n"}
+,{"stream_name":"stdout","time":21267.322861105,"data":"THAISA.\n"}
+,{"stream_name":"stdout","time":21267.322864763,"data":"The Lord of Tyre,\n"}
+,{"stream_name":"stdout","time":21267.322867916,"data":"I’ll have some part of your great feast.\n"}
+,{"stream_name":"stdout","time":21267.322871539,"data":"\n"}
+,{"stream_name":"stdout","time":21267.322874625,"data":" [_Exit._]\n"}
+,{"stream_name":"stdout","time":21267.322877761,"data":"\n"}
+,{"stream_name":"stdout","time":21267.32288074,"data":"PERICLES.\n"}
+,{"stream_name":"stdout","time":21267.322883897,"data":"Now, good my lord, your mistress is become,\n"}
+,{"stream_name":"stdout","time":21267.322887198,"data":"And you, my\n"}
+,{"stream_name":"stdout","time":21267.322890327,"data":"== scale-S-7M-shakes-only: done in 97.8 min\n"}
+,{"stream_name":"stdout","time":21267.322893583,"data":"\n"}
+,{"stream_name":"stdout","time":21267.322896609,"data":"======== GPU 1 log ========\n"}
+,{"stream_name":"stdout","time":21267.32289981,"data":"r hands,\n"}
+,{"stream_name":"stdout","time":21267.322902879,"data":"And when they were as black as it were,\n"}
+,{"stream_name":"stdout","time":21267.32290606,"data":"As they should hale, they say, what a man\n"}
+,{"stream_name":"stdout","time":21267.322909232,"data":"Will never be, but I’ll be angry.\n"}
+,{"stream_name":"stdout","time":21267.322912445,"data":"\n"}
+,{"stream_name":"stdout","time":21267.322915482,"data":"CAPTAIN.\n"}
+,{"stream_name":"stdout","time":21267.322918678,"data":"To know ’tis true.\n"}
+,{"stream_name":"stdout","time":21267.322925287,"data":"\n"}
+,{"stream_name":"stdout","time":21267.322927323,"data":"PROVOST.\n"}
+,{"stream_name":"stdout","time":21267.322929857,"data":"Be patient for a maid’s life to weep;\n"}
+,{"stream_name":"stdout","time":21267.322941604,"data":"And yet she is not come out, which will a tongue\n"}
+,{"stream_name":"stdout","time":21267.322945709,"data":"Be so untrue, that it cannot be a word.\n"}
+,{"stream_name":"stdout","time":21267.322949457,"data":"\n"}
+,{"stream_name":"stdout","time":21267.32295334,"data":"CAPTAIN.\n"}
+,{"stream_name":"stdout","time":21267.322956474,"data":"That’s nothing.\n"}
+,{"stream_name":"stdout","time":21267.322959663,"data":"\n"}
+,{"stream_name":"stdout","time":21267.322962703,"data":"PROVOST.\n"}
+,{"stream_name":"stdout","time":21267.32298011,"data":"That’s so, my lord.\n"}
+,{"stream_name":"stdout","time":21267.322983767,"data":"\n"}
+,{"stream_name":"stdout","time":21267.322986824,"data":"CAPTAIN.\n"}
+,{"stream_name":"stdout","time":21267.322990577,"data":"No, not all this.\n"}
+,{"stream_name":"stdout","time":21267.323001779,"data":"They are the servants that are married here.\n"}
+,{"stream_name":"stdout","time":21267.323005202,"data":"\n"}
+,{"stream_name":"stdout","time":21267.323008938,"data":"CAPTAIN.\n"}
+,{"stream_name":"stdout","time":21267.323012072,"data":"So you do, my lord; I’ll swear you have.\n"}
+,{"stream_name":"stdout","time":21267.323015289,"data":"\n"}
+,{"stream_name":"stdout","time":21267.323018324,"data":"CAPTAIN.\n"}
+,{"stream_name":"stdout","time":21267.323021504,"data":"I have a lady, and your ladyship.\n"}
+,{"stream_name":"stdout","time":21267.323025474,"data":"\n"}
+,{"stream_name":"stdout","time":21267.323029084,"data":"CAPTAIN.\n"}
+,{"stream_name":"stdout","time":21267.323032872,"data":"You do not love me?\n"}
+,{"stream_name":"stdout","time":21267.323036804,"data":"\n"}
+,{"stream_name":"stdout","time":21267.323040795,"data":"CAPTAIN.\n"}
+,{"stream_name":"stdout","time":21267.323044666,"data":"They are made of one that you should love you better.\n"}
+,{"stream_name":"stdout","time":21267.323048017,"data":"\n"}
+,{"stream_name":"stdout","time":21267.323051042,"data":"CAPTAIN.\n"}
+,{"stream_name":"stdout","time":21267.323054162,"data":"We have not found you, sir! I see you will do better.\n"}
+,{"stream_name":"stdout","time":21267.32305741,"data":"You look so low as you can be. I am a woman\n"}
+,{"stream_name":"stdout","time":21267.323060649,"data":"That can not think of any woman’s face\n"}
+,{"stream_name":"stdout","time":21267.323065244,"data":"By any reason of this quality.\n"}
+,{"stream_name":"stdout","time":21267.323068439,"data":"\n"}
+,{"stream_name":"stdout","time":21267.323071517,"data":"CAPTAIN.\n"}
+,{"stream_name":"stdout","time":21267.323074624,"data":"I never saw so fair a lady.\n"}
+,{"stream_name":"stdout","time":21267.323077797,"data":"\n"}
+,{"stream_name":"stdout","time":21267.323080877,"data":"CAPTAIN.\n"}
+,{"stream_name":"stdout","time":21267.323084055,"data":"I pray you, what’s your ladyship?\n"}
+,{"stream_name":"stdout","time":21267.323087233,"data":"\n"}
+,{"stream_name":"stdout","time":21267.323090319,"data":"CAPTAIN.\n"}
+,{"stream_name":"stdout","time":21267.32309337,"data":"No, no.\n"}
+,{"stream_name":"stdout","time":21267.323096527,"data":"\n"}
+,{"stream_name":"stdout","time":21267.32309959,"data":"CAPTAIN.\n"}
+,{"stream_name":"stdout","time":21267.323105957,"data":"A woman, madam, the youngest master.\n"}
+,{"stream_name":"stdout","time":21267.323108118,"data":"\n"}
+,{"stream_name":"stdout","time":21267.323110974,"data":"CAPTAIN.\n"}
+,{"stream_name":"stdout","time":21267.323123165,"data":"I cannot speak.\n"}
+,{"stream_name":"stdout","time":21267.323127732,"data":"\n"}
+,{"stream_name":"stdout","time":21267.32313125,"data":"CAPTAIN.\n"}
+,{"stream_name":"stdout","time":21267.323134999,"data":"I say, sir,\n"}
+,{"stream_name":"stdout","time":21267.323138754,"data":"== scale-S-7M: done in 107.4 min\n"}
+,{"stream_name":"stdout","time":21267.323142018,"data":"\n"}
+,{"stream_name":"stdout","time":21267.323145134,"data":"== scale-M-17M: model.n_embd=384 model.n_layer=8 model.n_head=6 train.lr=8e-4 train.min_lr=8e-5\n"}
+,{"stream_name":"stdout","time":21267.323148544,"data":"[scale-M-17M] 17.31M params | backend cupy | data data/bpe8192x (vocab 8192, 18,687,383 train tokens, 1.08 tokens/param)\n"}
+,{"stream_name":"stdout","time":21267.323152017,"data":"model: GPTConfig(vocab_size=8192, block_size=256, n_layer=8, n_head=6, n_embd=384, dropout=0.1, bias=False, pos='rope', norm='rmsnorm', mlp='swiglu', rope_base=10000.0, attn='naive')\n"}
+,{"stream_name":"stdout","time":21267.32315568,"data":"  eval step     0 | train 9.0647 | val 9.0349 | val bpb 4.1234 | induction 0.014 L4H3 copy gain -0.00\n"}
+,{"stream_name":"stdout","time":21267.323166284,"data":"step     0 | loss 9.0635 | lr 1.60e-06 | gnorm 4.71 | 537 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323169635,"data":"step   100 | loss 6.7588 | lr 1.62e-04 | gnorm 0.70 | 15,731 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323172954,"data":"step   200 | loss 5.6191 | lr 3.22e-04 | gnorm 1.05 | 15,577 tok/s\n"}
+,{"stream_name":"stdout","time":21267.3231763,"data":"step   300 | loss 5.3724 | lr 4.82e-04 | gnorm 0.85 | 15,572 tok/s\n"}
+,{"stream_name":"stdout","time":21267.32317951,"data":"step   400 | loss 5.0078 | lr 6.42e-04 | gnorm 0.74 | 15,540 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323182733,"data":"  eval step   500 | train 4.9157 | val 4.6950 | val bpb 2.1428 | induction 0.028 L6H5 copy gain 0.06\n"}
+,{"stream_name":"stdout","time":21267.32318616,"data":"step   500 | loss 5.0940 | lr 8.00e-04 | gnorm 0.73 | 12,073 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323189402,"data":"step   600 | loss 4.7125 | lr 8.00e-04 | gnorm 0.61 | 15,575 tok/s\n"}
+,{"stream_name":"stdout","time":21267.32319277,"data":"step   700 | loss 4.4993 | lr 8.00e-04 | gnorm 0.62 | 15,587 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323199919,"data":"step   800 | loss 4.5918 | lr 8.00e-04 | gnorm 0.57 | 15,584 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323219766,"data":"step   900 | loss 4.5564 | lr 7.99e-04 | gnorm 0.57 | 15,593 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323224192,"data":"  eval step  1000 | train 4.3291 | val 4.1937 | val bpb 1.9140 | induction 0.039 L6H1 copy gain 0.16\n"}
+,{"stream_name":"stdout","time":21267.323228063,"data":"step  1000 | loss 4.2395 | lr 7.99e-04 | gnorm 0.64 | 12,124 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323232595,"data":"step  1100 | loss 4.1716 | lr 7.98e-04 | gnorm 0.57 | 15,547 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323236585,"data":"step  1200 | loss 4.2604 | lr 7.98e-04 | gnorm 0.57 | 15,579 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323239942,"data":"step  1300 | loss 4.3596 | lr 7.97e-04 | gnorm 0.58 | 15,588 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323243251,"data":"step  1400 | loss 4.1119 | lr 7.96e-04 | gnorm 0.54 | 15,597 tok/s\n"}
+,{"stream_name":"stdout","time":21267.32324648,"data":"  eval step  1500 | train 4.0884 | val 3.9704 | val bpb 1.8121 | induction 0.056 L6H1 copy gain 0.10\n"}
+,{"stream_name":"stdout","time":21267.323249929,"data":"step  1500 | loss 4.2892 | lr 7.95e-04 | gnorm 0.55 | 12,048 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323253212,"data":"step  1600 | loss 4.1893 | lr 7.94e-04 | gnorm 0.54 | 15,595 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323256542,"data":"step  1700 | loss 3.9977 | lr 7.93e-04 | gnorm 0.57 | 15,594 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323259767,"data":"step  1800 | loss 4.1139 | lr 7.92e-04 | gnorm 0.57 | 15,596 tok/s\n"}
+,{"stream_name":"stdout","time":21267.32326303,"data":"step  1900 | loss 4.1412 | lr 7.91e-04 | gnorm 0.55 | 15,575 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323266272,"data":"  eval step  2000 | train 3.9473 | val 3.8633 | val bpb 1.7632 | induction 0.087 L6H1 copy gain 0.24\n"}
+,{"stream_name":"stdout","time":21267.323269694,"data":"step  2000 | loss 4.0409 | lr 7.90e-04 | gnorm 0.55 | 12,088 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323272924,"data":"step  2100 | loss 4.0146 | lr 7.88e-04 | gnorm 0.56 | 15,599 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323276164,"data":"step  2200 | loss 3.8593 | lr 7.87e-04 | gnorm 0.56 | 15,599 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323279385,"data":"step  2300 | loss 3.9540 | lr 7.85e-04 | gnorm 0.58 | 15,599 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323282707,"data":"step  2400 | loss 3.8411 | lr 7.83e-04 | gnorm 0.55 | 15,587 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323296243,"data":"  eval step  2500 | train 3.8399 | val 3.7523 | val bpb 1.7125 | induction 0.095 L6H1 copy gain 0.29\n"}
+,{"stream_name":"stdout","time":21267.323298954,"data":"step  2500 | loss 3.9975 | lr 7.81e-04 | gnorm 0.54 | 12,106 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323301535,"data":"step  2600 | loss 3.9638 | lr 7.80e-04 | gnorm 0.54 | 15,601 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323313612,"data":"step  2700 | loss 3.8399 | lr 7.78e-04 | gnorm 0.56 | 15,595 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323317714,"data":"step  2800 | loss 3.7831 | lr 7.76e-04 | gnorm 0.57 | 15,587 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323321448,"data":"step  2900 | loss 3.9831 | lr 7.73e-04 | gnorm 0.57 | 15,563 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323326022,"data":"  eval step  3000 | train 3.7579 | val 3.6777 | val bpb 1.6785 | induction 0.104 L6H1 copy gain 0.32\n"}
+,{"stream_name":"stdout","time":21267.323330041,"data":"step  3000 | loss 3.8646 | lr 7.71e-04 | gnorm 0.55 | 12,109 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323333434,"data":"step  3100 | loss 3.8130 | lr 7.69e-04 | gnorm 0.56 | 15,585 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323336817,"data":"step  3200 | loss 3.7128 | lr 7.66e-04 | gnorm 0.57 | 15,595 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323340037,"data":"step  3300 | loss 3.5499 | lr 7.64e-04 | gnorm 0.57 | 15,590 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323343293,"data":"step  3400 | loss 3.7101 | lr 7.61e-04 | gnorm 0.56 | 15,577 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323346964,"data":"  eval step  3500 | train 3.6990 | val 3.6302 | val bpb 1.6568 | induction 0.127 L6H1 copy gain 0.43\n"}
+,{"stream_name":"stdout","time":21267.323350424,"data":"step  3500 | loss 3.8241 | lr 7.59e-04 | gnorm 0.59 | 12,099 tok/s\n"}
+,{"stream_name":"stdout","time":21267.32335378,"data":"step  3600 | loss 3.6946 | lr 7.56e-04 | gnorm 0.55 | 15,600 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323356989,"data":"step  3700 | loss 3.6766 | lr 7.53e-04 | gnorm 0.61 | 15,602 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323360224,"data":"step  3800 | loss 3.7076 | lr 7.50e-04 | gnorm 0.59 | 15,589 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323363434,"data":"step  3900 | loss 3.6362 | lr 7.47e-04 | gnorm 0.57 | 15,597 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323366647,"data":"  eval step  4000 | train 3.6466 | val 3.5868 | val bpb 1.6370 | induction 0.153 L6H1 copy gain 0.52\n"}
+,{"stream_name":"stdout","time":21267.323370058,"data":"step  4000 | loss 3.6722 | lr 7.44e-04 | gnorm 0.57 | 12,109 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323373299,"data":"step  4100 | loss 3.4873 | lr 7.41e-04 | gnorm 0.55 | 15,592 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323376535,"data":"step  4200 | loss 3.6127 | lr 7.38e-04 | gnorm 0.57 | 15,576 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323379797,"data":"step  4300 | loss 3.6600 | lr 7.35e-04 | gnorm 0.59 | 15,587 tok/s\n"}
+,{"stream_name":"stdout","time":21267.32338314,"data":"step  4400 | loss 3.7408 | lr 7.31e-04 | gnorm 0.60 | 15,593 tok/s\n"}
+,{"stream_name":"stdout","time":21267.32338991,"data":"  eval step  4500 | train 3.6054 | val 3.5609 | val bpb 1.6251 | induction 0.155 L6H1 copy gain 0.49\n"}
+,{"stream_name":"stdout","time":21267.323392425,"data":"step  4500 | loss 3.6444 | lr 7.28e-04 | gnorm 0.59 | 12,124 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323395097,"data":"step  4600 | loss 3.6219 | lr 7.24e-04 | gnorm 0.61 | 15,576 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323407722,"data":"step  4700 | loss 3.7979 | lr 7.21e-04 | gnorm 0.61 | 15,563 tok/s\n"}
+,{"stream_name":"stdout","time":21267.32341983,"data":"step  4800 | loss 3.6089 | lr 7.17e-04 | gnorm 0.58 | 15,572 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323423965,"data":"step  4900 | loss 3.7429 | lr 7.13e-04 | gnorm 0.58 | 15,535 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323427363,"data":"  eval step  5000 | train 3.5591 | val 3.5241 | val bpb 1.6084 | induction 0.183 L6H1 copy gain 0.59\n"}
+,{"stream_name":"stdout","time":21267.32343072,"data":"step  5000 | loss 3.6065 | lr 7.09e-04 | gnorm 0.59 | 12,130 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323433984,"data":"step  5100 | loss 3.7746 | lr 7.06e-04 | gnorm 0.61 | 15,565 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323437236,"data":"step  5200 | loss 3.6114 | lr 7.02e-04 | gnorm 0.57 | 15,591 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323440506,"data":"step  5300 | loss 3.3465 | lr 6.98e-04 | gnorm 0.62 | 15,599 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323443804,"data":"step  5400 | loss 3.6367 | lr 6.94e-04 | gnorm 0.59 | 15,578 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323447059,"data":"  eval step  5500 | train 3.5278 | val 3.5089 | val bpb 1.6014 | induction 0.183 L6H1 copy gain 0.67\n"}
+,{"stream_name":"stdout","time":21267.323450473,"data":"step  5500 | loss 3.6818 | lr 6.89e-04 | gnorm 0.60 | 12,077 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323453736,"data":"step  5600 | loss 3.6733 | lr 6.85e-04 | gnorm 0.59 | 15,589 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323457003,"data":"step  5700 | loss 3.6991 | lr 6.81e-04 | gnorm 0.58 | 15,592 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323460564,"data":"step  5800 | loss 3.5036 | lr 6.77e-04 | gnorm 0.63 | 15,565 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323463874,"data":"step  5900 | loss 3.6134 | lr 6.72e-04 | gnorm 0.62 | 15,599 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323467069,"data":"  eval step  6000 | train 3.5033 | val 3.4806 | val bpb 1.5885 | induction 0.202 L6H1 copy gain 0.75\n"}
+,{"stream_name":"stdout","time":21267.323470485,"data":"step  6000 | loss 3.5770 | lr 6.68e-04 | gnorm 0.63 | 12,119 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323473724,"data":"step  6100 | loss 3.5466 | lr 6.63e-04 | gnorm 0.61 | 15,594 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323477241,"data":"step  6200 | loss 3.6317 | lr 6.59e-04 | gnorm 0.63 | 15,567 tok/s\n"}
+,{"stream_name":"stdout","time":21267.32348356,"data":"step  6300 | loss 3.6168 | lr 6.54e-04 | gnorm 0.62 | 15,570 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323485765,"data":"step  6400 | loss 3.5472 | lr 6.49e-04 | gnorm 0.62 | 15,559 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323488526,"data":"  eval step  6500 | train 3.4640 | val 3.4630 | val bpb 1.5805 | induction 0.212 L6H1 copy gain 0.75\n"}
+,{"stream_name":"stdout","time":21267.323500587,"data":"step  6500 | loss 3.5176 | lr 6.45e-04 | gnorm 0.60 | 12,112 tok/s\n"}
+,{"stream_name":"stdout","time":21267.32350464,"data":"step  6600 | loss 3.5615 | lr 6.40e-04 | gnorm 0.62 | 15,567 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323508754,"data":"step  6700 | loss 3.5531 | lr 6.35e-04 | gnorm 0.62 | 15,552 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323512779,"data":"step  6800 | loss 3.3104 | lr 6.30e-04 | gnorm 0.62 | 15,582 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323516549,"data":"step  6900 | loss 3.4655 | lr 6.25e-04 | gnorm 0.62 | 15,569 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323519889,"data":"  eval step  7000 | train 3.4404 | val 3.4421 | val bpb 1.5709 | induction 0.225 L6H1 copy gain 0.89\n"}
+,{"stream_name":"stdout","time":21267.323523247,"data":"step  7000 | loss 3.5227 | lr 6.20e-04 | gnorm 0.64 | 12,093 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323526446,"data":"step  7100 | loss 3.4103 | lr 6.15e-04 | gnorm 0.60 | 15,593 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323537005,"data":"step  7200 | loss 3.3746 | lr 6.10e-04 | gnorm 0.64 | 15,534 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323540338,"data":"step  7300 | loss 3.4428 | lr 6.05e-04 | gnorm 0.66 | 15,593 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323543575,"data":"step  7400 | loss 3.3479 | lr 6.00e-04 | gnorm 0.63 | 15,583 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323546829,"data":"  eval step  7500 | train 3.4122 | val 3.4270 | val bpb 1.5641 | induction 0.230 L6H1 copy gain 0.90\n"}
+,{"stream_name":"stdout","time":21267.323550242,"data":"step  7500 | loss 3.4847 | lr 5.94e-04 | gnorm 0.65 | 12,122 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323553438,"data":"step  7600 | loss 3.5468 | lr 5.89e-04 | gnorm 0.65 | 15,596 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323556652,"data":"step  7700 | loss 3.3347 | lr 5.84e-04 | gnorm 0.64 | 15,575 tok/s\n"}
+,{"stream_name":"stdout","time":21267.32355992,"data":"step  7800 | loss 3.5720 | lr 5.78e-04 | gnorm 0.67 | 15,562 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323563138,"data":"step  7900 | loss 3.3732 | lr 5.73e-04 | gnorm 0.64 | 15,548 tok/s\n"}
+,{"stream_name":"stdout","time":21267.32356659,"data":"  eval step  8000 | train 3.3876 | val 3.4104 | val bpb 1.5565 | induction 0.228 L6H1 copy gain 0.89\n"}
+,{"stream_name":"stdout","time":21267.323570217,"data":"step  8000 | loss 3.4132 | lr 5.68e-04 | gnorm 0.65 | 12,124 tok/s\n"}
+,{"stream_name":"stdout","time":21267.32357639,"data":"step  8100 | loss 3.5789 | lr 5.62e-04 | gnorm 0.68 | 15,594 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323578649,"data":"step  8200 | loss 3.5085 | lr 5.57e-04 | gnorm 0.67 | 15,596 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323581172,"data":"step  8300 | loss 3.6344 | lr 5.51e-04 | gnorm 0.70 | 15,591 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323593015,"data":"step  8400 | loss 3.3189 | lr 5.46e-04 | gnorm 0.68 | 15,562 tok/s\n"}
+,{"stream_name":"stdout","time":21267.32359724,"data":"  eval step  8500 | train 3.3668 | val 3.3972 | val bpb 1.5505 | induction 0.241 L6H1 copy gain 0.95\n"}
+,{"stream_name":"stdout","time":21267.323601052,"data":"step  8500 | loss 3.4820 | lr 5.40e-04 | gnorm 0.65 | 12,078 tok/s\n"}
+,{"stream_name":"stdout","time":21267.3236051,"data":"step  8600 | loss 3.3595 | lr 5.35e-04 | gnorm 0.66 | 15,535 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323609025,"data":"step  8700 | loss 3.3842 | lr 5.29e-04 | gnorm 0.66 | 15,597 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323612332,"data":"step  8800 | loss 3.2878 | lr 5.23e-04 | gnorm 0.64 | 15,550 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323615544,"data":"step  8900 | loss 3.3508 | lr 5.18e-04 | gnorm 0.65 | 15,553 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323618764,"data":"  eval step  9000 | train 3.3427 | val 3.3844 | val bpb 1.5446 | induction 0.223 L6H1 copy gain 0.97\n"}
+,{"stream_name":"stdout","time":21267.323622173,"data":"step  9000 | loss 3.3919 | lr 5.12e-04 | gnorm 0.67 | 12,102 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323625438,"data":"step  9100 | loss 3.6454 | lr 5.06e-04 | gnorm 0.72 | 15,591 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323628667,"data":"step  9200 | loss 3.4640 | lr 5.01e-04 | gnorm 0.68 | 15,569 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323631918,"data":"step  9300 | loss 3.4313 | lr 4.95e-04 | gnorm 0.68 | 15,580 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323635137,"data":"step  9400 | loss 3.3687 | lr 4.89e-04 | gnorm 0.66 | 15,592 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323638379,"data":"  eval step  9500 | train 3.3183 | val 3.3659 | val bpb 1.5362 | induction 0.235 L6H0 copy gain 1.08\n"}
+,{"stream_name":"stdout","time":21267.323641789,"data":"step  9500 | loss 3.4011 | lr 4.83e-04 | gnorm 0.68 | 12,087 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323653879,"data":"step  9600 | loss 3.4594 | lr 4.78e-04 | gnorm 0.69 | 15,515 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323657235,"data":"step  9700 | loss 3.3137 | lr 4.72e-04 | gnorm 0.67 | 15,559 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323660475,"data":"step  9800 | loss 3.4602 | lr 4.66e-04 | gnorm 0.71 | 15,597 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323663828,"data":"step  9900 | loss 3.4157 | lr 4.60e-04 | gnorm 0.70 | 15,566 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323669874,"data":"  eval step 10000 | train 3.2969 | val 3.3548 | val bpb 1.5311 | induction 0.220 L6H1 copy gain 0.89\n"}
+,{"stream_name":"stdout","time":21267.323672129,"data":"step 10000 | loss 3.4411 | lr 4.54e-04 | gnorm 0.70 | 12,104 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323674805,"data":"step 10100 | loss 3.4530 | lr 4.49e-04 | gnorm 0.69 | 15,511 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323686593,"data":"step 10200 | loss 3.4026 | lr 4.43e-04 | gnorm 0.69 | 15,563 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323690701,"data":"step 10300 | loss 3.3535 | lr 4.37e-04 | gnorm 0.70 | 15,554 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323694542,"data":"step 10400 | loss 3.3284 | lr 4.31e-04 | gnorm 0.69 | 15,582 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323699817,"data":"  eval step 10500 | train 3.2676 | val 3.3473 | val bpb 1.5277 | induction 0.249 L6H1 copy gain 1.10\n"}
+,{"stream_name":"stdout","time":21267.323703852,"data":"step 10500 | loss 3.2982 | lr 4.26e-04 | gnorm 0.68 | 12,139 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323707136,"data":"step 10600 | loss 3.3132 | lr 4.20e-04 | gnorm 0.71 | 15,596 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323710357,"data":"step 10700 | loss 3.3928 | lr 4.14e-04 | gnorm 0.72 | 15,563 tok/s\n"}
+,{"stream_name":"stdout","time":21267.3237136,"data":"step 10800 | loss 3.4152 | lr 4.08e-04 | gnorm 0.69 | 15,569 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323716824,"data":"step 10900 | loss 3.3307 | lr 4.02e-04 | gnorm 0.70 | 15,589 tok/s\n"}
+,{"stream_name":"stdout","time":21267.32372008,"data":"  eval step 11000 | train 3.2471 | val 3.3290 | val bpb 1.5193 | induction 0.236 L6H1 copy gain 1.08\n"}
+,{"stream_name":"stdout","time":21267.323723481,"data":"step 11000 | loss 3.1830 | lr 3.97e-04 | gnorm 0.67 | 12,034 tok/s\n"}
+,{"stream_name":"stdout","time":21267.32372674,"data":"step 11100 | loss 3.4342 | lr 3.91e-04 | gnorm 0.72 | 15,587 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323729992,"data":"step 11200 | loss 3.4416 | lr 3.85e-04 | gnorm 0.71 | 15,532 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323733239,"data":"step 11300 | loss 3.4008 | lr 3.79e-04 | gnorm 0.72 | 15,598 tok/s\n"}
+,{"stream_name":"stdout","time":21267.32373647,"data":"step 11400 | loss 3.2075 | lr 3.74e-04 | gnorm 0.71 | 15,593 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323739704,"data":"  eval step 11500 | train 3.2311 | val 3.3214 | val bpb 1.5159 | induction 0.240 L6H1 copy gain 1.07\n"}
+,{"stream_name":"stdout","time":21267.323743109,"data":"step 11500 | loss 3.3592 | lr 3.68e-04 | gnorm 0.72 | 12,099 tok/s\n"}
+,{"stream_name":"stdout","time":21267.32374644,"data":"step 11600 | loss 3.3512 | lr 3.62e-04 | gnorm 0.72 | 15,559 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323749694,"data":"step 11700 | loss 3.1868 | lr 3.57e-04 | gnorm 0.72 | 15,583 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323753037,"data":"step 11800 | loss 3.3943 | lr 3.51e-04 | gnorm 0.73 | 15,577 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323756365,"data":"step 11900 | loss 3.3850 | lr 3.45e-04 | gnorm 0.72 | 15,587 tok/s\n"}
+,{"stream_name":"stdout","time":21267.32375984,"data":"  eval step 12000 | train 3.2135 | val 3.3112 | val bpb 1.5112 | induction 0.233 L6H1 copy gain 1.08\n"}
+,{"stream_name":"stdout","time":21267.323779815,"data":"step 12000 | loss 3.3610 | lr 3.40e-04 | gnorm 0.73 | 12,085 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323784353,"data":"step 12100 | loss 3.3388 | lr 3.34e-04 | gnorm 0.70 | 15,555 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323788146,"data":"step 12200 | loss 3.3394 | lr 3.29e-04 | gnorm 0.73 | 15,585 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323792244,"data":"step 12300 | loss 3.4873 | lr 3.23e-04 | gnorm 0.74 | 15,597 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323796187,"data":"step 12400 | loss 3.2579 | lr 3.18e-04 | gnorm 0.74 | 15,596 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323799478,"data":"  eval step 12500 | train 3.2004 | val 3.3004 | val bpb 1.5063 | induction 0.231 L6H1 copy gain 1.09\n"}
+,{"stream_name":"stdout","time":21267.32380284,"data":"step 12500 | loss 3.1137 | lr 3.12e-04 | gnorm 0.70 | 12,093 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323806084,"data":"step 12600 | loss 3.3577 | lr 3.07e-04 | gnorm 0.75 | 15,591 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323809299,"data":"step 12700 | loss 3.3008 | lr 3.02e-04 | gnorm 0.73 | 15,571 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323812669,"data":"step 12800 | loss 3.1396 | lr 2.96e-04 | gnorm 0.74 | 15,562 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323816293,"data":"step 12900 | loss 3.2708 | lr 2.91e-04 | gnorm 0.76 | 15,570 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323819616,"data":"  eval step 13000 | train 3.1808 | val 3.2947 | val bpb 1.5037 | induction 0.235 L6H1 copy gain 1.12\n"}
+,{"stream_name":"stdout","time":21267.323823024,"data":"step 13000 | loss 3.2059 | lr 2.86e-04 | gnorm 0.79 | 12,117 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323826252,"data":"step 13100 | loss 3.3864 | lr 2.80e-04 | gnorm 0.74 | 15,523 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323829484,"data":"step 13200 | loss 3.2055 | lr 2.75e-04 | gnorm 0.75 | 15,592 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323832699,"data":"step 13300 | loss 3.2276 | lr 2.70e-04 | gnorm 0.74 | 15,560 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323835909,"data":"step 13400 | loss 3.2597 | lr 2.65e-04 | gnorm 0.75 | 15,566 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323839144,"data":"  eval step 13500 | train 3.1684 | val 3.2896 | val bpb 1.5014 | induction 0.232 L6H1 copy gain 1.16\n"}
+,{"stream_name":"stdout","time":21267.323842536,"data":"step 13500 | loss 3.3648 | lr 2.60e-04 | gnorm 0.78 | 12,106 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323847009,"data":"step 13600 | loss 3.2825 | lr 2.55e-04 | gnorm 0.74 | 15,585 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323850325,"data":"step 13700 | loss 3.2821 | lr 2.50e-04 | gnorm 0.77 | 15,568 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323856828,"data":"step 13800 | loss 3.4045 | lr 2.45e-04 | gnorm 0.75 | 15,553 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323859008,"data":"step 13900 | loss 3.5062 | lr 2.40e-04 | gnorm 0.76 | 15,594 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323861658,"data":"  eval step 14000 | train 3.1481 | val 3.2773 | val bpb 1.4957 | induction 0.229 L6H1 copy gain 1.13\n"}
+,{"stream_name":"stdout","time":21267.323873655,"data":"step 14000 | loss 3.2604 | lr 2.35e-04 | gnorm 0.75 | 12,097 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323877764,"data":"step 14100 | loss 3.1639 | lr 2.31e-04 | gnorm 0.77 | 15,591 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323881678,"data":"step 14200 | loss 3.3229 | lr 2.26e-04 | gnorm 0.78 | 15,587 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323885651,"data":"step 14300 | loss 3.3164 | lr 2.21e-04 | gnorm 0.80 | 15,592 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323892717,"data":"step 14400 | loss 3.3096 | lr 2.17e-04 | gnorm 0.75 | 15,569 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323896147,"data":"  eval step 14500 | train 3.1323 | val 3.2704 | val bpb 1.4926 | induction 0.226 L6H0 copy gain 1.13\n"}
+,{"stream_name":"stdout","time":21267.323899625,"data":"step 14500 | loss 3.3188 | lr 2.12e-04 | gnorm 0.79 | 12,072 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323902932,"data":"step 14600 | loss 3.2232 | lr 2.08e-04 | gnorm 0.78 | 15,586 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323906194,"data":"step 14700 | loss 3.3428 | lr 2.03e-04 | gnorm 0.79 | 15,575 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323909507,"data":"step 14800 | loss 2.9617 | lr 1.99e-04 | gnorm 0.75 | 15,599 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323912777,"data":"step 14900 | loss 3.1544 | lr 1.95e-04 | gnorm 0.78 | 15,556 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323916019,"data":"  eval step 15000 | train 3.1160 | val 3.2621 | val bpb 1.4888 | induction 0.230 L6H0 copy gain 1.17\n"}
+,{"stream_name":"stdout","time":21267.323919392,"data":"step 15000 | loss 3.2491 | lr 1.91e-04 | gnorm 0.78 | 12,135 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323922627,"data":"step 15100 | loss 3.2716 | lr 1.86e-04 | gnorm 0.80 | 15,545 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323926327,"data":"step 15200 | loss 3.3404 | lr 1.82e-04 | gnorm 0.79 | 15,562 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323929615,"data":"step 15300 | loss 3.3125 | lr 1.78e-04 | gnorm 0.79 | 15,538 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323932826,"data":"step 15400 | loss 3.2250 | lr 1.74e-04 | gnorm 0.80 | 15,596 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323936067,"data":"  eval step 15500 | train 3.1040 | val 3.2554 | val bpb 1.4857 | induction 0.218 L6H0 copy gain 1.11\n"}
+,{"stream_name":"stdout","time":21267.323939449,"data":"step 15500 | loss 3.2484 | lr 1.71e-04 | gnorm 0.82 | 12,115 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323942839,"data":"step 15600 | loss 3.3292 | lr 1.67e-04 | gnorm 0.80 | 15,532 tok/s\n"}
+,{"stream_name":"stdout","time":21267.32394969,"data":"step 15700 | loss 3.1999 | lr 1.63e-04 | gnorm 0.81 | 15,598 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323951878,"data":"step 15800 | loss 3.3383 | lr 1.59e-04 | gnorm 0.78 | 15,539 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323954458,"data":"step 15900 | loss 3.3118 | lr 1.56e-04 | gnorm 0.79 | 15,597 tok/s\n"}
+,{"stream_name":"stdout","time":21267.32397807,"data":"  eval step 16000 | train 3.0938 | val 3.2481 | val bpb 1.4824 | induction 0.223 L6H1 copy gain 1.17\n"}
+,{"stream_name":"stdout","time":21267.323983062,"data":"step 16000 | loss 3.2311 | lr 1.52e-04 | gnorm 0.79 | 12,123 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323986867,"data":"step 16100 | loss 3.2540 | lr 1.49e-04 | gnorm 0.82 | 15,593 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323990171,"data":"step 16200 | loss 3.2770 | lr 1.45e-04 | gnorm 0.81 | 15,595 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323993515,"data":"step 16300 | loss 3.2051 | lr 1.42e-04 | gnorm 0.80 | 15,554 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323996725,"data":"step 16400 | loss 3.1439 | lr 1.39e-04 | gnorm 0.79 | 15,592 tok/s\n"}
+,{"stream_name":"stdout","time":21267.323999969,"data":"  eval step 16500 | train 3.0807 | val 3.2461 | val bpb 1.4815 | induction 0.225 L6H0 copy gain 1.24\n"}
+,{"stream_name":"stdout","time":21267.32400341,"data":"step 16500 | loss 3.2943 | lr 1.36e-04 | gnorm 0.80 | 12,117 tok/s\n"}
+,{"stream_name":"stdout","time":21267.324006617,"data":"step 16600 | loss 3.2057 | lr 1.33e-04 | gnorm 0.82 | 15,593 tok/s\n"}
+,{"stream_name":"stdout","time":21267.324009809,"data":"step 16700 | loss 3.1984 | lr 1.30e-04 | gnorm 0.80 | 15,583 tok/s\n"}
+,{"stream_name":"stdout","time":21267.3240165,"data":"step 16800 | loss 3.4925 | lr 1.27e-04 | gnorm 0.83 | 15,532 tok/s\n"}
+,{"stream_name":"stdout","time":21267.324019836,"data":"step 16900 | loss 3.2128 | lr 1.24e-04 | gnorm 0.82 | 15,600 tok/s\n"}
+,{"stream_name":"stdout","time":21267.32402308,"data":"  eval step 17000 | train 3.0713 | val 3.2372 | val bpb 1.4774 | induction 0.221 L6H1 copy gain 1.18\n"}
+,{"stream_name":"stdout","time":21267.324026561,"data":"step 17000 | loss 3.3015 | lr 1.21e-04 | gnorm 0.80 | 12,110 tok/s\n"}
+,{"stream_name":"stdout","time":21267.324029818,"data":"step 17100 | loss 3.1740 | lr 1.19e-04 | gnorm 0.84 | 15,556 tok/s\n"}
+,{"stream_name":"stdout","time":21267.324033015,"data":"step 17200 | loss 3.2133 | lr 1.16e-04 | gnorm 0.80 | 15,576 tok/s\n"}
+,{"stream_name":"stdout","time":21267.324036254,"data":"step 17300 | loss 3.1767 | lr 1.14e-04 | gnorm 0.82 | 15,593 tok/s\n"}
+,{"stream_name":"stdout","time":21267.32403971,"data":"step 17400 | loss 3.1606 | lr 1.11e-04 | gnorm 0.84 | 15,587 tok/s\n"}
+,{"stream_name":"stdout","time":21267.324046569,"data":"  eval step 17500 | train 3.0620 | val 3.2350 | val bpb 1.4764 | induction 0.219 L6H1 copy gain 1.22\n"}
+,{"stream_name":"stdout","time":21267.324049093,"data":"step 17500 | loss 3.2705 | lr 1.09e-04 | gnorm 0.82 | 12,109 tok/s\n"}
+,{"stream_name":"stdout","time":21267.324051993,"data":"step 17600 | loss 3.3207 | lr 1.07e-04 | gnorm 0.82 | 15,558 tok/s\n"}
+,{"stream_name":"stdout","time":21267.32406415,"data":"step 17700 | loss 3.3058 | lr 1.04e-04 | gnorm 0.86 | 15,560 tok/s\n"}
+,{"stream_name":"stdout","time":21267.324068155,"data":"step 17800 | loss 3.0870 | lr 1.02e-04 | gnorm 0.81 | 15,594 tok/s\n"}
+,{"stream_name":"stdout","time":21267.324071982,"data":"step 17900 | loss 3.0979 | lr 1.00e-04 | gnorm 0.81 | 15,585 tok/s\n"}
+,{"stream_name":"stdout","time":21267.324075969,"data":"  eval step 18000 | train 3.0522 | val 3.2299 | val bpb 1.4741 | induction 0.223 L6H1 copy gain 1.21\n"}
+,{"stream_name":"stdout","time":21267.324079904,"data":"step 18000 | loss 3.1923 | lr 9.85e-05 | gnorm 0.81 | 12,111 tok/s\n"}
+,{"stream_name":"stdout","time":21267.324083202,"data":"step 18100 | loss 3.2513 | lr 9.67e-05 | gnorm 0.85 | 15,567 tok/s\n"}
+,{"stream_name":"stdout","time":21267.324086574,"data":"step 18200 | loss 3.1896 | lr 9.50e-05 | gnorm 0.83 | 15,545 tok/s\n"}
+,{"stream_name":"stdout","time":21267.324089865,"data":"step 18300 | loss 3.2145 | lr 9.34e-05 | gnorm 0.84 | 15,590 tok/s\n"}
+,{"stream_name":"stdout","time":21267.324093134,"data":"step 18400 | loss 3.0272 | lr 9.19e-05 | gnorm 0.80 | 15,568 tok/s\n"}
+,{"stream_name":"stdout","time":21267.324096492,"data":"  eval step 18500 | train 3.0444 | val 3.2244 | val bpb 1.4716 | induction 0.223 L6H1 copy gain 1.22\n"}
+,{"stream_name":"stdout","time":21267.324099868,"data":"step 18500 | loss 3.3092 | lr 9.05e-05 | gnorm 0.82 | 12,103 tok/s\n"}
+,{"stream_name":"stdout","time":21267.324103163,"data":"step 18600 | loss 3.2188 | lr 8.91e-05 | gnorm 0.84 | 15,576 tok/s\n"}
+,{"stream_name":"stdout","time":21267.324106394,"data":"step 18700 | loss 3.3274 | lr 8.79e-05 | gnorm 0.83 | 15,557 tok/s\n"}
+,{"stream_name":"stdout","time":21267.324109645,"data":"step 18800 | loss 3.2225 | lr 8.67e-05 | gnorm 0.81 | 15,570 tok/s\n"}
+,{"stream_name":"stdout","time":21267.32411286,"data":"step 18900 | loss 3.1579 | lr 8.56e-05 | gnorm 0.87 | 15,563 tok/s\n"}
+,{"stream_name":"stdout","time":21267.324116146,"data":"  eval step 19000 | train 3.0385 | val 3.2213 | val bpb 1.4702 | induction 0.224 L6H1 copy gain 1.26\n"}
+,{"stream_name":"stdout","time":21267.324119511,"data":"step 19000 | loss 3.2295 | lr 8.47e-05 | gnorm 0.83 | 12,118 tok/s\n"}
+,{"stream_name":"stdout","time":21267.32412282,"data":"step 19100 | loss 3.1899 | lr 8.38e-05 | gnorm 0.83 | 15,565 tok/s\n"}
+,{"stream_name":"stdout","time":21267.324141265,"data":"step 19200 | loss 3.1991 | lr 8.30e-05 | gnorm 0.84 | 15,574 tok/s\n"}
+,{"stream_name":"stdout","time":21267.324144656,"data":"step 19300 | loss 3.1294 | lr 8.23e-05 | gnorm 0.83 | 15,596 tok/s\n"}
+,{"stream_name":"stdout","time":21267.324157022,"data":"step 19400 | loss 3.0426 | lr 8.17e-05 | gnorm 0.83 | 15,590 tok/s\n"}
+,{"stream_name":"stdout","time":21267.32416122,"data":"  eval step 19500 | train 3.0320 | val 3.2197 | val bpb 1.4694 | induction 0.227 L6H1 copy gain 1.28\n"}
+,{"stream_name":"stdout","time":21267.324165304,"data":"step 19500 | loss 3.1305 | lr 8.12e-05 | gnorm 0.84 | 12,089 tok/s\n"}
+,{"stream_name":"stdout","time":21267.324169352,"data":"step 19600 | loss 3.1896 | lr 8.07e-05 | gnorm 0.83 | 15,595 tok/s\n"}
+,{"stream_name":"stdout","time":21267.324173128,"data":"step 19700 | loss 3.0753 | lr 8.04e-05 | gnorm 0.82 | 15,570 tok/s\n"}
+,{"stream_name":"stdout","time":21267.324176412,"data":"step 19800 | loss 3.2578 | lr 8.02e-05 | gnorm 0.82 | 15,540 tok/s\n"}
+,{"stream_name":"stdout","time":21267.324180352,"data":"step 19900 | loss 3.1590 | lr 8.00e-05 | gnorm 0.85 | 15,593 tok/s\n"}
+,{"stream_name":"stdout","time":21267.3241837,"data":"  eval step 20000 | train 3.0263 | val 3.2192 | val bpb 1.4692 | induction 0.223 L6H1 copy gain 1.26\n"}
+,{"stream_name":"stdout","time":21267.324187093,"data":"\n"}
+,{"stream_name":"stdout","time":21267.324190215,"data":"best val loss 3.2192 (bpb 1.4692). sample:\n"}
+,{"stream_name":"stdout","time":21267.324193435,"data":"\n"}
+,{"stream_name":"stdout","time":21267.324196427,"data":"I have a pipe so far from all these hours\n"}
+,{"stream_name":"stdout","time":21267.32419965,"data":"As to make me thankful.\n"}
+,{"stream_name":"stdout","time":21267.324208188,"data":"\n"}
+,{"stream_name":"stdout","time":21267.324211327,"data":"DIOMEDES.\n"}
+,{"stream_name":"stdout","time":21267.324214482,"data":"You are too far\n"}
+,{"stream_name":"stdout","time":21267.324217577,"data":"Of this great lady’s name.\n"}
+,{"stream_name":"stdout","time":21267.32422079,"data":"\n"}
+,{"stream_name":"stdout","time":21267.324223785,"data":"PROTEUS.\n"}
+,{"stream_name":"stdout","time":21267.324227011,"data":"How?\n"}
+,{"stream_name":"stdout","time":21267.324232779,"data":"\n"}
+,{"stream_name":"stdout","time":21267.324234852,"data":"DIOMEDES.\n"}
+,{"stream_name":"stdout","time":21267.324237072,"data":"I’ll make her amends.\n"}
+,{"stream_name":"stdout","time":21267.324249559,"data":"\n"}
+,{"stream_name":"stdout","time":21267.324253821,"data":"PROTEUS.\n"}
+,{"stream_name":"stdout","time":21267.324257484,"data":"Go, get you gone.\n"}
+,{"stream_name":"stdout","time":21267.324261472,"data":"\n"}
+,{"stream_name":"stdout","time":21267.324265158,"data":"DIOMEDES.\n"}
+,{"stream_name":"stdout","time":21267.32426833,"data":"Here dwell you, madam; have you been at supper?\n"}
+,{"stream_name":"stdout","time":21267.324271571,"data":"\n"}
+,{"stream_name":"stdout","time":21267.324274576,"data":"PROTEUS.\n"}
+,{"stream_name":"stdout","time":21267.324277738,"data":"Why, madam, did you so? There’s a merry night,\n"}
+,{"stream_name":"stdout","time":21267.32428094,"data":"That you must leave me.\n"}
+,{"stream_name":"stdout","time":21267.324284113,"data":"\n"}
+,{"stream_name":"stdout","time":21267.32428718,"data":"PROTEUS.\n"}
+,{"stream_name":"stdout","time":21267.324290307,"data":"Do I know that?\n"}
+,{"stream_name":"stdout","time":21267.32429347,"data":"\n"}
+,{"stream_name":"stdout","time":21267.32429659,"data":"PROTEUS.\n"}
+,{"stream_name":"stdout","time":21267.324299672,"data":"I am not well enough.\n"}
+,{"stream_name":"stdout","time":21267.324306355,"data":"\n"}
+,{"stream_name":"stdout","time":21267.324309463,"data":"PROTEUS.\n"}
+,{"stream_name":"stdout","time":21267.324312565,"data":"Do you hear this?\n"}
+,{"stream_name":"stdout","time":21267.324315749,"data":"\n"}
+,{"stream_name":"stdout","time":21267.324319027,"data":"PROTEUS.\n"}
+,{"stream_name":"stdout","time":21267.324325266,"data":"No, my lord.\n"}
+,{"stream_name":"stdout","time":21267.324327472,"data":"\n"}
+,{"stream_name":"stdout","time":21267.324329458,"data":"PROTEUS.\n"}
+,{"stream_name":"stdout","time":21267.324332334,"data":"No, no, ’tis very true.\n"}
+,{"stream_name":"stdout","time":21267.324344659,"data":"\n"}
+,{"stream_name":"stdout","time":21267.324348353,"data":"PROTEUS.\n"}
+,{"stream_name":"stdout","time":21267.32435209,"data":"Ay, and the next are well.\n"}
+,{"stream_name":"stdout","time":21267.32435591,"data":"\n"}
+,{"stream_name":"stdout","time":21267.324359412,"data":"PROTEUS.\n"}
+,{"stream_name":"stdout","time":21267.324362815,"data":"Why, madam, speak with me; I am sick\n"}
+,{"stream_name":"stdout","time":21267.324365957,"data":"Of my own sickness.\n"}
+,{"stream_name":"stdout","time":21267.324369159,"data":"\n"}
+,{"stream_name":"stdout","time":21267.324372154,"data":"PROTEUS.\n"}
+,{"stream_name":"stdout","time":21267.324375252,"data":"I am sure I have not\n"}
+,{"stream_name":"stdout","time":21267.324378387,"data":"So fit a reason for myself to think me cured.\n"}
+,{"stream_name":"stdout","time":21267.324381653,"data":"\n"}
+,{"stream_name":"stdout","time":21267.324384674,"data":"PROTEUS.\n"}
+,{"stream_name":"stdout","time":21267.324387769,"data":"I am asham’d for them; if not, my lord.\n"}
+,{"stream_name":"stdout","time":21267.324390916,"data":"\n"}
+,{"stream_name":"stdout","time":21267.324393885,"data":"PROTEUS.\n"}
+,{"stream_name":"stdout","time":21267.324396914,"data":"I would you had been so. I have been with you,\n"}
+,{"stream_name":"stdout","time":21267.324400098,"data":"And been a gentleman, and yet have been\n"}
+,{"stream_name":"stdout","time":21267.3244033,"data":"Too sadly wish’d, you had forgot myself\n"}
+,{"stream_name":"stdout","time":21267.324406553,"data":"That you have been so foolish.\n"}
+,{"stream_name":"stdout","time":21267.324409754,"data":"\n"}
+,{"stream_name":"stdout","time":21267.324412802,"data":"PROTEUS.\n"}
+,{"stream_name":"stdout","time":21267.324419505,"data":"Most true, my lord.\n"}
+,{"stream_name":"stdout","time":21267.324421735,"data":"\n"}
+,{"stream_name":"stdout","time":21267.32442412,"data":"PROTEUS.\n"}
+,{"stream_name":"stdout","time":21267.324439417,"data":"I never took it of your brother’s house.\n"}
+,{"stream_name":"stdout","time":21267.324443086,"data":"\n"}
+,{"stream_name":"stdout","time":21267.324446673,"data":"PROTE\n"}
+,{"stream_name":"stdout","time":21267.324450019,"data":"== scale-M-17M: done in 185.7 min\n"}
+,{"stream_name":"stdout","time":21267.324454072,"data":"\n"}
+,{"stream_name":"stdout","time":21267.324457359,"data":"$ /usr/bin/python3 scripts/summarize.py /kaggle/working/runs --plot /kaggle/working/runs/curves.png\n"}
+,{"stream_name":"stdout","time":21268.467330501,"data":"| run | data | best val loss | best val bpb | at step | final val-train gap | min |\n"}
+,{"stream_name":"stdout","time":21268.467356209,"data":"|---|---|---|---|---|---|---|\n"}
+,{"stream_name":"stdout","time":21268.467360834,"data":"| scale-L-29M | bpe8192x | 3.1876 | **1.4548** | 20000 | +0.347 | 248 |\n"}
+,{"stream_name":"stdout","time":21268.467366162,"data":"| scale-M-17M | bpe8192x | 3.2192 | **1.4692** | 20000 | +0.193 | 185 |\n"}
+,{"stream_name":"stdout","time":21268.467381903,"data":"| scale-S-7M | bpe8192x | 3.3548 | **1.5311** | 20000 | +0.013 | 107 |\n"}
+,{"stream_name":"stdout","time":21268.467384237,"data":"| scale-S-7M-shakes-only | bpe8192 | 3.8682 | **1.6789** | 2000 | +3.634 | 98 |\n"}
+,{"stream_name":"stdout","time":21268.467386532,"data":"\n"}
+,{"stream_name":"stdout","time":21268.467388618,"data":"plot -\u003e /kaggle/working/runs/curves.png\n"}
+,{"stream_name":"stdout","time":21268.591736041,"data":"total 354.5 min, sweep exit code 0\n"}
+,{"stream_name":"stderr","time":21270.715916971,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":21270.715942921,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":21270.934299367,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":21270.934324211,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":21272.061468909,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":21272.913634341,"data":"[NbConvertApp] Writing 356123 bytes to __results__.html\n"}
+]

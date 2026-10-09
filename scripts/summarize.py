@@ -1,6 +1,6 @@
 """Turn runs/*/log.jsonl into a results table (markdown) and loss-curve plots.
 
-    python scripts/summarize.py runs/ [--plot docs/img/curves.png]
+    python scripts/summarize.py runs/ [--plot docs/img/curves.png] [--induction docs/img/ind.png]
 
 A row per run: params, best val loss, best val bits-per-byte, the step it happened at,
 the final train/val gap (overfitting), and wall time. Runs whose names differ only by a
@@ -28,6 +28,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("runs", nargs="+")
     ap.add_argument("--plot")
+    ap.add_argument("--induction", help="also plot the induction-probe curves to this path")
     args = ap.parse_args()
     dirs = []
     for r in args.runs:
@@ -56,6 +57,32 @@ def main():
 
     if args.plot:
         plot(runs, args.plot)
+    if args.induction:
+        plot_induction(runs, args.induction)
+
+
+def plot_induction(runs, path):
+    """Two panels from the in-training probe (train.induction_probe): the best head's
+    attention on the induction target, and how much easier the repeated half is (nats)."""
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    runs = [r for r in runs if "ind_score" in r["recs"][-1]]
+    fig, axes = plt.subplots(1, 2, figsize=(13, 4.5))
+    for r in runs:
+        steps = [x["step"] for x in r["recs"]]
+        axes[0].plot(steps, [x["ind_score"] for x in r["recs"]], lw=1.6, label=r["name"])
+        axes[1].plot(steps, [x["copy_gain"] for x in r["recs"]], lw=1.6, label=r["name"])
+    axes[0].set_title("induction score: best head's attention on token i-P+1")
+    axes[1].set_title("copy gain: loss(first copy) - loss(second copy), nats")
+    axes[1].axhline(0, color="grey", lw=0.8)
+    for ax in axes:
+        ax.set_xlabel("step")
+        ax.grid(alpha=0.3)
+    axes[0].legend(fontsize=8)
+    Path(path).parent.mkdir(parents=True, exist_ok=True)
+    fig.savefig(path, dpi=130, bbox_inches="tight")
+    print(f"induction plot -> {path}")
 
 
 def plot(runs, path):

@@ -1,0 +1,624 @@
+
+== scale-S-7M: model.n_embd=256 model.n_layer=6 model.n_head=8 train.lr=1e-3 train.min_lr=1e-4
+[scale-S-7M] 6.81M params | backend cupy | data data/bpe8192x (vocab 8192, 18,687,383 train tokens, 2.75 tokens/param)
+model: GPTConfig(vocab_size=8192, block_size=256, n_layer=6, n_head=8, n_embd=256, dropout=0.1, bias=False, pos='rope', norm='rmsnorm', mlp='swiglu', rope_base=10000.0, attn='naive')
+  eval step     0 | train 9.0334 | val 8.9981 | val bpb 4.1067 | induction 0.014 L3H3 copy gain 0.00
+step     0 | loss 9.0323 | lr 2.00e-06 | gnorm 3.23 | 625 tok/s
+step   100 | loss 6.9598 | lr 2.02e-04 | gnorm 0.86 | 31,970 tok/s
+step   200 | loss 5.8015 | lr 4.02e-04 | gnorm 0.84 | 30,911 tok/s
+step   300 | loss 5.4932 | lr 6.02e-04 | gnorm 0.82 | 29,465 tok/s
+step   400 | loss 5.1239 | lr 8.02e-04 | gnorm 0.68 | 27,081 tok/s
+  eval step   500 | train 5.0209 | val 4.7930 | val bpb 2.1875 | induction 0.019 L5H5 copy gain 0.03
+step   500 | loss 5.1798 | lr 1.00e-03 | gnorm 0.70 | 20,376 tok/s
+step   600 | loss 4.8060 | lr 1.00e-03 | gnorm 0.58 | 27,422 tok/s
+step   700 | loss 4.6238 | lr 1.00e-03 | gnorm 0.60 | 26,451 tok/s
+step   800 | loss 4.6977 | lr 9.99e-04 | gnorm 0.55 | 26,927 tok/s
+step   900 | loss 4.6707 | lr 9.99e-04 | gnorm 0.56 | 26,996 tok/s
+  eval step  1000 | train 4.4359 | val 4.2755 | val bpb 1.9513 | induction 0.029 L5H5 copy gain 0.08
+step  1000 | loss 4.3631 | lr 9.99e-04 | gnorm 0.65 | 20,758 tok/s
+step  1100 | loss 4.2921 | lr 9.98e-04 | gnorm 0.57 | 26,993 tok/s
+step  1200 | loss 4.4025 | lr 9.97e-04 | gnorm 0.63 | 26,911 tok/s
+step  1300 | loss 4.4817 | lr 9.96e-04 | gnorm 0.56 | 26,920 tok/s
+step  1400 | loss 4.2481 | lr 9.95e-04 | gnorm 0.54 | 26,996 tok/s
+  eval step  1500 | train 4.2152 | val 4.0852 | val bpb 1.8644 | induction 0.041 L5H5 copy gain 0.12
+step  1500 | loss 4.4141 | lr 9.94e-04 | gnorm 0.55 | 20,806 tok/s
+step  1600 | loss 4.3203 | lr 9.93e-04 | gnorm 0.53 | 26,987 tok/s
+step  1700 | loss 4.1523 | lr 9.92e-04 | gnorm 0.59 | 26,979 tok/s
+step  1800 | loss 4.2466 | lr 9.90e-04 | gnorm 0.55 | 26,959 tok/s
+step  1900 | loss 4.2667 | lr 9.89e-04 | gnorm 0.53 | 27,019 tok/s
+  eval step  2000 | train 4.0918 | val 3.9844 | val bpb 1.8184 | induction 0.043 L5H5 copy gain 0.11
+step  2000 | loss 4.1898 | lr 9.87e-04 | gnorm 0.53 | 20,856 tok/s
+step  2100 | loss 4.1714 | lr 9.85e-04 | gnorm 0.57 | 26,968 tok/s
+step  2200 | loss 4.0202 | lr 9.83e-04 | gnorm 0.55 | 26,988 tok/s
+step  2300 | loss 4.1206 | lr 9.81e-04 | gnorm 0.58 | 26,986 tok/s
+step  2400 | loss 4.0065 | lr 9.79e-04 | gnorm 0.54 | 26,991 tok/s
+  eval step  2500 | train 3.9937 | val 3.8854 | val bpb 1.7733 | induction 0.045 L5H5 copy gain 0.12
+step  2500 | loss 4.1677 | lr 9.77e-04 | gnorm 0.54 | 20,913 tok/s
+step  2600 | loss 4.1177 | lr 9.74e-04 | gnorm 0.54 | 26,985 tok/s
+step  2700 | loss 4.0261 | lr 9.72e-04 | gnorm 0.56 | 27,017 tok/s
+step  2800 | loss 3.9534 | lr 9.69e-04 | gnorm 0.56 | 27,009 tok/s
+step  2900 | loss 4.1842 | lr 9.67e-04 | gnorm 0.58 | 26,993 tok/s
+  eval step  3000 | train 3.9180 | val 3.8093 | val bpb 1.7385 | induction 0.059 L5H5 copy gain 0.15
+step  3000 | loss 4.0386 | lr 9.64e-04 | gnorm 0.55 | 20,904 tok/s
+step  3100 | loss 3.9863 | lr 9.61e-04 | gnorm 0.57 | 26,902 tok/s
+step  3200 | loss 3.9143 | lr 9.58e-04 | gnorm 0.57 | 26,810 tok/s
+step  3300 | loss 3.7463 | lr 9.55e-04 | gnorm 0.57 | 26,893 tok/s
+step  3400 | loss 3.8965 | lr 9.52e-04 | gnorm 0.55 | 26,887 tok/s
+  eval step  3500 | train 3.8650 | val 3.7622 | val bpb 1.7170 | induction 0.070 L5H5 copy gain 0.26
+step  3500 | loss 3.9881 | lr 9.48e-04 | gnorm 0.57 | 20,794 tok/s
+step  3600 | loss 3.8866 | lr 9.45e-04 | gnorm 0.56 | 26,950 tok/s
+step  3700 | loss 3.8499 | lr 9.42e-04 | gnorm 0.60 | 26,978 tok/s
+step  3800 | loss 3.9195 | lr 9.38e-04 | gnorm 0.58 | 27,004 tok/s
+step  3900 | loss 3.8085 | lr 9.34e-04 | gnorm 0.55 | 26,979 tok/s
+  eval step  4000 | train 3.8208 | val 3.7149 | val bpb 1.6954 | induction 0.077 L5H5 copy gain 0.22
+step  4000 | loss 3.8731 | lr 9.30e-04 | gnorm 0.57 | 20,923 tok/s
+step  4100 | loss 3.6777 | lr 9.26e-04 | gnorm 0.55 | 26,985 tok/s
+step  4200 | loss 3.7872 | lr 9.22e-04 | gnorm 0.56 | 26,925 tok/s
+step  4300 | loss 3.8488 | lr 9.18e-04 | gnorm 0.57 | 26,782 tok/s
+step  4400 | loss 3.9259 | lr 9.14e-04 | gnorm 0.58 | 26,832 tok/s
+  eval step  4500 | train 3.7849 | val 3.6880 | val bpb 1.6832 | induction 0.084 L5H5 copy gain 0.27
+step  4500 | loss 3.8485 | lr 9.10e-04 | gnorm 0.58 | 20,726 tok/s
+step  4600 | loss 3.8328 | lr 9.05e-04 | gnorm 0.58 | 26,810 tok/s
+step  4700 | loss 4.0014 | lr 9.01e-04 | gnorm 0.60 | 26,892 tok/s
+step  4800 | loss 3.8192 | lr 8.96e-04 | gnorm 0.58 | 26,944 tok/s
+step  4900 | loss 3.9522 | lr 8.92e-04 | gnorm 0.56 | 26,989 tok/s
+  eval step  5000 | train 3.7484 | val 3.6605 | val bpb 1.6706 | induction 0.103 L5H5 copy gain 0.28
+step  5000 | loss 3.8219 | lr 8.87e-04 | gnorm 0.60 | 20,748 tok/s
+step  5100 | loss 3.9496 | lr 8.82e-04 | gnorm 0.61 | 26,965 tok/s
+step  5200 | loss 3.8187 | lr 8.77e-04 | gnorm 0.58 | 27,003 tok/s
+step  5300 | loss 3.5420 | lr 8.72e-04 | gnorm 0.59 | 27,005 tok/s
+step  5400 | loss 3.8442 | lr 8.67e-04 | gnorm 0.58 | 26,995 tok/s
+  eval step  5500 | train 3.7229 | val 3.6378 | val bpb 1.6603 | induction 0.096 L5H5 copy gain 0.27
+step  5500 | loss 3.8805 | lr 8.62e-04 | gnorm 0.58 | 20,924 tok/s
+step  5600 | loss 3.8705 | lr 8.56e-04 | gnorm 0.57 | 26,941 tok/s
+step  5700 | loss 3.9415 | lr 8.51e-04 | gnorm 0.57 | 27,015 tok/s
+step  5800 | loss 3.7137 | lr 8.46e-04 | gnorm 0.62 | 26,977 tok/s
+step  5900 | loss 3.8155 | lr 8.40e-04 | gnorm 0.61 | 26,916 tok/s
+  eval step  6000 | train 3.7042 | val 3.6176 | val bpb 1.6510 | induction 0.103 L5H5 copy gain 0.28
+step  6000 | loss 3.8010 | lr 8.35e-04 | gnorm 0.60 | 20,905 tok/s
+step  6100 | loss 3.7772 | lr 8.29e-04 | gnorm 0.59 | 27,014 tok/s
+step  6200 | loss 3.8570 | lr 8.23e-04 | gnorm 0.62 | 26,985 tok/s
+step  6300 | loss 3.8396 | lr 8.17e-04 | gnorm 0.61 | 27,012 tok/s
+step  6400 | loss 3.7658 | lr 8.12e-04 | gnorm 0.60 | 26,985 tok/s
+  eval step  6500 | train 3.6723 | val 3.5971 | val bpb 1.6417 | induction 0.109 L5H5 copy gain 0.33
+step  6500 | loss 3.7272 | lr 8.06e-04 | gnorm 0.58 | 20,939 tok/s
+step  6600 | loss 3.8003 | lr 8.00e-04 | gnorm 0.61 | 26,946 tok/s
+step  6700 | loss 3.7455 | lr 7.94e-04 | gnorm 0.62 | 27,008 tok/s
+step  6800 | loss 3.5625 | lr 7.87e-04 | gnorm 0.63 | 26,992 tok/s
+step  6900 | loss 3.6765 | lr 7.81e-04 | gnorm 0.59 | 27,001 tok/s
+  eval step  7000 | train 3.6543 | val 3.5845 | val bpb 1.6359 | induction 0.118 L5H5 copy gain 0.35
+step  7000 | loss 3.7559 | lr 7.75e-04 | gnorm 0.63 | 20,908 tok/s
+step  7100 | loss 3.6439 | lr 7.69e-04 | gnorm 0.59 | 26,964 tok/s
+step  7200 | loss 3.5958 | lr 7.62e-04 | gnorm 0.61 | 26,785 tok/s
+step  7300 | loss 3.7120 | lr 7.56e-04 | gnorm 0.65 | 26,970 tok/s
+step  7400 | loss 3.6079 | lr 7.49e-04 | gnorm 0.62 | 27,014 tok/s
+  eval step  7500 | train 3.6305 | val 3.5631 | val bpb 1.6262 | induction 0.119 L5H5 copy gain 0.34
+step  7500 | loss 3.7226 | lr 7.43e-04 | gnorm 0.62 | 20,879 tok/s
+step  7600 | loss 3.7609 | lr 7.36e-04 | gnorm 0.61 | 26,891 tok/s
+step  7700 | loss 3.5585 | lr 7.30e-04 | gnorm 0.61 | 26,924 tok/s
+step  7800 | loss 3.8157 | lr 7.23e-04 | gnorm 0.64 | 26,984 tok/s
+step  7900 | loss 3.6422 | lr 7.16e-04 | gnorm 0.64 | 26,928 tok/s
+  eval step  8000 | train 3.6136 | val 3.5440 | val bpb 1.6174 | induction 0.122 L5H5 copy gain 0.32
+step  8000 | loss 3.6582 | lr 7.10e-04 | gnorm 0.65 | 20,929 tok/s
+step  8100 | loss 3.8314 | lr 7.03e-04 | gnorm 0.65 | 26,985 tok/s
+step  8200 | loss 3.7944 | lr 6.96e-04 | gnorm 0.65 | 27,010 tok/s
+step  8300 | loss 3.8875 | lr 6.89e-04 | gnorm 0.68 | 26,949 tok/s
+step  8400 | loss 3.5630 | lr 6.82e-04 | gnorm 0.65 | 26,928 tok/s
+  eval step  8500 | train 3.6005 | val 3.5374 | val bpb 1.6145 | induction 0.129 L5H5 copy gain 0.36
+step  8500 | loss 3.6949 | lr 6.75e-04 | gnorm 0.62 | 20,763 tok/s
+step  8600 | loss 3.6048 | lr 6.68e-04 | gnorm 0.62 | 26,842 tok/s
+step  8700 | loss 3.6538 | lr 6.61e-04 | gnorm 0.64 | 26,974 tok/s
+step  8800 | loss 3.5343 | lr 6.54e-04 | gnorm 0.64 | 26,992 tok/s
+step  8900 | loss 3.6085 | lr 6.47e-04 | gnorm 0.63 | 26,990 tok/s
+  eval step  9000 | train 3.5799 | val 3.5270 | val bpb 1.6097 | induction 0.125 L5H5 copy gain 0.41
+step  9000 | loss 3.6817 | lr 6.40e-04 | gnorm 0.64 | 20,859 tok/s
+step  9100 | loss 3.9005 | lr 6.33e-04 | gnorm 0.69 | 26,982 tok/s
+step  9200 | loss 3.6926 | lr 6.26e-04 | gnorm 0.64 | 27,010 tok/s
+step  9300 | loss 3.6875 | lr 6.19e-04 | gnorm 0.66 | 26,953 tok/s
+step  9400 | loss 3.5913 | lr 6.11e-04 | gnorm 0.63 | 26,982 tok/s
+  eval step  9500 | train 3.5602 | val 3.5094 | val bpb 1.6017 | induction 0.132 L5H5 copy gain 0.39
+step  9500 | loss 3.6801 | lr 6.04e-04 | gnorm 0.64 | 20,900 tok/s
+step  9600 | loss 3.7058 | lr 5.97e-04 | gnorm 0.66 | 26,983 tok/s
+step  9700 | loss 3.5864 | lr 5.90e-04 | gnorm 0.66 | 26,768 tok/s
+step  9800 | loss 3.7276 | lr 5.83e-04 | gnorm 0.68 | 26,951 tok/s
+step  9900 | loss 3.6550 | lr 5.75e-04 | gnorm 0.68 | 26,982 tok/s
+  eval step 10000 | train 3.5436 | val 3.4917 | val bpb 1.5936 | induction 0.132 L5H5 copy gain 0.46
+step 10000 | loss 3.7268 | lr 5.68e-04 | gnorm 0.68 | 20,841 tok/s
+step 10100 | loss 3.7193 | lr 5.61e-04 | gnorm 0.68 | 26,967 tok/s
+step 10200 | loss 3.6628 | lr 5.54e-04 | gnorm 0.65 | 27,000 tok/s
+step 10300 | loss 3.6226 | lr 5.46e-04 | gnorm 0.68 | 27,023 tok/s
+step 10400 | loss 3.5930 | lr 5.39e-04 | gnorm 0.68 | 26,981 tok/s
+  eval step 10500 | train 3.5209 | val 3.4881 | val bpb 1.5919 | induction 0.125 L5H5 copy gain 0.42
+step 10500 | loss 3.5914 | lr 5.32e-04 | gnorm 0.67 | 20,819 tok/s
+step 10600 | loss 3.5895 | lr 5.25e-04 | gnorm 0.69 | 27,002 tok/s
+step 10700 | loss 3.6538 | lr 5.17e-04 | gnorm 0.69 | 26,968 tok/s
+step 10800 | loss 3.6702 | lr 5.10e-04 | gnorm 0.67 | 26,952 tok/s
+step 10900 | loss 3.6001 | lr 5.03e-04 | gnorm 0.66 | 26,937 tok/s
+  eval step 11000 | train 3.5067 | val 3.4685 | val bpb 1.5830 | induction 0.128 L5H5 copy gain 0.40
+step 11000 | loss 3.4537 | lr 4.96e-04 | gnorm 0.67 | 20,810 tok/s
+step 11100 | loss 3.7189 | lr 4.89e-04 | gnorm 0.70 | 27,001 tok/s
+step 11200 | loss 3.7002 | lr 4.81e-04 | gnorm 0.69 | 26,967 tok/s
+step 11300 | loss 3.6921 | lr 4.74e-04 | gnorm 0.71 | 26,972 tok/s
+step 11400 | loss 3.5158 | lr 4.67e-04 | gnorm 0.68 | 26,989 tok/s
+  eval step 11500 | train 3.4966 | val 3.4635 | val bpb 1.5807 | induction 0.137 L5H5 copy gain 0.46
+step 11500 | loss 3.6155 | lr 4.60e-04 | gnorm 0.71 | 20,877 tok/s
+step 11600 | loss 3.5901 | lr 4.53e-04 | gnorm 0.71 | 27,008 tok/s
+step 11700 | loss 3.4530 | lr 4.46e-04 | gnorm 0.70 | 26,963 tok/s
+step 11800 | loss 3.6801 | lr 4.39e-04 | gnorm 0.70 | 26,985 tok/s
+step 11900 | loss 3.6431 | lr 4.32e-04 | gnorm 0.68 | 26,988 tok/s
+  eval step 12000 | train 3.4798 | val 3.4573 | val bpb 1.5779 | induction 0.129 L5H5 copy gain 0.47
+step 12000 | loss 3.6290 | lr 4.25e-04 | gnorm 0.72 | 20,933 tok/s
+step 12100 | loss 3.6148 | lr 4.18e-04 | gnorm 0.69 | 26,994 tok/s
+step 12200 | loss 3.6223 | lr 4.11e-04 | gnorm 0.71 | 27,018 tok/s
+step 12300 | loss 3.7566 | lr 4.04e-04 | gnorm 0.71 | 26,975 tok/s
+step 12400 | loss 3.5195 | lr 3.97e-04 | gnorm 0.71 | 26,971 tok/s
+  eval step 12500 | train 3.4691 | val 3.4387 | val bpb 1.5694 | induction 0.133 L5H5 copy gain 0.50
+step 12500 | loss 3.4075 | lr 3.90e-04 | gnorm 0.69 | 20,922 tok/s
+step 12600 | loss 3.6296 | lr 3.84e-04 | gnorm 0.70 | 27,011 tok/s
+step 12700 | loss 3.5852 | lr 3.77e-04 | gnorm 0.70 | 26,940 tok/s
+step 12800 | loss 3.4714 | lr 3.70e-04 | gnorm 0.74 | 26,840 tok/s
+step 12900 | loss 3.5642 | lr 3.64e-04 | gnorm 0.75 | 26,866 tok/s
+  eval step 13000 | train 3.4561 | val 3.4356 | val bpb 1.5680 | induction 0.135 L5H5 copy gain 0.49
+step 13000 | loss 3.4871 | lr 3.57e-04 | gnorm 0.75 | 20,918 tok/s
+step 13100 | loss 3.6363 | lr 3.51e-04 | gnorm 0.73 | 26,972 tok/s
+step 13200 | loss 3.4912 | lr 3.44e-04 | gnorm 0.72 | 26,978 tok/s
+step 13300 | loss 3.5206 | lr 3.38e-04 | gnorm 0.73 | 26,904 tok/s
+step 13400 | loss 3.5588 | lr 3.31e-04 | gnorm 0.74 | 27,010 tok/s
+  eval step 13500 | train 3.4480 | val 3.4304 | val bpb 1.5656 | induction 0.130 L5H5 copy gain 0.51
+step 13500 | loss 3.5939 | lr 3.25e-04 | gnorm 0.73 | 20,894 tok/s
+step 13600 | loss 3.5678 | lr 3.19e-04 | gnorm 0.72 | 26,971 tok/s
+step 13700 | loss 3.5211 | lr 3.13e-04 | gnorm 0.75 | 27,000 tok/s
+step 13800 | loss 3.6848 | lr 3.06e-04 | gnorm 0.73 | 26,986 tok/s
+step 13900 | loss 3.7686 | lr 3.00e-04 | gnorm 0.74 | 27,005 tok/s
+  eval step 14000 | train 3.4318 | val 3.4180 | val bpb 1.5600 | induction 0.137 L5H5 copy gain 0.48
+step 14000 | loss 3.5652 | lr 2.94e-04 | gnorm 0.73 | 20,859 tok/s
+step 14100 | loss 3.4757 | lr 2.88e-04 | gnorm 0.77 | 26,961 tok/s
+step 14200 | loss 3.6143 | lr 2.83e-04 | gnorm 0.76 | 26,927 tok/s
+step 14300 | loss 3.6171 | lr 2.77e-04 | gnorm 0.77 | 26,842 tok/s
+step 14400 | loss 3.5934 | lr 2.71e-04 | gnorm 0.73 | 26,823 tok/s
+  eval step 14500 | train 3.4184 | val 3.4100 | val bpb 1.5563 | induction 0.126 L5H5 copy gain 0.46
+step 14500 | loss 3.6205 | lr 2.65e-04 | gnorm 0.76 | 20,948 tok/s
+step 14600 | loss 3.5211 | lr 2.60e-04 | gnorm 0.75 | 26,986 tok/s
+step 14700 | loss 3.6261 | lr 2.54e-04 | gnorm 0.77 | 27,004 tok/s
+step 14800 | loss 3.2779 | lr 2.49e-04 | gnorm 0.75 | 26,984 tok/s
+step 14900 | loss 3.4538 | lr 2.44e-04 | gnorm 0.75 | 26,954 tok/s
+  eval step 15000 | train 3.4076 | val 3.4031 | val bpb 1.5531 | induction 0.136 L5H5 copy gain 0.55
+step 15000 | loss 3.5322 | lr 2.38e-04 | gnorm 0.75 | 20,806 tok/s
+step 15100 | loss 3.6227 | lr 2.33e-04 | gnorm 0.77 | 26,844 tok/s
+step 15200 | loss 3.6271 | lr 2.28e-04 | gnorm 0.76 | 26,878 tok/s
+step 15300 | loss 3.6164 | lr 2.23e-04 | gnorm 0.76 | 27,017 tok/s
+step 15400 | loss 3.5215 | lr 2.18e-04 | gnorm 0.78 | 27,002 tok/s
+  eval step 15500 | train 3.3989 | val 3.3949 | val bpb 1.5494 | induction 0.126 L5H5 copy gain 0.46
+step 15500 | loss 3.5702 | lr 2.13e-04 | gnorm 0.80 | 20,910 tok/s
+step 15600 | loss 3.6043 | lr 2.08e-04 | gnorm 0.78 | 26,999 tok/s
+step 15700 | loss 3.5481 | lr 2.04e-04 | gnorm 0.79 | 26,987 tok/s
+step 15800 | loss 3.6319 | lr 1.99e-04 | gnorm 0.78 | 26,987 tok/s
+step 15900 | loss 3.6034 | lr 1.95e-04 | gnorm 0.77 | 26,996 tok/s
+  eval step 16000 | train 3.3908 | val 3.3868 | val bpb 1.5457 | induction 0.129 L5H5 copy gain 0.52
+step 16000 | loss 3.5243 | lr 1.90e-04 | gnorm 0.77 | 20,947 tok/s
+step 16100 | loss 3.5534 | lr 1.86e-04 | gnorm 0.81 | 26,979 tok/s
+step 16200 | loss 3.5853 | lr 1.82e-04 | gnorm 0.77 | 26,928 tok/s
+step 16300 | loss 3.5146 | lr 1.78e-04 | gnorm 0.78 | 26,977 tok/s
+step 16400 | loss 3.5053 | lr 1.74e-04 | gnorm 0.78 | 27,013 tok/s
+  eval step 16500 | train 3.3822 | val 3.3861 | val bpb 1.5454 | induction 0.125 L5H5 copy gain 0.49
+step 16500 | loss 3.5857 | lr 1.70e-04 | gnorm 0.78 | 20,894 tok/s
+step 16600 | loss 3.5091 | lr 1.66e-04 | gnorm 0.79 | 27,012 tok/s
+step 16700 | loss 3.5141 | lr 1.62e-04 | gnorm 0.78 | 26,971 tok/s
+step 16800 | loss 3.7671 | lr 1.58e-04 | gnorm 0.79 | 26,996 tok/s
+step 16900 | loss 3.5306 | lr 1.55e-04 | gnorm 0.80 | 26,982 tok/s
+  eval step 17000 | train 3.3749 | val 3.3758 | val bpb 1.5407 | induction 0.125 L5H5 copy gain 0.50
+step 17000 | loss 3.6232 | lr 1.52e-04 | gnorm 0.79 | 20,944 tok/s
+step 17100 | loss 3.4922 | lr 1.48e-04 | gnorm 0.83 | 26,978 tok/s
+step 17200 | loss 3.5184 | lr 1.45e-04 | gnorm 0.78 | 27,014 tok/s
+step 17300 | loss 3.4774 | lr 1.42e-04 | gnorm 0.80 | 26,926 tok/s
+step 17400 | loss 3.4780 | lr 1.39e-04 | gnorm 0.81 | 27,013 tok/s
+  eval step 17500 | train 3.3663 | val 3.3701 | val bpb 1.5381 | induction 0.127 L5H5 copy gain 0.50
+step 17500 | loss 3.6093 | lr 1.36e-04 | gnorm 0.80 | 20,912 tok/s
+step 17600 | loss 3.6507 | lr 1.33e-04 | gnorm 0.80 | 26,992 tok/s
+step 17700 | loss 3.6270 | lr 1.31e-04 | gnorm 0.83 | 26,998 tok/s
+step 17800 | loss 3.3912 | lr 1.28e-04 | gnorm 0.80 | 26,989 tok/s
+step 17900 | loss 3.4221 | lr 1.26e-04 | gnorm 0.81 | 26,961 tok/s
+  eval step 18000 | train 3.3611 | val 3.3651 | val bpb 1.5358 | induction 0.123 L5H5 copy gain 0.48
+step 18000 | loss 3.4716 | lr 1.23e-04 | gnorm 0.80 | 20,918 tok/s
+step 18100 | loss 3.5856 | lr 1.21e-04 | gnorm 0.82 | 27,008 tok/s
+step 18200 | loss 3.5111 | lr 1.19e-04 | gnorm 0.81 | 27,002 tok/s
+step 18300 | loss 3.5298 | lr 1.17e-04 | gnorm 0.81 | 27,011 tok/s
+step 18400 | loss 3.3548 | lr 1.15e-04 | gnorm 0.78 | 26,982 tok/s
+  eval step 18500 | train 3.3541 | val 3.3632 | val bpb 1.5350 | induction 0.124 L5H5 copy gain 0.49
+step 18500 | loss 3.6332 | lr 1.13e-04 | gnorm 0.81 | 20,915 tok/s
+step 18600 | loss 3.5151 | lr 1.11e-04 | gnorm 0.82 | 26,979 tok/s
+step 18700 | loss 3.6279 | lr 1.10e-04 | gnorm 0.81 | 26,993 tok/s
+step 18800 | loss 3.5095 | lr 1.08e-04 | gnorm 0.81 | 26,985 tok/s
+step 18900 | loss 3.4547 | lr 1.07e-04 | gnorm 0.83 | 26,964 tok/s
+  eval step 19000 | train 3.3519 | val 3.3589 | val bpb 1.5330 | induction 0.126 L5H5 copy gain 0.51
+step 19000 | loss 3.5259 | lr 1.06e-04 | gnorm 0.80 | 20,938 tok/s
+step 19100 | loss 3.4801 | lr 1.05e-04 | gnorm 0.80 | 26,984 tok/s
+step 19200 | loss 3.5397 | lr 1.04e-04 | gnorm 0.83 | 26,855 tok/s
+step 19300 | loss 3.3916 | lr 1.03e-04 | gnorm 0.81 | 26,823 tok/s
+step 19400 | loss 3.3822 | lr 1.02e-04 | gnorm 0.82 | 26,957 tok/s
+  eval step 19500 | train 3.3468 | val 3.3564 | val bpb 1.5318 | induction 0.128 L5H5 copy gain 0.54
+step 19500 | loss 3.4747 | lr 1.01e-04 | gnorm 0.83 | 20,890 tok/s
+step 19600 | loss 3.4993 | lr 1.01e-04 | gnorm 0.80 | 27,003 tok/s
+step 19700 | loss 3.4371 | lr 1.01e-04 | gnorm 0.83 | 27,009 tok/s
+step 19800 | loss 3.5475 | lr 1.00e-04 | gnorm 0.80 | 26,994 tok/s
+step 19900 | loss 3.4650 | lr 1.00e-04 | gnorm 0.82 | 26,968 tok/s
+  eval step 20000 | train 3.3420 | val 3.3548 | val bpb 1.5311 | induction 0.125 L5H5 copy gain 0.51
+
+best val loss 3.3548 (bpb 1.5311). sample:
+
+Much,
+Of many a thousand men or women
+Did to their father by this day,
+Save all this day together in her hands,
+And when they were as black as it were,
+As they should hale, they say, what a man
+Will never be, but I’ll be angry.
+
+CAPTAIN.
+To know ’tis true.
+
+PROVOST.
+Be patient for a maid’s life to weep;
+And yet she is not come out, which will a tongue
+Be so untrue, that it cannot be a word.
+
+CAPTAIN.
+That’s nothing.
+
+PROVOST.
+That’s so, my lord.
+
+CAPTAIN.
+No, not all this.
+They are the servants that are married here.
+
+CAPTAIN.
+So you do, my lord; I’ll swear you have.
+
+CAPTAIN.
+I have a lady, and your ladyship.
+
+CAPTAIN.
+You do not love me?
+
+CAPTAIN.
+They are made of one that you should love you better.
+
+CAPTAIN.
+We have not found you, sir! I see you will do better.
+You look so low as you can be. I am a woman
+That can not think of any woman’s face
+By any reason of this quality.
+
+CAPTAIN.
+I never saw so fair a lady.
+
+CAPTAIN.
+I pray you, what’s your ladyship?
+
+CAPTAIN.
+No, no.
+
+CAPTAIN.
+A woman, madam, the youngest master.
+
+CAPTAIN.
+I cannot speak.
+
+CAPTAIN.
+I say, sir,
+== scale-S-7M: done in 107.4 min
+
+== scale-M-17M: model.n_embd=384 model.n_layer=8 model.n_head=6 train.lr=8e-4 train.min_lr=8e-5
+[scale-M-17M] 17.31M params | backend cupy | data data/bpe8192x (vocab 8192, 18,687,383 train tokens, 1.08 tokens/param)
+model: GPTConfig(vocab_size=8192, block_size=256, n_layer=8, n_head=6, n_embd=384, dropout=0.1, bias=False, pos='rope', norm='rmsnorm', mlp='swiglu', rope_base=10000.0, attn='naive')
+  eval step     0 | train 9.0647 | val 9.0349 | val bpb 4.1234 | induction 0.014 L4H3 copy gain -0.00
+step     0 | loss 9.0635 | lr 1.60e-06 | gnorm 4.71 | 537 tok/s
+step   100 | loss 6.7588 | lr 1.62e-04 | gnorm 0.70 | 15,731 tok/s
+step   200 | loss 5.6191 | lr 3.22e-04 | gnorm 1.05 | 15,577 tok/s
+step   300 | loss 5.3724 | lr 4.82e-04 | gnorm 0.85 | 15,572 tok/s
+step   400 | loss 5.0078 | lr 6.42e-04 | gnorm 0.74 | 15,540 tok/s
+  eval step   500 | train 4.9157 | val 4.6950 | val bpb 2.1428 | induction 0.028 L6H5 copy gain 0.06
+step   500 | loss 5.0940 | lr 8.00e-04 | gnorm 0.73 | 12,073 tok/s
+step   600 | loss 4.7125 | lr 8.00e-04 | gnorm 0.61 | 15,575 tok/s
+step   700 | loss 4.4993 | lr 8.00e-04 | gnorm 0.62 | 15,587 tok/s
+step   800 | loss 4.5918 | lr 8.00e-04 | gnorm 0.57 | 15,584 tok/s
+step   900 | loss 4.5564 | lr 7.99e-04 | gnorm 0.57 | 15,593 tok/s
+  eval step  1000 | train 4.3291 | val 4.1937 | val bpb 1.9140 | induction 0.039 L6H1 copy gain 0.16
+step  1000 | loss 4.2395 | lr 7.99e-04 | gnorm 0.64 | 12,124 tok/s
+step  1100 | loss 4.1716 | lr 7.98e-04 | gnorm 0.57 | 15,547 tok/s
+step  1200 | loss 4.2604 | lr 7.98e-04 | gnorm 0.57 | 15,579 tok/s
+step  1300 | loss 4.3596 | lr 7.97e-04 | gnorm 0.58 | 15,588 tok/s
+step  1400 | loss 4.1119 | lr 7.96e-04 | gnorm 0.54 | 15,597 tok/s
+  eval step  1500 | train 4.0884 | val 3.9704 | val bpb 1.8121 | induction 0.056 L6H1 copy gain 0.10
+step  1500 | loss 4.2892 | lr 7.95e-04 | gnorm 0.55 | 12,048 tok/s
+step  1600 | loss 4.1893 | lr 7.94e-04 | gnorm 0.54 | 15,595 tok/s
+step  1700 | loss 3.9977 | lr 7.93e-04 | gnorm 0.57 | 15,594 tok/s
+step  1800 | loss 4.1139 | lr 7.92e-04 | gnorm 0.57 | 15,596 tok/s
+step  1900 | loss 4.1412 | lr 7.91e-04 | gnorm 0.55 | 15,575 tok/s
+  eval step  2000 | train 3.9473 | val 3.8633 | val bpb 1.7632 | induction 0.087 L6H1 copy gain 0.24
+step  2000 | loss 4.0409 | lr 7.90e-04 | gnorm 0.55 | 12,088 tok/s
+step  2100 | loss 4.0146 | lr 7.88e-04 | gnorm 0.56 | 15,599 tok/s
+step  2200 | loss 3.8593 | lr 7.87e-04 | gnorm 0.56 | 15,599 tok/s
+step  2300 | loss 3.9540 | lr 7.85e-04 | gnorm 0.58 | 15,599 tok/s
+step  2400 | loss 3.8411 | lr 7.83e-04 | gnorm 0.55 | 15,587 tok/s
+  eval step  2500 | train 3.8399 | val 3.7523 | val bpb 1.7125 | induction 0.095 L6H1 copy gain 0.29
+step  2500 | loss 3.9975 | lr 7.81e-04 | gnorm 0.54 | 12,106 tok/s
+step  2600 | loss 3.9638 | lr 7.80e-04 | gnorm 0.54 | 15,601 tok/s
+step  2700 | loss 3.8399 | lr 7.78e-04 | gnorm 0.56 | 15,595 tok/s
+step  2800 | loss 3.7831 | lr 7.76e-04 | gnorm 0.57 | 15,587 tok/s
+step  2900 | loss 3.9831 | lr 7.73e-04 | gnorm 0.57 | 15,563 tok/s
+  eval step  3000 | train 3.7579 | val 3.6777 | val bpb 1.6785 | induction 0.104 L6H1 copy gain 0.32
+step  3000 | loss 3.8646 | lr 7.71e-04 | gnorm 0.55 | 12,109 tok/s
+step  3100 | loss 3.8130 | lr 7.69e-04 | gnorm 0.56 | 15,585 tok/s
+step  3200 | loss 3.7128 | lr 7.66e-04 | gnorm 0.57 | 15,595 tok/s
+step  3300 | loss 3.5499 | lr 7.64e-04 | gnorm 0.57 | 15,590 tok/s
+step  3400 | loss 3.7101 | lr 7.61e-04 | gnorm 0.56 | 15,577 tok/s
+  eval step  3500 | train 3.6990 | val 3.6302 | val bpb 1.6568 | induction 0.127 L6H1 copy gain 0.43
+step  3500 | loss 3.8241 | lr 7.59e-04 | gnorm 0.59 | 12,099 tok/s
+step  3600 | loss 3.6946 | lr 7.56e-04 | gnorm 0.55 | 15,600 tok/s
+step  3700 | loss 3.6766 | lr 7.53e-04 | gnorm 0.61 | 15,602 tok/s
+step  3800 | loss 3.7076 | lr 7.50e-04 | gnorm 0.59 | 15,589 tok/s
+step  3900 | loss 3.6362 | lr 7.47e-04 | gnorm 0.57 | 15,597 tok/s
+  eval step  4000 | train 3.6466 | val 3.5868 | val bpb 1.6370 | induction 0.153 L6H1 copy gain 0.52
+step  4000 | loss 3.6722 | lr 7.44e-04 | gnorm 0.57 | 12,109 tok/s
+step  4100 | loss 3.4873 | lr 7.41e-04 | gnorm 0.55 | 15,592 tok/s
+step  4200 | loss 3.6127 | lr 7.38e-04 | gnorm 0.57 | 15,576 tok/s
+step  4300 | loss 3.6600 | lr 7.35e-04 | gnorm 0.59 | 15,587 tok/s
+step  4400 | loss 3.7408 | lr 7.31e-04 | gnorm 0.60 | 15,593 tok/s
+  eval step  4500 | train 3.6054 | val 3.5609 | val bpb 1.6251 | induction 0.155 L6H1 copy gain 0.49
+step  4500 | loss 3.6444 | lr 7.28e-04 | gnorm 0.59 | 12,124 tok/s
+step  4600 | loss 3.6219 | lr 7.24e-04 | gnorm 0.61 | 15,576 tok/s
+step  4700 | loss 3.7979 | lr 7.21e-04 | gnorm 0.61 | 15,563 tok/s
+step  4800 | loss 3.6089 | lr 7.17e-04 | gnorm 0.58 | 15,572 tok/s
+step  4900 | loss 3.7429 | lr 7.13e-04 | gnorm 0.58 | 15,535 tok/s
+  eval step  5000 | train 3.5591 | val 3.5241 | val bpb 1.6084 | induction 0.183 L6H1 copy gain 0.59
+step  5000 | loss 3.6065 | lr 7.09e-04 | gnorm 0.59 | 12,130 tok/s
+step  5100 | loss 3.7746 | lr 7.06e-04 | gnorm 0.61 | 15,565 tok/s
+step  5200 | loss 3.6114 | lr 7.02e-04 | gnorm 0.57 | 15,591 tok/s
+step  5300 | loss 3.3465 | lr 6.98e-04 | gnorm 0.62 | 15,599 tok/s
+step  5400 | loss 3.6367 | lr 6.94e-04 | gnorm 0.59 | 15,578 tok/s
+  eval step  5500 | train 3.5278 | val 3.5089 | val bpb 1.6014 | induction 0.183 L6H1 copy gain 0.67
+step  5500 | loss 3.6818 | lr 6.89e-04 | gnorm 0.60 | 12,077 tok/s
+step  5600 | loss 3.6733 | lr 6.85e-04 | gnorm 0.59 | 15,589 tok/s
+step  5700 | loss 3.6991 | lr 6.81e-04 | gnorm 0.58 | 15,592 tok/s
+step  5800 | loss 3.5036 | lr 6.77e-04 | gnorm 0.63 | 15,565 tok/s
+step  5900 | loss 3.6134 | lr 6.72e-04 | gnorm 0.62 | 15,599 tok/s
+  eval step  6000 | train 3.5033 | val 3.4806 | val bpb 1.5885 | induction 0.202 L6H1 copy gain 0.75
+step  6000 | loss 3.5770 | lr 6.68e-04 | gnorm 0.63 | 12,119 tok/s
+step  6100 | loss 3.5466 | lr 6.63e-04 | gnorm 0.61 | 15,594 tok/s
+step  6200 | loss 3.6317 | lr 6.59e-04 | gnorm 0.63 | 15,567 tok/s
+step  6300 | loss 3.6168 | lr 6.54e-04 | gnorm 0.62 | 15,570 tok/s
+step  6400 | loss 3.5472 | lr 6.49e-04 | gnorm 0.62 | 15,559 tok/s
+  eval step  6500 | train 3.4640 | val 3.4630 | val bpb 1.5805 | induction 0.212 L6H1 copy gain 0.75
+step  6500 | loss 3.5176 | lr 6.45e-04 | gnorm 0.60 | 12,112 tok/s
+step  6600 | loss 3.5615 | lr 6.40e-04 | gnorm 0.62 | 15,567 tok/s
+step  6700 | loss 3.5531 | lr 6.35e-04 | gnorm 0.62 | 15,552 tok/s
+step  6800 | loss 3.3104 | lr 6.30e-04 | gnorm 0.62 | 15,582 tok/s
+step  6900 | loss 3.4655 | lr 6.25e-04 | gnorm 0.62 | 15,569 tok/s
+  eval step  7000 | train 3.4404 | val 3.4421 | val bpb 1.5709 | induction 0.225 L6H1 copy gain 0.89
+step  7000 | loss 3.5227 | lr 6.20e-04 | gnorm 0.64 | 12,093 tok/s
+step  7100 | loss 3.4103 | lr 6.15e-04 | gnorm 0.60 | 15,593 tok/s
+step  7200 | loss 3.3746 | lr 6.10e-04 | gnorm 0.64 | 15,534 tok/s
+step  7300 | loss 3.4428 | lr 6.05e-04 | gnorm 0.66 | 15,593 tok/s
+step  7400 | loss 3.3479 | lr 6.00e-04 | gnorm 0.63 | 15,583 tok/s
+  eval step  7500 | train 3.4122 | val 3.4270 | val bpb 1.5641 | induction 0.230 L6H1 copy gain 0.90
+step  7500 | loss 3.4847 | lr 5.94e-04 | gnorm 0.65 | 12,122 tok/s
+step  7600 | loss 3.5468 | lr 5.89e-04 | gnorm 0.65 | 15,596 tok/s
+step  7700 | loss 3.3347 | lr 5.84e-04 | gnorm 0.64 | 15,575 tok/s
+step  7800 | loss 3.5720 | lr 5.78e-04 | gnorm 0.67 | 15,562 tok/s
+step  7900 | loss 3.3732 | lr 5.73e-04 | gnorm 0.64 | 15,548 tok/s
+  eval step  8000 | train 3.3876 | val 3.4104 | val bpb 1.5565 | induction 0.228 L6H1 copy gain 0.89
+step  8000 | loss 3.4132 | lr 5.68e-04 | gnorm 0.65 | 12,124 tok/s
+step  8100 | loss 3.5789 | lr 5.62e-04 | gnorm 0.68 | 15,594 tok/s
+step  8200 | loss 3.5085 | lr 5.57e-04 | gnorm 0.67 | 15,596 tok/s
+step  8300 | loss 3.6344 | lr 5.51e-04 | gnorm 0.70 | 15,591 tok/s
+step  8400 | loss 3.3189 | lr 5.46e-04 | gnorm 0.68 | 15,562 tok/s
+  eval step  8500 | train 3.3668 | val 3.3972 | val bpb 1.5505 | induction 0.241 L6H1 copy gain 0.95
+step  8500 | loss 3.4820 | lr 5.40e-04 | gnorm 0.65 | 12,078 tok/s
+step  8600 | loss 3.3595 | lr 5.35e-04 | gnorm 0.66 | 15,535 tok/s
+step  8700 | loss 3.3842 | lr 5.29e-04 | gnorm 0.66 | 15,597 tok/s
+step  8800 | loss 3.2878 | lr 5.23e-04 | gnorm 0.64 | 15,550 tok/s
+step  8900 | loss 3.3508 | lr 5.18e-04 | gnorm 0.65 | 15,553 tok/s
+  eval step  9000 | train 3.3427 | val 3.3844 | val bpb 1.5446 | induction 0.223 L6H1 copy gain 0.97
+step  9000 | loss 3.3919 | lr 5.12e-04 | gnorm 0.67 | 12,102 tok/s
+step  9100 | loss 3.6454 | lr 5.06e-04 | gnorm 0.72 | 15,591 tok/s
+step  9200 | loss 3.4640 | lr 5.01e-04 | gnorm 0.68 | 15,569 tok/s
+step  9300 | loss 3.4313 | lr 4.95e-04 | gnorm 0.68 | 15,580 tok/s
+step  9400 | loss 3.3687 | lr 4.89e-04 | gnorm 0.66 | 15,592 tok/s
+  eval step  9500 | train 3.3183 | val 3.3659 | val bpb 1.5362 | induction 0.235 L6H0 copy gain 1.08
+step  9500 | loss 3.4011 | lr 4.83e-04 | gnorm 0.68 | 12,087 tok/s
+step  9600 | loss 3.4594 | lr 4.78e-04 | gnorm 0.69 | 15,515 tok/s
+step  9700 | loss 3.3137 | lr 4.72e-04 | gnorm 0.67 | 15,559 tok/s
+step  9800 | loss 3.4602 | lr 4.66e-04 | gnorm 0.71 | 15,597 tok/s
+step  9900 | loss 3.4157 | lr 4.60e-04 | gnorm 0.70 | 15,566 tok/s
+  eval step 10000 | train 3.2969 | val 3.3548 | val bpb 1.5311 | induction 0.220 L6H1 copy gain 0.89
+step 10000 | loss 3.4411 | lr 4.54e-04 | gnorm 0.70 | 12,104 tok/s
+step 10100 | loss 3.4530 | lr 4.49e-04 | gnorm 0.69 | 15,511 tok/s
+step 10200 | loss 3.4026 | lr 4.43e-04 | gnorm 0.69 | 15,563 tok/s
+step 10300 | loss 3.3535 | lr 4.37e-04 | gnorm 0.70 | 15,554 tok/s
+step 10400 | loss 3.3284 | lr 4.31e-04 | gnorm 0.69 | 15,582 tok/s
+  eval step 10500 | train 3.2676 | val 3.3473 | val bpb 1.5277 | induction 0.249 L6H1 copy gain 1.10
+step 10500 | loss 3.2982 | lr 4.26e-04 | gnorm 0.68 | 12,139 tok/s
+step 10600 | loss 3.3132 | lr 4.20e-04 | gnorm 0.71 | 15,596 tok/s
+step 10700 | loss 3.3928 | lr 4.14e-04 | gnorm 0.72 | 15,563 tok/s
+step 10800 | loss 3.4152 | lr 4.08e-04 | gnorm 0.69 | 15,569 tok/s
+step 10900 | loss 3.3307 | lr 4.02e-04 | gnorm 0.70 | 15,589 tok/s
+  eval step 11000 | train 3.2471 | val 3.3290 | val bpb 1.5193 | induction 0.236 L6H1 copy gain 1.08
+step 11000 | loss 3.1830 | lr 3.97e-04 | gnorm 0.67 | 12,034 tok/s
+step 11100 | loss 3.4342 | lr 3.91e-04 | gnorm 0.72 | 15,587 tok/s
+step 11200 | loss 3.4416 | lr 3.85e-04 | gnorm 0.71 | 15,532 tok/s
+step 11300 | loss 3.4008 | lr 3.79e-04 | gnorm 0.72 | 15,598 tok/s
+step 11400 | loss 3.2075 | lr 3.74e-04 | gnorm 0.71 | 15,593 tok/s
+  eval step 11500 | train 3.2311 | val 3.3214 | val bpb 1.5159 | induction 0.240 L6H1 copy gain 1.07
+step 11500 | loss 3.3592 | lr 3.68e-04 | gnorm 0.72 | 12,099 tok/s
+step 11600 | loss 3.3512 | lr 3.62e-04 | gnorm 0.72 | 15,559 tok/s
+step 11700 | loss 3.1868 | lr 3.57e-04 | gnorm 0.72 | 15,583 tok/s
+step 11800 | loss 3.3943 | lr 3.51e-04 | gnorm 0.73 | 15,577 tok/s
+step 11900 | loss 3.3850 | lr 3.45e-04 | gnorm 0.72 | 15,587 tok/s
+  eval step 12000 | train 3.2135 | val 3.3112 | val bpb 1.5112 | induction 0.233 L6H1 copy gain 1.08
+step 12000 | loss 3.3610 | lr 3.40e-04 | gnorm 0.73 | 12,085 tok/s
+step 12100 | loss 3.3388 | lr 3.34e-04 | gnorm 0.70 | 15,555 tok/s
+step 12200 | loss 3.3394 | lr 3.29e-04 | gnorm 0.73 | 15,585 tok/s
+step 12300 | loss 3.4873 | lr 3.23e-04 | gnorm 0.74 | 15,597 tok/s
+step 12400 | loss 3.2579 | lr 3.18e-04 | gnorm 0.74 | 15,596 tok/s
+  eval step 12500 | train 3.2004 | val 3.3004 | val bpb 1.5063 | induction 0.231 L6H1 copy gain 1.09
+step 12500 | loss 3.1137 | lr 3.12e-04 | gnorm 0.70 | 12,093 tok/s
+step 12600 | loss 3.3577 | lr 3.07e-04 | gnorm 0.75 | 15,591 tok/s
+step 12700 | loss 3.3008 | lr 3.02e-04 | gnorm 0.73 | 15,571 tok/s
+step 12800 | loss 3.1396 | lr 2.96e-04 | gnorm 0.74 | 15,562 tok/s
+step 12900 | loss 3.2708 | lr 2.91e-04 | gnorm 0.76 | 15,570 tok/s
+  eval step 13000 | train 3.1808 | val 3.2947 | val bpb 1.5037 | induction 0.235 L6H1 copy gain 1.12
+step 13000 | loss 3.2059 | lr 2.86e-04 | gnorm 0.79 | 12,117 tok/s
+step 13100 | loss 3.3864 | lr 2.80e-04 | gnorm 0.74 | 15,523 tok/s
+step 13200 | loss 3.2055 | lr 2.75e-04 | gnorm 0.75 | 15,592 tok/s
+step 13300 | loss 3.2276 | lr 2.70e-04 | gnorm 0.74 | 15,560 tok/s
+step 13400 | loss 3.2597 | lr 2.65e-04 | gnorm 0.75 | 15,566 tok/s
+  eval step 13500 | train 3.1684 | val 3.2896 | val bpb 1.5014 | induction 0.232 L6H1 copy gain 1.16
+step 13500 | loss 3.3648 | lr 2.60e-04 | gnorm 0.78 | 12,106 tok/s
+step 13600 | loss 3.2825 | lr 2.55e-04 | gnorm 0.74 | 15,585 tok/s
+step 13700 | loss 3.2821 | lr 2.50e-04 | gnorm 0.77 | 15,568 tok/s
+step 13800 | loss 3.4045 | lr 2.45e-04 | gnorm 0.75 | 15,553 tok/s
+step 13900 | loss 3.5062 | lr 2.40e-04 | gnorm 0.76 | 15,594 tok/s
+  eval step 14000 | train 3.1481 | val 3.2773 | val bpb 1.4957 | induction 0.229 L6H1 copy gain 1.13
+step 14000 | loss 3.2604 | lr 2.35e-04 | gnorm 0.75 | 12,097 tok/s
+step 14100 | loss 3.1639 | lr 2.31e-04 | gnorm 0.77 | 15,591 tok/s
+step 14200 | loss 3.3229 | lr 2.26e-04 | gnorm 0.78 | 15,587 tok/s
+step 14300 | loss 3.3164 | lr 2.21e-04 | gnorm 0.80 | 15,592 tok/s
+step 14400 | loss 3.3096 | lr 2.17e-04 | gnorm 0.75 | 15,569 tok/s
+  eval step 14500 | train 3.1323 | val 3.2704 | val bpb 1.4926 | induction 0.226 L6H0 copy gain 1.13
+step 14500 | loss 3.3188 | lr 2.12e-04 | gnorm 0.79 | 12,072 tok/s
+step 14600 | loss 3.2232 | lr 2.08e-04 | gnorm 0.78 | 15,586 tok/s
+step 14700 | loss 3.3428 | lr 2.03e-04 | gnorm 0.79 | 15,575 tok/s
+step 14800 | loss 2.9617 | lr 1.99e-04 | gnorm 0.75 | 15,599 tok/s
+step 14900 | loss 3.1544 | lr 1.95e-04 | gnorm 0.78 | 15,556 tok/s
+  eval step 15000 | train 3.1160 | val 3.2621 | val bpb 1.4888 | induction 0.230 L6H0 copy gain 1.17
+step 15000 | loss 3.2491 | lr 1.91e-04 | gnorm 0.78 | 12,135 tok/s
+step 15100 | loss 3.2716 | lr 1.86e-04 | gnorm 0.80 | 15,545 tok/s
+step 15200 | loss 3.3404 | lr 1.82e-04 | gnorm 0.79 | 15,562 tok/s
+step 15300 | loss 3.3125 | lr 1.78e-04 | gnorm 0.79 | 15,538 tok/s
+step 15400 | loss 3.2250 | lr 1.74e-04 | gnorm 0.80 | 15,596 tok/s
+  eval step 15500 | train 3.1040 | val 3.2554 | val bpb 1.4857 | induction 0.218 L6H0 copy gain 1.11
+step 15500 | loss 3.2484 | lr 1.71e-04 | gnorm 0.82 | 12,115 tok/s
+step 15600 | loss 3.3292 | lr 1.67e-04 | gnorm 0.80 | 15,532 tok/s
+step 15700 | loss 3.1999 | lr 1.63e-04 | gnorm 0.81 | 15,598 tok/s
+step 15800 | loss 3.3383 | lr 1.59e-04 | gnorm 0.78 | 15,539 tok/s
+step 15900 | loss 3.3118 | lr 1.56e-04 | gnorm 0.79 | 15,597 tok/s
+  eval step 16000 | train 3.0938 | val 3.2481 | val bpb 1.4824 | induction 0.223 L6H1 copy gain 1.17
+step 16000 | loss 3.2311 | lr 1.52e-04 | gnorm 0.79 | 12,123 tok/s
+step 16100 | loss 3.2540 | lr 1.49e-04 | gnorm 0.82 | 15,593 tok/s
+step 16200 | loss 3.2770 | lr 1.45e-04 | gnorm 0.81 | 15,595 tok/s
+step 16300 | loss 3.2051 | lr 1.42e-04 | gnorm 0.80 | 15,554 tok/s
+step 16400 | loss 3.1439 | lr 1.39e-04 | gnorm 0.79 | 15,592 tok/s
+  eval step 16500 | train 3.0807 | val 3.2461 | val bpb 1.4815 | induction 0.225 L6H0 copy gain 1.24
+step 16500 | loss 3.2943 | lr 1.36e-04 | gnorm 0.80 | 12,117 tok/s
+step 16600 | loss 3.2057 | lr 1.33e-04 | gnorm 0.82 | 15,593 tok/s
+step 16700 | loss 3.1984 | lr 1.30e-04 | gnorm 0.80 | 15,583 tok/s
+step 16800 | loss 3.4925 | lr 1.27e-04 | gnorm 0.83 | 15,532 tok/s
+step 16900 | loss 3.2128 | lr 1.24e-04 | gnorm 0.82 | 15,600 tok/s
+  eval step 17000 | train 3.0713 | val 3.2372 | val bpb 1.4774 | induction 0.221 L6H1 copy gain 1.18
+step 17000 | loss 3.3015 | lr 1.21e-04 | gnorm 0.80 | 12,110 tok/s
+step 17100 | loss 3.1740 | lr 1.19e-04 | gnorm 0.84 | 15,556 tok/s
+step 17200 | loss 3.2133 | lr 1.16e-04 | gnorm 0.80 | 15,576 tok/s
+step 17300 | loss 3.1767 | lr 1.14e-04 | gnorm 0.82 | 15,593 tok/s
+step 17400 | loss 3.1606 | lr 1.11e-04 | gnorm 0.84 | 15,587 tok/s
+  eval step 17500 | train 3.0620 | val 3.2350 | val bpb 1.4764 | induction 0.219 L6H1 copy gain 1.22
+step 17500 | loss 3.2705 | lr 1.09e-04 | gnorm 0.82 | 12,109 tok/s
+step 17600 | loss 3.3207 | lr 1.07e-04 | gnorm 0.82 | 15,558 tok/s
+step 17700 | loss 3.3058 | lr 1.04e-04 | gnorm 0.86 | 15,560 tok/s
+step 17800 | loss 3.0870 | lr 1.02e-04 | gnorm 0.81 | 15,594 tok/s
+step 17900 | loss 3.0979 | lr 1.00e-04 | gnorm 0.81 | 15,585 tok/s
+  eval step 18000 | train 3.0522 | val 3.2299 | val bpb 1.4741 | induction 0.223 L6H1 copy gain 1.21
+step 18000 | loss 3.1923 | lr 9.85e-05 | gnorm 0.81 | 12,111 tok/s
+step 18100 | loss 3.2513 | lr 9.67e-05 | gnorm 0.85 | 15,567 tok/s
+step 18200 | loss 3.1896 | lr 9.50e-05 | gnorm 0.83 | 15,545 tok/s
+step 18300 | loss 3.2145 | lr 9.34e-05 | gnorm 0.84 | 15,590 tok/s
+step 18400 | loss 3.0272 | lr 9.19e-05 | gnorm 0.80 | 15,568 tok/s
+  eval step 18500 | train 3.0444 | val 3.2244 | val bpb 1.4716 | induction 0.223 L6H1 copy gain 1.22
+step 18500 | loss 3.3092 | lr 9.05e-05 | gnorm 0.82 | 12,103 tok/s
+step 18600 | loss 3.2188 | lr 8.91e-05 | gnorm 0.84 | 15,576 tok/s
+step 18700 | loss 3.3274 | lr 8.79e-05 | gnorm 0.83 | 15,557 tok/s
+step 18800 | loss 3.2225 | lr 8.67e-05 | gnorm 0.81 | 15,570 tok/s
+step 18900 | loss 3.1579 | lr 8.56e-05 | gnorm 0.87 | 15,563 tok/s
+  eval step 19000 | train 3.0385 | val 3.2213 | val bpb 1.4702 | induction 0.224 L6H1 copy gain 1.26
+step 19000 | loss 3.2295 | lr 8.47e-05 | gnorm 0.83 | 12,118 tok/s
+step 19100 | loss 3.1899 | lr 8.38e-05 | gnorm 0.83 | 15,565 tok/s
+step 19200 | loss 3.1991 | lr 8.30e-05 | gnorm 0.84 | 15,574 tok/s
+step 19300 | loss 3.1294 | lr 8.23e-05 | gnorm 0.83 | 15,596 tok/s
+step 19400 | loss 3.0426 | lr 8.17e-05 | gnorm 0.83 | 15,590 tok/s
+  eval step 19500 | train 3.0320 | val 3.2197 | val bpb 1.4694 | induction 0.227 L6H1 copy gain 1.28
+step 19500 | loss 3.1305 | lr 8.12e-05 | gnorm 0.84 | 12,089 tok/s
+step 19600 | loss 3.1896 | lr 8.07e-05 | gnorm 0.83 | 15,595 tok/s
+step 19700 | loss 3.0753 | lr 8.04e-05 | gnorm 0.82 | 15,570 tok/s
+step 19800 | loss 3.2578 | lr 8.02e-05 | gnorm 0.82 | 15,540 tok/s
+step 19900 | loss 3.1590 | lr 8.00e-05 | gnorm 0.85 | 15,593 tok/s
+  eval step 20000 | train 3.0263 | val 3.2192 | val bpb 1.4692 | induction 0.223 L6H1 copy gain 1.26
+
+best val loss 3.2192 (bpb 1.4692). sample:
+
+I have a pipe so far from all these hours
+As to make me thankful.
+
+DIOMEDES.
+You are too far
+Of this great lady’s name.
+
+PROTEUS.
+How?
+
+DIOMEDES.
+I’ll make her amends.
+
+PROTEUS.
+Go, get you gone.
+
+DIOMEDES.
+Here dwell you, madam; have you been at supper?
+
+PROTEUS.
+Why, madam, did you so? There’s a merry night,
+That you must leave me.
+
+PROTEUS.
+Do I know that?
+
+PROTEUS.
+I am not well enough.
+
+PROTEUS.
+Do you hear this?
+
+PROTEUS.
+No, my lord.
+
+PROTEUS.
+No, no, ’tis very true.
+
+PROTEUS.
+Ay, and the next are well.
+
+PROTEUS.
+Why, madam, speak with me; I am sick
+Of my own sickness.
+
+PROTEUS.
+I am sure I have not
+So fit a reason for myself to think me cured.
+
+PROTEUS.
+I am asham’d for them; if not, my lord.
+
+PROTEUS.
+I would you had been so. I have been with you,
+And been a gentleman, and yet have been
+Too sadly wish’d, you had forgot myself
+That you have been so foolish.
+
+PROTEUS.
+Most true, my lord.
+
+PROTEUS.
+I never took it of your brother’s house.
+
+PROTE
+== scale-M-17M: done in 185.7 min

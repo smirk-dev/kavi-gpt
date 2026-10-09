@@ -229,25 +229,104 @@ and then S trained on *Shakespeare only*. GPU 1 runs S and then M. That is about
 passes. Same model, same tokenizer size, same steps, 13× less data. Any difference between it
 and S is the data's doing.
 
+**What it actually took (v5).** L 4.1 h, M 3.1 h, S 1.8 h, the control 1.6 h; the whole kernel
+5.9 h. Against the probe's training-only numbers, that is +6% for L and the control, +17% for S
+and +21% for M. The extra is evaluation (40 batches × 2 splits every 500 steps), the induction
+probe and checkpoint writes. Why the two GPU-1 runs paid more is not clear; one guess is that the
+two processes share the CPU, which matters most for small, overhead-bound models. Budget about
+20% on top of a probe's number.
+
 ## 7. Results
 
-*Pending: the long run (Kaggle v5, pushed 2026-10-09 11:25 IST). This section and the [journal](journal.md) get the
-numbers when they land.* The questions they answer:
+Kaggle v5, pushed 2026-10-09 11:25 IST. It ran for 5.9 h (21,272 s) against the ~6 h forecast,
+on 2× T4. Raw logs are in `results/scale/`. Each run took 20,000 steps × 32 × 256 = 163.8M
+tokens, one seed each. In the mixed runs that is 8.8 passes over 18.7M train tokens; the control
+made 114 passes over its 1.44M.
 
-1. **Does more data beat the ablation at the same size?** S has about the same size as the
-   ablation's kavi (6.8M vs 5.8M; the difference is the larger vocabulary). If its val bpb
-   comes in clearly under 1.627, data was the bottleneck.
-2. **Does size help once data stops being the limit?** S vs M vs L, at equal steps.
-3. **Do induction heads appear?** At 5.8M params and 4000 steps, `scripts/induction.py` found
-   none ([chapter 13](13-interpretability.md)). Olsson et al. 2022 saw them form in a sudden
-   "phase change" early in training, in models with at least two layers. That suggests our
-   earlier models were too short-trained or too memorisation-bound. A longer run on more diverse
-   text is the experiment. To see *when* the heads form, and not just whether they exist at the
-   end, `scale_base.json` sets `train.induction_probe: true`. At every eval, `train.py` runs the
-   probe from `kavi/probes.py` (the same code as `scripts/induction.py`) on one fixed batch of
-   repeated sequences. It logs `ind_score` (the strongest head's attention on the copy target)
-   and `copy_gain` (first-copy loss minus second-copy loss) to `log.jsonl`. A phase change
-   would show as a sudden jump in both, from the ~1.4% uniform baseline toward tens of percent.
+| run | params | data | best val bpb | at step | final val−train gap | hours |
+|---|---|---|---|---|---|---|
+| **L** | 29.4M | Shakespeare + corpus | **1.4548** | 20000 | +0.347 | 4.1 |
+| M | 17.3M | Shakespeare + corpus | 1.4692 | 20000 | +0.193 | 3.1 |
+| S | 6.8M | Shakespeare + corpus | 1.5311 | 20000 | +0.013 | 1.8 |
+| S, control | 6.8M | Shakespeare only | 1.6789 | 2000 | +3.634 | 1.6 |
+| *ablation kavi ([journal](journal.md))* | *5.8M* | *Shakespeare only, BPE 4096* | *1.6269* | *4000* | | |
+
+![validation bpb of the four runs](img/scale_curves.png)
+
+Three questions, three answers.
+
+1. **Does more data beat the ablation at the same size? Yes, by a lot.** S and its control
+   have the same model, the same steps and the same vocabulary size; only the training text
+   differs. The control peaks at 1.679 after 2000 steps, then memorises: by step 20,000 its
+   train loss is 1.09 nats and its val loss 4.72, and its val bpb has climbed back to 2.049.
+   S on the mixed corpus never turns up, and ends at **1.531**: −0.148 against the control's
+   best, and −0.096 against the ablation's kavi, a slightly smaller model. Data was the
+   bottleneck.
+2. **Does size help once data stops being the limit? Yes, with sharply diminishing returns.**
+   S → M (2.5× params) buys −0.062. M → L (1.7× params) buys only −0.014. The val−train gap
+   says why. On this split, train loss starts *above* val (−0.07 to −0.11 at step 2000), because
+   the training mix is harder to predict than Shakespeare alone. So a gap that ends at +0.35 for
+   L means L has started memorising its 8.8 passes, where S (+0.01) has not. At 29M params the
+   limit is data again. The next lever is more text or more dropout, not more width.
+   Overall, L at **1.455** is 0.172 bpb better than the best model of the ablation.
+3. **Do induction heads appear? Yes, in every run on the mixed corpus, and in none on
+   Shakespeare alone.**
+
+![induction probe during training](img/scale_induction.png)
+
+| run | induction score at step 4000 | final score | final copy gain | best head |
+|---|---|---|---|---|
+| L | 0.145 | 0.264 (peak 0.281) | 1.00 nats | L6H0 |
+| M | 0.153 | 0.223 (peak 0.249) | 1.26 nats | L6H1 |
+| S | 0.077 | 0.125 (peak 0.137) | 0.51 nats | L5H5 |
+| S, control | 0.018 | 0.018 | −0.26 nats | none |
+
+The uniform baseline is about 1.4%. For comparison, the ablation's kavi scored 3.3%, with a 0.15
+nat copy gain, at the end of its 4000 steps ([chapter 13](13-interpretability.md)). S on the
+mixed corpus beats that at step 4000. S on Shakespeare only, the same model at the same step,
+does not, and never does. So the missing ingredient in the ablation was **diverse data, not
+training length**. A model that can memorise its training text doesn't need a general copying
+rule. A model that can't memorise has to learn one, because repeated names and phrases within
+a document are the cheapest thing left to predict.
+
+**Not a sudden jump, at this resolution.** Olsson et al. describe a phase change. Here L's
+score climbs steadily from 0.05 at step 1000 to 0.22 at step 5500, then levels off near 0.27
+after step 10,000. Copy gain rises with it and settles near 1 nat. With an eval every 500
+steps, a change compressed into fewer than 500 steps would look like this ramp too. What the
+curves do rule out is a model that "suddenly" acquires the circuit late in training. All three
+runs had most of their final induction score by step 7000, a third of the way through. The
+strongest head always sits near the top of the stack (layer 6 of 8, layer 5 of 6; layers count
+from 0). That is consistent with the two-layer circuit, which needs a previous-token head
+somewhere below it; chapter 13 found one at layer 4 in the ablation's model. We didn't check
+where the previous-token heads sit in these models.
+
+**Caveats.** There is one seed per run. The ablation's seed spread was ≤ 0.0012 bpb, so the
+data effect (0.148) and S → M (0.062) are far outside noise, while M → L (0.014) probably is too.
+The probe uses only 8 sequences, so copy gain is noisy: M ends higher than L there even though
+L has the stronger single head. The control's tokenizer is BPE 8192 trained on Shakespeare
+alone, so it matches the mixed runs in vocabulary *size*, not merge for merge. The negative copy
+gain in the control grows as it memorises. A plausible reading is that a memorising model
+predicts a remembered continuation and is surprised when the random sequence repeats instead,
+but we haven't tested that.
+
+A sample from L (temperature 0.8, top-k 50, an unedited stretch of
+`results/scale/scale-L-29M/samples.txt`):
+
+```
+THIRD GENTLEMAN.
+’Tis very well.
+
+FIRST GENTLEMAN.
+I would a thousand times had never yet a look. But here he comes.
+
+Enter Servant.
+
+SERVANT.
+Captain Macbeth, to whom is that?
+
+FIRST GENTLEMAN.
+Sir, that’s all one.
+```
 
 ## Exercises
 
