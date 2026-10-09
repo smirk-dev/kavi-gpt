@@ -217,7 +217,12 @@ numbers when they land.* The questions they answer:
    none ([chapter 13](13-interpretability.md)). Olsson et al. 2022 saw them form in a sudden
    "phase change" early in training, in models with at least two layers. That suggests our
    earlier models were too short-trained or too memorisation-bound. A longer run on more diverse
-   text is the experiment.
+   text is the experiment. To see *when* the heads form, and not just whether they exist at the
+   end, `scale_base.json` sets `train.induction_probe: true`. At every eval, `train.py` runs the
+   probe from `kavi/probes.py` (the same code as `scripts/induction.py`) on one fixed batch of
+   repeated sequences. It logs `ind_score` (the strongest head's attention on the copy target)
+   and `copy_gain` (first-copy loss minus second-copy loss) to `log.jsonl`. A phase change
+   would show as a sudden jump in both, from the ~1.4% uniform baseline toward tens of percent.
 
 ## Exercises
 
