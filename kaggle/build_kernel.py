@@ -96,9 +96,7 @@ def build(sweep):
                 if f.is_file() and "__pycache__" not in f.parts:
                     z.write(f, f.relative_to(ROOT).as_posix())
     bundle = base64.b64encode(buf.getvalue()).decode()
-    if BUILD.exists():
-        shutil.rmtree(BUILD)
-    BUILD.mkdir(parents=True)
+    empty_dir(BUILD)
     (BUILD / "kavi_kernel.py").write_text(TEMPLATE.format(bundle=bundle, sweep=sweep),
                                           encoding="utf-8")
     meta = {"id": KERNEL_ID, "title": "kavi-gpt", "code_file": "kavi_kernel.py",
@@ -108,6 +106,18 @@ def build(sweep):
             "model_sources": []}
     (BUILD / "kernel-metadata.json").write_text(json.dumps(meta, indent=2), encoding="utf-8")
     print(f"built kernel ({len(bundle) / 1024:.0f} KB bundle) for sweep {sweep} -> {BUILD}")
+
+
+def empty_dir(d):
+    """Make d an empty directory. Deletes its *contents*, not d itself: the vault's
+    deps_relocate sweep turns folders named `build` into junctions into .deps/, and
+    rmtree refuses a link (deleting the link would also strand the real folder)."""
+    d.mkdir(parents=True, exist_ok=True)
+    for child in d.iterdir():
+        if child.is_dir() and not child.is_symlink():
+            shutil.rmtree(child)
+        else:
+            child.unlink()
 
 
 def api():
@@ -130,9 +140,7 @@ def main():
         print(api().kernels_status(KERNEL_ID))
     elif args.action == "output":
         os.environ.setdefault("PYTHONUTF8", "1")
-        if OUTPUT.exists():
-            shutil.rmtree(OUTPUT)   # kernels_output skips files that already exist locally
-        OUTPUT.mkdir(parents=True)
+        empty_dir(OUTPUT)           # kernels_output skips files that already exist locally
         try:
             api().kernels_output(KERNEL_ID, str(OUTPUT))
         except Exception as e:      # the .log write can fail on cp1252; data files still land
