@@ -5,6 +5,8 @@ in **pure NumPy**: every layer's forward pass **and backward pass** is derived b
 and written out, with no autograd, PyTorch or TensorFlow inside the model. It learns to write like
 Shakespeare, and the same hand-written code trains on a free Kaggle GPU through CuPy.
 
+![Unedited output of the 29.4M-parameter model, prompted with HAMLET.](docs/img/readme/sample.png)
+
 Inspired by Green Code's *Anton* series (a GPT in NumPy, trained on Shakespeare). Kavi
 follows the same path and sets out to be **better and more rigorous**:
 
@@ -17,7 +19,11 @@ follows the same path and sets out to be **better and more rigorous**:
 | Generation | recomputes the whole context for every token | **KV cache** (7.2× faster), temperature / top-k / top-p |
 | Attention | (FlashAttention planned for a later PyTorch episode) | **FlashAttention forward + backward in NumPy**, proven equal to naive attention |
 | Data | 1 corpus, ~6M params on ~0.3M tokens | all of Shakespeare (5.4 MB, ~5× "Tiny Shakespeare"), byte-level BPE trained from scratch |
-| Docs | videos | a 14-chapter [book](docs/00-overview.md) deriving every formula, plus a [lab journal](docs/journal.md) |
+| Docs | videos | a 15-chapter [book](docs/00-overview.md) deriving every formula, plus a [lab journal](docs/journal.md) |
+
+Every gradient is tested, not trusted (`python -m pytest tests`, real run):
+
+![pytest: gradchecks, PyTorch parity, FlashAttention and KV cache tests, 57 passed](docs/img/readme/tests.png)
 
 ## Results
 
@@ -41,6 +47,8 @@ Shakespeare, trained in 160 min on Kaggle's free 2× T4. Lower is better:
 Seed-to-seed spread is ≤ 0.0012 bpb, so every gap above except RMSNorm's is real. The
 follow-up rows come from a second 6-run sweep (59 min); see the [journal](docs/journal.md).
 
+![Ablation bar chart: RoPE alone gives almost all of kavi's gain over gpt2](docs/img/readme/ablation.png)
+
 ### Scaling up: more data, bigger models
 
 Then three sizes trained for 20,000 steps on Shakespeare **plus an 11.9× corpus** of
@@ -58,6 +66,14 @@ Same model, same steps: the extra text alone is worth 0.148 bpb **and** grows in
 that Shakespeare alone never does. 5.9 h on Kaggle's free 2× T4; see
 [chapter 14](docs/14-scaling.md#7-results).
 
+![Validation curves: the Shakespeare-only model peaks at step 2000 and then memorises; with the extra text it keeps improving](docs/img/readme/data.png)
+
+![Induction score over training: the three mixed-data models grow induction heads, the Shakespeare-only control never does](docs/img/readme/induction.png)
+
+The 29M run's real log from the Kaggle T4:
+
+![Kaggle training log of the 29M model](docs/img/readme/kaggle.png)
+
 ```
 HORATIO.
 [_Aside._] Though I call thee this, boy, I had rather have beat thee.
@@ -66,8 +82,8 @@ HAMLET.
 I am going to my lord.
 ```
 
-Curves, samples, attention maps and a (negative) search for induction heads are in
-[docs/journal.md](docs/journal.md).
+Curves, samples, attention maps and the induction-head hunt (none at 5.8M on Shakespeare alone,
+clear ones at scale) are in [docs/journal.md](docs/journal.md).
 
 ## Quickstart
 
@@ -124,3 +140,7 @@ docs/            the book + journal
 12. [FlashAttention](docs/12-flash-attention.md) · 13. [Interpretability](docs/13-interpretability.md) ·
 14. [Scaling up](docs/14-scaling.md) ·
 [Journal](docs/journal.md)
+
+## License
+
+MIT, see [LICENSE](LICENSE).
