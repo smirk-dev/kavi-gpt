@@ -204,9 +204,34 @@ so the real number may be better. **Measure it, don't trust it.**
 `configs/sweep_scale_probe.json` runs 300 steps of each size and prints the throughput, and only
 then do we size the long run.
 
+### What the probe measured (Kaggle v4, 2026-10-09, `results/scale_probe/`)
+
+Median tokens per second on one T4, after the first logged interval:
+
+| size | tok/s | achieved 6·N·tok/s | 20k steps, training only |
+|---|---|---|---|
+| S 6.8M | 29,828 | 1.22 TFLOP/s | 1.5 h |
+| M 17.3M | 17,823 | 1.85 TFLOP/s | 2.6 h |
+| L 29.4M | 11,657 | **2.06 TFLOP/s** | **3.9 h** |
+
+The estimate said 9.7 h for L, and the measurement says 3.9 h. Efficiency rose with width, from
+1.2 to 2.1 TFLOP/s, about 25% of the T4's peak. The 0.8 TFLOP/s calibration came from a
+C = 256 model whose matmuls are too small to keep the GPU busy, so per-op overheads dominate:
+kernel launches, elementwise passes, Python. At C = 512 each matmul does 4× the work for
+roughly the same overhead. This is the most useful lesson of the probe: **a throughput number
+measured at one size doesn't transfer to another.** Re-measure whenever the shapes change.
+
+With the real numbers, all three sizes fit at 20k steps, with room for a control. GPU 0 runs L
+and then S trained on *Shakespeare only*. GPU 1 runs S and then M. That is about 6 h of wall time
+(`configs/sweep_scale.json`). That is 6 hours of the ~30-hour weekly quota if Kaggle counts session time, or up to
+12 if it counts each GPU. Check the quota bar after the run. The control uses the same
+8192-token BPE trained on Shakespeare alone: 1.44M train tokens, so 20k steps is about 114
+passes. Same model, same tokenizer size, same steps, 13× less data. Any difference between it
+and S is the data's doing.
+
 ## 7. Results
 
-*Pending: the probe and the long run. This section and the [journal](journal.md) get the
+*Pending: the long run (Kaggle v5, pushed 2026-10-09 11:25 IST). This section and the [journal](journal.md) get the
 numbers when they land.* The questions they answer:
 
 1. **Does more data beat the ablation at the same size?** S has about the same size as the
