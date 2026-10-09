@@ -46,6 +46,12 @@ gradient forever (a "dead" neuron). And the kink makes finite differences undefi
 is why `test_activations` moves inputs with $|x|<10^{-3}$ away first. ReLU is selectable with
 `mlp="relu"` (the `anton-*` runs in `configs/sweep_ablation.json`).
 
+**What we measured.** Don't write ReLU off. In the follow-up sweep ([journal](journal.md)), the
+GPT-2 model with GELU swapped for ReLU (`gpt2+relu`, two seeds) reached 1.6987 val bpb. GELU got
+1.7067 and SwiGLU 1.6986. So ReLU *tied* SwiGLU at 4000 steps. SwiGLU was faster early: at step
+2000 it led by 0.010. That is one model size and one budget, so it is not a general verdict. But
+it is a reminder that "smooth beats kinked" is a hypothesis to test, not a law.
+
 ## 3. GELU (GPT-2's tanh approximation)
 
 GELU is $x\,\Phi(x)$ with $\Phi$ the standard normal CDF: "keep $x$ with probability that grows

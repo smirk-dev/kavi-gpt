@@ -1,0 +1,37 @@
+{
+  "data": "data/bpe4096",
+  "model": {
+    "vocab_size": 4096,
+    "block_size": 256,
+    "n_layer": 6,
+    "n_head": 8,
+    "n_embd": 256,
+    "dropout": 0.2,
+    "bias": false,
+    "pos": "rope",
+    "norm": "rmsnorm",
+    "mlp": "swiglu",
+    "rope_base": 10000.0,
+    "attn": "naive"
+  },
+  "train": {
+    "optimizer": "momentum",
+    "batch_size": 32,
+    "max_steps": 4000,
+    "lr": 0.1,
+    "min_lr": 0.01,
+    "warmup": 200,
+    "weight_decay": 0.1,
+    "beta1": 0.9,
+    "beta2": 0.95,
+    "momentum": 0.9,
+    "grad_clip": 1.0,
+    "eval_interval": 200,
+    "eval_iters": 40,
+    "seed": 1,
+    "sample_tokens": 400,
+    "sample_prompt": "\n",
+    "log_interval": 100
+  },
+  "name": "kavi-momentum-lr0.1-s1"
+}

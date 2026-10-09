@@ -91,10 +91,13 @@ barely visible because the seeds agree so closely.*
    learned positions, the query and key biases let a head score keys by position in a way
    that doesn't depend on content. (The key bias alone is provably useless, see
    [chapter 05 §8](05-attention.md); the query bias isn't.)
+   **Resolved 2026-10-09:** it is the ReLU (−0.008), and the biases add only −0.002. See the
+   follow-up sweep below.
 6. **SGD fails the way it failed for Anton.** Same model and same budget, with plain SGD
    instead of AdamW: 2.238 vs 1.627 bpb. After 4000 steps it still hasn't reached where AdamW was
    at step 400. The sample below shows what that gap reads like. [Chapter 08](08-optimizers.md)
-   explains why.
+   explains why. **Update 2026-10-09:** this run had no momentum. With momentum 0.9 at the same
+   lr, SGD reaches 1.722, closing 84% of the gap (follow-up sweep below).
 7. **BPE beats characters at equal steps.** Kavi on characters reaches 1.803 bpb vs 1.627 on BPE.
    Caveat: at equal steps, a 256-token window covers about 776 bytes of BPE text but only
    256 bytes of characters, so the BPE model also saw about 3× more text. This is a
@@ -209,24 +212,84 @@ literature, induction heads form through a fairly sudden phase change during tra
 models (5.8M params, 33M tokens) haven't reached it. This is a good experiment to rerun on
 longer or bigger training.
 
+## 2026-10-09 · Follow-up sweep: explaining Anton, and SGD done fairly
+
+Kaggle kernel v3, 2× T4, 59 minutes, 6 runs of the same 4000-step budget as the ablation
+(`configs/sweep_followup.json`; logs in `results/followup/`). Two questions were left open on
+day 2: *which* of Anton's two changes made it beat GPT-2 (finding 5), and how much of SGD's
+failure was the missing momentum (finding 6).
+
+![follow-up curves](img/followup_curves.png)
+
+### Anton's edge is ReLU, not the biases
+
+| config | what differs from gpt2 | mean val bpb (2 seeds) | vs gpt2 |
+|---|---|---|---|
+| gpt2 | none | 1.7067 | 0 |
+| gpt2+bias | biases on | 1.7044 | −0.0023 |
+| gpt2+relu | GELU → ReLU | **1.6987** | **−0.0080** |
+| anton | both | 1.6974 | −0.0093 |
+| gpt2+swiglu *(day 2)* | GELU → SwiGLU | 1.6986 | −0.0081 |
+
+1. **ReLU does almost all of it.** It accounts for −0.008 of anton's −0.009. Biases add −0.002.
+   The two single-knob effects sum to −0.0103 against −0.0093 measured together. That is roughly
+   additive: the 0.001 difference is the size of the seed spread.
+2. **The bias effect is small but real-looking.** The seed ranges don't overlap: gpt2+bias is
+   1.7041–1.7047 and gpt2 is 1.7063–1.7071. But with two seeds, 0.002 is the kind of number to
+   hold loosely. It also undercuts our day-2 hypothesis that query biases would let heads
+   score keys by position: if they did, they would be worth more than 0.002.
+3. **The real surprise: ReLU ties SwiGLU.** 1.6987 vs 1.6986 at step 4000. They do not get there
+   the same way. At step 2000, SwiGLU is ahead (1.775 vs 1.785 mean bpb), and ReLU catches up over
+   the second half. So at this scale, **GELU is the odd one out, not ReLU**. The usual story,
+   "GELU's smooth gate beats ReLU's hard one", doesn't hold here. ReLU also ends with a smaller
+   val−train gap (+0.41 vs +0.49 nats for SwiGLU), so it reaches the same val loss with a
+   *higher* train loss. Our guess is that ReLU's exact zeros act as a mild regulariser on 21-epoch
+   data, but we haven't tested that.
+
+### Momentum is most of what SGD was missing, but not all
+
+All on the kavi model, 4000 steps; lr is the peak of the same warmup + cosine schedule.
+
+| optimizer | peak lr | val bpb |
+|---|---|---|
+| plain SGD *(day 2)* | 0.1 | 2.2381 |
+| SGD + momentum 0.9 | 0.03 | 1.9162 |
+| SGD + momentum 0.9 | **0.1** | **1.7221** |
+| AdamW *(day 2)* | 0.001 | 1.6269 |
+
+4. **At the same lr, adding momentum takes SGD from 2.238 to 1.722.** That is −0.516 bpb from one
+   knob, and it closes 84% of the gap to AdamW. Momentum averages the gradient over about
+   1/(1−0.9) = 10 steps, so the noise of a 32-sequence batch cancels and the consistent
+   direction adds up. The effective step at lr 0.1 is lr/(1−β) = 1.0 in plain-SGD terms.
+5. **The remaining 0.095 is per-parameter scaling.** SGD uses one learning rate for every
+   weight. Adam divides each weight's step by its own recent gradient size
+   ([chapter 08 §4](08-optimizers.md)), so the embedding rows of rare tokens, which get small and
+   infrequent gradients, still move. The momentum model at step 4000 is still behind AdamW-gpt2
+   (1.707), despite having RoPE.
+6. **The lr sweep isn't bracketed.** The best lr was the highest one tried, so 0.3 might be
+   better still. Both runs were stable: no loss spikes, median gradient norm about 1 before
+   clipping. Both were still improving at step 4000, by 0.006 nats over the last 200 steps at
+   lr 0.1. This is a fair comparison at *one* budget, not a tuned SGD.
+
 ## Known limitations of these results
 
 - **One budget.** Every run is 4000 steps. A ranking at 4000 steps can change at 40,000
   (point 4 above shows the gaps already moving).
 - **Two seeds** for the main configs and one for char and SGD. Enough to show the gaps are
   real, not enough for error bars on small differences.
-- **SGD wasn't tuned, and it ran without momentum.** `optimizer: "sgd"` builds plain SGD; only
-  `optimizer: "momentum"` uses `train.momentum`. The run's `config.json` still records
-  `momentum: 0.9` (the default), but nothing read it, and SGD gets no weight decay. A `momentum`
-  run with a tuned lr would narrow the gap, though Anton's experience and the theory both say
-  it won't close it.
+- **The day-2 SGD run had no momentum.** `optimizer: "sgd"` built plain SGD, but its
+  `config.json` recorded `momentum: 0.9`, a setting nothing read. Since 2026-10-09, `train.py`
+  writes `momentum: 0.0` for `sgd` and rejects unknown optimizer names. The follow-up's
+  `momentum` runs are the fair comparison. They narrowed the gap from 0.611 to 0.095 bpb without
+  closing it. Their lr sweep is unbracketed, and no SGD run uses weight decay.
 - **`TokenData.batch` never picks the very last token of a split as a target** (an off-by-one in
   the random start, `rng.integers(0, len(data) - block_size - 1)`). We left it unfixed so these
   numbers stay exactly reproducible. It affects one token out of 1.58M.
 
 ## What's next
 
-- [ ] `gpt2+bias` and `gpt2+relu` single-knob runs, to explain finding 5
-- [ ] `kavi-momentum` (SGD + momentum 0.9, lr sweep), the fair version of finding 6
+- [x] `gpt2+bias` and `gpt2+relu` single-knob runs, to explain finding 5. ReLU did it (2026-10-09)
+- [x] `kavi-momentum` (SGD + momentum 0.9, lr 0.03 / 0.1), the fair version of finding 6: 1.722 (2026-10-09)
+- [ ] Bracket the momentum lr (0.3, maybe 1.0); test whether ReLU's smaller val−train gap is regularisation
 - [ ] A longer run of the best config (e.g. 20k steps) to look for the induction-head phase change
-- [ ] More data: a bigger public-domain corpus, to fight the 21-epoch overfitting (PLAN phase 8)
+- [ ] More data: a bigger public-domain corpus, to fight the 21-epoch overfitting (PLAN phase 8). Corpus built (11.9×, [chapter 14](14-scaling.md)); runs pending

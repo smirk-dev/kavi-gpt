@@ -1,0 +1,879 @@
+[{"stream_name":"stdout","time":0.943314013,"data":"Fri Oct  9 04:27:05 2026       \n"}
+,{"stream_name":"stdout","time":0.943346624,"data":"+-----------------------------------------------------------------------------------------+\n"}
+,{"stream_name":"stdout","time":0.943371226,"data":"| NVIDIA-SMI 580.178.04             Driver Version: 580.178.04     CUDA Version: 13.0     |\n"}
+,{"stream_name":"stdout","time":0.943375703,"data":"+-----------------------------------------+------------------------+----------------------+\n"}
+,{"stream_name":"stdout","time":0.943379616,"data":"| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n"}
+,{"stream_name":"stdout","time":0.943383467,"data":"| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n"}
+,{"stream_name":"stdout","time":0.943387508,"data":"|                                         |                        |               MIG M. |\n"}
+,{"stream_name":"stdout","time":0.94339149,"data":"|=========================================+========================+======================|\n"}
+,{"stream_name":"stdout","time":0.992034588,"data":"|   0  Tesla T4                       Off |   00000000:00:04.0 Off |                    0 |\n"}
+,{"stream_name":"stdout","time":0.992060818,"data":"| N/A   48C    P8              9W /   70W |       0MiB /  15360MiB |      0%      Default |\n"}
+,{"stream_name":"stdout","time":0.992064268,"data":"|                                         |                        |                  N/A |\n"}
+,{"stream_name":"stdout","time":0.992066755,"data":"+-----------------------------------------+------------------------+----------------------+\n"}
+,{"stream_name":"stdout","time":0.992069216,"data":"|   1  Tesla T4                       Off |   00000000:00:05.0 Off |                    0 |\n"}
+,{"stream_name":"stdout","time":0.992071533,"data":"| N/A   51C    P8             11W /   70W |       0MiB /  15360MiB |      0%      Default |\n"}
+,{"stream_name":"stdout","time":0.992073765,"data":"|                                         |                        |                  N/A |\n"}
+,{"stream_name":"stdout","time":0.992076023,"data":"+-----------------------------------------+------------------------+----------------------+\n"}
+,{"stream_name":"stdout","time":0.992690976,"data":"\n"}
+,{"stream_name":"stdout","time":0.992697335,"data":"+-----------------------------------------------------------------------------------------+\n"}
+,{"stream_name":"stdout","time":0.992700877,"data":"| Processes:                                                                              |\n"}
+,{"stream_name":"stdout","time":0.992704384,"data":"|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\n"}
+,{"stream_name":"stdout","time":0.992713067,"data":"|        ID   ID                                                               Usage      |\n"}
+,{"stream_name":"stdout","time":0.99271636,"data":"|=========================================================================================|\n"}
+,{"stream_name":"stdout","time":0.994331069,"data":"|  No running processes found                                                             |\n"}
+,{"stream_name":"stdout","time":0.994346871,"data":"+-----------------------------------------------------------------------------------------+\n"}
+,{"stream_name":"stdout","time":4.856834425,"data":"cupy 14.0.1 | device: b'Tesla T4'\n"}
+,{"stream_name":"stdout","time":4.856864284,"data":"$ /usr/bin/python3 scripts/prepare_data.py\n"}
+,{"stream_name":"stdout","time":5.652189172,"data":"downloading https://www.gutenberg.org/cache/epub/100/pg100.txt\n"}
+,{"stream_name":"stdout","time":5.652236684,"data":"complete works: 5,359,343 chars, 196,015 lines, 100 distinct chars\n"}
+,{"stream_name":"stdout","time":5.652279988,"data":"train: 4,823,350 chars   val: 535,993 chars\n"}
+,{"stream_name":"stdout","time":5.668324985,"data":"$ /usr/bin/python3 scripts/tokenize_data.py char\n"}
+,{"stream_name":"stdout","time":6.484423095,"data":"trained char tokenizer: vocab 100 in 0.1s\n"}
+,{"stream_name":"stdout","time":6.484456273,"data":"train 4,823,350 tokens, val 535,993 tokens, 1.01 bytes/token  -\u003e data/char\n"}
+,{"stream_name":"stdout","time":6.51032321,"data":"$ /usr/bin/python3 scripts/tokenize_data.py bpe --vocab 4096\n"}
+,{"stream_name":"stdout","time":11.232539222,"data":"  merge   500: b'li' (count 863)\n"}
+,{"stream_name":"stdout","time":11.232574626,"data":"  merge  1000: b' husband' (count 351)\n"}
+,{"stream_name":"stdout","time":11.232578283,"data":"  merge  1500: b'ery' (count 209)\n"}
+,{"stream_name":"stdout","time":11.232580792,"data":"  merge  2000: b'rows' (count 144)\n"}
+,{"stream_name":"stdout","time":11.232583302,"data":"  merge  2500: b'OLDIER' (count 108)\n"}
+,{"stream_name":"stdout","time":11.232586535,"data":"  merge  3000: b'amb' (count 84)\n"}
+,{"stream_name":"stdout","time":11.23260345,"data":"  merge  3500: b' persu' (count 69)\n"}
+,{"stream_name":"stdout","time":11.232607645,"data":"trained bpe tokenizer: vocab 4096 in 2.9s\n"}
+,{"stream_name":"stdout","time":11.232612036999999,"data":"train 1,578,753 tokens, val 179,413 tokens, 3.03 bytes/token  -\u003e data/bpe4096\n"}
+,{"stream_name":"stdout","time":11.260393259,"data":"$ /usr/bin/python3 scripts/backend_parity.py\n"}
+,{"stream_name":"stdout","time":18.683762091,"data":"gpt2: loss cpu 3.919125383659 gpu 3.919125383659 | worst grad rel diff 5.96e-16\n"}
+,{"stream_name":"stdout","time":18.683802999,"data":"kavi: loss cpu 3.899363421992 gpu 3.899363421992 | worst grad rel diff 7.58e-16\n"}
+,{"stream_name":"stdout","time":18.683809094,"data":"backend parity OK\n"}
+,{"stream_name":"stdout","time":20.306044888,"data":"$ /usr/bin/python3 scripts/sweep.py configs/sweep_followup.json --backend cupy --out /kaggle/working/runs --shard 0/2 (GPU 0)\n"}
+,{"stream_name":"stdout","time":20.306835281,"data":"$ /usr/bin/python3 scripts/sweep.py configs/sweep_followup.json --backend cupy --out /kaggle/working/runs --shard 1/2 (GPU 1)\n"}
+,{"stream_name":"stdout","time":3551.595548152,"data":"======== GPU 0 log ========\n"}
+,{"stream_name":"stdout","time":3551.596060352,"data":"\n"}
+,{"stream_name":"stdout","time":3551.59607602,"data":"== gpt2+bias-s1: model.preset=\"gpt2\" model.bias=true train.seed=1\n"}
+,{"stream_name":"stdout","time":3551.596081319,"data":"[gpt2+bias-s1] 5.85M params | backend cupy | data data/bpe4096 (vocab 4096, 1,578,753 train tokens, 0.27 tokens/param)\n"}
+,{"stream_name":"stdout","time":3551.59608583,"data":"model: GPTConfig(vocab_size=4096, block_size=256, n_layer=6, n_head=8, n_embd=256, dropout=0.2, bias=True, pos='learned', norm='layernorm', mlp='gelu', rope_base=10000.0, attn='naive')\n"}
+,{"stream_name":"stdout","time":3551.596091248,"data":"  eval step     0 | train 8.3576 | val 8.3560 | val bpb 3.9847\n"}
+,{"stream_name":"stdout","time":3551.596096393,"data":"step     0 | loss 8.3571 | lr 5.00e-06 | gnorm 4.66 | 778 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596101406,"data":"step   100 | loss 5.7167 | lr 5.05e-04 | gnorm 0.69 | 30,839 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596106111,"data":"  eval step   200 | train 4.9615 | val 5.0752 | val bpb 2.4201\n"}
+,{"stream_name":"stdout","time":3551.596110234,"data":"step   200 | loss 4.9084 | lr 1.00e-03 | gnorm 0.50 | 23,661 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596114334,"data":"step   300 | loss 4.7651 | lr 9.98e-04 | gnorm 0.44 | 29,154 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596128114,"data":"  eval step   400 | train 4.5200 | val 4.6478 | val bpb 2.2163\n"}
+,{"stream_name":"stdout","time":3551.596132057,"data":"step   400 | loss 4.5517 | lr 9.94e-04 | gnorm 0.53 | 22,982 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596135859,"data":"step   500 | loss 4.5202 | lr 9.86e-04 | gnorm 0.57 | 29,382 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596139198,"data":"  eval step   600 | train 4.1919 | val 4.3333 | val bpb 2.0664\n"}
+,{"stream_name":"stdout","time":3551.59614294,"data":"step   600 | loss 4.2541 | lr 9.76e-04 | gnorm 0.55 | 23,000 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596147007,"data":"step   700 | loss 4.2662 | lr 9.62e-04 | gnorm 0.49 | 29,279 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596150925,"data":"  eval step   800 | train 4.0116 | val 4.1814 | val bpb 1.9939\n"}
+,{"stream_name":"stdout","time":3551.596154927,"data":"step   800 | loss 4.2940 | lr 9.46e-04 | gnorm 0.60 | 23,061 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596158692,"data":"step   900 | loss 4.1103 | lr 9.27e-04 | gnorm 0.64 | 29,288 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596162936,"data":"  eval step  1000 | train 3.8712 | val 4.0589 | val bpb 1.9356\n"}
+,{"stream_name":"stdout","time":3551.596166559,"data":"step  1000 | loss 3.9456 | lr 9.05e-04 | gnorm 0.66 | 23,013 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596170362,"data":"step  1100 | loss 4.0215 | lr 8.81e-04 | gnorm 0.59 | 29,265 tok/s\n"}
+,{"stream_name":"stdout","time":3551.59617429,"data":"  eval step  1200 | train 3.7636 | val 3.9820 | val bpb 1.8989\n"}
+,{"stream_name":"stdout","time":3551.596178301,"data":"step  1200 | loss 3.7854 | lr 8.55e-04 | gnorm 0.62 | 23,033 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596182156,"data":"step  1300 | loss 3.7844 | lr 8.26e-04 | gnorm 0.54 | 29,363 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596185791,"data":"  eval step  1400 | train 3.6627 | val 3.9023 | val bpb 1.8608\n"}
+,{"stream_name":"stdout","time":3551.596189673,"data":"step  1400 | loss 3.7873 | lr 7.96e-04 | gnorm 0.61 | 23,029 tok/s\n"}
+,{"stream_name":"stdout","time":3551.59619276,"data":"step  1500 | loss 3.8073 | lr 7.64e-04 | gnorm 0.62 | 29,283 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596197477,"data":"  eval step  1600 | train 3.5957 | val 3.8546 | val bpb 1.8381\n"}
+,{"stream_name":"stdout","time":3551.596202819,"data":"step  1600 | loss 3.7119 | lr 7.31e-04 | gnorm 0.75 | 23,015 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596206388,"data":"step  1700 | loss 3.7345 | lr 6.96e-04 | gnorm 0.60 | 29,261 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596210385,"data":"  eval step  1800 | train 3.5312 | val 3.8049 | val bpb 1.8144\n"}
+,{"stream_name":"stdout","time":3551.596214533,"data":"step  1800 | loss 3.6253 | lr 6.60e-04 | gnorm 0.67 | 22,984 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596219087,"data":"step  1900 | loss 3.7419 | lr 6.24e-04 | gnorm 0.60 | 29,235 tok/s\n"}
+,{"stream_name":"stdout","time":3551.59622319,"data":"  eval step  2000 | train 3.4623 | val 3.7647 | val bpb 1.7953\n"}
+,{"stream_name":"stdout","time":3551.596227065,"data":"step  2000 | loss 3.5904 | lr 5.87e-04 | gnorm 0.62 | 23,011 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596231063,"data":"step  2100 | loss 3.6335 | lr 5.50e-04 | gnorm 0.62 | 29,260 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596234438,"data":"  eval step  2200 | train 3.4062 | val 3.7226 | val bpb 1.7752\n"}
+,{"stream_name":"stdout","time":3551.596237714,"data":"step  2200 | loss 3.5995 | lr 5.13e-04 | gnorm 0.62 | 23,015 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596241126,"data":"step  2300 | loss 3.5411 | lr 4.76e-04 | gnorm 0.63 | 29,241 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596249115,"data":"  eval step  2400 | train 3.3595 | val 3.6974 | val bpb 1.7632\n"}
+,{"stream_name":"stdout","time":3551.596253125,"data":"step  2400 | loss 3.6179 | lr 4.40e-04 | gnorm 0.66 | 23,010 tok/s\n"}
+,{"stream_name":"stdout","time":3551.59625699,"data":"step  2500 | loss 3.5036 | lr 4.04e-04 | gnorm 0.64 | 29,255 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596260738,"data":"  eval step  2600 | train 3.3187 | val 3.6713 | val bpb 1.7507\n"}
+,{"stream_name":"stdout","time":3551.596264696,"data":"step  2600 | loss 3.4833 | lr 3.69e-04 | gnorm 0.64 | 22,991 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596268136,"data":"step  2700 | loss 3.4369 | lr 3.36e-04 | gnorm 0.65 | 29,208 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596271369,"data":"  eval step  2800 | train 3.2797 | val 3.6435 | val bpb 1.7374\n"}
+,{"stream_name":"stdout","time":3551.596274627,"data":"step  2800 | loss 3.5456 | lr 3.04e-04 | gnorm 0.63 | 23,040 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596277915,"data":"step  2900 | loss 3.5220 | lr 2.74e-04 | gnorm 0.64 | 29,273 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596281233,"data":"  eval step  3000 | train 3.2462 | val 3.6283 | val bpb 1.7302\n"}
+,{"stream_name":"stdout","time":3551.59628453,"data":"step  3000 | loss 3.4955 | lr 2.45e-04 | gnorm 0.70 | 23,026 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596287798,"data":"step  3100 | loss 3.4426 | lr 2.19e-04 | gnorm 0.65 | 29,219 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596291007,"data":"  eval step  3200 | train 3.2144 | val 3.6096 | val bpb 1.7213\n"}
+,{"stream_name":"stdout","time":3551.596294617,"data":"step  3200 | loss 3.3811 | lr 1.95e-04 | gnorm 0.63 | 22,990 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596300735,"data":"step  3300 | loss 3.3246 | lr 1.73e-04 | gnorm 0.65 | 29,205 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596304785,"data":"  eval step  3400 | train 3.1944 | val 3.5966 | val bpb 1.7151\n"}
+,{"stream_name":"stdout","time":3551.596308898,"data":"step  3400 | loss 3.4094 | lr 1.54e-04 | gnorm 0.67 | 22,966 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596312708,"data":"step  3500 | loss 3.3921 | lr 1.38e-04 | gnorm 0.66 | 29,245 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596316243,"data":"  eval step  3600 | train 3.1759 | val 3.5859 | val bpb 1.7100\n"}
+,{"stream_name":"stdout","time":3551.596320369,"data":"step  3600 | loss 3.3053 | lr 1.24e-04 | gnorm 0.65 | 23,065 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596324937,"data":"step  3700 | loss 3.2964 | lr 1.14e-04 | gnorm 0.65 | 29,186 tok/s\n"}
+,{"stream_name":"stdout","time":3551.59632884,"data":"  eval step  3800 | train 3.1622 | val 3.5788 | val bpb 1.7066\n"}
+,{"stream_name":"stdout","time":3551.596332488,"data":"step  3800 | loss 3.3566 | lr 1.06e-04 | gnorm 0.66 | 23,028 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596336648,"data":"step  3900 | loss 3.4158 | lr 1.02e-04 | gnorm 0.70 | 29,307 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596340457,"data":"  eval step  4000 | train 3.1494 | val 3.5737 | val bpb 1.7041\n"}
+,{"stream_name":"stdout","time":3551.596344485,"data":"\n"}
+,{"stream_name":"stdout","time":3551.59634819,"data":"best val loss 3.5737 (bpb 1.7041). sample:\n"}
+,{"stream_name":"stdout","time":3551.596352357,"data":"\n"}
+,{"stream_name":"stdout","time":3551.596356752,"data":"WIDEN.\n"}
+,{"stream_name":"stdout","time":3551.596365873,"data":"Here is my name and lady\n"}
+,{"stream_name":"stdout","time":3551.596369444,"data":"By the best and comfort of my life\n"}
+,{"stream_name":"stdout","time":3551.596372697,"data":"I will not take my greetings; but my part\n"}
+,{"stream_name":"stdout","time":3551.596380809,"data":"Is this the preparation of my friend,\n"}
+,{"stream_name":"stdout","time":3551.59638479,"data":"The Queen’s for ’tis to come, and I do supple\n"}
+,{"stream_name":"stdout","time":3551.596389498,"data":"To be a woman.\n"}
+,{"stream_name":"stdout","time":3551.596393405,"data":"\n"}
+,{"stream_name":"stdout","time":3551.596397297,"data":"PROSPERO.\n"}
+,{"stream_name":"stdout","time":3551.59640104,"data":"You were invention,\n"}
+,{"stream_name":"stdout","time":3551.596405432,"data":"Being much more perpetual. I am sorry\n"}
+,{"stream_name":"stdout","time":3551.596416053,"data":"My business being, sir; yet the issue\n"}
+,{"stream_name":"stdout","time":3551.596419508,"data":"Will not be revenged.\n"}
+,{"stream_name":"stdout","time":3551.596423707,"data":"\n"}
+,{"stream_name":"stdout","time":3551.596426824,"data":"PROSPERO.\n"}
+,{"stream_name":"stdout","time":3551.596429945,"data":"You’ll be sworn.\n"}
+,{"stream_name":"stdout","time":3551.596433243,"data":"\n"}
+,{"stream_name":"stdout","time":3551.59643625,"data":" [_Exit._]\n"}
+,{"stream_name":"stdout","time":3551.596439418,"data":"\n"}
+,{"stream_name":"stdout","time":3551.596442569,"data":"PROSPERO.\n"}
+,{"stream_name":"stdout","time":3551.596445772,"data":"I cannot be.\n"}
+,{"stream_name":"stdout","time":3551.596448993,"data":"\n"}
+,{"stream_name":"stdout","time":3551.596452076,"data":"PROSPERO.\n"}
+,{"stream_name":"stdout","time":3551.596455197,"data":"I am sorry for ’t.\n"}
+,{"stream_name":"stdout","time":3551.596458324,"data":"I have been sick, but I would\n"}
+,{"stream_name":"stdout","time":3551.596463068,"data":"If you were so long too well as you have.\n"}
+,{"stream_name":"stdout","time":3551.596484202,"data":"There is my father’s eyes, though I have found it,\n"}
+,{"stream_name":"stdout","time":3551.596488402,"data":"Not such as I have heard of you. If I come\n"}
+,{"stream_name":"stdout","time":3551.596492312,"data":"To see the issue of a lady and my honour\n"}
+,{"stream_name":"stdout","time":3551.59649621,"data":"Is in my best opinion, my life, I\n"}
+,{"stream_name":"stdout","time":3551.596499928,"data":"Have my friend with that most worthy thanks\n"}
+,{"stream_name":"stdout","time":3551.596503372,"data":"I’ th’ world, with my wife.\n"}
+,{"stream_name":"stdout","time":3551.596506588,"data":"\n"}
+,{"stream_name":"stdout","time":3551.59650959,"data":"MIRANDA.\n"}
+,{"stream_name":"stdout","time":3551.59651273,"data":"I wish it.\n"}
+,{"stream_name":"stdout","time":3551.596515895,"data":"\n"}
+,{"stream_name":"stdout","time":3551.596518895,"data":"PROSPERO.\n"}
+,{"stream_name":"stdout","time":3551.596522122,"data":"How do you knew it?\n"}
+,{"stream_name":"stdout","time":3551.596525268,"data":"\n"}
+,{"stream_name":"stdout","time":3551.596528262,"data":"MIRANDA.\n"}
+,{"stream_name":"stdout","time":3551.596531451,"data":"I am not an experbition of the gods.\n"}
+,{"stream_name":"stdout","time":3551.596534635,"data":"\n"}
+,{"stream_name":"stdout","time":3551.596537639,"data":"PROSPERO.\n"}
+,{"stream_name":"stdout","time":3551.596540738,"data":"But do not know him not.\n"}
+,{"stream_name":"stdout","time":3551.596543894,"data":"\n"}
+,{"stream_name":"stdout","time":3551.596546913,"data":"MIRANDA.\n"}
+,{"stream_name":"stdout","time":3551.596550005,"data":"For’t is madness.\n"}
+,{"stream_name":"stdout","time":3551.596553278,"data":"\n"}
+,{"stream_name":"stdout","time":3551.596561293,"data":"PROSPERO.\n"}
+,{"stream_name":"stdout","time":3551.596564927,"data":"So fare you well.\n"}
+,{"stream_name":"stdout","time":3551.59657954,"data":"\n"}
+,{"stream_name":"stdout","time":3551.59658803,"data":"PROSPERO.\n"}
+,{"stream_name":"stdout","time":3551.596592082,"data":"I have spoken and honest, for I have heard\n"}
+,{"stream_name":"stdout","time":3551.596595983,"data":"A deed of man, and had been by’t\n"}
+,{"stream_name":"stdout","time":3551.596599396,"data":"To make him speak.\n"}
+,{"stream_name":"stdout","time":3551.596602578,"data":"\n"}
+,{"stream_name":"stdout","time":3551.596605544,"data":"PROSPERO.\n"}
+,{"stream_name":"stdout","time":3551.596608585,"data":"I am sorry\n"}
+,{"stream_name":"stdout","time":3551.596611684,"data":"To speak at it, or no more.\n"}
+,{"stream_name":"stdout","time":3551.596614814,"data":"\n"}
+,{"stream_name":"stdout","time":3551.596617943,"data":"PROSPERO.\n"}
+,{"stream_name":"stdout","time":3551.59662106,"data":"I am very noble:\n"}
+,{"stream_name":"stdout","time":3551.596624416,"data":"My lord, I am a father of a queen:\n"}
+,{"stream_name":"stdout","time":3551.596627623,"data":"To whom to think on him all his distress,\n"}
+,{"stream_name":"stdout","time":3551.596630836,"data":"The\n"}
+,{"stream_name":"stdout","time":3551.596633928,"data":"== gpt2+bias-s1: done in 21.4 min\n"}
+,{"stream_name":"stdout","time":3551.59663713,"data":"\n"}
+,{"stream_name":"stdout","time":3551.596640205,"data":"== kavi-momentum-lr0.03-s1: model.preset=\"kavi\" train.optimizer=\"momentum\" train.momentum=0.9 train.lr=0.03 train.min_lr=0.003 train.seed=1\n"}
+,{"stream_name":"stdout","time":3551.596643915,"data":"[kavi-momentum-lr0.03-s1] 5.76M params | backend cupy | data data/bpe4096 (vocab 4096, 1,578,753 train tokens, 0.27 tokens/param)\n"}
+,{"stream_name":"stdout","time":3551.596647487,"data":"model: GPTConfig(vocab_size=4096, block_size=256, n_layer=6, n_head=8, n_embd=256, dropout=0.2, bias=False, pos='rope', norm='rmsnorm', mlp='swiglu', rope_base=10000.0, attn='naive')\n"}
+,{"stream_name":"stdout","time":3551.596658111,"data":"  eval step     0 | train 8.3778 | val 8.3762 | val bpb 3.9943\n"}
+,{"stream_name":"stdout","time":3551.596661838,"data":"step     0 | loss 8.3700 | lr 1.50e-04 | gnorm 5.00 | 1,078 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596676927,"data":"step   100 | loss 6.3497 | lr 1.51e-02 | gnorm 0.48 | 33,825 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596680839,"data":"  eval step   200 | train 5.8193 | val 5.9399 | val bpb 2.8325\n"}
+,{"stream_name":"stdout","time":3551.596684514,"data":"step   200 | loss 5.7525 | lr 3.00e-02 | gnorm 0.63 | 26,592 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596688308,"data":"step   300 | loss 5.4482 | lr 3.00e-02 | gnorm 0.68 | 34,071 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596692075,"data":"  eval step   400 | train 5.1807 | val 5.3031 | val bpb 2.5288\n"}
+,{"stream_name":"stdout","time":3551.596695323,"data":"step   400 | loss 5.2133 | lr 2.98e-02 | gnorm 0.85 | 26,587 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596698583,"data":"step   500 | loss 5.2258 | lr 2.96e-02 | gnorm 0.90 | 33,825 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596701982,"data":"  eval step   600 | train 4.9216 | val 5.0358 | val bpb 2.4014\n"}
+,{"stream_name":"stdout","time":3551.59670523,"data":"step   600 | loss 4.9180 | lr 2.93e-02 | gnorm 0.72 | 26,563 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596708518,"data":"step   700 | loss 4.9377 | lr 2.89e-02 | gnorm 0.87 | 34,006 tok/s\n"}
+,{"stream_name":"stdout","time":3551.59671176,"data":"  eval step   800 | train 4.7298 | val 4.8530 | val bpb 2.3142\n"}
+,{"stream_name":"stdout","time":3551.59671498,"data":"step   800 | loss 4.9468 | lr 2.84e-02 | gnorm 1.04 | 26,618 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596718198,"data":"step   900 | loss 4.7479 | lr 2.78e-02 | gnorm 0.95 | 34,014 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596725492,"data":"  eval step  1000 | train 4.5427 | val 4.6742 | val bpb 2.2289\n"}
+,{"stream_name":"stdout","time":3551.5967456,"data":"step  1000 | loss 4.6078 | lr 2.72e-02 | gnorm 1.32 | 26,662 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596749628,"data":"step  1100 | loss 4.6052 | lr 2.64e-02 | gnorm 0.98 | 33,925 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596753108,"data":"  eval step  1200 | train 4.4078 | val 4.5471 | val bpb 2.1683\n"}
+,{"stream_name":"stdout","time":3551.596756395,"data":"step  1200 | loss 4.4041 | lr 2.56e-02 | gnorm 0.98 | 26,574 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596759657,"data":"step  1300 | loss 4.3879 | lr 2.48e-02 | gnorm 0.93 | 33,888 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596762901,"data":"  eval step  1400 | train 4.2934 | val 4.4359 | val bpb 2.1153\n"}
+,{"stream_name":"stdout","time":3551.596766206,"data":"step  1400 | loss 4.4109 | lr 2.39e-02 | gnorm 0.94 | 26,554 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596769546,"data":"step  1500 | loss 4.3637 | lr 2.29e-02 | gnorm 1.19 | 33,825 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596772797,"data":"  eval step  1600 | train 4.2009 | val 4.3469 | val bpb 2.0729\n"}
+,{"stream_name":"stdout","time":3551.596775996,"data":"step  1600 | loss 4.2771 | lr 2.19e-02 | gnorm 0.99 | 26,494 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596779261,"data":"step  1700 | loss 4.3169 | lr 2.09e-02 | gnorm 1.11 | 33,801 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596782783,"data":"  eval step  1800 | train 4.1318 | val 4.2754 | val bpb 2.0388\n"}
+,{"stream_name":"stdout","time":3551.596785976,"data":"step  1800 | loss 4.2062 | lr 1.98e-02 | gnorm 1.01 | 26,505 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596789215,"data":"step  1900 | loss 4.3133 | lr 1.87e-02 | gnorm 0.99 | 33,818 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596792437,"data":"  eval step  2000 | train 4.0725 | val 4.2209 | val bpb 2.0128\n"}
+,{"stream_name":"stdout","time":3551.596797953,"data":"step  2000 | loss 4.1626 | lr 1.76e-02 | gnorm 1.05 | 26,478 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596804804,"data":"step  2100 | loss 4.2229 | lr 1.65e-02 | gnorm 1.60 | 33,767 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596807929,"data":"  eval step  2200 | train 4.0220 | val 4.1745 | val bpb 1.9907\n"}
+,{"stream_name":"stdout","time":3551.596823417,"data":"step  2200 | loss 4.1463 | lr 1.54e-02 | gnorm 1.17 | 26,495 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596827329,"data":"step  2300 | loss 4.1367 | lr 1.43e-02 | gnorm 1.02 | 33,750 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596831256,"data":"  eval step  2400 | train 3.9836 | val 4.1372 | val bpb 1.9729\n"}
+,{"stream_name":"stdout","time":3551.596835288,"data":"step  2400 | loss 4.2037 | lr 1.32e-02 | gnorm 1.13 | 26,459 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596839164,"data":"step  2500 | loss 4.1036 | lr 1.21e-02 | gnorm 1.02 | 33,770 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596842586,"data":"  eval step  2600 | train 3.9538 | val 4.1121 | val bpb 1.9609\n"}
+,{"stream_name":"stdout","time":3551.596845842,"data":"step  2600 | loss 4.0591 | lr 1.11e-02 | gnorm 1.11 | 26,524 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596849072,"data":"step  2700 | loss 4.0380 | lr 1.01e-02 | gnorm 1.14 | 33,881 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596852391,"data":"  eval step  2800 | train 3.9271 | val 4.0835 | val bpb 1.9473\n"}
+,{"stream_name":"stdout","time":3551.596855636,"data":"step  2800 | loss 4.1457 | lr 9.12e-03 | gnorm 1.09 | 26,554 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596858946,"data":"step  2900 | loss 4.1252 | lr 8.21e-03 | gnorm 1.05 | 33,919 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596865681,"data":"  eval step  3000 | train 3.9046 | val 4.0651 | val bpb 1.9385\n"}
+,{"stream_name":"stdout","time":3551.59686905,"data":"step  3000 | loss 4.0944 | lr 7.36e-03 | gnorm 1.09 | 26,568 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596872386,"data":"step  3100 | loss 4.0798 | lr 6.57e-03 | gnorm 1.11 | 33,886 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596875852,"data":"  eval step  3200 | train 3.8879 | val 4.0529 | val bpb 1.9327\n"}
+,{"stream_name":"stdout","time":3551.596879132,"data":"step  3200 | loss 3.9919 | lr 5.85e-03 | gnorm 1.06 | 26,574 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596882471,"data":"step  3300 | loss 3.9488 | lr 5.20e-03 | gnorm 1.06 | 33,838 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596885707,"data":"  eval step  3400 | train 3.8768 | val 4.0420 | val bpb 1.9275\n"}
+,{"stream_name":"stdout","time":3551.596888944,"data":"step  3400 | loss 4.0524 | lr 4.63e-03 | gnorm 1.08 | 26,573 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596892201,"data":"step  3500 | loss 4.0003 | lr 4.14e-03 | gnorm 1.06 | 33,858 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596897351,"data":"  eval step  3600 | train 3.8651 | val 4.0319 | val bpb 1.9226\n"}
+,{"stream_name":"stdout","time":3551.596904597,"data":"step  3600 | loss 3.9497 | lr 3.73e-03 | gnorm 1.09 | 26,548 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596921691,"data":"step  3700 | loss 3.9019 | lr 3.41e-03 | gnorm 1.06 | 33,765 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596925752,"data":"  eval step  3800 | train 3.8557 | val 4.0239 | val bpb 1.9189\n"}
+,{"stream_name":"stdout","time":3551.596929382,"data":"step  3800 | loss 4.0305 | lr 3.18e-03 | gnorm 1.12 | 26,527 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596933596,"data":"step  3900 | loss 4.0571 | lr 3.05e-03 | gnorm 1.11 | 33,787 tok/s\n"}
+,{"stream_name":"stdout","time":3551.596937612,"data":"  eval step  4000 | train 3.8484 | val 4.0183 | val bpb 1.9162\n"}
+,{"stream_name":"stdout","time":3551.596940986,"data":"\n"}
+,{"stream_name":"stdout","time":3551.596944037,"data":"best val loss 4.0183 (bpb 1.9162). sample:\n"}
+,{"stream_name":"stdout","time":3551.596947364,"data":"\n"}
+,{"stream_name":"stdout","time":3551.596950392,"data":"That I’ll leave thee to do my mistress’\n"}
+,{"stream_name":"stdout","time":3551.596961959,"data":"Which, as I did do I have,\n"}
+,{"stream_name":"stdout","time":3551.596965289,"data":"But that I will believe ’tis so much.\n"}
+,{"stream_name":"stdout","time":3551.596968545,"data":"\n"}
+,{"stream_name":"stdout","time":3551.596971632,"data":"RICHARD.\n"}
+,{"stream_name":"stdout","time":3551.596974758,"data":"Come to you, and my lord, good Moth, I know.\n"}
+,{"stream_name":"stdout","time":3551.596977987,"data":"\n"}
+,{"stream_name":"stdout","time":3551.59698107,"data":"KING.\n"}
+,{"stream_name":"stdout","time":3551.596984134,"data":"Who’s to th’ world.\n"}
+,{"stream_name":"stdout","time":3551.596987334,"data":"\n"}
+,{"stream_name":"stdout","time":3551.596990431,"data":"SUFFOLK.\n"}
+,{"stream_name":"stdout","time":3551.596995185,"data":"My lords, then, and my liege.\n"}
+,{"stream_name":"stdout","time":3551.597002576,"data":"\n"}
+,{"stream_name":"stdout","time":3551.597034861,"data":"QUEEN MARGARET.\n"}
+,{"stream_name":"stdout","time":3551.597038815,"data":"Why, when’s all these, what news would you stay?\n"}
+,{"stream_name":"stdout","time":3551.597043117,"data":"\n"}
+,{"stream_name":"stdout","time":3551.597046514,"data":"KING RICHARD.\n"}
+,{"stream_name":"stdout","time":3551.597050543,"data":"What, how?\n"}
+,{"stream_name":"stdout","time":3551.59705439,"data":"\n"}
+,{"stream_name":"stdout","time":3551.597061582,"data":"SPEIAM.\n"}
+,{"stream_name":"stdout","time":3551.597065147,"data":"I pray you, my lords, I’ll have a good man.\n"}
+,{"stream_name":"stdout","time":3551.597068593,"data":"\n"}
+,{"stream_name":"stdout","time":3551.597071798,"data":"KING HENRY.\n"}
+,{"stream_name":"stdout","time":3551.597075218,"data":"Not to my life?\n"}
+,{"stream_name":"stdout","time":3551.5970786,"data":"\n"}
+,{"stream_name":"stdout","time":3551.597081807,"data":"CASSIUS.\n"}
+,{"stream_name":"stdout","time":3551.597085075,"data":"The gods!\n"}
+,{"stream_name":"stdout","time":3551.597088394,"data":"\n"}
+,{"stream_name":"stdout","time":3551.597091692,"data":"RICHARD.\n"}
+,{"stream_name":"stdout","time":3551.597095025,"data":"Here, sir, he is not done; you will love thee.\n"}
+,{"stream_name":"stdout","time":3551.597098457,"data":"Where is the news?\n"}
+,{"stream_name":"stdout","time":3551.597101808,"data":"\n"}
+,{"stream_name":"stdout","time":3551.597105005,"data":"LUCIUS.\n"}
+,{"stream_name":"stdout","time":3551.59710843,"data":"I’ll tell you, if you love you in your love?\n"}
+,{"stream_name":"stdout","time":3551.597118254,"data":"\n"}
+,{"stream_name":"stdout","time":3551.597133497,"data":"YORK.\n"}
+,{"stream_name":"stdout","time":3551.597137703,"data":"O, with you.\n"}
+,{"stream_name":"stdout","time":3551.597141546,"data":"\n"}
+,{"stream_name":"stdout","time":3551.597144987,"data":"[_Exeunt._]\n"}
+,{"stream_name":"stdout","time":3551.597149017,"data":"\n"}
+,{"stream_name":"stdout","time":3551.597152867,"data":"SCENE III. A street. Before Save.\n"}
+,{"stream_name":"stdout","time":3551.597156335,"data":"\n"}
+,{"stream_name":"stdout","time":3551.597159603,"data":"SCENE III. A Room in the Duke’s house.\n"}
+,{"stream_name":"stdout","time":3551.597163114,"data":"\n"}
+,{"stream_name":"stdout","time":3551.597166397,"data":"Enter Hastings, Servant.\n"}
+,{"stream_name":"stdout","time":3551.597169829,"data":"\n"}
+,{"stream_name":"stdout","time":3551.597173214,"data":"Enter Lord Timon, York, Heaven and Would we, Richmond, Duke and Milius,\n"}
+,{"stream_name":"stdout","time":3551.597176709,"data":"Amen.\n"}
+,{"stream_name":"stdout","time":3551.597180003,"data":"\n"}
+,{"stream_name":"stdout","time":3551.597183302,"data":"ANTONY.\n"}
+,{"stream_name":"stdout","time":3551.597186597,"data":"[_Reads_.] O, sweet Nature, and Launcelet,\n"}
+,{"stream_name":"stdout","time":3551.597189991,"data":"And in the King Henry’s palace.\n"}
+,{"stream_name":"stdout","time":3551.597193407,"data":"\n"}
+,{"stream_name":"stdout","time":3551.597196629,"data":"Enter Warwick and others with the Gastian.\n"}
+,{"stream_name":"stdout","time":3551.597200052,"data":"\n"}
+,{"stream_name":"stdout","time":3551.597203252,"data":"QUEEN MARGARET.\n"}
+,{"stream_name":"stdout","time":3551.597206655,"data":"He that which’s the King my lord, and the night\n"}
+,{"stream_name":"stdout","time":3551.597216031,"data":"And give our friends.\n"}
+,{"stream_name":"stdout","time":3551.597231906,"data":"\n"}
+,{"stream_name":"stdout","time":3551.59723619,"data":"BRUTUS.\n"}
+,{"stream_name":"stdout","time":3551.597239999,"data":"My lord, my lord of Cymbelia,\n"}
+,{"stream_name":"stdout","time":3551.597244332,"data":"But here’s officer.\n"}
+,{"stream_name":"stdout","time":3551.597248545,"data":"\n"}
+,{"stream_name":"stdout","time":3551.597252055,"data":"CATEST.\n"}
+,{"stream_name":"stdout","time":3551.597255402,"data":"The King hath been much.\n"}
+,{"stream_name":"stdout","time":3551.597258757,"data":"\n"}
+,{"stream_name":"stdout","time":3551.597261939,"data":"KING.\n"}
+,{"stream_name":"stdout","time":3551.597268603,"data":"Well, if your daughter be dead.\n"}
+,{"stream_name":"stdout","time":3551.597272043,"data":"\n"}
+,{"stream_name":"stdout","time":3551.597275373,"data":"RICHARD.\n"}
+,{"stream_name":"stdout","time":3551.59727865,"data":"I should in that I\n"}
+,{"stream_name":"stdout","time":3551.597281991,"data":"== kavi-momentum-lr0.03-s1: done in 18.6 min\n"}
+,{"stream_name":"stdout","time":3551.597295674,"data":"\n"}
+,{"stream_name":"stdout","time":3551.597298741,"data":"== gpt2+relu-s2: model.preset=\"gpt2\" model.mlp=\"relu\" train.seed=2\n"}
+,{"stream_name":"stdout","time":3551.597302321,"data":"[gpt2+relu-s2] 5.84M params | backend cupy | data data/bpe4096 (vocab 4096, 1,578,753 train tokens, 0.27 tokens/param)\n"}
+,{"stream_name":"stdout","time":3551.597307546,"data":"model: GPTConfig(vocab_size=4096, block_size=256, n_layer=6, n_head=8, n_embd=256, dropout=0.2, bias=False, pos='learned', norm='layernorm', mlp='relu', rope_base=10000.0, attn='naive')\n"}
+,{"stream_name":"stdout","time":3551.597314602,"data":"  eval step     0 | train 8.3833 | val 8.3831 | val bpb 3.9976\n"}
+,{"stream_name":"stdout","time":3551.597329027,"data":"step     0 | loss 8.3813 | lr 5.00e-06 | gnorm 6.58 | 1,255 tok/s\n"}
+,{"stream_name":"stdout","time":3551.59733295,"data":"step   100 | loss 5.7301 | lr 5.05e-04 | gnorm 0.41 | 36,309 tok/s\n"}
+,{"stream_name":"stdout","time":3551.597337057,"data":"  eval step   200 | train 4.9667 | val 5.0875 | val bpb 2.4260\n"}
+,{"stream_name":"stdout","time":3551.597341046,"data":"step   200 | loss 4.9422 | lr 1.00e-03 | gnorm 0.39 | 28,720 tok/s\n"}
+,{"stream_name":"stdout","time":3551.597344756,"data":"step   300 | loss 4.7271 | lr 9.98e-04 | gnorm 0.45 | 36,758 tok/s\n"}
+,{"stream_name":"stdout","time":3551.597348017,"data":"  eval step   400 | train 4.4568 | val 4.5796 | val bpb 2.1839\n"}
+,{"stream_name":"stdout","time":3551.597351322,"data":"step   400 | loss 4.5491 | lr 9.94e-04 | gnorm 0.55 | 28,880 tok/s\n"}
+,{"stream_name":"stdout","time":3551.597355143,"data":"step   500 | loss 4.3413 | lr 9.86e-04 | gnorm 0.64 | 36,589 tok/s\n"}
+,{"stream_name":"stdout","time":3551.597358491,"data":"  eval step   600 | train 4.1373 | val 4.2786 | val bpb 2.0403\n"}
+,{"stream_name":"stdout","time":3551.597361739,"data":"step   600 | loss 4.3158 | lr 9.76e-04 | gnorm 0.56 | 28,805 tok/s\n"}
+,{"stream_name":"stdout","time":3551.597364697,"data":"step   700 | loss 4.0917 | lr 9.62e-04 | gnorm 0.68 | 36,688 tok/s\n"}
+,{"stream_name":"stdout","time":3551.597368021,"data":"  eval step   800 | train 3.9429 | val 4.1109 | val bpb 1.9603\n"}
+,{"stream_name":"stdout","time":3551.597371206,"data":"step   800 | loss 4.1070 | lr 9.46e-04 | gnorm 0.59 | 28,898 tok/s\n"}
+,{"stream_name":"stdout","time":3551.597374426,"data":"step   900 | loss 3.9333 | lr 9.27e-04 | gnorm 0.76 | 36,747 tok/s\n"}
+,{"stream_name":"stdout","time":3551.597377656,"data":"  eval step  1000 | train 3.8202 | val 4.0116 | val bpb 1.9130\n"}
+,{"stream_name":"stdout","time":3551.597380946,"data":"step  1000 | loss 3.9537 | lr 9.05e-04 | gnorm 0.64 | 28,980 tok/s\n"}
+,{"stream_name":"stdout","time":3551.597384212,"data":"step  1100 | loss 3.9362 | lr 8.81e-04 | gnorm 0.60 | 36,821 tok/s\n"}
+,{"stream_name":"stdout","time":3551.597387565,"data":"  eval step  1200 | train 3.7103 | val 3.9363 | val bpb 1.8771\n"}
+,{"stream_name":"stdout","time":3551.597390783,"data":"step  1200 | loss 3.9196 | lr 8.55e-04 | gnorm 0.60 | 29,004 tok/s\n"}
+,{"stream_name":"stdout","time":3551.597394062,"data":"step  1300 | loss 3.6995 | lr 8.26e-04 | gnorm 0.62 | 36,807 tok/s\n"}
+,{"stream_name":"stdout","time":3551.597397459,"data":"  eval step  1400 | train 3.6363 | val 3.8779 | val bpb 1.8492\n"}
+,{"stream_name":"stdout","time":3551.597423724,"data":"step  1400 | loss 3.9006 | lr 7.96e-04 | gnorm 0.61 | 28,953 tok/s\n"}
+,{"stream_name":"stdout","time":3551.597442218,"data":"step  1500 | loss 3.7418 | lr 7.64e-04 | gnorm 0.64 | 36,739 tok/s\n"}
+,{"stream_name":"stdout","time":3551.597445998,"data":"  eval step  1600 | train 3.5563 | val 3.8125 | val bpb 1.8180\n"}
+,{"stream_name":"stdout","time":3551.597449679,"data":"step  1600 | loss 3.5762 | lr 7.31e-04 | gnorm 0.64 | 28,916 tok/s\n"}
+,{"stream_name":"stdout","time":3551.597453722,"data":"step  1700 | loss 3.7446 | lr 6.96e-04 | gnorm 0.61 | 36,711 tok/s\n"}
+,{"stream_name":"stdout","time":3551.597457177,"data":"  eval step  1800 | train 3.5027 | val 3.7763 | val bpb 1.8008\n"}
+,{"stream_name":"stdout","time":3551.597460462,"data":"step  1800 | loss 3.6796 | lr 6.60e-04 | gnorm 0.66 | 28,849 tok/s\n"}
+,{"stream_name":"stdout","time":3551.597463796,"data":"step  1900 | loss 3.5473 | lr 6.24e-04 | gnorm 0.63 | 36,602 tok/s\n"}
+,{"stream_name":"stdout","time":3551.597467036,"data":"  eval step  2000 | train 3.4454 | val 3.7396 | val bpb 1.7833\n"}
+,{"stream_name":"stdout","time":3551.597470282,"data":"step  2000 | loss 3.5755 | lr 5.87e-04 | gnorm 0.62 | 28,841 tok/s\n"}
+,{"stream_name":"stdout","time":3551.597473504,"data":"step  2100 | loss 3.5598 | lr 5.50e-04 | gnorm 0.71 | 36,770 tok/s\n"}
+,{"stream_name":"stdout","time":3551.597476735,"data":"  eval step  2200 | train 3.3984 | val 3.7096 | val bpb 1.7689\n"}
+,{"stream_name":"stdout","time":3551.597479927,"data":"step  2200 | loss 3.5092 | lr 5.13e-04 | gnorm 0.73 | 28,929 tok/s\n"}
+,{"stream_name":"stdout","time":3551.597483201,"data":"step  2300 | loss 3.5489 | lr 4.76e-04 | gnorm 0.68 | 36,767 tok/s\n"}
+,{"stream_name":"stdout","time":3551.597486522,"data":"  eval step  2400 | train 3.3529 | val 3.6824 | val bpb 1.7560\n"}
+,{"stream_name":"stdout","time":3551.597489709,"data":"step  2400 | loss 3.5712 | lr 4.40e-04 | gnorm 0.66 | 28,911 tok/s\n"}
+,{"stream_name":"stdout","time":3551.597493001,"data":"step  2500 | loss 3.4972 | lr 4.04e-04 | gnorm 0.66 | 36,661 tok/s\n"}
+,{"stream_name":"stdout","time":3551.59749762,"data":"  eval step  2600 | train 3.3075 | val 3.6601 | val bpb 1.7453\n"}
+,{"stream_name":"stdout","time":3551.597500977,"data":"step  2600 | loss 3.6539 | lr 3.69e-04 | gnorm 0.69 | 28,850 tok/s\n"}
+,{"stream_name":"stdout","time":3551.597504351,"data":"step  2700 | loss 3.4776 | lr 3.36e-04 | gnorm 0.67 | 36,670 tok/s\n"}
+,{"stream_name":"stdout","time":3551.597507657,"data":"  eval step  2800 | train 3.2770 | val 3.6284 | val bpb 1.7302\n"}
+,{"stream_name":"stdout","time":3551.597517389,"data":"step  2800 | loss 3.4074 | lr 3.04e-04 | gnorm 0.72 | 28,852 tok/s\n"}
+,{"stream_name":"stdout","time":3551.597520576,"data":"step  2900 | loss 3.3532 | lr 2.74e-04 | gnorm 0.67 | 36,623 tok/s\n"}
+,{"stream_name":"stdout","time":3551.597535146,"data":"  eval step  3000 | train 3.2423 | val 3.6115 | val bpb 1.7222\n"}
+,{"stream_name":"stdout","time":3551.597538999,"data":"step  3000 | loss 3.3927 | lr 2.45e-04 | gnorm 0.70 | 28,906 tok/s\n"}
+,{"stream_name":"stdout","time":3551.597543035,"data":"step  3100 | loss 3.3744 | lr 2.19e-04 | gnorm 0.75 | 36,615 tok/s\n"}
+,{"stream_name":"stdout","time":3551.597547036,"data":"  eval step  3200 | train 3.2166 | val 3.5983 | val bpb 1.7159\n"}
+,{"stream_name":"stdout","time":3551.597550881,"data":"step  3200 | loss 3.3113 | lr 1.95e-04 | gnorm 0.67 | 28,840 tok/s\n"}
+,{"stream_name":"stdout","time":3551.597554272,"data":"step  3300 | loss 3.4362 | lr 1.73e-04 | gnorm 0.68 | 36,638 tok/s\n"}
+,{"stream_name":"stdout","time":3551.597557492,"data":"  eval step  3400 | train 3.1943 | val 3.5842 | val bpb 1.7092\n"}
+,{"stream_name":"stdout","time":3551.597563873,"data":"step  3400 | loss 3.4085 | lr 1.54e-04 | gnorm 0.73 | 28,853 tok/s\n"}
+,{"stream_name":"stdout","time":3551.597567229,"data":"step  3500 | loss 3.4179 | lr 1.38e-04 | gnorm 0.71 | 36,703 tok/s\n"}
+,{"stream_name":"stdout","time":3551.597570584,"data":"  eval step  3600 | train 3.1728 | val 3.5726 | val bpb 1.7037\n"}
+,{"stream_name":"stdout","time":3551.597573811,"data":"step  3600 | loss 3.4294 | lr 1.24e-04 | gnorm 0.68 | 28,932 tok/s\n"}
+,{"stream_name":"stdout","time":3551.597577021,"data":"step  3700 | loss 3.1586 | lr 1.14e-04 | gnorm 0.70 | 36,803 tok/s\n"}
+,{"stream_name":"stdout","time":3551.597580331,"data":"  eval step  3800 | train 3.1609 | val 3.5677 | val bpb 1.7013\n"}
+,{"stream_name":"stdout","time":3551.597583657,"data":"step  3800 | loss 3.3009 | lr 1.06e-04 | gnorm 0.73 | 28,938 tok/s\n"}
+,{"stream_name":"stdout","time":3551.597586883,"data":"step  3900 | loss 3.3561 | lr 1.02e-04 | gnorm 0.70 | 36,758 tok/s\n"}
+,{"stream_name":"stdout","time":3551.597590142,"data":"  eval step  4000 | train 3.1498 | val 3.5615 | val bpb 1.6984\n"}
+,{"stream_name":"stdout","time":3551.597593437,"data":"\n"}
+,{"stream_name":"stdout","time":3551.597596551,"data":"best val loss 3.5615 (bpb 1.6984). sample:\n"}
+,{"stream_name":"stdout","time":3551.597599779,"data":"\n"}
+,{"stream_name":"stdout","time":3551.597602902,"data":"And to the sceptre of all my forehead\n"}
+,{"stream_name":"stdout","time":3551.597610702,"data":"Upon a little messenger.\n"}
+,{"stream_name":"stdout","time":3551.597613393,"data":"\n"}
+,{"stream_name":"stdout","time":3551.597616435,"data":"CERIMON.\n"}
+,{"stream_name":"stdout","time":3551.597630284,"data":"O blessed heavens,\n"}
+,{"stream_name":"stdout","time":3551.597634252,"data":"If I have power to do it so much!\n"}
+,{"stream_name":"stdout","time":3551.597637981,"data":"\n"}
+,{"stream_name":"stdout","time":3551.597641274,"data":"PERICLES.\n"}
+,{"stream_name":"stdout","time":3551.597645181,"data":"Where’s the matter?\n"}
+,{"stream_name":"stdout","time":3551.597649018,"data":"\n"}
+,{"stream_name":"stdout","time":3551.597652111,"data":"CERIMON.\n"}
+,{"stream_name":"stdout","time":3551.597655265,"data":"I’ll do’t, sir, let’s see ’t not.\n"}
+,{"stream_name":"stdout","time":3551.597658564,"data":"\n"}
+,{"stream_name":"stdout","time":3551.597661637,"data":"MARINA.\n"}
+,{"stream_name":"stdout","time":3551.597664707,"data":"We’ll bear it as your highness.\n"}
+,{"stream_name":"stdout","time":3551.597667909,"data":"\n"}
+,{"stream_name":"stdout","time":3551.597670902,"data":"IMONIDES.\n"}
+,{"stream_name":"stdout","time":3551.597674019,"data":"I thank your lordship.\n"}
+,{"stream_name":"stdout","time":3551.597677269,"data":"\n"}
+,{"stream_name":"stdout","time":3551.597680266,"data":"PERICLES.\n"}
+,{"stream_name":"stdout","time":3551.597683461,"data":"[_Aside._] Let me be sure, sir, if you please\n"}
+,{"stream_name":"stdout","time":3551.597686674,"data":"To see one or any of them,\n"}
+,{"stream_name":"stdout","time":3551.597689882,"data":"And she will never come to me.\n"}
+,{"stream_name":"stdout","time":3551.597693051,"data":"\n"}
+,{"stream_name":"stdout","time":3551.597696086,"data":"PERICLES.\n"}
+,{"stream_name":"stdout","time":3551.597699176,"data":"It is the next, sir, with a most good grace\n"}
+,{"stream_name":"stdout","time":3551.597702485,"data":"That ever I give the king’s gift to me\n"}
+,{"stream_name":"stdout","time":3551.597711104,"data":"Than she shall have spoke.\n"}
+,{"stream_name":"stdout","time":3551.597714297,"data":"\n"}
+,{"stream_name":"stdout","time":3551.597741371,"data":"PERICLES.\n"}
+,{"stream_name":"stdout","time":3551.597751515,"data":"Well, well,\n"}
+,{"stream_name":"stdout","time":3551.597756189,"data":"You see the world or man of my life.\n"}
+,{"stream_name":"stdout","time":3551.597760052,"data":"The lady, as well as you have said!\n"}
+,{"stream_name":"stdout","time":3551.597763246,"data":"\n"}
+,{"stream_name":"stdout","time":3551.597766327,"data":"PERICLES.\n"}
+,{"stream_name":"stdout","time":3551.597769479,"data":"This is the more my lord.\n"}
+,{"stream_name":"stdout","time":3551.59777266,"data":"\n"}
+,{"stream_name":"stdout","time":3551.597775655,"data":"PERICLES.\n"}
+,{"stream_name":"stdout","time":3551.59777877,"data":"I have, sir.\n"}
+,{"stream_name":"stdout","time":3551.597781904,"data":"\n"}
+,{"stream_name":"stdout","time":3551.597784997,"data":"PERICLES.\n"}
+,{"stream_name":"stdout","time":3551.597788108,"data":"The reason is, so: you are bound.\n"}
+,{"stream_name":"stdout","time":3551.597791272,"data":"\n"}
+,{"stream_name":"stdout","time":3551.597794284,"data":" Enter Dolabella, attended.\n"}
+,{"stream_name":"stdout","time":3551.597797471,"data":"\n"}
+,{"stream_name":"stdout","time":3551.597800531,"data":"PERICLES.\n"}
+,{"stream_name":"stdout","time":3551.597803674,"data":"I know it more. I have done in this,\n"}
+,{"stream_name":"stdout","time":3551.597806866,"data":"A woman that I may give us thanks.\n"}
+,{"stream_name":"stdout","time":3551.597810078,"data":"\n"}
+,{"stream_name":"stdout","time":3551.59781323,"data":" Enter Gratiano and Marina.\n"}
+,{"stream_name":"stdout","time":3551.597822197,"data":"\n"}
+,{"stream_name":"stdout","time":3551.597824899,"data":"PERICLES.\n"}
+,{"stream_name":"stdout","time":3551.597839353,"data":"What’s the matter?\n"}
+,{"stream_name":"stdout","time":3551.597843425,"data":"\n"}
+,{"stream_name":"stdout","time":3551.597846956,"data":"PERICLES.\n"}
+,{"stream_name":"stdout","time":3551.597850296,"data":"That thou hast lost thyself, a son of father,\n"}
+,{"stream_name":"stdout","time":3551.597854443,"data":"Of thy great self-serving?\n"}
+,{"stream_name":"stdout","time":3551.597857856,"data":"\n"}
+,{"stream_name":"stdout","time":3551.597860971,"data":"PERICLES.\n"}
+,{"stream_name":"stdout","time":3551.597864001,"data":"Here, sir,\n"}
+,{"stream_name":"stdout","time":3551.597867179,"data":"Who hast thou but been, that thou dost make\n"}
+,{"stream_name":"stdout","time":3551.597870431,"data":"A daughter to thyself and I will make a daughter.\n"}
+,{"stream_name":"stdout","time":3551.597873678,"data":"\n"}
+,{"stream_name":"stdout","time":3551.597876774,"data":"PERICLES.\n"}
+,{"stream_name":"stdout","time":3551.597879912,"data":"Too that, thou art believ’d; and have a soul\n"}
+,{"stream_name":"stdout","time":3551.597883227,"data":"To be a Roman, who may be so long,\n"}
+,{"stream_name":"stdout","time":3551.597886442,"data":"If thou wouldst hear the deed.\n"}
+,{"stream_name":"stdout","time":3551.597889588,"data":"\n"}
+,{"stream_name":"stdout","time":3551.59789259,"data":"\n"}
+,{"stream_name":"stdout","time":3551.597895682,"data":"== gpt2+relu-s2: done in 17.1 min\n"}
+,{"stream_name":"stdout","time":3551.597898869,"data":"\n"}
+,{"stream_name":"stdout","time":3551.597901888,"data":"======== GPU 1 log ========\n"}
+,{"stream_name":"stdout","time":3551.597905037,"data":"\n"}
+,{"stream_name":"stdout","time":3551.597908231,"data":"== gpt2+relu-s1: model.preset=\"gpt2\" model.mlp=\"relu\" train.seed=1\n"}
+,{"stream_name":"stdout","time":3551.597913571,"data":"[gpt2+relu-s1] 5.84M params | backend cupy | data data/bpe4096 (vocab 4096, 1,578,753 train tokens, 0.27 tokens/param)\n"}
+,{"stream_name":"stdout","time":3551.597938623,"data":"model: GPTConfig(vocab_size=4096, block_size=256, n_layer=6, n_head=8, n_embd=256, dropout=0.2, bias=False, pos='learned', norm='layernorm', mlp='relu', rope_base=10000.0, attn='naive')\n"}
+,{"stream_name":"stdout","time":3551.597944145,"data":"  eval step     0 | train 8.3768 | val 8.3752 | val bpb 3.9938\n"}
+,{"stream_name":"stdout","time":3551.597948046,"data":"step     0 | loss 8.3740 | lr 5.00e-06 | gnorm 5.92 | 785 tok/s\n"}
+,{"stream_name":"stdout","time":3551.597952012,"data":"step   100 | loss 5.7589 | lr 5.05e-04 | gnorm 0.39 | 38,246 tok/s\n"}
+,{"stream_name":"stdout","time":3551.597955975,"data":"  eval step   200 | train 4.9736 | val 5.0971 | val bpb 2.4306\n"}
+,{"stream_name":"stdout","time":3551.597959417,"data":"step   200 | loss 4.9156 | lr 1.00e-03 | gnorm 0.45 | 29,015 tok/s\n"}
+,{"stream_name":"stdout","time":3551.597962702,"data":"step   300 | loss 4.7583 | lr 9.98e-04 | gnorm 0.44 | 35,295 tok/s\n"}
+,{"stream_name":"stdout","time":3551.597965994,"data":"  eval step   400 | train 4.4740 | val 4.6079 | val bpb 2.1973\n"}
+,{"stream_name":"stdout","time":3551.597969192,"data":"step   400 | loss 4.5200 | lr 9.94e-04 | gnorm 0.66 | 27,199 tok/s\n"}
+,{"stream_name":"stdout","time":3551.597972395,"data":"step   500 | loss 4.4704 | lr 9.86e-04 | gnorm 0.50 | 35,851 tok/s\n"}
+,{"stream_name":"stdout","time":3551.597975682,"data":"  eval step   600 | train 4.1340 | val 4.2775 | val bpb 2.0398\n"}
+,{"stream_name":"stdout","time":3551.597978881,"data":"step   600 | loss 4.2056 | lr 9.76e-04 | gnorm 0.57 | 28,006 tok/s\n"}
+,{"stream_name":"stdout","time":3551.597982189,"data":"step   700 | loss 4.2118 | lr 9.62e-04 | gnorm 0.55 | 35,183 tok/s\n"}
+,{"stream_name":"stdout","time":3551.597985433,"data":"  eval step   800 | train 3.9654 | val 4.1353 | val bpb 1.9720\n"}
+,{"stream_name":"stdout","time":3551.597988623,"data":"step   800 | loss 4.2506 | lr 9.46e-04 | gnorm 0.72 | 27,703 tok/s\n"}
+,{"stream_name":"stdout","time":3551.597992215,"data":"step   900 | loss 4.0613 | lr 9.27e-04 | gnorm 0.62 | 35,571 tok/s\n"}
+,{"stream_name":"stdout","time":3551.597995521,"data":"  eval step  1000 | train 3.8242 | val 4.0197 | val bpb 1.9168\n"}
+,{"stream_name":"stdout","time":3551.597998741,"data":"step  1000 | loss 3.8895 | lr 9.05e-04 | gnorm 0.63 | 27,806 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598002017,"data":"step  1100 | loss 3.9750 | lr 8.81e-04 | gnorm 0.62 | 35,332 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598005233,"data":"  eval step  1200 | train 3.7226 | val 3.9438 | val bpb 1.8807\n"}
+,{"stream_name":"stdout","time":3551.598008617,"data":"step  1200 | loss 3.7533 | lr 8.55e-04 | gnorm 0.65 | 27,766 tok/s\n"}
+,{"stream_name":"stdout","time":3551.59801369,"data":"step  1300 | loss 3.7658 | lr 8.26e-04 | gnorm 0.64 | 35,487 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598020181,"data":"  eval step  1400 | train 3.6295 | val 3.8708 | val bpb 1.8458\n"}
+,{"stream_name":"stdout","time":3551.598033248,"data":"step  1400 | loss 3.7484 | lr 7.96e-04 | gnorm 0.61 | 27,905 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598037176,"data":"step  1500 | loss 3.7837 | lr 7.64e-04 | gnorm 0.65 | 35,528 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598041067,"data":"  eval step  1600 | train 3.5656 | val 3.8264 | val bpb 1.8247\n"}
+,{"stream_name":"stdout","time":3551.598046118,"data":"step  1600 | loss 3.6766 | lr 7.31e-04 | gnorm 0.69 | 27,874 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598050233,"data":"step  1700 | loss 3.7145 | lr 6.96e-04 | gnorm 0.72 | 35,447 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598053603,"data":"  eval step  1800 | train 3.5048 | val 3.7773 | val bpb 1.8013\n"}
+,{"stream_name":"stdout","time":3551.598056827,"data":"step  1800 | loss 3.6231 | lr 6.60e-04 | gnorm 0.73 | 27,814 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598063248,"data":"step  1900 | loss 3.7292 | lr 6.24e-04 | gnorm 0.64 | 35,416 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598066606,"data":"  eval step  2000 | train 3.4414 | val 3.7459 | val bpb 1.7863\n"}
+,{"stream_name":"stdout","time":3551.598069941,"data":"step  2000 | loss 3.5796 | lr 5.87e-04 | gnorm 0.69 | 27,762 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598073183,"data":"step  2100 | loss 3.6304 | lr 5.50e-04 | gnorm 0.67 | 35,378 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598076402,"data":"  eval step  2200 | train 3.3881 | val 3.7020 | val bpb 1.7653\n"}
+,{"stream_name":"stdout","time":3551.598079638,"data":"step  2200 | loss 3.5787 | lr 5.13e-04 | gnorm 0.61 | 27,752 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598083003,"data":"step  2300 | loss 3.5335 | lr 4.76e-04 | gnorm 0.64 | 35,333 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598086306,"data":"  eval step  2400 | train 3.3479 | val 3.6799 | val bpb 1.7548\n"}
+,{"stream_name":"stdout","time":3551.598089509,"data":"step  2400 | loss 3.6039 | lr 4.40e-04 | gnorm 0.67 | 27,737 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598092731,"data":"step  2500 | loss 3.4836 | lr 4.04e-04 | gnorm 0.67 | 35,386 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598095956,"data":"  eval step  2600 | train 3.3072 | val 3.6567 | val bpb 1.7437\n"}
+,{"stream_name":"stdout","time":3551.598099234,"data":"step  2600 | loss 3.4813 | lr 3.69e-04 | gnorm 0.66 | 27,739 tok/s\n"}
+,{"stream_name":"stdout","time":3551.59810258,"data":"step  2700 | loss 3.4469 | lr 3.36e-04 | gnorm 0.70 | 35,384 tok/s\n"}
+,{"stream_name":"stdout","time":3551.59810756,"data":"  eval step  2800 | train 3.2755 | val 3.6307 | val bpb 1.7314\n"}
+,{"stream_name":"stdout","time":3551.598114089,"data":"step  2800 | loss 3.5391 | lr 3.04e-04 | gnorm 0.69 | 27,749 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598116741,"data":"step  2900 | loss 3.5253 | lr 2.74e-04 | gnorm 0.69 | 35,358 tok/s\n"}
+,{"stream_name":"stdout","time":3551.59814838,"data":"  eval step  3000 | train 3.2437 | val 3.6148 | val bpb 1.7238\n"}
+,{"stream_name":"stdout","time":3551.598153225,"data":"step  3000 | loss 3.5006 | lr 2.45e-04 | gnorm 0.70 | 27,700 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598157589,"data":"step  3100 | loss 3.4500 | lr 2.19e-04 | gnorm 0.70 | 35,319 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598161705,"data":"  eval step  3200 | train 3.2140 | val 3.5971 | val bpb 1.7153\n"}
+,{"stream_name":"stdout","time":3551.598165606,"data":"step  3200 | loss 3.3878 | lr 1.95e-04 | gnorm 0.68 | 27,736 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598169134,"data":"step  3300 | loss 3.3224 | lr 1.73e-04 | gnorm 0.67 | 35,435 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598172596,"data":"  eval step  3400 | train 3.1959 | val 3.5875 | val bpb 1.7107\n"}
+,{"stream_name":"stdout","time":3551.598176037,"data":"step  3400 | loss 3.4053 | lr 1.54e-04 | gnorm 0.70 | 27,842 tok/s\n"}
+,{"stream_name":"stdout","time":3551.59817953,"data":"step  3500 | loss 3.4055 | lr 1.38e-04 | gnorm 0.68 | 35,465 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598183074,"data":"  eval step  3600 | train 3.1788 | val 3.5757 | val bpb 1.7051\n"}
+,{"stream_name":"stdout","time":3551.598186556,"data":"step  3600 | loss 3.3025 | lr 1.24e-04 | gnorm 0.71 | 27,868 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598190087,"data":"step  3700 | loss 3.2927 | lr 1.14e-04 | gnorm 0.68 | 35,450 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598193559,"data":"  eval step  3800 | train 3.1626 | val 3.5665 | val bpb 1.7007\n"}
+,{"stream_name":"stdout","time":3551.598196958,"data":"step  3800 | loss 3.3702 | lr 1.06e-04 | gnorm 0.71 | 27,836 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598203488,"data":"step  3900 | loss 3.4158 | lr 1.02e-04 | gnorm 0.71 | 35,442 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598207108,"data":"  eval step  4000 | train 3.1536 | val 3.5630 | val bpb 1.6990\n"}
+,{"stream_name":"stdout","time":3551.598210518,"data":"\n"}
+,{"stream_name":"stdout","time":3551.598213776,"data":"best val loss 3.5630 (bpb 1.6990). sample:\n"}
+,{"stream_name":"stdout","time":3551.598217217,"data":"\n"}
+,{"stream_name":"stdout","time":3551.598225994,"data":"Trib, from such a king’s court\n"}
+,{"stream_name":"stdout","time":3551.598229612,"data":"Shall to rehearse the King, and his daughter,\n"}
+,{"stream_name":"stdout","time":3551.59825607,"data":"Unto whose state he hath committed.\n"}
+,{"stream_name":"stdout","time":3551.598260066,"data":"\n"}
+,{"stream_name":"stdout","time":3551.598263732,"data":"KING JOHN.\n"}
+,{"stream_name":"stdout","time":3551.598267428,"data":"You do rejoice a daughter, that she\n"}
+,{"stream_name":"stdout","time":3551.598271289,"data":"Should be the King’s king, and I, is my daughter,\n"}
+,{"stream_name":"stdout","time":3551.598274781,"data":"And you will send my servant to my daughter’s daughter.\n"}
+,{"stream_name":"stdout","time":3551.598278055,"data":"\n"}
+,{"stream_name":"stdout","time":3551.598281045,"data":"KING JOHN.\n"}
+,{"stream_name":"stdout","time":3551.598284145,"data":"She’s yours that, she being accus’d in her,\n"}
+,{"stream_name":"stdout","time":3551.598287449,"data":"She is not so far.\n"}
+,{"stream_name":"stdout","time":3551.598290613,"data":"\n"}
+,{"stream_name":"stdout","time":3551.598293672,"data":"DIANA.\n"}
+,{"stream_name":"stdout","time":3551.598296789,"data":"My gracious lord,\n"}
+,{"stream_name":"stdout","time":3551.598299924,"data":"And he did know you, if you have no power,\n"}
+,{"stream_name":"stdout","time":3551.598303137,"data":"You will not hold your offer.\n"}
+,{"stream_name":"stdout","time":3551.598306311,"data":"\n"}
+,{"stream_name":"stdout","time":3551.598309316,"data":"KING PHILIP.\n"}
+,{"stream_name":"stdout","time":3551.598312492,"data":"By the King, he is encompierced,\n"}
+,{"stream_name":"stdout","time":3551.5983157,"data":"And therefore she is to come from heaven.\n"}
+,{"stream_name":"stdout","time":3551.598318888,"data":"\n"}
+,{"stream_name":"stdout","time":3551.598322042,"data":" [_Exeunt._]\n"}
+,{"stream_name":"stdout","time":3551.598325183,"data":"\n"}
+,{"stream_name":"stdout","time":3551.598333839,"data":"\n"}
+,{"stream_name":"stdout","time":3551.598337217,"data":"\n"}
+,{"stream_name":"stdout","time":3551.598352064,"data":"\n"}
+,{"stream_name":"stdout","time":3551.59835607,"data":"ACT IV\n"}
+,{"stream_name":"stdout","time":3551.598359692,"data":"\n"}
+,{"stream_name":"stdout","time":3551.598363434,"data":"SCENE I. France. A street.\n"}
+,{"stream_name":"stdout","time":3551.598367181,"data":"\n"}
+,{"stream_name":"stdout","time":3551.598370325,"data":"\n"}
+,{"stream_name":"stdout","time":3551.598373369,"data":"Enter King John Albanor of York, Beaufort, Lancaster, Marquess,\n"}
+,{"stream_name":"stdout","time":3551.598376629,"data":"and Eleans, Black Prince of Mon Peter, and others.\n"}
+,{"stream_name":"stdout","time":3551.598379787,"data":"\n"}
+,{"stream_name":"stdout","time":3551.598382793,"data":"KING JOHN.\n"}
+,{"stream_name":"stdout","time":3551.598385938,"data":"O God, pardon me that my son is dead.\n"}
+,{"stream_name":"stdout","time":3551.598389065,"data":"\n"}
+,{"stream_name":"stdout","time":3551.59839206,"data":"KING JOHN.\n"}
+,{"stream_name":"stdout","time":3551.598398385,"data":"How now, brother! What would this be done?\n"}
+,{"stream_name":"stdout","time":3551.59840166,"data":"\n"}
+,{"stream_name":"stdout","time":3551.598404646,"data":"KING PHUIS.\n"}
+,{"stream_name":"stdout","time":3551.598407803,"data":"In faith of England, Lord Percy, this deadly slain.\n"}
+,{"stream_name":"stdout","time":3551.598415876,"data":"\n"}
+,{"stream_name":"stdout","time":3551.598418985,"data":"KING PHILIP.\n"}
+,{"stream_name":"stdout","time":3551.598423888,"data":"My lord, not an angry king!\n"}
+,{"stream_name":"stdout","time":3551.598430664,"data":"\n"}
+,{"stream_name":"stdout","time":3551.598433219,"data":"KING JOHN.\n"}
+,{"stream_name":"stdout","time":3551.598447496,"data":"The King is slain, and the Queen’s heir.\n"}
+,{"stream_name":"stdout","time":3551.598451764,"data":"\n"}
+,{"stream_name":"stdout","time":3551.598455356,"data":"KING JOHN.\n"}
+,{"stream_name":"stdout","time":3551.598459461,"data":"Why, this was the Duke a king of Warwick.\n"}
+,{"stream_name":"stdout","time":3551.598463245,"data":"\n"}
+,{"stream_name":"stdout","time":3551.598466411,"data":"DUCHESS.\n"}
+,{"stream_name":"stdout","time":3551.598469519,"data":"I am your king shall set the crown for the King.\n"}
+,{"stream_name":"stdout","time":3551.598472719,"data":"\n"}
+,{"stream_name":"stdout","time":3551.59847572,"data":"KING JOHN.\n"}
+,{"stream_name":"stdout","time":3551.598478846,"data":"’Tis a dead, most noble father,\n"}
+,{"stream_name":"stdout","time":3551.598482038,"data":"My king of Gaunt, and the King himself\n"}
+,{"stream_name":"stdout","time":3551.598485276,"data":"Whose sovereign and his gracious brother brother Beaufort,\n"}
+,{"stream_name":"stdout","time":3551.598488526,"data":"Fored\n"}
+,{"stream_name":"stdout","time":3551.598491658,"data":"== gpt2+relu-s1: done in 17.8 min\n"}
+,{"stream_name":"stdout","time":3551.59849483,"data":"\n"}
+,{"stream_name":"stdout","time":3551.598497915,"data":"== gpt2+bias-s2: model.preset=\"gpt2\" model.bias=true train.seed=2\n"}
+,{"stream_name":"stdout","time":3551.59850129,"data":"[gpt2+bias-s2] 5.85M params | backend cupy | data data/bpe4096 (vocab 4096, 1,578,753 train tokens, 0.27 tokens/param)\n"}
+,{"stream_name":"stdout","time":3551.598504793,"data":"model: GPTConfig(vocab_size=4096, block_size=256, n_layer=6, n_head=8, n_embd=256, dropout=0.2, bias=True, pos='learned', norm='layernorm', mlp='gelu', rope_base=10000.0, attn='naive')\n"}
+,{"stream_name":"stdout","time":3551.598508425,"data":"  eval step     0 | train 8.3590 | val 8.3590 | val bpb 3.9861\n"}
+,{"stream_name":"stdout","time":3551.598511722,"data":"step     0 | loss 8.3595 | lr 5.00e-06 | gnorm 4.82 | 998 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598514984,"data":"step   100 | loss 5.6685 | lr 5.05e-04 | gnorm 0.45 | 28,310 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598519978,"data":"  eval step   200 | train 4.9633 | val 5.0776 | val bpb 2.4213\n"}
+,{"stream_name":"stdout","time":3551.598526827,"data":"step   200 | loss 4.9428 | lr 1.00e-03 | gnorm 0.47 | 22,412 tok/s\n"}
+,{"stream_name":"stdout","time":3551.59853302,"data":"step   300 | loss 4.7342 | lr 9.98e-04 | gnorm 0.53 | 28,591 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598546829,"data":"  eval step   400 | train 4.5430 | val 4.6575 | val bpb 2.2210\n"}
+,{"stream_name":"stdout","time":3551.598551026,"data":"step   400 | loss 4.6078 | lr 9.94e-04 | gnorm 0.51 | 22,439 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598555146,"data":"step   500 | loss 4.4013 | lr 9.86e-04 | gnorm 0.58 | 28,419 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598559772,"data":"  eval step   600 | train 4.1914 | val 4.3321 | val bpb 2.0658\n"}
+,{"stream_name":"stdout","time":3551.598566716,"data":"step   600 | loss 4.3827 | lr 9.76e-04 | gnorm 0.54 | 22,405 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598570156,"data":"step   700 | loss 4.1558 | lr 9.62e-04 | gnorm 0.69 | 28,406 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598573469,"data":"  eval step   800 | train 4.0059 | val 4.1697 | val bpb 1.9884\n"}
+,{"stream_name":"stdout","time":3551.598576693,"data":"step   800 | loss 4.1688 | lr 9.46e-04 | gnorm 0.54 | 22,497 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598579947,"data":"step   900 | loss 3.9842 | lr 9.27e-04 | gnorm 0.65 | 28,557 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598583238,"data":"  eval step  1000 | train 3.8662 | val 4.0540 | val bpb 1.9332\n"}
+,{"stream_name":"stdout","time":3551.598586556,"data":"step  1000 | loss 4.0015 | lr 9.05e-04 | gnorm 0.61 | 22,365 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598589806,"data":"step  1100 | loss 3.9787 | lr 8.81e-04 | gnorm 0.56 | 28,468 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598593009,"data":"  eval step  1200 | train 3.7571 | val 3.9808 | val bpb 1.8983\n"}
+,{"stream_name":"stdout","time":3551.598596253,"data":"step  1200 | loss 3.9495 | lr 8.55e-04 | gnorm 0.57 | 22,462 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598599578,"data":"step  1300 | loss 3.7300 | lr 8.26e-04 | gnorm 0.54 | 28,469 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598603397,"data":"  eval step  1400 | train 3.6688 | val 3.9082 | val bpb 1.8637\n"}
+,{"stream_name":"stdout","time":3551.598606708,"data":"step  1400 | loss 3.9330 | lr 7.96e-04 | gnorm 0.56 | 22,394 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598609947,"data":"step  1500 | loss 3.7681 | lr 7.64e-04 | gnorm 0.58 | 28,421 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598613185,"data":"  eval step  1600 | train 3.5902 | val 3.8446 | val bpb 1.8333\n"}
+,{"stream_name":"stdout","time":3551.5986167,"data":"step  1600 | loss 3.6104 | lr 7.31e-04 | gnorm 0.60 | 22,378 tok/s\n"}
+,{"stream_name":"stdout","time":3551.59862518,"data":"step  1700 | loss 3.7667 | lr 6.96e-04 | gnorm 0.58 | 28,409 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598628693,"data":"  eval step  1800 | train 3.5227 | val 3.7953 | val bpb 1.8098\n"}
+,{"stream_name":"stdout","time":3551.598643238,"data":"step  1800 | loss 3.6891 | lr 6.60e-04 | gnorm 0.56 | 22,419 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598647216,"data":"step  1900 | loss 3.5668 | lr 6.24e-04 | gnorm 0.61 | 28,494 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598651361,"data":"  eval step  2000 | train 3.4674 | val 3.7620 | val bpb 1.7940\n"}
+,{"stream_name":"stdout","time":3551.59865528,"data":"step  2000 | loss 3.5804 | lr 5.87e-04 | gnorm 0.62 | 22,418 tok/s\n"}
+,{"stream_name":"stdout","time":3551.59865867,"data":"step  2100 | loss 3.5774 | lr 5.50e-04 | gnorm 0.61 | 28,407 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598661978,"data":"  eval step  2200 | train 3.4108 | val 3.7259 | val bpb 1.7767\n"}
+,{"stream_name":"stdout","time":3551.598665203,"data":"step  2200 | loss 3.5206 | lr 5.13e-04 | gnorm 0.60 | 22,382 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598668432,"data":"step  2300 | loss 3.5718 | lr 4.76e-04 | gnorm 0.65 | 28,476 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598671703,"data":"  eval step  2400 | train 3.3609 | val 3.6932 | val bpb 1.7612\n"}
+,{"stream_name":"stdout","time":3551.598674955,"data":"step  2400 | loss 3.5910 | lr 4.40e-04 | gnorm 0.60 | 22,409 tok/s\n"}
+,{"stream_name":"stdout","time":3551.59867818,"data":"step  2500 | loss 3.5100 | lr 4.04e-04 | gnorm 0.62 | 28,412 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598681449,"data":"  eval step  2600 | train 3.3163 | val 3.6721 | val bpb 1.7511\n"}
+,{"stream_name":"stdout","time":3551.598687937,"data":"step  2600 | loss 3.6432 | lr 3.69e-04 | gnorm 0.69 | 22,402 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598691225,"data":"step  2700 | loss 3.4875 | lr 3.36e-04 | gnorm 0.63 | 28,386 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598694585,"data":"  eval step  2800 | train 3.2815 | val 3.6444 | val bpb 1.7379\n"}
+,{"stream_name":"stdout","time":3551.59869779,"data":"step  2800 | loss 3.4041 | lr 3.04e-04 | gnorm 0.63 | 22,372 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598701044,"data":"step  2900 | loss 3.3634 | lr 2.74e-04 | gnorm 0.64 | 28,408 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598704261,"data":"  eval step  3000 | train 3.2451 | val 3.6255 | val bpb 1.7289\n"}
+,{"stream_name":"stdout","time":3551.598707583,"data":"step  3000 | loss 3.3998 | lr 2.45e-04 | gnorm 0.65 | 22,414 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598712489,"data":"step  3100 | loss 3.3774 | lr 2.19e-04 | gnorm 0.69 | 28,398 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598718798,"data":"  eval step  3200 | train 3.2168 | val 3.6111 | val bpb 1.7220\n"}
+,{"stream_name":"stdout","time":3551.598746313,"data":"step  3200 | loss 3.3200 | lr 1.95e-04 | gnorm 0.63 | 22,383 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598750809,"data":"step  3300 | loss 3.4232 | lr 1.73e-04 | gnorm 0.68 | 28,387 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598754888,"data":"  eval step  3400 | train 3.1939 | val 3.5967 | val bpb 1.7151\n"}
+,{"stream_name":"stdout","time":3551.598758768,"data":"step  3400 | loss 3.4190 | lr 1.54e-04 | gnorm 0.66 | 22,380 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598762018,"data":"step  3500 | loss 3.4097 | lr 1.38e-04 | gnorm 0.66 | 28,420 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598765282,"data":"  eval step  3600 | train 3.1765 | val 3.5895 | val bpb 1.7117\n"}
+,{"stream_name":"stdout","time":3551.59876851,"data":"step  3600 | loss 3.4189 | lr 1.24e-04 | gnorm 0.65 | 22,375 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598771735,"data":"step  3700 | loss 3.1603 | lr 1.14e-04 | gnorm 0.65 | 28,413 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598774955,"data":"  eval step  3800 | train 3.1620 | val 3.5828 | val bpb 1.7085\n"}
+,{"stream_name":"stdout","time":3551.598778178,"data":"step  3800 | loss 3.2991 | lr 1.06e-04 | gnorm 0.65 | 22,367 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598781376,"data":"step  3900 | loss 3.3529 | lr 1.02e-04 | gnorm 0.68 | 28,439 tok/s\n"}
+,{"stream_name":"stdout","time":3551.598784608,"data":"  eval step  4000 | train 3.1499 | val 3.5748 | val bpb 1.7047\n"}
+,{"stream_name":"stdout","time":3551.598787806,"data":"\n"}
+,{"stream_name":"stdout","time":3551.598790868,"data":"best val loss 3.5748 (bpb 1.7047). sample:\n"}
+,{"stream_name":"stdout","time":3551.598794114,"data":"\n"}
+,{"stream_name":"stdout","time":3551.59879722,"data":"And he, a woman that hath made me happy.\n"}
+,{"stream_name":"stdout","time":3551.598800425,"data":"O, now, see I will not bind me from my life;\n"}
+,{"stream_name":"stdout","time":3551.598803618,"data":"For I am not a villain, and I know no.\n"}
+,{"stream_name":"stdout","time":3551.598806921,"data":"\n"}
+,{"stream_name":"stdout","time":3551.59881164,"data":"RICHARD.\n"}
+,{"stream_name":"stdout","time":3551.598818801,"data":"Then, then, now I do confess, I do love thee.\n"}
+,{"stream_name":"stdout","time":3551.598833673,"data":"\n"}
+,{"stream_name":"stdout","time":3551.598837385,"data":"QUEEN MARGARET.\n"}
+,{"stream_name":"stdout","time":3551.598841194,"data":"Why, canst thou be thy Protector for that?\n"}
+,{"stream_name":"stdout","time":3551.59884499,"data":"No, no. I am no more than thou canst.\n"}
+,{"stream_name":"stdout","time":3551.598849151,"data":"\n"}
+,{"stream_name":"stdout","time":3551.598855796,"data":"ANNE.\n"}
+,{"stream_name":"stdout","time":3551.598858928,"data":"Marry, I dare love thee.\n"}
+,{"stream_name":"stdout","time":3551.598862111,"data":"\n"}
+,{"stream_name":"stdout","time":3551.598865134,"data":"ANNE.\n"}
+,{"stream_name":"stdout","time":3551.598868213,"data":"But stay, gentle sister, as you love me?\n"}
+,{"stream_name":"stdout","time":3551.598871366,"data":"\n"}
+,{"stream_name":"stdout","time":3551.59887439,"data":"RICHARD.\n"}
+,{"stream_name":"stdout","time":3551.598877478,"data":"Yes, my lord.\n"}
+,{"stream_name":"stdout","time":3551.598880555,"data":"\n"}
+,{"stream_name":"stdout","time":3551.598883672,"data":"RICHARD.\n"}
+,{"stream_name":"stdout","time":3551.598886784,"data":"Ay, my lord.\n"}
+,{"stream_name":"stdout","time":3551.598889855,"data":"\n"}
+,{"stream_name":"stdout","time":3551.598892965,"data":"RICHARD.\n"}
+,{"stream_name":"stdout","time":3551.59889603,"data":"Then, so much, as I should, I’ll be loyal.\n"}
+,{"stream_name":"stdout","time":3551.598899358,"data":"\n"}
+,{"stream_name":"stdout","time":3551.598902368,"data":"RICHARD.\n"}
+,{"stream_name":"stdout","time":3551.598907295,"data":"Marry, and I think thou dost. That I will take thy soul.\n"}
+,{"stream_name":"stdout","time":3551.598910477,"data":"\n"}
+,{"stream_name":"stdout","time":3551.598917011,"data":"ANNE.\n"}
+,{"stream_name":"stdout","time":3551.598931323,"data":"Why, not I; and thou art a woman, boy.\n"}
+,{"stream_name":"stdout","time":3551.598935342,"data":"\n"}
+,{"stream_name":"stdout","time":3551.598938968,"data":"ANNE.\n"}
+,{"stream_name":"stdout","time":3551.598942788,"data":"I would I were not honest, so did I.\n"}
+,{"stream_name":"stdout","time":3551.598946624,"data":"\n"}
+,{"stream_name":"stdout","time":3551.598949671,"data":"RICHARD.\n"}
+,{"stream_name":"stdout","time":3551.598952805,"data":"But look not upon the cassel that I am the one.\n"}
+,{"stream_name":"stdout","time":3551.598956006,"data":"\n"}
+,{"stream_name":"stdout","time":3551.598959029,"data":"ANNE.\n"}
+,{"stream_name":"stdout","time":3551.598962081,"data":"I fear it better, madam.\n"}
+,{"stream_name":"stdout","time":3551.598965199,"data":"\n"}
+,{"stream_name":"stdout","time":3551.598968278,"data":"ANNE.\n"}
+,{"stream_name":"stdout","time":3551.598971365,"data":"I cannot see that oath for that I think,\n"}
+,{"stream_name":"stdout","time":3551.598974681,"data":"If that I had noted my brother,\n"}
+,{"stream_name":"stdout","time":3551.5989779,"data":"A mother had a mother of old child.\n"}
+,{"stream_name":"stdout","time":3551.59898113,"data":"But so do I. But now, gentle cousin,\n"}
+,{"stream_name":"stdout","time":3551.598984318,"data":"I would not have her, nor did she weep.\n"}
+,{"stream_name":"stdout","time":3551.598987509,"data":"\n"}
+,{"stream_name":"stdout","time":3551.598990555,"data":"ANNE.\n"}
+,{"stream_name":"stdout","time":3551.598993643,"data":"Ay me, and I had her now, but I am sure.\n"}
+,{"stream_name":"stdout","time":3551.598996832,"data":"\n"}
+,{"stream_name":"stdout","time":3551.598999945,"data":"RICHARD.\n"}
+,{"stream_name":"stdout","time":3551.599008955,"data":"I were not my uncle, hers, nor she is.\n"}
+,{"stream_name":"stdout","time":3551.599012051,"data":"\n"}
+,{"stream_name":"stdout","time":3551.599025886,"data":"ANNE.\n"}
+,{"stream_name":"stdout","time":3551.5990299,"data":"No, my lord, madam; I was no man.\n"}
+,{"stream_name":"stdout","time":3551.599033613,"data":"\n"}
+,{"stream_name":"stdout","time":3551.599036909,"data":"ANNE.\n"}
+,{"stream_name":"stdout","time":3551.599044303,"data":"No, be’s as you saw, my lord, as I did,\n"}
+,{"stream_name":"stdout","time":3551.599047801,"data":"That I have made them. He had not been here.\n"}
+,{"stream_name":"stdout","time":3551.599051068,"data":"\n"}
+,{"stream_name":"stdout","time":3551.59905406,"data":"ANNE.\n"}
+,{"stream_name":"stdout","time":3551.599057223,"data":"I had a daughter,\n"}
+,{"stream_name":"stdout","time":3551.599060421,"data":"== gpt2+bias-s2: done in 22.0 min\n"}
+,{"stream_name":"stdout","time":3551.59906362,"data":"\n"}
+,{"stream_name":"stdout","time":3551.599066723,"data":"== kavi-momentum-lr0.1-s1: model.preset=\"kavi\" train.optimizer=\"momentum\" train.momentum=0.9 train.lr=0.1 train.min_lr=0.01 train.seed=1\n"}
+,{"stream_name":"stdout","time":3551.599070523,"data":"[kavi-momentum-lr0.1-s1] 5.76M params | backend cupy | data data/bpe4096 (vocab 4096, 1,578,753 train tokens, 0.27 tokens/param)\n"}
+,{"stream_name":"stdout","time":3551.599074408,"data":"model: GPTConfig(vocab_size=4096, block_size=256, n_layer=6, n_head=8, n_embd=256, dropout=0.2, bias=False, pos='rope', norm='rmsnorm', mlp='swiglu', rope_base=10000.0, attn='naive')\n"}
+,{"stream_name":"stdout","time":3551.599078133,"data":"  eval step     0 | train 8.3778 | val 8.3762 | val bpb 3.9943\n"}
+,{"stream_name":"stdout","time":3551.59908145,"data":"step     0 | loss 8.3700 | lr 5.00e-04 | gnorm 5.00 | 1,139 tok/s\n"}
+,{"stream_name":"stdout","time":3551.599084727,"data":"step   100 | loss 6.1351 | lr 5.05e-02 | gnorm 0.49 | 32,803 tok/s\n"}
+,{"stream_name":"stdout","time":3551.599087935,"data":"  eval step   200 | train 5.3875 | val 5.5178 | val bpb 2.6312\n"}
+,{"stream_name":"stdout","time":3551.599091103,"data":"step   200 | loss 5.3301 | lr 1.00e-01 | gnorm 0.84 | 25,772 tok/s\n"}
+,{"stream_name":"stdout","time":3551.599094485,"data":"step   300 | loss 5.0587 | lr 9.98e-02 | gnorm 0.61 | 33,140 tok/s\n"}
+,{"stream_name":"stdout","time":3551.599102828,"data":"  eval step   400 | train 4.7842 | val 4.9109 | val bpb 2.3418\n"}
+,{"stream_name":"stdout","time":3551.599105551,"data":"step   400 | loss 4.8115 | lr 9.94e-02 | gnorm 1.11 | 25,817 tok/s\n"}
+,{"stream_name":"stdout","time":3551.599119729,"data":"step   500 | loss 4.7704 | lr 9.86e-02 | gnorm 0.88 | 32,895 tok/s\n"}
+,{"stream_name":"stdout","time":3551.599123768,"data":"  eval step   600 | train 4.4137 | val 4.5588 | val bpb 2.1739\n"}
+,{"stream_name":"stdout","time":3551.599127815,"data":"step   600 | loss 4.4535 | lr 9.76e-02 | gnorm 0.82 | 25,898 tok/s\n"}
+,{"stream_name":"stdout","time":3551.599131518,"data":"step   700 | loss 4.4276 | lr 9.62e-02 | gnorm 0.83 | 33,077 tok/s\n"}
+,{"stream_name":"stdout","time":3551.599135888,"data":"  eval step   800 | train 4.1571 | val 4.3063 | val bpb 2.0535\n"}
+,{"stream_name":"stdout","time":3551.599140355,"data":"step   800 | loss 4.4332 | lr 9.46e-02 | gnorm 0.90 | 25,961 tok/s\n"}
+,{"stream_name":"stdout","time":3551.599143668,"data":"step   900 | loss 4.2563 | lr 9.27e-02 | gnorm 0.93 | 33,035 tok/s\n"}
+,{"stream_name":"stdout","time":3551.59914693,"data":"  eval step  1000 | train 4.0076 | val 4.1544 | val bpb 1.9811\n"}
+,{"stream_name":"stdout","time":3551.599150143,"data":"step  1000 | loss 4.0828 | lr 9.05e-02 | gnorm 0.89 | 25,893 tok/s\n"}
+,{"stream_name":"stdout","time":3551.59915338,"data":"step  1100 | loss 4.1151 | lr 8.81e-02 | gnorm 0.88 | 32,967 tok/s\n"}
+,{"stream_name":"stdout","time":3551.599156606,"data":"  eval step  1200 | train 3.8890 | val 4.0535 | val bpb 1.9330\n"}
+,{"stream_name":"stdout","time":3551.599159786,"data":"step  1200 | loss 3.9066 | lr 8.55e-02 | gnorm 0.86 | 25,846 tok/s\n"}
+,{"stream_name":"stdout","time":3551.599163045,"data":"step  1300 | loss 3.9045 | lr 8.26e-02 | gnorm 0.87 | 32,924 tok/s\n"}
+,{"stream_name":"stdout","time":3551.599169465,"data":"  eval step  1400 | train 3.7841 | val 3.9689 | val bpb 1.8926\n"}
+,{"stream_name":"stdout","time":3551.599172763,"data":"step  1400 | loss 3.9061 | lr 7.96e-02 | gnorm 0.84 | 25,833 tok/s\n"}
+,{"stream_name":"stdout","time":3551.599176069,"data":"step  1500 | loss 3.8987 | lr 7.64e-02 | gnorm 0.90 | 32,891 tok/s\n"}
+,{"stream_name":"stdout","time":3551.599179363,"data":"  eval step  1600 | train 3.6994 | val 3.8978 | val bpb 1.8587\n"}
+,{"stream_name":"stdout","time":3551.599182583,"data":"step  1600 | loss 3.8090 | lr 7.31e-02 | gnorm 0.86 | 25,801 tok/s\n"}
+,{"stream_name":"stdout","time":3551.599185811,"data":"step  1700 | loss 3.8449 | lr 6.96e-02 | gnorm 0.89 | 32,876 tok/s\n"}
+,{"stream_name":"stdout","time":3551.599189078,"data":"  eval step  1800 | train 3.6339 | val 3.8431 | val bpb 1.8326\n"}
+,{"stream_name":"stdout","time":3551.599198972,"data":"step  1800 | loss 3.7439 | lr 6.60e-02 | gnorm 0.88 | 25,861 tok/s\n"}
+,{"stream_name":"stdout","time":3551.599201884,"data":"step  1900 | loss 3.8337 | lr 6.24e-02 | gnorm 0.85 | 32,957 tok/s\n"}
+,{"stream_name":"stdout","time":3551.599216753,"data":"  eval step  2000 | train 3.5699 | val 3.8055 | val bpb 1.8147\n"}
+,{"stream_name":"stdout","time":3551.599220721,"data":"step  2000 | loss 3.6941 | lr 5.87e-02 | gnorm 0.88 | 25,869 tok/s\n"}
+,{"stream_name":"stdout","time":3551.599224711,"data":"step  2100 | loss 3.7224 | lr 5.50e-02 | gnorm 0.97 | 32,987 tok/s\n"}
+,{"stream_name":"stdout","time":3551.599228235,"data":"  eval step  2200 | train 3.5193 | val 3.7649 | val bpb 1.7954\n"}
+,{"stream_name":"stdout","time":3551.599232261,"data":"step  2200 | loss 3.7006 | lr 5.13e-02 | gnorm 0.84 | 25,881 tok/s\n"}
+,{"stream_name":"stdout","time":3551.599235665,"data":"step  2300 | loss 3.6506 | lr 4.76e-02 | gnorm 0.85 | 32,941 tok/s\n"}
+,{"stream_name":"stdout","time":3551.599238946,"data":"  eval step  2400 | train 3.4766 | val 3.7385 | val bpb 1.7827\n"}
+,{"stream_name":"stdout","time":3551.59924219,"data":"step  2400 | loss 3.7546 | lr 4.40e-02 | gnorm 0.89 | 25,881 tok/s\n"}
+,{"stream_name":"stdout","time":3551.599245451,"data":"step  2500 | loss 3.6114 | lr 4.04e-02 | gnorm 0.90 | 32,933 tok/s\n"}
+,{"stream_name":"stdout","time":3551.599248685,"data":"  eval step  2600 | train 3.4388 | val 3.7099 | val bpb 1.7691\n"}
+,{"stream_name":"stdout","time":3551.599251893,"data":"step  2600 | loss 3.5849 | lr 3.69e-02 | gnorm 0.91 | 25,858 tok/s\n"}
+,{"stream_name":"stdout","time":3551.599255126,"data":"step  2700 | loss 3.5608 | lr 3.36e-02 | gnorm 0.94 | 32,929 tok/s\n"}
+,{"stream_name":"stdout","time":3551.599258363,"data":"  eval step  2800 | train 3.4065 | val 3.6879 | val bpb 1.7586\n"}
+,{"stream_name":"stdout","time":3551.599261574,"data":"step  2800 | loss 3.6633 | lr 3.04e-02 | gnorm 0.91 | 25,831 tok/s\n"}
+,{"stream_name":"stdout","time":3551.599264766,"data":"step  2900 | loss 3.6419 | lr 2.74e-02 | gnorm 0.93 | 32,913 tok/s\n"}
+,{"stream_name":"stdout","time":3551.599267966,"data":"  eval step  3000 | train 3.3772 | val 3.6707 | val bpb 1.7504\n"}
+,{"stream_name":"stdout","time":3551.599271194,"data":"step  3000 | loss 3.6047 | lr 2.45e-02 | gnorm 0.96 | 25,853 tok/s\n"}
+,{"stream_name":"stdout","time":3551.599274406,"data":"step  3100 | loss 3.5749 | lr 2.19e-02 | gnorm 0.91 | 32,909 tok/s\n"}
+,{"stream_name":"stdout","time":3551.59927768,"data":"  eval step  3200 | train 3.3503 | val 3.6512 | val bpb 1.7411\n"}
+,{"stream_name":"stdout","time":3551.599280901,"data":"step  3200 | loss 3.5114 | lr 1.95e-02 | gnorm 0.96 | 25,855 tok/s\n"}
+,{"stream_name":"stdout","time":3551.599284161,"data":"step  3300 | loss 3.4376 | lr 1.73e-02 | gnorm 0.91 | 32,973 tok/s\n"}
+,{"stream_name":"stdout","time":3551.599296305,"data":"  eval step  3400 | train 3.3328 | val 3.6365 | val bpb 1.7341\n"}
+,{"stream_name":"stdout","time":3551.599299222,"data":"step  3400 | loss 3.5431 | lr 1.54e-02 | gnorm 0.96 | 25,901 tok/s\n"}
+,{"stream_name":"stdout","time":3551.599314761,"data":"step  3500 | loss 3.5146 | lr 1.38e-02 | gnorm 0.94 | 32,963 tok/s\n"}
+,{"stream_name":"stdout","time":3551.599318791,"data":"  eval step  3600 | train 3.3168 | val 3.6254 | val bpb 1.7288\n"}
+,{"stream_name":"stdout","time":3551.599322831,"data":"step  3600 | loss 3.4496 | lr 1.24e-02 | gnorm 0.93 | 25,863 tok/s\n"}
+,{"stream_name":"stdout","time":3551.599326758,"data":"step  3700 | loss 3.4078 | lr 1.14e-02 | gnorm 0.92 | 32,915 tok/s\n"}
+,{"stream_name":"stdout","time":3551.5993305,"data":"  eval step  3800 | train 3.3050 | val 3.6173 | val bpb 1.7249\n"}
+,{"stream_name":"stdout","time":3551.599333805,"data":"step  3800 | loss 3.5173 | lr 1.06e-02 | gnorm 0.96 | 25,802 tok/s\n"}
+,{"stream_name":"stdout","time":3551.599337674,"data":"step  3900 | loss 3.5522 | lr 1.02e-02 | gnorm 0.96 | 33,010 tok/s\n"}
+,{"stream_name":"stdout","time":3551.59934102,"data":"  eval step  4000 | train 3.2934 | val 3.6113 | val bpb 1.7221\n"}
+,{"stream_name":"stdout","time":3551.599344228,"data":"\n"}
+,{"stream_name":"stdout","time":3551.599347309,"data":"best val loss 3.6113 (bpb 1.7221). sample:\n"}
+,{"stream_name":"stdout","time":3551.599350552,"data":"\n"}
+,{"stream_name":"stdout","time":3551.59935363,"data":"The lin-stuffed in the air and tail\n"}
+,{"stream_name":"stdout","time":3551.599356894,"data":"Of the winds and fronted in the roaring shore,\n"}
+,{"stream_name":"stdout","time":3551.599360163,"data":"But in a flower, and then by the very eagle\n"}
+,{"stream_name":"stdout","time":3551.599363368,"data":"Still in a ravenname, and a park\n"}
+,{"stream_name":"stdout","time":3551.599366565,"data":"Bear and a shrong. Thomas the moon\n"}
+,{"stream_name":"stdout","time":3551.599369765,"data":"Were not the most precious air; but in the sea\n"}
+,{"stream_name":"stdout","time":3551.599372905,"data":"Which was but a kingly monkish for all,\n"}
+,{"stream_name":"stdout","time":3551.599376097,"data":"Who then we do fear them.\n"}
+,{"stream_name":"stdout","time":3551.599379288,"data":"\n"}
+,{"stream_name":"stdout","time":3551.599382428,"data":"PROSPERO.\n"}
+,{"stream_name":"stdout","time":3551.599387182,"data":"You, sir,\n"}
+,{"stream_name":"stdout","time":3551.599394329,"data":"That had a husband, and the heavens for you\n"}
+,{"stream_name":"stdout","time":3551.599413835,"data":"Did not be to know the state of this?\n"}
+,{"stream_name":"stdout","time":3551.599418457,"data":"\n"}
+,{"stream_name":"stdout","time":3551.599422169,"data":"PROSPERO.\n"}
+,{"stream_name":"stdout","time":3551.59942578,"data":"What was the king and the Queen?\n"}
+,{"stream_name":"stdout","time":3551.599428907,"data":"\n"}
+,{"stream_name":"stdout","time":3551.599431978,"data":"ALENAS.\n"}
+,{"stream_name":"stdout","time":3551.599435082,"data":"Not a queen\n"}
+,{"stream_name":"stdout","time":3551.59943819,"data":"To all the heavens be not fifteen years, nor\n"}
+,{"stream_name":"stdout","time":3551.59944133,"data":"Seeming him out of all but the packet\n"}
+,{"stream_name":"stdout","time":3551.599444494,"data":"That has no eyes.\n"}
+,{"stream_name":"stdout","time":3551.59944763,"data":"\n"}
+,{"stream_name":"stdout","time":3551.59945072,"data":"ARVIRAGUS.\n"}
+,{"stream_name":"stdout","time":3551.599453829,"data":"You have caught.\n"}
+,{"stream_name":"stdout","time":3551.599456936,"data":"\n"}
+,{"stream_name":"stdout","time":3551.59945996,"data":"GUIDERIUS.\n"}
+,{"stream_name":"stdout","time":3551.599466014,"data":"No, my lord.\n"}
+,{"stream_name":"stdout","time":3551.599469239,"data":"\n"}
+,{"stream_name":"stdout","time":3551.599472324,"data":"PROSPERO.\n"}
+,{"stream_name":"stdout","time":3551.599475427,"data":"No more,\n"}
+,{"stream_name":"stdout","time":3551.599478652,"data":"I never saw you, but I would not have him\n"}
+,{"stream_name":"stdout","time":3551.599487622,"data":"To be as they saw. And here I did not be.\n"}
+,{"stream_name":"stdout","time":3551.599490969,"data":"I do not believe it.\n"}
+,{"stream_name":"stdout","time":3551.599505897,"data":"\n"}
+,{"stream_name":"stdout","time":3551.599509797,"data":"ARVIRAGUS.\n"}
+,{"stream_name":"stdout","time":3551.599513457,"data":"I do not know\n"}
+,{"stream_name":"stdout","time":3551.599517307,"data":"Through this; but as much as I saw them,\n"}
+,{"stream_name":"stdout","time":3551.599521213,"data":"Or all are too much more than the rest,\n"}
+,{"stream_name":"stdout","time":3551.599524541,"data":"That we are the people’s tripper.\n"}
+,{"stream_name":"stdout","time":3551.599527779,"data":"\n"}
+,{"stream_name":"stdout","time":3551.599530866,"data":"BELARIUS.\n"}
+,{"stream_name":"stdout","time":3551.59953396,"data":"The gods that do,\n"}
+,{"stream_name":"stdout","time":3551.599537117,"data":"And I can tell you were.\n"}
+,{"stream_name":"stdout","time":3551.599540264,"data":"\n"}
+,{"stream_name":"stdout","time":3551.599543259,"data":"ARVIRAGUS.\n"}
+,{"stream_name":"stdout","time":3551.599546385,"data":"What,\n"}
+,{"stream_name":"stdout","time":3551.599549432,"data":"When we are o’ the gods’s death!\n"}
+,{"stream_name":"stdout","time":3551.599552639,"data":"\n"}
+,{"stream_name":"stdout","time":3551.599555642,"data":"ARVIRAGUS.\n"}
+,{"stream_name":"stdout","time":3551.599558683,"data":"I have heard thee.\n"}
+,{"stream_name":"stdout","time":3551.59956186,"data":"\n"}
+,{"stream_name":"stdout","time":3551.59956484,"data":"BELARIUS.\n"}
+,{"stream_name":"stdout","time":3551.599568019,"data":"You have spoke\n"}
+,{"stream_name":"stdout","time":3551.599571234,"data":"To have a little little of a father.\n"}
+,{"stream_name":"stdout","time":3551.599574745,"data":"\n"}
+,{"stream_name":"stdout","time":3551.599579501,"data":"ARVIRAGUS.\n"}
+,{"stream_name":"stdout","time":3551.599586094,"data":"What shall we call it?\n"}
+,{"stream_name":"stdout","time":3551.599600579,"data":"\n"}
+,{"stream_name":"stdout","time":3551.599604595,"data":"ARVIRAGUS.\n"}
+,{"stream_name":"stdout","time":3551.599608285,"data":"== kavi-momentum-lr0.1-s1: done in 19.1 min\n"}
+,{"stream_name":"stdout","time":3551.599612342,"data":"\n"}
+,{"stream_name":"stdout","time":3551.599616024,"data":"$ /usr/bin/python3 scripts/summarize.py /kaggle/working/runs --plot /kaggle/working/runs/curves.png\n"}
+,{"stream_name":"stdout","time":3552.912231463,"data":"| run | data | best val loss | best val bpb | at step | final val-train gap | min |\n"}
+,{"stream_name":"stdout","time":3552.912256221,"data":"|---|---|---|---|---|---|---|\n"}
+,{"stream_name":"stdout","time":3552.912260536,"data":"| gpt2+relu-s2 | bpe4096 | 3.5615 | **1.6984** | 4000 | +0.412 | 17 |\n"}
+,{"stream_name":"stdout","time":3552.912264541,"data":"| gpt2+relu-s1 | bpe4096 | 3.5630 | **1.6990** | 4000 | +0.409 | 18 |\n"}
+,{"stream_name":"stdout","time":3552.91226859,"data":"| gpt2+bias-s1 | bpe4096 | 3.5737 | **1.7041** | 4000 | +0.424 | 21 |\n"}
+,{"stream_name":"stdout","time":3552.912272418,"data":"| gpt2+bias-s2 | bpe4096 | 3.5748 | **1.7047** | 4000 | +0.425 | 22 |\n"}
+,{"stream_name":"stdout","time":3552.912276183,"data":"| kavi-momentum-lr0.1-s1 | bpe4096 | 3.6113 | **1.7221** | 4000 | +0.318 | 19 |\n"}
+,{"stream_name":"stdout","time":3552.912289134,"data":"| kavi-momentum-lr0.03-s1 | bpe4096 | 4.0183 | **1.9162** | 4000 | +0.170 | 18 |\n"}
+,{"stream_name":"stdout","time":3552.912293151,"data":"\n"}
+,{"stream_name":"stdout","time":3552.912296707,"data":"| config (over seeds) | mean val bpb | min | max | n |\n"}
+,{"stream_name":"stdout","time":3552.912300351,"data":"|---|---|---|---|---|\n"}
+,{"stream_name":"stdout","time":3552.912303898,"data":"| gpt2+relu | **1.6987** | 1.6984 | 1.6990 | 2 |\n"}
+,{"stream_name":"stdout","time":3552.91230772,"data":"| gpt2+bias | **1.7044** | 1.7041 | 1.7047 | 2 |\n"}
+,{"stream_name":"stdout","time":3552.912311426,"data":"\n"}
+,{"stream_name":"stdout","time":3552.912314875,"data":"plot -\u003e /kaggle/working/runs/curves.png\n"}
+,{"stream_name":"stdout","time":3553.004753279,"data":"total 59.2 min, sweep exit code 0\n"}
+,{"stream_name":"stderr","time":3555.393128478,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":3555.393159781,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":3555.701628596,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":3555.701652459,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":3557.512972989,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":3558.519530676,"data":"[NbConvertApp] Writing 340284 bytes to __results__.html\n"}
+]

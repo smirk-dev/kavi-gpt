@@ -1,0 +1,391 @@
+
+== gpt2+relu-s1: model.preset="gpt2" model.mlp="relu" train.seed=1
+[gpt2+relu-s1] 5.84M params | backend cupy | data data/bpe4096 (vocab 4096, 1,578,753 train tokens, 0.27 tokens/param)
+model: GPTConfig(vocab_size=4096, block_size=256, n_layer=6, n_head=8, n_embd=256, dropout=0.2, bias=False, pos='learned', norm='layernorm', mlp='relu', rope_base=10000.0, attn='naive')
+  eval step     0 | train 8.3768 | val 8.3752 | val bpb 3.9938
+step     0 | loss 8.3740 | lr 5.00e-06 | gnorm 5.92 | 785 tok/s
+step   100 | loss 5.7589 | lr 5.05e-04 | gnorm 0.39 | 38,246 tok/s
+  eval step   200 | train 4.9736 | val 5.0971 | val bpb 2.4306
+step   200 | loss 4.9156 | lr 1.00e-03 | gnorm 0.45 | 29,015 tok/s
+step   300 | loss 4.7583 | lr 9.98e-04 | gnorm 0.44 | 35,295 tok/s
+  eval step   400 | train 4.4740 | val 4.6079 | val bpb 2.1973
+step   400 | loss 4.5200 | lr 9.94e-04 | gnorm 0.66 | 27,199 tok/s
+step   500 | loss 4.4704 | lr 9.86e-04 | gnorm 0.50 | 35,851 tok/s
+  eval step   600 | train 4.1340 | val 4.2775 | val bpb 2.0398
+step   600 | loss 4.2056 | lr 9.76e-04 | gnorm 0.57 | 28,006 tok/s
+step   700 | loss 4.2118 | lr 9.62e-04 | gnorm 0.55 | 35,183 tok/s
+  eval step   800 | train 3.9654 | val 4.1353 | val bpb 1.9720
+step   800 | loss 4.2506 | lr 9.46e-04 | gnorm 0.72 | 27,703 tok/s
+step   900 | loss 4.0613 | lr 9.27e-04 | gnorm 0.62 | 35,571 tok/s
+  eval step  1000 | train 3.8242 | val 4.0197 | val bpb 1.9168
+step  1000 | loss 3.8895 | lr 9.05e-04 | gnorm 0.63 | 27,806 tok/s
+step  1100 | loss 3.9750 | lr 8.81e-04 | gnorm 0.62 | 35,332 tok/s
+  eval step  1200 | train 3.7226 | val 3.9438 | val bpb 1.8807
+step  1200 | loss 3.7533 | lr 8.55e-04 | gnorm 0.65 | 27,766 tok/s
+step  1300 | loss 3.7658 | lr 8.26e-04 | gnorm 0.64 | 35,487 tok/s
+  eval step  1400 | train 3.6295 | val 3.8708 | val bpb 1.8458
+step  1400 | loss 3.7484 | lr 7.96e-04 | gnorm 0.61 | 27,905 tok/s
+step  1500 | loss 3.7837 | lr 7.64e-04 | gnorm 0.65 | 35,528 tok/s
+  eval step  1600 | train 3.5656 | val 3.8264 | val bpb 1.8247
+step  1600 | loss 3.6766 | lr 7.31e-04 | gnorm 0.69 | 27,874 tok/s
+step  1700 | loss 3.7145 | lr 6.96e-04 | gnorm 0.72 | 35,447 tok/s
+  eval step  1800 | train 3.5048 | val 3.7773 | val bpb 1.8013
+step  1800 | loss 3.6231 | lr 6.60e-04 | gnorm 0.73 | 27,814 tok/s
+step  1900 | loss 3.7292 | lr 6.24e-04 | gnorm 0.64 | 35,416 tok/s
+  eval step  2000 | train 3.4414 | val 3.7459 | val bpb 1.7863
+step  2000 | loss 3.5796 | lr 5.87e-04 | gnorm 0.69 | 27,762 tok/s
+step  2100 | loss 3.6304 | lr 5.50e-04 | gnorm 0.67 | 35,378 tok/s
+  eval step  2200 | train 3.3881 | val 3.7020 | val bpb 1.7653
+step  2200 | loss 3.5787 | lr 5.13e-04 | gnorm 0.61 | 27,752 tok/s
+step  2300 | loss 3.5335 | lr 4.76e-04 | gnorm 0.64 | 35,333 tok/s
+  eval step  2400 | train 3.3479 | val 3.6799 | val bpb 1.7548
+step  2400 | loss 3.6039 | lr 4.40e-04 | gnorm 0.67 | 27,737 tok/s
+step  2500 | loss 3.4836 | lr 4.04e-04 | gnorm 0.67 | 35,386 tok/s
+  eval step  2600 | train 3.3072 | val 3.6567 | val bpb 1.7437
+step  2600 | loss 3.4813 | lr 3.69e-04 | gnorm 0.66 | 27,739 tok/s
+step  2700 | loss 3.4469 | lr 3.36e-04 | gnorm 0.70 | 35,384 tok/s
+  eval step  2800 | train 3.2755 | val 3.6307 | val bpb 1.7314
+step  2800 | loss 3.5391 | lr 3.04e-04 | gnorm 0.69 | 27,749 tok/s
+step  2900 | loss 3.5253 | lr 2.74e-04 | gnorm 0.69 | 35,358 tok/s
+  eval step  3000 | train 3.2437 | val 3.6148 | val bpb 1.7238
+step  3000 | loss 3.5006 | lr 2.45e-04 | gnorm 0.70 | 27,700 tok/s
+step  3100 | loss 3.4500 | lr 2.19e-04 | gnorm 0.70 | 35,319 tok/s
+  eval step  3200 | train 3.2140 | val 3.5971 | val bpb 1.7153
+step  3200 | loss 3.3878 | lr 1.95e-04 | gnorm 0.68 | 27,736 tok/s
+step  3300 | loss 3.3224 | lr 1.73e-04 | gnorm 0.67 | 35,435 tok/s
+  eval step  3400 | train 3.1959 | val 3.5875 | val bpb 1.7107
+step  3400 | loss 3.4053 | lr 1.54e-04 | gnorm 0.70 | 27,842 tok/s
+step  3500 | loss 3.4055 | lr 1.38e-04 | gnorm 0.68 | 35,465 tok/s
+  eval step  3600 | train 3.1788 | val 3.5757 | val bpb 1.7051
+step  3600 | loss 3.3025 | lr 1.24e-04 | gnorm 0.71 | 27,868 tok/s
+step  3700 | loss 3.2927 | lr 1.14e-04 | gnorm 0.68 | 35,450 tok/s
+  eval step  3800 | train 3.1626 | val 3.5665 | val bpb 1.7007
+step  3800 | loss 3.3702 | lr 1.06e-04 | gnorm 0.71 | 27,836 tok/s
+step  3900 | loss 3.4158 | lr 1.02e-04 | gnorm 0.71 | 35,442 tok/s
+  eval step  4000 | train 3.1536 | val 3.5630 | val bpb 1.6990
+
+best val loss 3.5630 (bpb 1.6990). sample:
+
+Trib, from such a king’s court
+Shall to rehearse the King, and his daughter,
+Unto whose state he hath committed.
+
+KING JOHN.
+You do rejoice a daughter, that she
+Should be the King’s king, and I, is my daughter,
+And you will send my servant to my daughter’s daughter.
+
+KING JOHN.
+She’s yours that, she being accus’d in her,
+She is not so far.
+
+DIANA.
+My gracious lord,
+And he did know you, if you have no power,
+You will not hold your offer.
+
+KING PHILIP.
+By the King, he is encompierced,
+And therefore she is to come from heaven.
+
+ [_Exeunt._]
+
+
+
+
+ACT IV
+
+SCENE I. France. A street.
+
+
+Enter King John Albanor of York, Beaufort, Lancaster, Marquess,
+and Eleans, Black Prince of Mon Peter, and others.
+
+KING JOHN.
+O God, pardon me that my son is dead.
+
+KING JOHN.
+How now, brother! What would this be done?
+
+KING PHUIS.
+In faith of England, Lord Percy, this deadly slain.
+
+KING PHILIP.
+My lord, not an angry king!
+
+KING JOHN.
+The King is slain, and the Queen’s heir.
+
+KING JOHN.
+Why, this was the Duke a king of Warwick.
+
+DUCHESS.
+I am your king shall set the crown for the King.
+
+KING JOHN.
+’Tis a dead, most noble father,
+My king of Gaunt, and the King himself
+Whose sovereign and his gracious brother brother Beaufort,
+Fored
+== gpt2+relu-s1: done in 17.8 min
+
+== gpt2+bias-s2: model.preset="gpt2" model.bias=true train.seed=2
+[gpt2+bias-s2] 5.85M params | backend cupy | data data/bpe4096 (vocab 4096, 1,578,753 train tokens, 0.27 tokens/param)
+model: GPTConfig(vocab_size=4096, block_size=256, n_layer=6, n_head=8, n_embd=256, dropout=0.2, bias=True, pos='learned', norm='layernorm', mlp='gelu', rope_base=10000.0, attn='naive')
+  eval step     0 | train 8.3590 | val 8.3590 | val bpb 3.9861
+step     0 | loss 8.3595 | lr 5.00e-06 | gnorm 4.82 | 998 tok/s
+step   100 | loss 5.6685 | lr 5.05e-04 | gnorm 0.45 | 28,310 tok/s
+  eval step   200 | train 4.9633 | val 5.0776 | val bpb 2.4213
+step   200 | loss 4.9428 | lr 1.00e-03 | gnorm 0.47 | 22,412 tok/s
+step   300 | loss 4.7342 | lr 9.98e-04 | gnorm 0.53 | 28,591 tok/s
+  eval step   400 | train 4.5430 | val 4.6575 | val bpb 2.2210
+step   400 | loss 4.6078 | lr 9.94e-04 | gnorm 0.51 | 22,439 tok/s
+step   500 | loss 4.4013 | lr 9.86e-04 | gnorm 0.58 | 28,419 tok/s
+  eval step   600 | train 4.1914 | val 4.3321 | val bpb 2.0658
+step   600 | loss 4.3827 | lr 9.76e-04 | gnorm 0.54 | 22,405 tok/s
+step   700 | loss 4.1558 | lr 9.62e-04 | gnorm 0.69 | 28,406 tok/s
+  eval step   800 | train 4.0059 | val 4.1697 | val bpb 1.9884
+step   800 | loss 4.1688 | lr 9.46e-04 | gnorm 0.54 | 22,497 tok/s
+step   900 | loss 3.9842 | lr 9.27e-04 | gnorm 0.65 | 28,557 tok/s
+  eval step  1000 | train 3.8662 | val 4.0540 | val bpb 1.9332
+step  1000 | loss 4.0015 | lr 9.05e-04 | gnorm 0.61 | 22,365 tok/s
+step  1100 | loss 3.9787 | lr 8.81e-04 | gnorm 0.56 | 28,468 tok/s
+  eval step  1200 | train 3.7571 | val 3.9808 | val bpb 1.8983
+step  1200 | loss 3.9495 | lr 8.55e-04 | gnorm 0.57 | 22,462 tok/s
+step  1300 | loss 3.7300 | lr 8.26e-04 | gnorm 0.54 | 28,469 tok/s
+  eval step  1400 | train 3.6688 | val 3.9082 | val bpb 1.8637
+step  1400 | loss 3.9330 | lr 7.96e-04 | gnorm 0.56 | 22,394 tok/s
+step  1500 | loss 3.7681 | lr 7.64e-04 | gnorm 0.58 | 28,421 tok/s
+  eval step  1600 | train 3.5902 | val 3.8446 | val bpb 1.8333
+step  1600 | loss 3.6104 | lr 7.31e-04 | gnorm 0.60 | 22,378 tok/s
+step  1700 | loss 3.7667 | lr 6.96e-04 | gnorm 0.58 | 28,409 tok/s
+  eval step  1800 | train 3.5227 | val 3.7953 | val bpb 1.8098
+step  1800 | loss 3.6891 | lr 6.60e-04 | gnorm 0.56 | 22,419 tok/s
+step  1900 | loss 3.5668 | lr 6.24e-04 | gnorm 0.61 | 28,494 tok/s
+  eval step  2000 | train 3.4674 | val 3.7620 | val bpb 1.7940
+step  2000 | loss 3.5804 | lr 5.87e-04 | gnorm 0.62 | 22,418 tok/s
+step  2100 | loss 3.5774 | lr 5.50e-04 | gnorm 0.61 | 28,407 tok/s
+  eval step  2200 | train 3.4108 | val 3.7259 | val bpb 1.7767
+step  2200 | loss 3.5206 | lr 5.13e-04 | gnorm 0.60 | 22,382 tok/s
+step  2300 | loss 3.5718 | lr 4.76e-04 | gnorm 0.65 | 28,476 tok/s
+  eval step  2400 | train 3.3609 | val 3.6932 | val bpb 1.7612
+step  2400 | loss 3.5910 | lr 4.40e-04 | gnorm 0.60 | 22,409 tok/s
+step  2500 | loss 3.5100 | lr 4.04e-04 | gnorm 0.62 | 28,412 tok/s
+  eval step  2600 | train 3.3163 | val 3.6721 | val bpb 1.7511
+step  2600 | loss 3.6432 | lr 3.69e-04 | gnorm 0.69 | 22,402 tok/s
+step  2700 | loss 3.4875 | lr 3.36e-04 | gnorm 0.63 | 28,386 tok/s
+  eval step  2800 | train 3.2815 | val 3.6444 | val bpb 1.7379
+step  2800 | loss 3.4041 | lr 3.04e-04 | gnorm 0.63 | 22,372 tok/s
+step  2900 | loss 3.3634 | lr 2.74e-04 | gnorm 0.64 | 28,408 tok/s
+  eval step  3000 | train 3.2451 | val 3.6255 | val bpb 1.7289
+step  3000 | loss 3.3998 | lr 2.45e-04 | gnorm 0.65 | 22,414 tok/s
+step  3100 | loss 3.3774 | lr 2.19e-04 | gnorm 0.69 | 28,398 tok/s
+  eval step  3200 | train 3.2168 | val 3.6111 | val bpb 1.7220
+step  3200 | loss 3.3200 | lr 1.95e-04 | gnorm 0.63 | 22,383 tok/s
+step  3300 | loss 3.4232 | lr 1.73e-04 | gnorm 0.68 | 28,387 tok/s
+  eval step  3400 | train 3.1939 | val 3.5967 | val bpb 1.7151
+step  3400 | loss 3.4190 | lr 1.54e-04 | gnorm 0.66 | 22,380 tok/s
+step  3500 | loss 3.4097 | lr 1.38e-04 | gnorm 0.66 | 28,420 tok/s
+  eval step  3600 | train 3.1765 | val 3.5895 | val bpb 1.7117
+step  3600 | loss 3.4189 | lr 1.24e-04 | gnorm 0.65 | 22,375 tok/s
+step  3700 | loss 3.1603 | lr 1.14e-04 | gnorm 0.65 | 28,413 tok/s
+  eval step  3800 | train 3.1620 | val 3.5828 | val bpb 1.7085
+step  3800 | loss 3.2991 | lr 1.06e-04 | gnorm 0.65 | 22,367 tok/s
+step  3900 | loss 3.3529 | lr 1.02e-04 | gnorm 0.68 | 28,439 tok/s
+  eval step  4000 | train 3.1499 | val 3.5748 | val bpb 1.7047
+
+best val loss 3.5748 (bpb 1.7047). sample:
+
+And he, a woman that hath made me happy.
+O, now, see I will not bind me from my life;
+For I am not a villain, and I know no.
+
+RICHARD.
+Then, then, now I do confess, I do love thee.
+
+QUEEN MARGARET.
+Why, canst thou be thy Protector for that?
+No, no. I am no more than thou canst.
+
+ANNE.
+Marry, I dare love thee.
+
+ANNE.
+But stay, gentle sister, as you love me?
+
+RICHARD.
+Yes, my lord.
+
+RICHARD.
+Ay, my lord.
+
+RICHARD.
+Then, so much, as I should, I’ll be loyal.
+
+RICHARD.
+Marry, and I think thou dost. That I will take thy soul.
+
+ANNE.
+Why, not I; and thou art a woman, boy.
+
+ANNE.
+I would I were not honest, so did I.
+
+RICHARD.
+But look not upon the cassel that I am the one.
+
+ANNE.
+I fear it better, madam.
+
+ANNE.
+I cannot see that oath for that I think,
+If that I had noted my brother,
+A mother had a mother of old child.
+But so do I. But now, gentle cousin,
+I would not have her, nor did she weep.
+
+ANNE.
+Ay me, and I had her now, but I am sure.
+
+RICHARD.
+I were not my uncle, hers, nor she is.
+
+ANNE.
+No, my lord, madam; I was no man.
+
+ANNE.
+No, be’s as you saw, my lord, as I did,
+That I have made them. He had not been here.
+
+ANNE.
+I had a daughter,
+== gpt2+bias-s2: done in 22.0 min
+
+== kavi-momentum-lr0.1-s1: model.preset="kavi" train.optimizer="momentum" train.momentum=0.9 train.lr=0.1 train.min_lr=0.01 train.seed=1
+[kavi-momentum-lr0.1-s1] 5.76M params | backend cupy | data data/bpe4096 (vocab 4096, 1,578,753 train tokens, 0.27 tokens/param)
+model: GPTConfig(vocab_size=4096, block_size=256, n_layer=6, n_head=8, n_embd=256, dropout=0.2, bias=False, pos='rope', norm='rmsnorm', mlp='swiglu', rope_base=10000.0, attn='naive')
+  eval step     0 | train 8.3778 | val 8.3762 | val bpb 3.9943
+step     0 | loss 8.3700 | lr 5.00e-04 | gnorm 5.00 | 1,139 tok/s
+step   100 | loss 6.1351 | lr 5.05e-02 | gnorm 0.49 | 32,803 tok/s
+  eval step   200 | train 5.3875 | val 5.5178 | val bpb 2.6312
+step   200 | loss 5.3301 | lr 1.00e-01 | gnorm 0.84 | 25,772 tok/s
+step   300 | loss 5.0587 | lr 9.98e-02 | gnorm 0.61 | 33,140 tok/s
+  eval step   400 | train 4.7842 | val 4.9109 | val bpb 2.3418
+step   400 | loss 4.8115 | lr 9.94e-02 | gnorm 1.11 | 25,817 tok/s
+step   500 | loss 4.7704 | lr 9.86e-02 | gnorm 0.88 | 32,895 tok/s
+  eval step   600 | train 4.4137 | val 4.5588 | val bpb 2.1739
+step   600 | loss 4.4535 | lr 9.76e-02 | gnorm 0.82 | 25,898 tok/s
+step   700 | loss 4.4276 | lr 9.62e-02 | gnorm 0.83 | 33,077 tok/s
+  eval step   800 | train 4.1571 | val 4.3063 | val bpb 2.0535
+step   800 | loss 4.4332 | lr 9.46e-02 | gnorm 0.90 | 25,961 tok/s
+step   900 | loss 4.2563 | lr 9.27e-02 | gnorm 0.93 | 33,035 tok/s
+  eval step  1000 | train 4.0076 | val 4.1544 | val bpb 1.9811
+step  1000 | loss 4.0828 | lr 9.05e-02 | gnorm 0.89 | 25,893 tok/s
+step  1100 | loss 4.1151 | lr 8.81e-02 | gnorm 0.88 | 32,967 tok/s
+  eval step  1200 | train 3.8890 | val 4.0535 | val bpb 1.9330
+step  1200 | loss 3.9066 | lr 8.55e-02 | gnorm 0.86 | 25,846 tok/s
+step  1300 | loss 3.9045 | lr 8.26e-02 | gnorm 0.87 | 32,924 tok/s
+  eval step  1400 | train 3.7841 | val 3.9689 | val bpb 1.8926
+step  1400 | loss 3.9061 | lr 7.96e-02 | gnorm 0.84 | 25,833 tok/s
+step  1500 | loss 3.8987 | lr 7.64e-02 | gnorm 0.90 | 32,891 tok/s
+  eval step  1600 | train 3.6994 | val 3.8978 | val bpb 1.8587
+step  1600 | loss 3.8090 | lr 7.31e-02 | gnorm 0.86 | 25,801 tok/s
+step  1700 | loss 3.8449 | lr 6.96e-02 | gnorm 0.89 | 32,876 tok/s
+  eval step  1800 | train 3.6339 | val 3.8431 | val bpb 1.8326
+step  1800 | loss 3.7439 | lr 6.60e-02 | gnorm 0.88 | 25,861 tok/s
+step  1900 | loss 3.8337 | lr 6.24e-02 | gnorm 0.85 | 32,957 tok/s
+  eval step  2000 | train 3.5699 | val 3.8055 | val bpb 1.8147
+step  2000 | loss 3.6941 | lr 5.87e-02 | gnorm 0.88 | 25,869 tok/s
+step  2100 | loss 3.7224 | lr 5.50e-02 | gnorm 0.97 | 32,987 tok/s
+  eval step  2200 | train 3.5193 | val 3.7649 | val bpb 1.7954
+step  2200 | loss 3.7006 | lr 5.13e-02 | gnorm 0.84 | 25,881 tok/s
+step  2300 | loss 3.6506 | lr 4.76e-02 | gnorm 0.85 | 32,941 tok/s
+  eval step  2400 | train 3.4766 | val 3.7385 | val bpb 1.7827
+step  2400 | loss 3.7546 | lr 4.40e-02 | gnorm 0.89 | 25,881 tok/s
+step  2500 | loss 3.6114 | lr 4.04e-02 | gnorm 0.90 | 32,933 tok/s
+  eval step  2600 | train 3.4388 | val 3.7099 | val bpb 1.7691
+step  2600 | loss 3.5849 | lr 3.69e-02 | gnorm 0.91 | 25,858 tok/s
+step  2700 | loss 3.5608 | lr 3.36e-02 | gnorm 0.94 | 32,929 tok/s
+  eval step  2800 | train 3.4065 | val 3.6879 | val bpb 1.7586
+step  2800 | loss 3.6633 | lr 3.04e-02 | gnorm 0.91 | 25,831 tok/s
+step  2900 | loss 3.6419 | lr 2.74e-02 | gnorm 0.93 | 32,913 tok/s
+  eval step  3000 | train 3.3772 | val 3.6707 | val bpb 1.7504
+step  3000 | loss 3.6047 | lr 2.45e-02 | gnorm 0.96 | 25,853 tok/s
+step  3100 | loss 3.5749 | lr 2.19e-02 | gnorm 0.91 | 32,909 tok/s
+  eval step  3200 | train 3.3503 | val 3.6512 | val bpb 1.7411
+step  3200 | loss 3.5114 | lr 1.95e-02 | gnorm 0.96 | 25,855 tok/s
+step  3300 | loss 3.4376 | lr 1.73e-02 | gnorm 0.91 | 32,973 tok/s
+  eval step  3400 | train 3.3328 | val 3.6365 | val bpb 1.7341
+step  3400 | loss 3.5431 | lr 1.54e-02 | gnorm 0.96 | 25,901 tok/s
+step  3500 | loss 3.5146 | lr 1.38e-02 | gnorm 0.94 | 32,963 tok/s
+  eval step  3600 | train 3.3168 | val 3.6254 | val bpb 1.7288
+step  3600 | loss 3.4496 | lr 1.24e-02 | gnorm 0.93 | 25,863 tok/s
+step  3700 | loss 3.4078 | lr 1.14e-02 | gnorm 0.92 | 32,915 tok/s
+  eval step  3800 | train 3.3050 | val 3.6173 | val bpb 1.7249
+step  3800 | loss 3.5173 | lr 1.06e-02 | gnorm 0.96 | 25,802 tok/s
+step  3900 | loss 3.5522 | lr 1.02e-02 | gnorm 0.96 | 33,010 tok/s
+  eval step  4000 | train 3.2934 | val 3.6113 | val bpb 1.7221
+
+best val loss 3.6113 (bpb 1.7221). sample:
+
+The lin-stuffed in the air and tail
+Of the winds and fronted in the roaring shore,
+But in a flower, and then by the very eagle
+Still in a ravenname, and a park
+Bear and a shrong. Thomas the moon
+Were not the most precious air; but in the sea
+Which was but a kingly monkish for all,
+Who then we do fear them.
+
+PROSPERO.
+You, sir,
+That had a husband, and the heavens for you
+Did not be to know the state of this?
+
+PROSPERO.
+What was the king and the Queen?
+
+ALENAS.
+Not a queen
+To all the heavens be not fifteen years, nor
+Seeming him out of all but the packet
+That has no eyes.
+
+ARVIRAGUS.
+You have caught.
+
+GUIDERIUS.
+No, my lord.
+
+PROSPERO.
+No more,
+I never saw you, but I would not have him
+To be as they saw. And here I did not be.
+I do not believe it.
+
+ARVIRAGUS.
+I do not know
+Through this; but as much as I saw them,
+Or all are too much more than the rest,
+That we are the people’s tripper.
+
+BELARIUS.
+The gods that do,
+And I can tell you were.
+
+ARVIRAGUS.
+What,
+When we are o’ the gods’s death!
+
+ARVIRAGUS.
+I have heard thee.
+
+BELARIUS.
+You have spoke
+To have a little little of a father.
+
+ARVIRAGUS.
+What shall we call it?
+
+ARVIRAGUS.
+== kavi-momentum-lr0.1-s1: done in 19.1 min

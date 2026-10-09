@@ -27,7 +27,7 @@ State of each phase in [PLAN.md](PLAN.md). Updated 2026-10-08.
 Load with `kavi.checkpoint.load_model`. Optimizer state was stripped, so they can't be resumed.
 
 ## Next
-- Kaggle v3 (pushed 2026-10-09 ~10:00 IST): `configs/sweep_followup.json`, gpt2+bias / gpt2+relu ×2 seeds, SGD+momentum lr 0.03/0.1. → `results/followup/`, journal entry.
+- Done 2026-10-09: Kaggle v3 follow-up (`results/followup/`, 59 min). Anton's edge is ReLU (−0.008; biases −0.002), and ReLU ties SwiGLU. SGD+momentum at lr 0.1 gives 1.722 vs plain 2.238 vs AdamW 1.627. Written up in the journal.
 - Then `configs/sweep_scale_probe.json` (300 steps × S/M/L, measures T4 throughput), then the long run + `scripts/induction.py`.
 
 ## Known facts / gotchas found while building

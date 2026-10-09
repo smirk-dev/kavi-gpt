@@ -305,6 +305,12 @@ Order in the training loop (`scripts/train.py`): `zero_grad` → `forward` → `
   trained with plain SGD (`lr 0.1 → 0.01`, no momentum) on the same budget as `kavi-s1`.
   Result: **2.238 val bpb vs 1.627** for AdamW. After 4000 steps SGD still hadn't reached where
   AdamW was at step 400 (2.003). Details and samples are in [the journal](journal.md).
+- **The follow-up sweep** (`configs/sweep_followup.json`) adds the missing knob: the same model
+  and lr schedule with `optimizer: "momentum"`, momentum 0.9. At lr 0.1 it reaches **1.722**,
+  closing 84% of the gap to AdamW with one change. At lr 0.03 it reaches 1.916, so momentum SGD
+  wanted the *larger* step, and the sweep isn't bracketed yet. What's left (0.095 bpb) is what
+  section 4's per-parameter scaling buys: one global lr can't suit both a frequent token's
+  embedding row and a rare one's.
 
 ## 10. Pitfalls
 

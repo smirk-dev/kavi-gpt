@@ -30,12 +30,16 @@ Shakespeare, trained in 160 min on Kaggle's free 2× T4. Lower is better:
 | gpt2 + RoPE only | 1.632 | RoPE alone is ~94% of the gain |
 | anton (GPT-2 + ReLU + biases) | 1.697 | |
 | gpt2 + SwiGLU only | 1.699 | |
+| gpt2 + ReLU only *(follow-up)* | 1.699 | why anton wins: ReLU ties SwiGLU |
+| gpt2 + biases only *(follow-up)* | 1.704 | biases: −0.002 |
 | gpt2 + RMSNorm only | 1.707 | ties LayerNorm |
 | gpt2 (baseline) | 1.707 | |
 | kavi on characters | 1.803 | |
+| kavi, SGD + momentum 0.9 *(follow-up)* | 1.722 | momentum closes 84% of the gap |
 | kavi with plain SGD | 2.238 | Anton's SGD failure, measured |
 
-Seed-to-seed spread is ≤ 0.0012 bpb, so every gap above except RMSNorm's is real.
+Seed-to-seed spread is ≤ 0.0012 bpb, so every gap above except RMSNorm's is real. The
+follow-up rows come from a second 6-run sweep (59 min); see the [journal](docs/journal.md).
 
 ```
 HORATIO.
