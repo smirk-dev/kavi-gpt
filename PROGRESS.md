@@ -24,7 +24,7 @@ State of each phase in [PLAN.md](PLAN.md). Updated 2026-10-09.
 
 ## Checkpoints
 `ckpt/` (gitignored, weights only): kavi-s2, gpt2-s2, anton-s2, kavi-char-s1 (~23 MB each);
-scale-L-29M (112 MB), scale-M-17M (66 MB), scale-S-7M, scale-S-7M-shakes-only (25 MB; its best is step 2000).
+scale-L-29M (112 MB), scale-M-17M (66 MB), scale-S-7M, scale-S-7M-shakes-only (26 MB; its best is step 2000).
 Load with `kavi.checkpoint.load_model`. Optimizer state was stripped, so they can't be resumed.
 
 ## Next
