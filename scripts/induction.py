@@ -25,6 +25,8 @@ sys.path.insert(0, str(ROOT))
 
 from kavi import backend as B  # noqa: E402
 from kavi.checkpoint import load_model  # noqa: E402
+from kavi.data import TokenData  # noqa: E402
+from kavi.probes import induction, induction_batch  # noqa: E402
 
 
 def main():
@@ -40,48 +42,22 @@ def main():
 
     B.set_backend("numpy", precision="float32")
     model, cfg = load_model(args.checkpoint)
-    for blk in model.blocks:
-        blk.attn.flash = False                      # need the explicit probability matrix
-    model.eval()
     P, V = args.period, model.cfg.vocab_size
-    assert 2 * P <= model.cfg.block_size
-    rng = np.random.default_rng(args.seed)
-    if args.source == "uniform":
-        half = rng.integers(0, V, size=(args.n, P))
-    else:
-        from kavi.data import TokenData
-        val = TokenData(ROOT / cfg["data"]).val
-        if args.source == "unigram":
-            half = val[rng.integers(0, len(val), size=(args.n, P))]
-        else:
-            starts = rng.integers(0, len(val) - P, size=args.n)
-            half = np.stack([val[s:s + P] for s in starts])
-    ids = np.concatenate([half, half], axis=1)       # (n, 2P)
-
-    _, loss_first = model.forward(ids[:, :P], ids[:, 1:P + 1])
-    logits, _ = model.forward(ids[:, :-1])           # caches attention for all 2P-1 positions
-    logits = B.to_numpy(logits).astype(np.float64)
-    logp = logits - logits.max(-1, keepdims=True)
-    logp -= np.log(np.exp(logp).sum(-1, keepdims=True))
-    tgt = ids[:, 1:]
-    nll = -np.take_along_axis(logp, tgt[..., None], -1)[..., 0]     # (n, 2P-1)
+    val = None if args.source == "uniform" else TokenData(ROOT / cfg["data"]).val
+    ids = induction_batch(val, P, args.n, np.random.default_rng(args.seed), args.source, V)
+    r = induction(model, ids)
     print(f"{args.source} tokens, period {P}, {args.n} sequences, vocab {V} (uniform guess = {np.log(V):.2f})")
-    print(f"  loss on first copy  : {nll[:, :P - 1].mean():.3f} nats")
-    print(f"  loss on second copy : {nll[:, P:].mean():.3f} nats   <- in-context copying")
+    print(f"  loss on first copy  : {r['loss_first']:.3f} nats")
+    print(f"  loss on second copy : {r['loss_second']:.3f} nats   <- in-context copying")
 
-    rows = np.arange(P, 2 * P - 1)                   # query positions in the second copy
     print("\nlayer head | induction (i -> i-P+1) | prev-token (i -> i-1)")
-    best = []
-    for li, blk in enumerate(model.blocks):
-        A = B.to_numpy(blk.attn.probs)               # (n, H, T, T)
-        ind = A[:, :, rows, rows - P + 1].mean(axis=(0, 2))
-        prev = A[:, :, rows, rows - 1].mean(axis=(0, 2))
-        for h in range(A.shape[1]):
-            flag = "  <- induction head" if ind[h] > 0.3 else ("  <- previous-token head" if prev[h] > 0.3 else "")
-            print(f"  {li:3d}  {h:3d} | {ind[h]:6.3f} | {prev[h]:6.3f}{flag}")
-            best.append((ind[h], li, h))
-    s, li, h = max(best)
-    print(f"\nstrongest induction head: layer {li} head {h} ({s:.1%} of its attention on the "
+    for li in range(r["ind"].shape[0]):
+        for h in range(r["ind"].shape[1]):
+            ind, prev = r["ind"][li, h], r["prev"][li, h]
+            flag = "  <- induction head" if ind > 0.3 else ("  <- previous-token head" if prev > 0.3 else "")
+            print(f"  {li:3d}  {h:3d} | {ind:6.3f} | {prev:6.3f}{flag}")
+    li, h = r["best_head"]
+    print(f"\nstrongest induction head: layer {li} head {h} ({r['best_ind']:.1%} of its attention on the "
           f"target; uniform would be ~{1 / (1.5 * P):.1%})")
 
 

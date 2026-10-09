@@ -23,12 +23,13 @@ from kavi.checkpoint import load_checkpoint, save_checkpoint  # noqa: E402
 from kavi.data import TokenData  # noqa: E402
 from kavi.model import GPT, GPTConfig  # noqa: E402
 from kavi.optim import SGD, AdamW, clip_grad_norm, lr_at  # noqa: E402
+from kavi.probes import induction, induction_batch  # noqa: E402
 
 DEFAULT_TRAIN = dict(
     optimizer="adamw", batch_size=32, max_steps=5000, lr=1e-3, min_lr=1e-4, warmup=200,
     weight_decay=0.1, beta1=0.9, beta2=0.95, momentum=0.9, grad_clip=1.0,
     eval_interval=250, eval_iters=20, seed=1337, sample_tokens=300, sample_prompt="\n",
-    log_interval=25,
+    log_interval=25, induction_probe=False,
 )
 
 
@@ -115,6 +116,11 @@ def main():
 
     rng = np.random.default_rng(tc["seed"] + start)
     T, bs = mcfg.block_size, tc["batch_size"]
+    # induction_probe: at every eval, log how strongly the model copies a repeated sequence,
+    # to catch the induction-head "phase change" as it happens (docs/14-scaling.md). The same
+    # fixed batch every time, so the numbers form a curve.
+    probe_ids = (induction_batch(data.val, min(50, T // 2), 8, np.random.default_rng(4321))
+                 if tc["induction_probe"] else None)
     # fresh run: start a new log. Resume: keep only records before `start` (the resumed
     # step is evaluated again, and a crashed run may have logged past its last checkpoint)
     log_path = run / "log.jsonl"
@@ -130,10 +136,16 @@ def main():
             ev = evaluate(model, data, tc, T)
             rec = {"step": step, "train_loss": ev["train"], "val_loss": ev["val"],
                    "val_bpb": data.bpb(ev["val"]), "lr": lr, "time": time.time()}
+            if probe_ids is not None:
+                pr = induction(model, probe_ids)
+                rec.update(ind_score=pr["best_ind"], ind_head=list(pr["best_head"]),
+                           copy_gain=pr["loss_first"] - pr["loss_second"])
             log.write(json.dumps(rec) + "\n")
             log.flush()
             print(f"  eval step {step:5d} | train {ev['train']:.4f} | val {ev['val']:.4f} "
-                  f"| val bpb {data.bpb(ev['val']):.4f}")
+                  f"| val bpb {data.bpb(ev['val']):.4f}"
+                  + (f" | induction {rec['ind_score']:.3f} L{rec['ind_head'][0]}H{rec['ind_head'][1]}"
+                     f" copy gain {rec['copy_gain']:.2f}" if probe_ids is not None else ""))
             if ev["val"] < best:
                 best = ev["val"]
                 save_checkpoint(run / "best.npz", model, opt, step, best, cfg)

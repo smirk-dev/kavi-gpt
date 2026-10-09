@@ -16,7 +16,7 @@ State of each phase in [PLAN.md](PLAN.md). Updated 2026-10-08.
 | 8 Scale-up | ⏳ | corpus built: 137 texts, 11.9× Shakespeare, 18.7M BPE-8192 train tokens, leakage-guarded (`scripts/build_corpus.py`, `docs/14-scaling.md`); scale probe + long run pending |
 
 ## How to resume
-- Tests: `python -m pytest tests -q` (47 pass; torch optional).
+- Tests: `python -m pytest tests -q` (48 pass; torch optional).
 - Kaggle loop: `python kaggle/build_kernel.py build --sweep <file>` → `push` → `status` → `output`
   (downloads to `kaggle/output/`, cleared first). Run from the Windows Store `python` (it has
   the kaggle API auth). Copy results you keep into `results/<name>/` (git-tracked, no .npz).
